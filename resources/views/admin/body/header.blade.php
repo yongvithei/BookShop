@@ -71,13 +71,11 @@
                         <a class="dropdown-item d-flex align-items-center justify-content-between" href="op_auth_lock.html">
                             <span class="fs-sm fw-medium">Lock Account</span>
                         </a>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="#" id="logout-link">
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('admin.logout') }}" >
                             <span class="fs-sm fw-medium">Log Out</span>
                         </a>
 
-                        <form method="POST" action="{{ route('logout') }}" id="logout-form">
-                            @csrf
-                        </form>
+
                     </div>
                 </div>
             </div>
@@ -210,9 +208,4 @@
 </header>
 <!-- END Header -->
 
-<script>
-    document.getElementById('logout-link').addEventListener('click', function(event) {
-        event.preventDefault();
-        document.getElementById('logout-form').submit();
-    });
-</script>
+
