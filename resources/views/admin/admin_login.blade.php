@@ -60,7 +60,7 @@
                                         <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
                                         <div class="row mb-1 justify-content-center">
                                             <div class="col-sm-10 col-md-8 col-xl-7">
-                                                <a class="btn w-100 btn-alt-danger text-center" href="javascript:void(0)" style="box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                                                <a class="btn w-100 btn-alt-danger text-center" href="/auth/google/redirect/admin" style="box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
                                                     <i class="fab fa-fw fa-google opacity-50 me-1"></i> Connect to Google
                                                 </a>
                                             </div>
