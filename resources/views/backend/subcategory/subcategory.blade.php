@@ -3,28 +3,29 @@
     <!-- Stylesheets -->
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="{{ asset('admin/assets/js/plugins/datatables-bs5/css/dataTables.bootstrap5.min.css' )}}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/js/plugins/select2/css/select2.min.css' )}}">
+    <link rel="stylesheet" id="css-main" href="{{ asset('admin/assets/css/untitleui.min.css' )}}">
     {{--    @vite(['resources/css/app.css'])--}}
     <!-- UntitleUI framework -->
-
 
     <!-- Main Container -->
     <main id="main-container">
         <!-- Hero -->
         <div class="bg-body-light">
 
-                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
+            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
 
-                    <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
-                        <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">
-                                <a class="link-fx" href="javascript:void(0)">Category Setup</a>
-                            </li>
-                            <li class="breadcrumb-item" aria-current="page">
-                                Categories
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
+                <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-alt">
+                        <li class="breadcrumb-item">
+                            <a class="link-fx" href="javascript:void(0)">Category Setup</a>
+                        </li>
+                        <li class="breadcrumb-item" aria-current="page">
+                            Subcategories
+                        </li>
+                    </ol>
+                </nav>
+            </div>
 
         </div>
         <!-- END Hero -->
@@ -34,10 +35,10 @@
             <!-- Dynamic Table Full -->
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">Categories</h3>
+                    <h3 class="block-title">SubCategories</h3>
                     <div class="block-options">
                         <button type="button" class="btn btn-sm btn-alt-primary">Refresh</button>
-                        <button type="button" class="btn btn-sm btn-alt-primary" data-bs-toggle="modal" data-bs-target="#modal-block-normal">ADD</button>
+                        <button type="button" class="btn btn-sm btn-alt-primary" data-bs-toggle="modal" data-bs-target="#modal-block-select2">ADD</button>
 
 
                     </div>
@@ -48,8 +49,8 @@
                         <thead>
                         <tr>
                             <th class="text-center" style="width: 80px;">ID</th>
-                            <th>Name</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Description</th>
+                            <th>SubCategory Name</th>
+                            <th class="d-none d-sm-table-cell" style="width: 30%;">Category Name</th>
                             <th class="d-none d-sm-table-cell" style="width: 15%;">Status</th>
                             <th style="width: 15%;">Action</th>
                         </tr>
@@ -101,51 +102,45 @@
                 </div>
             </div>
             <!-- END Dynamic Table Full -->
-            <!-- Normal Block Modal -->
-            <div class="modal" id="modal-block-normal" tabindex="-1" role="dialog" aria-labelledby="modal-block-normal" aria-hidden="true">
+            <!-- Select2 in a modal -->
+            <div class="modal" id="modal-block-select2" tabindex="-1" role="dialog" aria-labelledby="modal-block-select2" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="block block-rounded block-transparent mb-0">
                             <div class="block-header block-header-default">
-                                <h3 class="block-title">Create Category</h3>
+                                <h3 class="block-title">Create Subcategory</h3>
                                 <div class="block-options">
                                     <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                                         <i class="fa fa-fw fa-times"></i>
                                     </button>
                                 </div>
                             </div>
-                            <form action="" method="POST" enctype="multipart/form-data" onsubmit="return false;">
-                                <div class="block-content row justify-content-center">
+                            <div class="block-content">
+                                <!-- Select2 is initialized at the bottom of the page -->
+                                <form action="" method="POST" onsubmit="return false;">
 
-                                    <div class="col-lg-12 col-xl-12">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="example-text-input">Name</label>
-                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="Category Name">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="example-textarea-input">Description</label>
-                                            <textarea class="form-control" id="example-textarea-input" name="example-textarea-input" rows="3" placeholder="Description or Note"></textarea>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Status</label>
-                                            <div class="space-x-2">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="example-radios-inline1" name="example-radios-inline" value="option1" checked="">
-                                                    <label class="form-check-label" for="example-radios-inline1">Active</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="example-radios-inline2" name="example-radios-inline" value="option2">
-                                                    <label class="form-check-label" for="example-radios-inline2">Inactive</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                    <div class="mb-4">
+                                        <label class="form-label" for="example-text-input">Name</label>
+                                        <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="SubCategory Name">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label" for="one-ecom-product-category">Category</label>
+                                        <label for="example-select2-modal"></label><select class="js-select2 form-select" id="example-select2-modal" name="example-select2-modal" style="width: 100%;" data-container="#modal-block-select2" data-placeholder="Choose one..">
+                                            <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                            <option value="1">HTML</option>
+                                            <option value="2">CSS</option>
+                                            <option value="3" selected>JavaScript</option>
+                                            <option value="4">PHP</option>
+                                            <option value="5">MySQL</option>
+                                            <option value="6">Ruby</option>
+                                            <option value="7">Angular</option>
+                                            <option value="8">React</option>
+                                            <option value="9">Vue.js</option>
+                                        </select>
                                     </div>
 
-                                </div>
-
-
-                            </form>
+                                </form>
+                            </div>
                             <div class="block-content block-content-full text-end bg-body">
                                 <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
                                 <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Create</button>
@@ -154,11 +149,12 @@
                     </div>
                 </div>
             </div>
-            <!-- END Normal Block Modal -->
+            <!-- END Select2 in a modal -->
         </div>
         <!-- END Page Content -->
     </main>
     <!-- END Main Container -->
+
     <!-- jQuery (required for DataTables plugin) -->
     <script src="{{asset('admin/assets/js/lib/jquery.min.js')}}"></script>
     <!-- Page JS Plugins -->
@@ -167,5 +163,15 @@
     <script src="{{asset('admin/assets/js/plugins/datatables-buttons/dataTables.buttons.min.js')}}"></script>
     <!-- Page JS Code -->
     <script src="{{ asset('admin/assets/js/pages/be_tables_datatables.min.js')}}"></script>
+
+
+{{--    another--}}
+    <!-- Page JS Plugins -->
+    <script src="{{ asset('admin/assets/js/plugins/select2/js/select2.full.min.js')}}"></script>
+
+    <!-- Page JS Helpers (Select2 + Bootstrap Maxlength + CKEditor plugins) -->
+    <script>One.helpersOnLoad(['jq-select2']);</script>
+
+
 
 @endsection

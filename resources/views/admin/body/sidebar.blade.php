@@ -170,7 +170,7 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_image_cropper.html">
+                            <a class="nav-main-link{{ request()->is('all/subcategory') ? ' active' : '' }}" href="/all/subcategory">
                                 <span class="nav-main-link-name">Sub Categories</span>
                             </a>
                         </li>
