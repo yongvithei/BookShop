@@ -535,4 +535,9 @@
     <!-- END Page Content -->
 </main>
 <!-- END Main Container -->
+
+<!-- Page JS Plugins -->
+<script src="{{asset('admin/assets/js/plugins/chart.js/chart.umd.js')}}"></script>
+<!-- Page JS Code -->
+<script src="{{asset('admin/assets/js/pages/be_pages_dashboard.min.js')}}"></script>
 @endsection
