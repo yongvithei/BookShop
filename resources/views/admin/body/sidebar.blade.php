@@ -278,7 +278,7 @@
                 </li>
                 <li class="nav-main-heading">SYSTEM SETTINGS</li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="">
+                    <a class="nav-main-link{{ request()->is('info/business') ? ' active' : '' }}" href="/info/business">
                         <i class="nav-main-link-icon si si-speedometer"></i>
                         <span class="nav-main-link-name">
                     Business Setup</span>

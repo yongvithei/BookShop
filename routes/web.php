@@ -47,8 +47,8 @@ Route::middleware(['auth','role:admin'])->group(function() {
     Route::view('/all/subcategory', 'backend/subcategory.subcategory');
     Route::view('/list/partners', 'backend/partner.partner');
     Route::view('/list/promo', 'backend/promo.promo');
-
-
+    Route::view('/info/business', 'backend/business.business');
+    Route::view('/admin/profile', 'backend/profile.profile');
 });
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);

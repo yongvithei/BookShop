@@ -26,7 +26,7 @@
             <!-- END Open Search Section -->
 
             <!-- Search Form (visible on larger screens) -->
-            <form class="d-none d-md-inline-block" action="be_pages_generic_search.html" method="POST">
+            <form class="d-none d-md-inline-block" action="" method="POST">
                 <div class="input-group input-group-sm">
                     <input type="text" class="form-control form-control-alt" placeholder="Search.." id="page-header-search-input2" name="page-header-search-input2">
                     <span class="input-group-text border-0">
@@ -54,21 +54,21 @@
                         <p class="mb-0 text-muted fs-sm fw-medium">Web Developer</p>
                     </div>
                     <div class="p-2">
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_inbox.html">
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="">
                             <span class="fs-sm fw-medium">Inbox</span>
                             <span class="badge rounded-pill bg-primary ms-2">3</span>
                         </a>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_profile.html">
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="">
                             <span class="fs-sm fw-medium">Profile</span>
                             <span class="badge rounded-pill bg-primary ms-2">1</span>
                         </a>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="/admin/profile">
                             <span class="fs-sm fw-medium">Settings</span>
                         </a>
                     </div>
                     <div role="separator" class="dropdown-divider m-0"></div>
                     <div class="p-2">
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="op_auth_lock.html">
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="">
                             <span class="fs-sm fw-medium">Lock Account</span>
                         </a>
                         <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('admin.logout') }}" >
@@ -175,7 +175,7 @@
     <!-- Header Search -->
     <div id="page-header-search" class="overlay-header bg-body-extra-light">
         <div class="content-header">
-            <form class="w-100" action="be_pages_generic_search.html" method="POST">
+            <form class="w-100" action="" method="POST">
                 <div class="input-group">
                     <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
                     <button type="button" class="btn btn-alt-danger" data-toggle="layout" data-action="header_search_off">
