@@ -3,7 +3,7 @@
     <!-- Side Header -->
     <div class="content-header">
         <!-- Logo -->
-        <a class="fw-semibold text-dual" href="index.html">
+        <a class="fw-semibold text-dual" href="">
             <span class="smini-visible">
               <i class="fa fa-circle-notch text-primary"></i>
             </span>
@@ -145,12 +145,12 @@
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_widgets_tiles.html">
+                            <a class="nav-main-link" href="">
                                 <span class="nav-main-link-name">Panding</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_widgets_users.html">
+                            <a class="nav-main-link" href="">
                                 <span class="nav-main-link-name">Approve</span>
                             </a>
                         </li>
@@ -176,24 +176,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-main-item">
-                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                        <i class="nav-main-link-icon si si-wrench"></i>
-                        <span class="nav-main-link-name">Brands</span>
-                    </a>
-                    <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_loaders.html">
-                                <span class="nav-main-link-name">Add new</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_image_cropper.html">
-                                <span class="nav-main-link-name">List</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+
+
                 <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-wrench"></i>
@@ -201,12 +185,12 @@
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_loaders.html">
+                            <a class="nav-main-link" href="">
                                 <span class="nav-main-link-name">Add new</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_image_cropper.html">
+                            <a class="nav-main-link" href="">
                                 <span class="nav-main-link-name">List</span>
                             </a>
                         </li>
@@ -219,30 +203,31 @@
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_loaders.html">
+                            <a class="nav-main-link" href="">
                                 <span class="nav-main-link-name">Add new</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="be_comp_image_cropper.html">
+                            <a class="nav-main-link" href="">
                                 <span class="nav-main-link-name">List</span>
                             </a>
                         </li>
                     </ul>
                 </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link{{ request()->is('list/partners') ? ' active' : '' }}" href="/list/partners">
+                        <i class="nav-main-link-icon si si-cursor"></i>
+                        <span class="nav-main-link-name">Business Partners</span>
+                    </a>
+                </li>
                 <li class="nav-main-heading">PROMOTION MANAGEMENT</li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="">
+                    <a class="nav-main-link{{ request()->is('list/promo') ? ' active' : '' }}" href="/list/promo">
                         <i class="nav-main-link-icon si si-speedometer"></i>
-                        <span class="nav-main-link-name">Banners</span>
+                        <span class="nav-main-link-name">Banners & Coupon</span>
                     </a>
                 </li>
-                <li class="nav-main-item">
-                    <a class="nav-main-link" href="">
-                        <i class="nav-main-link-icon si si-speedometer"></i>
-                        <span class="nav-main-link-name">Coupon</span>
-                    </a>
-                </li>
+
                 <li class="nav-main-heading">REPORTS & ANALYSIS</li>
                 <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">

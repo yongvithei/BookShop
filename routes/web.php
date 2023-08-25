@@ -45,6 +45,8 @@ Route::middleware(['auth','role:admin'])->group(function() {
            });
     // Example Routes
     Route::view('/all/subcategory', 'backend/subcategory.subcategory');
+    Route::view('/list/partners', 'backend/partner.partner');
+    Route::view('/list/promo', 'backend/promo.promo');
 
 
 });
