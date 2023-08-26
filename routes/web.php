@@ -51,6 +51,8 @@ Route::middleware(['auth','role:admin'])->group(function() {
     Route::view('/admin/profile', 'backend/profile.profile');
     Route::view('/product/all', 'backend/product.all_product');
     Route::view('/product/add', 'backend/product.add_product');
+    Route::view('/user/list', 'backend/user.user');
+    Route::view('/order/list', 'backend/order.order');
 
 });
 

@@ -341,7 +341,7 @@
     <script src="{{ asset('admin/assets/js/pages/be_tables_datatables.min.js')}}"></script>
 
     <script src="{{ asset('admin/assets/js/plugins/flatpickr/flatpickr.min.js')}}"></script>
-    <script>One.helpersOnLoad(['js-flatpickr', 'jq-datepicker', 'jq-maxlength', 'jq-select2', 'jq-masked-inputs', 'jq-rangeslider']);</script>
+    <script>One.helpersOnLoad(['js-flatpickr', 'jq-datepicker',  'jq-select2', 'jq-rangeslider']);</script>
 
 
 @endsection
