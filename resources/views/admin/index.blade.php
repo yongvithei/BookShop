@@ -41,6 +41,7 @@
     webpack is putting everything together at assets/_js/main/app.js
 -->
     <script src="{{asset('admin/assets/js/untitleui.app.min.js')}}"></script>
+    @vite(['resources/js/hotReload.app.js'])
 
 </head>
 

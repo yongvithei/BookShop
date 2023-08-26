@@ -49,6 +49,9 @@ Route::middleware(['auth','role:admin'])->group(function() {
     Route::view('/list/promo', 'backend/promo.promo');
     Route::view('/info/business', 'backend/business.business');
     Route::view('/admin/profile', 'backend/profile.profile');
+    Route::view('/product/all', 'backend/product.all_product');
+    Route::view('/product/add', 'backend/product.add_product');
+
 });
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);

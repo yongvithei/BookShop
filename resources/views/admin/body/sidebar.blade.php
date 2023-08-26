@@ -158,6 +158,27 @@
                 </li>
 
                 <li class="nav-main-heading">PRODUCT MANAGEMENT</li>
+
+
+                <li class="nav-main-item{{ request()->is('product/*') ? ' open' : '' }}">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-wrench"></i>
+                        <span class="nav-main-link-name">Products</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('product/all') ? ' active' : '' }}" href="/product/all">
+                                <span class="nav-main-link-nam e">All Product</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('product/add') ? ' active' : '' }}" href="/product/add">
+                                <span class="nav-main-link-name">Add Product</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="nav-main-item{{ request()->is('all/*') ? ' open' : '' }}">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-wrench"></i>
@@ -172,44 +193,6 @@
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('all/subcategory') ? ' active' : '' }}" href="/all/subcategory">
                                 <span class="nav-main-link-name">Sub Categories</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-
-                <li class="nav-main-item">
-                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                        <i class="nav-main-link-icon si si-wrench"></i>
-                        <span class="nav-main-link-name">InHouse Products</span>
-                    </a>
-                    <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="">
-                                <span class="nav-main-link-name">Add new</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="">
-                                <span class="nav-main-link-name">List</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-main-item">
-                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                        <i class="nav-main-link-icon si si-wrench"></i>
-                        <span class="nav-main-link-name">Seller Products</span>
-                    </a>
-                    <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="">
-                                <span class="nav-main-link-name">Add new</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="">
-                                <span class="nav-main-link-name">List</span>
                             </a>
                         </li>
                     </ul>
