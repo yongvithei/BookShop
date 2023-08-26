@@ -111,19 +111,19 @@
                         <span class="nav-main-link-name">Order</span>
                     </a>
                 </li>
-                <li class="nav-main-item">
+                <li class="nav-main-item{{ request()->is('return/*') ? ' open' : '' }}">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-trophy"></i>
                         <span class="nav-main-link-name">Returns</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="">
-                                <span class="nav-main-link-name">Panding</span>
+                            <a class="nav-main-link{{ request()->is('return/pending') ? ' active' : '' }}" href="/return/pending">
+                                <span class="nav-main-link-name">Pending</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="">
+                            <a class="nav-main-link{{ request()->is('return/approve') ? ' active' : '' }}" href="/return/approve">
                                 <span class="nav-main-link-name">Approve</span>
                             </a>
                         </li>
@@ -134,6 +134,13 @@
                     <a class="nav-main-link{{ request()->is('user/list') ? ' active' : '' }}" href="/user/list">
                         <i class="nav-main-link-icon si si-cursor"></i>
                         <span class="nav-main-link-name">User</span>
+                    </a>
+                </li>
+
+                <li class="nav-main-item">
+                    <a class="nav-main-link{{ request()->is('report/order') ? ' active' : '' }}" href="/report/order">
+                        <i class="nav-main-link-icon si si-cursor"></i>
+                        <span class="nav-main-link-name">Report</span>
                     </a>
                 </li>
 
@@ -191,54 +198,7 @@
                     </a>
                 </li>
 
-                <li class="nav-main-heading">REPORTS & ANALYSIS</li>
-                <li class="nav-main-item">
-                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                        <i class="nav-main-link-icon si si-energy"></i>
-                        <span class="nav-main-link-name">Sales & Transaction Report</span>
-                    </a>
-                    <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="">
-                      <span class="nav-main-link-name">
-                        Earning Reports</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="">
-                      <span class="nav-main-link-name">
-                        Inhouse Sales</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="">
-                      <span class="nav-main-link-name">
-                        Seller Report</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="">
-                      <span class="nav-main-link-name">
-                        Transaction Report</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
-                <li class="nav-main-item">
-                    <a class="nav-main-link" href="">
-                        <i class="nav-main-link-icon si si-speedometer"></i>
-                        <span class="nav-main-link-name">
-                    Product Report</span>
-                    </a>
-                </li>
-                <li class="nav-main-item">
-                    <a class="nav-main-link" href="">
-                        <i class="nav-main-link-icon si si-speedometer"></i>
-                        <span class="nav-main-link-name">
-                    Order Report</span>
-                    </a>
-                </li>
                 <li class="nav-main-heading">SYSTEM SETTINGS</li>
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('info/business') ? ' active' : '' }}" href="/info/business">

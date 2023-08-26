@@ -53,7 +53,9 @@ Route::middleware(['auth','role:admin'])->group(function() {
     Route::view('/product/add', 'backend/product.add_product');
     Route::view('/user/list', 'backend/user.user');
     Route::view('/order/list', 'backend/order.order');
-
+    Route::view('/return/pending', 'backend/return.pending');
+    Route::view('/return/approve', 'backend/return.approve');
+    Route::view('/report/order', 'backend/report.report_order');
 });
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
