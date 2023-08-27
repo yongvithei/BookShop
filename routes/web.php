@@ -47,7 +47,8 @@ Route::middleware(['auth','role:admin'])->group(function() {
     Route::view('/all/subcategory', 'backend/subcategory.subcategory');
     Route::view('/list/partners', 'backend/partner.partner');
     Route::view('/list/promo', 'backend/promo.promo');
-    Route::view('/info/business', 'backend/business.business');
+    Route::view('/info/business', 'backend/system.business');
+    Route::view('/backup/info', 'backend/system.backup');
     Route::view('/admin/profile', 'backend/profile.profile');
     Route::view('/product/all', 'backend/product.all_product');
     Route::view('/product/add', 'backend/product.add_product');
@@ -56,6 +57,10 @@ Route::middleware(['auth','role:admin'])->group(function() {
     Route::view('/return/pending', 'backend/return.pending');
     Route::view('/return/approve', 'backend/return.approve');
     Route::view('/report/order', 'backend/report.report_order');
+    Route::view('/review/all', 'backend/review.review');
+    Route::view('/role/permission', 'backend/role.role&permission');
+    Route::view('/role/add_permission&role', 'backend/role.addrole&perm');
+    Route::view('/assign/role', 'backend/role.assign');
 });
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);

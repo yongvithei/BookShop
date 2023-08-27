@@ -190,6 +190,12 @@
                         <span class="nav-main-link-name">Business Partners</span>
                     </a>
                 </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link{{ request()->is('review/all') ? ' active' : '' }}" href="/review/all">
+                        <i class="nav-main-link-icon si si-cursor"></i>
+                        <span class="nav-main-link-name">Review</span>
+                    </a>
+                </li>
                 <li class="nav-main-heading">PROMOTION MANAGEMENT</li>
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('list/promo') ? ' active' : '' }}" href="/list/promo">
@@ -198,6 +204,34 @@
                     </a>
                 </li>
 
+                <li class="nav-main-heading">ROLES AND PERMISSION</li>
+                <li class="nav-main-item{{ request()->is('role/*') ? ' open' : '' }}">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon si si-wrench"></i>
+                        <span class="nav-main-link-name">Roles And Permission</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('role/permission') ? ' active' : '' }}" href="/role/permission">
+                                <span class="nav-main-link-name">All</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('role/add_permission&role') ? ' active' : '' }}" href="/role/add_permission&role">
+                                <span class="nav-main-link-name">Add and Edit</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                <li class="nav-main-item">
+                    <a class="nav-main-link{{ request()->is('assign/role') ? ' active' : '' }}" href="/assign/role">
+                        <i class="nav-main-link-icon si si-speedometer"></i>
+                        <span class="nav-main-link-name">Assign</span>
+                    </a>
+                </li>
+
+
 
                 <li class="nav-main-heading">SYSTEM SETTINGS</li>
                 <li class="nav-main-item">
@@ -205,6 +239,13 @@
                         <i class="nav-main-link-icon si si-speedometer"></i>
                         <span class="nav-main-link-name">
                     Business Setup</span>
+                    </a>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link{{ request()->is('backup/info') ? ' active' : '' }}" href="/backup/info">
+                        <i class="nav-main-link-icon si si-speedometer"></i>
+                        <span class="nav-main-link-name">
+                    BackUp</span>
                     </a>
                 </li>
             </ul>
