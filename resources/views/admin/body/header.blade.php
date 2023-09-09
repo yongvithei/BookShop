@@ -63,7 +63,7 @@
                             <span class="badge rounded-pill bg-primary ms-2">1</span>
                         </a>
                         <a class="dropdown-item d-flex align-items-center justify-content-between" href="/admin/profile">
-                            <span class="fs-sm fw-medium">Settings</span>
+                            <span class="fs-sm fw-medium">Setting</span>
                         </a>
                     </div>
                     <div role="separator" class="dropdown-divider m-0"></div>

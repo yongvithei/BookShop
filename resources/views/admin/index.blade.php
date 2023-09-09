@@ -43,6 +43,14 @@
     <script src="{{asset('admin/assets/js/untitleui.app.min.js')}}"></script>
     @vite(['resources/js/hotReload.app.js'])
 
+    <link href="https://fonts.googleapis.com/css2?family=Khmer&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Khmer', sans-serif;
+}
+</style>
+
 </head>
 
 <body>

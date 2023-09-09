@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Backend\CategoryController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/locale/{locale}', [LocalizationController::class, 'setLang']);
 
 Route::get('/', function () {
     return view('welcome');
