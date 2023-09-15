@@ -10,3 +10,8 @@ php artisan make:model Category -m
 php artisan make:controller Backend/CategoryController
 php artisan make:controller LocalizationController
 php artisan make:middleware LocalizationMiddleware
+
+php artisan vendor:publish --tag=datatables
+
+composer require yajra/laravel-datatables-oracle:"^10.3.1"
+https://yajrabox.com/docs/laravel-datatables/10.0/installation

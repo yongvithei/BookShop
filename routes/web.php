@@ -43,8 +43,12 @@ Route::middleware(['auth','role:admin'])->group(function() {
 
     // Category All Route
     Route::controller(CategoryController::class)->group(function(){
-        Route::get('/all/category' , 'AllCategory')->name('all.category');
-           });
+        Route::get('/all/category', 'index')->name('all.category');
+        Route::post('category/store', 'store');
+        Route::post('category/edit', 'edit');
+        Route::post('category/delete', 'destroy');
+    });
+
     // Example Routes
     Route::view('/all/subcategory', 'backend/subcategory.subcategory');
     Route::view('/list/partners', 'backend/partner.partner');
