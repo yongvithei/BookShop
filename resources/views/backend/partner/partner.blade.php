@@ -1,12 +1,20 @@
 @extends('admin.index')
 @section('admin')
+<meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Stylesheets -->
+
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="{{ asset('admin/assets/js/plugins/datatables-bs5/css/dataTables.bootstrap5.min.css' )}}">
     {{--    @vite(['resources/css/app.css'])--}}
     <!-- UntitleUI framework -->
 
-
+    <style>
+        .pl-loading {
+            min-height: 30px;
+            background-color: #eee;
+            border-radius: 10px;
+        }
+    </style>
     <!-- Main Container -->
     <main id="main-container">
         <!-- Hero -->
@@ -32,149 +40,228 @@
             <!-- Dynamic Table Full -->
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">Categories</h3>
+                    <h3 class="block-title">Partner</h3>
                     <div class="block-options">
-                        <button type="button" class="btn btn-sm btn-alt-primary">Refresh</button>
-                        <button type="button" class="btn btn-sm btn-alt-primary" data-bs-toggle="modal" data-bs-target="#modal-block-normal">ADD</button>
-
-
+                        <a type="button" class="btn btn-sm btn-alt-primary">Refresh</a>
+                        <a onClick="add()" type="button" class="btn btn-sm btn-alt-primary" data-bs-toggle="modal" data-bs-target="#item-modal">ADD</a>
                     </div>
                 </div>
                 <div class="block-content block-content-full">
                     <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-                    <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                    <table id="item-table" class="table table-bordered table-vcenter">
                         <thead>
                         <tr>
                             <th class="text-center" style="width: 80px;">ID</th>
-                            <th>Name</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Description</th>
+                            <th class="text-center" style="width: 100px;">Image</th>
+                            <th>Partner Name</th>
                             <th class="d-none d-sm-table-cell" style="width: 15%;">Status</th>
                             <th style="width: 15%;">Action</th>
                         </tr>
                         </thead>
                         <tbody>
+                        <tr>
+                            <td class="fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="fw-semibold fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="fw-semibold fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="fw-semibold fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="fw-semibold fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="fw-semibold fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="fw-semibold fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="fw-semibold fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
+                            </td>
+                        </tr>
 
-                        <tr>
-                            <td class="text-center fs-sm">39</td>
-                            <td class="fw-semibold fs-sm">Henry Harrison</td>
-                            <td class="d-none d-sm-table-cell fs-sm">
-                                client39<span class="text-muted">@example.com</span>
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">VIP</span>
-                            </td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove">
-                                        <i class="fa fa-fw fa-times"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center fs-sm">40</td>
-                            <td class="fw-semibold fs-sm">Alice Moore</td>
-                            <td class="d-none d-sm-table-cell fs-sm">
-                                client40<span class="text-muted">@example.com</span>
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Business</span>
-                            </td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove">
-                                        <i class="fa fa-fw fa-times"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             <!-- END Dynamic Table Full -->
             <!-- Normal Block Modal -->
-            <div class="modal" id="modal-block-normal" tabindex="-1" role="dialog" aria-labelledby="modal-block-normal" aria-hidden="true">
+            <div class="modal" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="item-modal" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="block block-rounded block-transparent mb-0">
                             <div class="block-header block-header-default">
-                                <h3 class="block-title">Create Partner Information</h3>
+                                <h3 class="block-title">Partner Information</h3>
                                 <div class="block-options">
                                     <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                                         <i class="fa fa-fw fa-times"></i>
                                     </button>
                                 </div>
                             </div>
-                            <form action="" method="POST" enctype="multipart/form-data" onsubmit="return false;">
-                                <div class="block-content row justify-content-center">
+                            <form id="ItemForm" action="javascript:void(0)" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="id" id="id">    
+                                <input type="hidden" name="avatar_hidden" id="avatar_hidden">
+                                    <div class="block-content row justify-content-center">
 
                                     <div class="col-lg-12 col-xl-12">
                                         <div class="mb-2">
-                                            <label class="form-label" for="example-text-input">Name</label>
-                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="Category Name">
+                                            <label class="form-label" for="name">Name</label>
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="Category Name">
+                                            <span id="name_error" class="text-danger" style="display: none;">Field is required.</span>
                                         </div>
                                         <div class="mb-2">
-                                            <label class="form-label" for="example-group2-input1">Address</label>
-                                            <div class="input-group">
-                                                    <span class="input-group-text">
-                                                      <i class="far fa-map"></i>
-                                                    </span>
-                                                <input type="text" class="form-control" id="example-group2-input1" name="example-group2-input1">
-                                            </div>
-                                        </div>
-                                        <div class="mb-2">
-                                            <label class="form-label" for="example-group2-input1">Contact</label>
+                                            <label class="form-label" for="phone">Contact</label>
                                             <div class="input-group">
                                                     <span class="input-group-text">
                                                       <i class="far fa-address-book"></i>
                                                     </span>
-                                                <input type="text" class="form-control" id="example-group2-input1" name="example-group2-input1">
+                                                <input type="text" class="form-control" id="phone" name="phone">
                                             </div>
                                         </div>
-                                        <div class="mb-2">
-                                            <label class="form-label" for="example-group2-input1">Website</label>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="address">Address</label>
                                             <div class="input-group">
                                                     <span class="input-group-text">
-                                                      <i class="far fa-bookmark"></i>
+                                                      <i class="far fa-map"></i>
                                                     </span>
-                                                <input type="text" class="form-control" id="example-group2-input1" name="example-group2-input1">
+                                                <input type="text" class="form-control" id="address" name="address">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <div class="col-lg">
+                                                <label for="one-profile-edit-avatar" class="form-label">Choose Image</label>
+                                                <input class="form-control" type="file" name="avatar" id="avatar">
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <img class="img-avatar" id="preview-image" src="{{asset('storage/images/default.jpg')}}" alt="">
                                             </div>
                                         </div>
 
+
                                         <div class="mb-2">
-                                            <label class="form-label" for="example-textarea-input">Description</label>
-                                            <textarea class="form-control" id="example-textarea-input" name="example-textarea-input" rows="2" placeholder="Description or Note"></textarea>
+                                            <label class="form-label" for="desc">Description</label>
+                                            <textarea class="form-control" id="desc" name="desc" rows="2" placeholder="Description or Note"></textarea>
                                         </div>
                                         <div class="mb-2">
                                             <label class="form-label">Status</label>
                                             <div class="space-x-2">
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="example-radios-inline1" name="example-radios-inline" value="option1" checked="">
-                                                    <label class="form-check-label" for="example-radios-inline1">Active</label>
+                                                    <input class="form-check-input" type="radio" id="statusActive" name="status" value="Active" checked="">
+                                                    <label class="form-check-label" for="statusActive">Active</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="example-radios-inline2" name="example-radios-inline" value="option2">
-                                                    <label class="form-check-label" for="example-radios-inline2">Inactive</label>
+                                                    <input class="form-check-input" type="radio" id="statusInactive" name="status" value="Inactive">
+                                                    <label class="form-check-label" for="statusInactive">Inactive</label>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
-
-
-                            </form>
-                            <div class="block-content block-content-full text-end bg-body">
+                                <div class="block-content block-content-full text-end bg-body">
                                 <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Create</button>
+                                <button type="submit" id="btn-save" class="btn btn-sm btn-primary">Save changes</button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -192,5 +279,180 @@
     <script src="{{asset('admin/assets/js/plugins/datatables-buttons/dataTables.buttons.min.js')}}"></script>
     <!-- Page JS Code -->
     <script src="{{ asset('admin/assets/js/pages/be_tables_datatables.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
 
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('#item-table').DataTable({
+            pageLength: 10,
+            lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+            autoWidth: false,
+            serverSide: true,
+            processing: false,
+            ajax: '{{ route('all.partner') }}',
+            columns: [
+                { data: 'id', name: 'id' },
+            {
+                data: 'avatar',
+    name: 'avatar',
+    render: function (data, type, full, meta) {
+        if (type === 'display' && data) {
+            // Construct the full URL to the avatar image
+            var avatarUrl = '/storage/images/' + data;
+
+            // Create an img element with the avatar URL as src
+            return '<img src="' + avatarUrl + '" alt="Avatar" class="img-avatar" />';
+        } else {
+            // Return the default image URL when data is null
+            var defaultAvatarUrl = '{{ asset('storage/images/avatar3.jpg') }}';
+            return '<img src="' + defaultAvatarUrl + '" class="img-avatar img-avatar48"  />';
+        }
+    }
+            },
+            { data: 'name', name: 'name' },
+                { 
+                data: 'status', 
+                name: 'status',
+                render: function (data) {
+                    if (data === 'Active') {
+                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Active</span>';
+                    } else {
+                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Inactive</span>';
+                    }
+                }
+            },
+                { data: 'action', name: 'action', orderable: false },
+            ],
+            order: [[0, 'desc']],
+            columnDefs: [
+        {
+            targets: [0, 1, 3,4],
+            className: 'text-center',
+        },
+    ]
+
+        
+        });
+    });   
+    function add() {
+        $('#ItemForm')[0].reset();
+        $('#preview-image').attr('src', '{{ asset('storage/images/default.jpg') }}');
+        $('#btn-save').html("Create");
+        $('#item-modal').modal('show');
+        $('#id').val('');
+        $('#name_error').hide();
+    }
+        $('#ItemForm').submit(function (e) {
+            e.preventDefault();
+            var nameVal = $('#name').val();
+            if (nameVal.trim() === '') {
+                $('#name_error').show();
+                return;
+            } 
+            $('#name_error').hide();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "{{ url('par/store')}}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    $("#item-modal").modal('hide');
+                    var oTable = $('#item-table').dataTable();
+                    oTable.fnDraw(false);
+                    $("#btn-save").html('Submit');
+                    $("#btn-save").attr("disabled", false);
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        });
+        function deleteFunc(id) {
+            Swal.fire({
+                title: 'Delete Record?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ url('par/delete') }}",
+                        data: { id: id },
+                        dataType: 'json',
+                        success: function (res) {
+                            var oTable = $('#item-table').dataTable();
+                            oTable.fnDraw(false);
+                        }
+                    });
+                }
+            });
+        }
+
+
+        function editFunc(id) {
+        $('#ItemForm')[0].reset();
+        $('#preview-image').attr('src', '{{ asset('storage/images/default.jpg') }}');
+            $.ajax({
+                type: "POST",
+                url: "{{ url('par/edit') }}",
+                data: { id: id },
+                dataType: 'json',
+                success: function (res) {
+                    $('#btn-save').html("Save changes");
+                    $('#item-modal').modal('show');
+                    $('#id').val(res.id);
+                    $('#name').val(res.name);
+                    $('#phone').val(res.phone);
+                    $('#address').val(res.address);
+                    $('#desc').val(res.desc);
+                    $('#avatar_hidden').val(res.avatar);
+
+                    // Set the src attribute of the preview image with the user's avatar URL
+                    $('#preview-image').attr('src', '{{ asset('storage/images') }}/' + res.avatar);
+
+                    if (res.status === 'Active') {
+                        $('#statusActive').prop('checked', true);
+                    } else if (res.status === 'Inactive') {
+                        $('#statusInactive').prop('checked', true);
+                    }
+                }
+            });
+        }
+
+        function preview() {
+        $('#avatar').change(function () {
+            var file = this.files[0];
+            if (file) {
+                var allowedExtensions = ['svg','jpg', 'jpeg', 'png', 'gif'];
+                var fileExtension = file.name.split('.').pop().toLowerCase();
+                if (allowedExtensions.indexOf(fileExtension) === -1) {
+                    $('#avatar').val(''); // Clear the file input
+                    $('#preview-image').attr('src', ''); // Clear the image source
+                    alert('Please select a valid image file (svg, jpg, jpeg, png, gif).');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#preview-image').attr('src', e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            } else {
+                $('#preview-image').attr('src', '');
+            }
+        });
+    }
+    preview();
+    </script>
 @endsection

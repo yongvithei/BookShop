@@ -7,7 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
-
+use App\Http\Controllers\Backend\PartnerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,8 +57,14 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::post('sub/delete', 'destroy');
     });
 
-    // Example Routes
-    Route::view('/list/partners', 'backend/partner.partner');
+    Route::controller(PartnerController::class)->group(function(){
+        Route::get('/list/partners', 'index')->name('all.partner');
+        Route::post('par/store', 'store');
+        Route::post('par/edit', 'edit');
+        Route::post('par/delete', 'destroy');
+    });
+       // Example Routes
+    // Route::view('/list/partners', 'backend/partner.partner');
     Route::view('/list/promo', 'backend/promo.promo');
     Route::view('/info/business', 'backend/system.business');
     Route::view('/backup/info', 'backend/system.backup');

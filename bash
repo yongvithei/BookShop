@@ -20,3 +20,6 @@ php artisan make:controller Backend/SubCategoryController
 php artisan make:model SubCategory -m
 php artisan make:migration create_subcategory_view
 php artisan make:model SubCategoryView
+php artisan make:controller Backend/PartnerController
+php artisan make:model Partner -m
+php artisan storage:link
