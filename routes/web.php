@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,9 +49,15 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::post('category/edit', 'edit');
         Route::post('category/delete', 'destroy');
     });
+    // SubCategory All Route
+    Route::controller(SubCategoryController::class)->group(function(){
+        Route::get('/all/subcategory', 'index')->name('all.sub');
+        Route::post('sub/store', 'store');
+        Route::post('sub/edit', 'edit');
+        Route::post('sub/delete', 'destroy');
+    });
 
     // Example Routes
-    Route::view('/all/subcategory', 'backend/subcategory.subcategory');
     Route::view('/list/partners', 'backend/partner.partner');
     Route::view('/list/promo', 'backend/promo.promo');
     Route::view('/info/business', 'backend/system.business');

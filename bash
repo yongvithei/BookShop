@@ -15,3 +15,8 @@ php artisan vendor:publish --tag=datatables
 
 composer require yajra/laravel-datatables-oracle:"^10.3.1"
 https://yajrabox.com/docs/laravel-datatables/10.0/installation
+
+php artisan make:controller Backend/SubCategoryController
+php artisan make:model SubCategory -m
+php artisan make:migration create_subcategory_view
+php artisan make:model SubCategoryView
