@@ -7,7 +7,7 @@
             <span class="smini-visible">
               <i class="fa fa-circle-notch text-primary"></i>
             </span>
-            <span class="smini-hide fs-5 tracking-wider">UntitleUI</span>
+            <span class="smini-hide fs-5 tracking-wider">{{__('body.title')}}</span>
         </a>
         <!-- END Logo -->
 
@@ -58,31 +58,31 @@
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('admin/dashboard') ? ' active' : '' }}" href="{{ route('admin.dashboard') }}">
                         <i class="nav-main-link-icon si si-cursor"></i>
-                        <span class="nav-main-link-name">Dashboard</span>
+                        <span class="nav-main-link-name">{{__('body.dashboard')}}</span>
                     </a>
                 </li>
 
-                <li class="nav-main-heading">ORDER MANAGEMENT</li>
+                <li class="nav-main-heading">{{__('body.order_management')}}</li>
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('order/list') ? ' active' : '' }}" href="/order/list">
                         <i class="nav-main-link-icon si si-cursor"></i>
-                        <span class="nav-main-link-name">Order</span>
+                        <span class="nav-main-link-name">{{__('body.order')}}</span>
                     </a>
                 </li>
                 <li class="nav-main-item{{ request()->is('return/*') ? ' open' : '' }}">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-trophy"></i>
-                        <span class="nav-main-link-name">Returns</span>
+                        <span class="nav-main-link-name">{{__('body.returns')}}</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('return/pending') ? ' active' : '' }}" href="/return/pending">
-                                <span class="nav-main-link-name">Pending</span>
+                                <span class="nav-main-link-name">{{__('body.pending')}}</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('return/approve') ? ' active' : '' }}" href="/return/approve">
-                                <span class="nav-main-link-name">Approve</span>
+                                <span class="nav-main-link-name">{{__('body.approve')}}</span>
                             </a>
                         </li>
                     </ul>
@@ -91,34 +91,34 @@
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('user/list') ? ' active' : '' }}" href="/user/list">
                         <i class="nav-main-link-icon si si-cursor"></i>
-                        <span class="nav-main-link-name">User</span>
+                        <span class="nav-main-link-name">{{__('body.user')}}</span>
                     </a>
                 </li>
 
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('report/order') ? ' active' : '' }}" href="/report/order">
                         <i class="nav-main-link-icon si si-cursor"></i>
-                        <span class="nav-main-link-name">Report</span>
+                        <span class="nav-main-link-name">{{__('body.report')}}</span>
                     </a>
                 </li>
 
-                <li class="nav-main-heading">PRODUCT MANAGEMENT</li>
+                <li class="nav-main-heading">{{__('body.product_management')}}</li>
 
 
                 <li class="nav-main-item{{ request()->is('product/*') ? ' open' : '' }}">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-wrench"></i>
-                        <span class="nav-main-link-name">Products</span>
+                        <span class="nav-main-link-name">{{__('body.products')}}</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('product/all') ? ' active' : '' }}" href="/product/all">
-                                <span class="nav-main-link-nam e">All Product</span>
+                                <span class="nav-main-link-nam e">{{__('body.all_product')}}</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('product/add') ? ' active' : '' }}" href="/product/add">
-                                <span class="nav-main-link-name">Add Product</span>
+                                <span class="nav-main-link-name">{{__('body.add_product')}}</span>
                             </a>
                         </li>
                     </ul>
@@ -127,17 +127,17 @@
                 <li class="nav-main-item{{ request()->is('all/*') ? ' open' : '' }}">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-wrench"></i>
-                        <span class="nav-main-link-name">Category Setup</span>
+                        <span class="nav-main-link-name">{{__('body.category_setup')}}</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('all/category') ? ' active' : '' }}" href="{{ route('all.category') }}">
-                                <span class="nav-main-link-name">Categories</span>
+                                <span class="nav-main-link-name">{{__('body.categories')}}</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('all/subcategory') ? ' active' : '' }}" href="/all/subcategory">
-                                <span class="nav-main-link-name">Sub Categories</span>
+                                <span class="nav-main-link-name">{{__('body.sub_categories')}}</span>
                             </a>
                         </li>
                     </ul>
@@ -145,38 +145,38 @@
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('list/partners') ? ' active' : '' }}" href="/list/partners">
                         <i class="nav-main-link-icon si si-cursor"></i>
-                        <span class="nav-main-link-name">Business Partners</span>
+                        <span class="nav-main-link-name">{{__('body.business_partners')}}</span>
                     </a>
                 </li>
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('review/all') ? ' active' : '' }}" href="/review/all">
                         <i class="nav-main-link-icon si si-cursor"></i>
-                        <span class="nav-main-link-name">Review</span>
+                        <span class="nav-main-link-name">{{__('body.review')}}</span>
                     </a>
                 </li>
-                <li class="nav-main-heading">PROMOTION MANAGEMENT</li>
+                <li class="nav-main-heading">{{__('body.promotion_management')}}</li>
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('list/promo') ? ' active' : '' }}" href="/list/promo">
                         <i class="nav-main-link-icon si si-speedometer"></i>
-                        <span class="nav-main-link-name">Banners & Coupon</span>
+                        <span class="nav-main-link-name">{{__('body.banners_coupon')}}</span>
                     </a>
                 </li>
 
-                <li class="nav-main-heading">ROLES AND PERMISSION</li>
+                <li class="nav-main-heading">{{__('body.roles_and_permission')}}</li>
                 <li class="nav-main-item{{ request()->is('role/*') ? ' open' : '' }}">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                         <i class="nav-main-link-icon si si-wrench"></i>
-                        <span class="nav-main-link-name">Roles And Permission</span>
+                        <span class="nav-main-link-name">{{__('body.roles_and_permission')}}</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('role/permission') ? ' active' : '' }}" href="/role/permission">
-                                <span class="nav-main-link-name">All</span>
+                                <span class="nav-main-link-name">{{__('body.all')}}</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('role/add_permission&role') ? ' active' : '' }}" href="/role/add_permission&role">
-                                <span class="nav-main-link-name">Add and Edit</span>
+                                <span class="nav-main-link-name">{{__('body.add_and_edit')}}</span>
                             </a>
                         </li>
 
@@ -185,25 +185,23 @@
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('assign/role') ? ' active' : '' }}" href="/assign/role">
                         <i class="nav-main-link-icon si si-speedometer"></i>
-                        <span class="nav-main-link-name">Assign</span>
+                        <span class="nav-main-link-name">{{__('body.assign')}}</span>
                     </a>
                 </li>
 
 
 
-                <li class="nav-main-heading">SYSTEM SETTINGS</li>
+                <li class="nav-main-heading">{{__('body.system_setting')}}</li>
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('info/business') ? ' active' : '' }}" href="/info/business">
                         <i class="nav-main-link-icon si si-speedometer"></i>
-                        <span class="nav-main-link-name">
-                    Business Setup</span>
+                        <span class="nav-main-link-name">{{__('body.business_setup')}}</span>
                     </a>
                 </li>
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('backup/info') ? ' active' : '' }}" href="/backup/info">
                         <i class="nav-main-link-icon si si-speedometer"></i>
-                        <span class="nav-main-link-name">
-                    BackUp</span>
+                        <span class="nav-main-link-name">{{__('body.backup')}}</span>
                     </a>
                 </li>
             </ul>

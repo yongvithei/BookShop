@@ -1,6 +1,6 @@
 /*
  *  Document   : be_pages_ecom_dashboard.js
- *  Author     : pixelcave
+ *  Author     : untitles
  *  Description: Custom JS code used in eCommerce Dashboard Page
  */
 

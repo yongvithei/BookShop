@@ -1,6 +1,6 @@
 /*
  *  Document   : be_ui_icons.js
- *  Author     : pixelcave
+ *  Author     : untitles
  *  Description: Custom JS code used in Icons Page
  */
 

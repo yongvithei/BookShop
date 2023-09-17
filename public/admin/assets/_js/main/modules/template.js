@@ -1,6 +1,6 @@
 /*
  *  Document   : template.js
- *  Author     : pixelcave
+ *  Author     : untitles
  *  Description: UI Framework custom functionality
  *
  */

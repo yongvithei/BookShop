@@ -1,6 +1,6 @@
 /*
  *  Document   : be_comp_charts.js
- *  Author     : pixelcave
+ *  Author     : untitles
  *  Description: Custom JS code used in Charts Page
  */
 

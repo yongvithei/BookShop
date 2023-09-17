@@ -1,6 +1,6 @@
 /*
  *  Document   : op_auth_reminder.js
- *  Author     : pixelcave
+ *  Author     : untitles
  *  Description: Custom JS code used in Password Reminder Page
  */
 

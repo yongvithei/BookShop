@@ -1,6 +1,6 @@
 /*
  *  Document   : op_installation.js
- *  Author     : pixelcave
+ *  Author     : untitles
  *  Description: Custom JS code used in Installation Page
  */
 

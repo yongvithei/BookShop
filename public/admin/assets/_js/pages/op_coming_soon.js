@@ -1,6 +1,6 @@
 /*
  *  Document   : op_coming_soon.js
- *  Author     : pixelcave
+ *  Author     : untitles
  *  Description: Custom JS code used in Coming Soon Page
  */
 

@@ -5,7 +5,7 @@
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="{{ asset('admin/assets/js/plugins/datatables-bs5/css/dataTables.bootstrap5.min.css' )}}">
     <link rel="stylesheet" href="{{ asset('admin/assets/js/plugins/select2/css/select2.min.css' )}}">
-    <link rel="stylesheet" id="css-main" href="{{ asset('admin/assets/css/untitleui.min.css' )}}">
+    <!--need for drop down <link rel="stylesheet" id="css-main" href="{{ asset('admin/assets/css/untitleui.min.css' )}}"> -->
     <!-- UntitleUI framework -->
     <style>
         .pl-loading {

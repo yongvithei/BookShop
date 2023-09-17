@@ -1,6 +1,6 @@
 /*
  *  Document   : be_comp_calendar.js
- *  Author     : pixelcave
+ *  Author     : untitles
  *  Description: Custom JS code used in Calendar Page
  */
 
@@ -155,7 +155,7 @@ class pageCompCalendar {
           title: 'Follow us on Twitter',
           start: new Date(y, m, 22),
           allDay: true,
-          url: 'http://twitter.com/pixelcave',
+          url: 'http://twitter.com/untitles',
           color: '#3c90df'
         }
       ]

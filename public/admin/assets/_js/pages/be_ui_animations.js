@@ -1,6 +1,6 @@
 /*
  *  Document   : be_ui_animations.js
- *  Author     : pixelcave
+ *  Author     : untitles
  *  Description: Custom JS code used in Animations Page
  */
 

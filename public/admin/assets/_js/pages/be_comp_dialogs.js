@@ -1,6 +1,6 @@
 /*
  *  Document   : be_comp_dialogs.js
- *  Author     : pixelcave
+ *  Author     : untitles
  *  Description: Custom JS code used in Dialogs Page
  */
 

@@ -1,6 +1,6 @@
 /*
  *  Document   : be_tables_datatables.js
- *  Author     : pixelcave
+ *  Author     : untitles
  *  Description: Custom JS code used in DataTables Page
  */
 

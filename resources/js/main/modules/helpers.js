@@ -1,6 +1,6 @@
 /*
  *  Document   : helpers.js
- *  Author     : pixelcave
+ *  Author     : untitles
  *  Description: Various helpers for plugin inits or helper functionality
  *
  */
@@ -761,7 +761,7 @@ export default class Helpers {
       // Init notifications (with .js-notify class)
       jQuery('.js-notify:not(.js-notify-enabled)').each((index, element) => {
         // Add .js-notify-enabled class to tag it as activated and init it
-        jQuery(element).addClass('js-notify-enabled').on('click.pixelcave.helpers', e => {
+        jQuery(element).addClass('js-notify-enabled').on('click.untitles.helpers', e => {
           let el = jQuery(e.currentTarget);
 
           // Create notification
@@ -1015,7 +1015,7 @@ export default class Helpers {
             jqSparklineResize = true;
 
             // On window resize, re-run the Sparkline helper
-            jQuery(window).on('resize.pixelcave.helpers.sparkline', function (e) {
+            jQuery(window).on('resize.untitles.helpers.sparkline', function (e) {
               clearTimeout(jqSparklineTimeout);
 
               jqSparklineTimeout = setTimeout(() => {

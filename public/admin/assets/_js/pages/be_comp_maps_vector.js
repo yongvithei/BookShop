@@ -1,6 +1,6 @@
 /*
  *  Document   : be_comp_maps_vector.js
- *  Author     : pixelcave
+ *  Author     : untitles
  *  Description: Custom JS code used in Vector Maps Page
  */
 

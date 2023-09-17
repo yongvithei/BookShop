@@ -1,6 +1,6 @@
 /*
  *  Document   : be_comp_image_cropper.js
- *  Author     : pixelcave
+ *  Author     : untitles
  *  Description: Custom JS code used in Image Cropper Page
  */
 

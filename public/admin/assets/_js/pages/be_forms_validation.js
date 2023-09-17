@@ -1,6 +1,6 @@
 /*
  *  Document   : be_forms_validation.js
- *  Author     : pixelcave
+ *  Author     : untitles
  *  Description: Custom JS code used in Forms Validation Page
  */
 

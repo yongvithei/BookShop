@@ -1,6 +1,6 @@
 /*
  *  Document   : be_pages_dashboard_v1.js
- *  Author     : pixelcave
+ *  Author     : untitles
  *  Description: Custom JS code used in Dashboard v1 Page
  */
 

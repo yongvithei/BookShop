@@ -1,6 +1,6 @@
 /*
  *  Document   : app.js
- *  Author     : pixelcave
+ *  Author     : untitles
  *  Description: Main entry point
  *
  */

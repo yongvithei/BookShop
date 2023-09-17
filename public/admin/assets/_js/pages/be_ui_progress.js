@@ -1,6 +1,6 @@
 /*
  *  Document   : be_ui_progress.js
- *  Author     : pixelcave
+ *  Author     : untitles
  *  Description: Custom JS code used in Progress Page
  */
 

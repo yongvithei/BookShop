@@ -1,6 +1,6 @@
 /*
  *  Document   : op_auth_signup.js
- *  Author     : pixelcave
+ *  Author     : untitles
  *  Description: Custom JS code used in Sign Up Page
  */
 
