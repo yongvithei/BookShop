@@ -20,6 +20,36 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+        DB::table('categories')->insert([
+            [
+                'name' => 'Book',
+                'desc' => 'Explore our extensive collection of books across various genres, from bestsellers to hidden gems, fiction to non-fiction.',
+                'status' => 'Active',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Office Supplies',
+                'desc' => ' Find everything you need to create the perfect workspace, including pens, notebooks, planners, and desk accessories.',
+                'status' => 'Active',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Stationery',
+                'desc' => 'Elevate your writing and note-taking with our elegant stationery options, including letterhead, envelopes, and high-quality paper.',
+                'status' => 'Active',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Art Supplies',
+                'desc' => 'For those with a creative spark, explore our art supplies section, featuring paints, brushes, sketchbooks, and more to fuel your artistic endeavors.',
+                'status' => 'Active',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
     }
 
     /**

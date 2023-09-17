@@ -22,4 +22,9 @@ php artisan make:migration create_subcategory_view
 php artisan make:model SubCategoryView
 php artisan make:controller Backend/PartnerController
 php artisan make:model Partner -m
-php artisan storage:link
+php artisan storage:link //developer
+php artisan make:seeder UsersTableSeeder
+php artisan make:factory UserFactory
+php artisan migrate:fresh
+php artisan db:seed --class=UsersTableSeeder
+
