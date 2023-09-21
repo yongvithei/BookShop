@@ -16,6 +16,12 @@
             height: 104px;
             /* border-radius: 10%; */
         }
+        .img-view {
+            display: inline-block !important;
+            width: 250px;
+            height: 364px;
+            /* border-radius: 10%; */
+        }
     </style>
     <!-- Main Container -->
     <main id="main-container">
@@ -67,9 +73,9 @@
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 30px;">ID</th>
-                            <th class="text-center" style="width: 100px;">Image</th>
+                            <th class="text-center" style="width: 100px;">Thumbnail</th>
                             <th>Product Name</th>
-                            <th style="width: 19%;" >Price</th>
+                            <th style="width: 19%;" >Selling Price</th>
                             <th class="d-none d-sm-table-cell" style="width: 15%;">Status</th>
                             <th style="width: 15%;">Action</th>
                         </tr>
@@ -223,7 +229,136 @@
             <!-- END Dynamic Table with Export Buttons -->
         </div>
 
+    
+        
+         <!-- Tabs in Modal -->
+         <div class="modal fade" id="modal-block-tabs" tabindex="-1" role="dialog" aria-labelledby="modal-block-tabs" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="block block-rounded block-transparent mb-0">
+                    
+                  <ul class="nav nav-tabs nav-tabs-block" role="tablist">
+                    <li class="nav-item">
+                      <button type="button" class="nav-link active" id="btabs-static-home-tab" data-bs-toggle="tab" data-bs-target="#btabs-static-home" role="tab" aria-controls="btabs-static-home" aria-selected="true">INFO</button>
+                    </li>
+                    <li class="nav-item">
+                      <button type="button" class="nav-link" id="btabs-static-profile-tab" data-bs-toggle="tab" data-bs-target="#btabs-static-profile" role="tab" aria-controls="btabs-static-profile" aria-selected="false">Media</button>
+                    </li>
+                    <li class="nav-item ms-auto">
+                      <button type="button" class="nav-link" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-fw fa-times"></i>
+                        <span class="visually-hidden">Settings</span>
+                      </button>
+                    </li>
+  
+                  </ul>
+                  <div class="block-content tab-content">
+                    <div class="tab-pane active" id="btabs-static-home" role="tabpanel" aria-labelledby="btabs-static-home-tab" tabindex="0">
+                    <h3 class="text-center"> Product Information </h3>
+                    <div class="m-2">
 
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h6 class="fw-semibold">Name:</h6>
+                        </div>
+                        <div class="col-md-1">
+                            <h6 id="name" class="fw-normal"></h6>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h6 class="fw-semibold">Price:</h6>
+                        </div>
+                        <div class="col-md-1">
+                            <h6 id="pro_price" class="fw-normal"></h6>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h6 class="fw-semibold">Discount Price:</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 id="pro_discount" class="fw-normal"></h6>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="fw-semibold">Category:</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 id="cate_names" class="fw-normal"></h6>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="fw-semibold">Subcategory:</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 id="sub_names" class="fw-normal"></h6>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h6 class="fw-semibold">Partner:</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 id="partner_name" class="fw-normal"></h6>
+                        </div>
+                    </div> 
+                    <div class="row text-center">
+                        <div class="col-md-1">
+                            <h6 class="fw-semibold">Code:</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 id="product_code" class="fw-normal"></h6>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h6 class="fw-semibold">QTY:</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 id="pro_qty" class="fw-normal"></h6>
+                        </div>
+                    </div>
+                     <div class="mb-3">
+                                        <label class="form-label fw-semibold">Status</label>
+                                            <div class="space-x-2">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" id="public" name="status" value="Public" checked="">
+                                                    <label class="form-check-label" for="public">Public</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" id="private" name="status" value="private">
+                                                    <label class="form-check-label" for="private">Private</label>
+                                                </div>
+                                            </div>
+                                    </div>
+                    <div class="mb-2">
+                        </div>                                    
+                    </div>
+                </div>
+                    <div class="tab-pane" id="btabs-static-profile" role="tabpanel" aria-labelledby="btabs-static-profile-tab" tabindex="0">
+                      <h4 class="fw-normal">Thumbnail</h4>
+                      <div class="col-md-10 col-lg-8">
+                            <div class="row justify-content-center mt-4 mb-4">
+                                <div class="col-lg-4">
+                                    <img class="img-view" id="preview-image" src="{{asset('storage/images/default.jpg')}}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                  </div>
+                  <div class="block-content block-content-full text-end bg-body">
+                    <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Click <i class="fa fa-fw fa-pencil-alt"></i> For More Details</button>
+                    <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Okay</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END Tabs in Modal -->
         <!-- END Page Content -->
     </main>
     <!-- END Main Container -->
@@ -237,9 +372,6 @@
     <script src="{{ asset('admin/assets/js/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
       <script src="{{ asset('admin/assets/js/plugins/datatables-buttons/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/plugins/datatables-buttons-bs5/js/buttons.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/plugins/datatables-buttons-jszip/jszip.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/plugins/datatables-buttons-pdfmake/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/plugins/datatables-buttons-pdfmake/vfs_fonts.js') }}"></script>
     <script src="{{ asset('admin/assets/js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
     <!-- Page JS Code -->
@@ -266,18 +398,18 @@
         data: 'thumbnail',
         name: 'thumbnail',
         render: function (data, type, full, meta) {
-    if (type === 'display' && data) {
-        return '<img src="'+"/"+ data + '" alt="" class="img-product" />';
-    } else {
-        var defaultAvatarUrl = '{{ asset('/storage/images/default_product_table.webp') }}';
-        return '<img src="' + defaultAvatarUrl + '" class="img-product" alt=""/>';
-    }
-}
+                if (type === 'display' && data) {
+                    return '<img src="'+"/"+ data + '" alt="" class="img-product" />';
+                } else {
+                    var defaultAvatarUrl = '{{ asset('/storage/images/default_product_table.webp') }}';
+                    return '<img src="' + defaultAvatarUrl + '" class="img-product" alt=""/>';
+                }
+            }
             },
             { data: 'name', name: 'name' },
             {
-                data: 'price',
-                name: 'price',
+                data: 'selling_price',
+                name: 'selling_price',
                 render: function (data) {
                     var formattedPrice = '<strong>' + parseFloat(data).toFixed(2) + ' ៛</strong>';
                     return formattedPrice;
@@ -286,8 +418,8 @@
 
 
                 {
-                data: 'status',
-                name: 'status',
+                data: '_status',
+                name: '_status',
                 render: function (data) {
                     if (data === 1) {
                         return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Public</span>';
@@ -342,6 +474,44 @@
             }
         });
     }
+
+
+    function viewFunc(id) {
+
+        $('#preview-image').attr('src', '{{ asset('/storage/images/default_product_table.webp') }}');
+            $.ajax({
+                type: "POST",
+                url: "{{ url('pro/view') }}",
+                data: { id: id },
+                dataType: 'json',
+                success: function (res) {
+                    $('#btn-save').html("Save changes");
+                    $('#modal-block-tabs').modal('show');
+                    $('#id').val(res.id);
+                    $('#name').text(res.name);
+                    $('#pro_price').text('៛' + res.pro_price );
+                    $('#pro_discount').text('៛' +res.pro_discount);
+                    $('#product_code').text(res.product_code);
+                    $('#pro_qty').text(res.pro_qty);
+                    $('#sub_names').text(res.sub_names);
+                    $('#cate_names').text(res.cate_names);
+                    $('#partner_name').text(res.partner_name);
+                    $('#_status').val(res._status);
+                    $('#thumbnail').val(res.thumbnail);
+                    if (res.thumbnail) {
+            // Set the src attribute with the correct URL
+            $('#preview-image').attr('src', '{{ asset('') }}' + res.thumbnail);
+        } else {
+            // Set a default image URL
+            $('#preview-image').attr('src', '{{ asset('/storage/images/default_product_table.webp') }}');
+        }                    if (res._status === '1') {
+                        $('#public').prop('checked', true);
+                    } else if (res._status === '0') {
+                        $('#private').prop('checked', true);
+                    }
+                }
+            });
+        }
     </script>
 
 @endsection

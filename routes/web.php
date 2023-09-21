@@ -75,6 +75,7 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::post('/product/{product}','update')->name('pro.update');
         Route::get('/product/add','create')->name('pro.create');
         Route::post('/product','store')->name('pro.store');
+        Route::post('pro/view','view');
     });
     //product image route
         Route::post('/temp-images',[TempImageController::class,'store'])->name('temp-images.create');

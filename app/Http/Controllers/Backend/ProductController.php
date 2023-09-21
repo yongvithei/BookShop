@@ -8,6 +8,7 @@ use App\Models\TempImage;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Partner;
+use App\Models\ProductView;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,7 @@ class ProductController extends Controller
     public function index()
     {
         if(request()->ajax()) {
-            return datatables()->of(Product::select(['id', 'name', 'price','thumbnail','status']))
+            return datatables()->of(ProductView::select(['id', 'name', 'selling_price','thumbnail','_status']))
                 ->addColumn('action', 'backend.product.pro_action')
                 ->rawColumns(['action'])
                 ->addIndexColumn()
@@ -114,6 +115,11 @@ class ProductController extends Controller
         $categories = Category::select('id', 'name')->get();
         $subcategories = SubCategory::select('id', 'sub_name')->get();
         $partners = Partner::select('id', 'name')->get();
+        $productView = ProductView::select('sub_names', 'cate_names', 'partner_name')->where('id', $product->id)->first();
+
+    
+
+        $data['productView'] = $productView;
         $data['product'] = $product;
         $data['categories'] = $categories;
         $data['partners'] = $partners;
@@ -133,8 +139,8 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'price' => 'required|numeric',
-            'cate_Id' => 'required|exists:categories,id',
-            'pro_code' => 'nullable|string|max:50',
+            // 'cate_Id' => 'required|exists:categories,id',
+            // 'pro_code' => 'nullable|string|max:50',
         ]);
 
         if ($validator->fails()) {
@@ -198,6 +204,14 @@ class ProductController extends Controller
                 ]);
             }
     }
+
+    public function view(Request $request)
+    {
+        $id = array('id' => $request->id);
+        $item  = ProductView::where($id)->first();
+        return Response()->json($item);
+    }
+    
 
     public function destroy(Request $request)
     {

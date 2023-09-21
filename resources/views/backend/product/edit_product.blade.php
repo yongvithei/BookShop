@@ -1,6 +1,6 @@
 @extends('admin.index')
 
-<meta name="_token" content="{{ csrf_token() }}">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Page JS Plugins CSS -->
 <link rel="stylesheet" href="{{ asset('admin/assets/js/plugins/select2/css/select2.min.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/assets/js/plugins/dropzone/min/dropzone.min.css') }}">
@@ -97,17 +97,21 @@
                                     <!-- Select2 (.js-select2 class is initialized in Helpers.jqSelect2()) -->
                                     <!-- For more info and examples you can check out https://github.com/select2/select2 -->
                                     <label class="form-label" for="cate_Id">Category</label>
-                                    <select class="js-select2 form-select" id="cate_Id" name="cate_Id" style="width: 100%;" data-placeholder="Choose one..">
+                                   <select class="js-select2 form-select" id="cate_Id" name="cate_Id" style="width: 100%;" data-placeholder="{{ $productView->cate_names }}">
                                         <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                         @foreach($categories as $category)
-                                            <option value="{{ $category->id }}" {{ $category->id == $product->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}" {{ $category->id == $product->category_id ? 'selected' : '' }}>
+                                                {{ $category->name }}
+                                            </option>
                                         @endforeach
+
                                     </select>
+
                                     <p></p>
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label" for="subcate_Id">Subcategory</label>
-                                    <select class="js-select2 form-select" id="subcate_Id" name="subcate_Id" style="width: 100%;" data-placeholder="Choose one..">
+                                    <select class="js-select2 form-select" id="subcate_Id" name="subcate_Id" style="width: 100%;" data-placeholder="{{ $productView->sub_names }} ">
                                         <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                         @foreach($subcategories as $subcategory)
                                             <option value="{{ $subcategory->id }}" {{ $subcategory->id == $product->subcategory_id ? 'selected' : '' }}>{{ $subcategory->sub_name }}</option>
@@ -118,7 +122,7 @@
                             <div class="mb-4">
                                     <!-- Select2 (.js-select2 class is initialized in Helpers.jqSelect2()) -->
                                     <label class="form-label" for="part_id">Partner Or Supplier</label>
-                                    <select class="js-select2 form-select" id="part_id" name="part_id" style="width: 100%;" data-placeholder="Choose one..">
+                                    <select class="js-select2 form-select" id="part_id" name="part_id" style="width: 100%;" data-placeholder="{{ $productView->partner_name }}">
                                         <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                         @foreach($partners as $partner)
                                             <option value="{{ $partner->id }}" {{ $partner->id == $product->partner_id ? 'selected' : '' }}>{{ $partner->name }}</option>

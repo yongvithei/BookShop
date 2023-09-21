@@ -19,7 +19,7 @@ https://yajrabox.com/docs/laravel-datatables/10.0/installation
 php artisan make:controller Backend/SubCategoryController
 php artisan make:model SubCategory -m
 php artisan make:migration create_subcategory_view
-php artisan make:model SubCategoryView -m
+php artisan make:model SubCategoryView
 php artisan make:controller Backend/PartnerController
 php artisan make:model Partner -m
 php artisan storage:link //developer
@@ -35,3 +35,5 @@ php artisan make:controller Backend/Product
 php artisan make:controller Backend/ProductController
 php artisan make:controller Backend/ProductImageController
 php artisan make:controller Backend/TempImageController
+php artisan make:migration create_product_view
+php artisan make:model ProductView
