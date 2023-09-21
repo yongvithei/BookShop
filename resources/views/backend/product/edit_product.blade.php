@@ -1,4 +1,5 @@
 @extends('admin.index')
+
 <meta name="_token" content="{{ csrf_token() }}">
 <!-- Page JS Plugins CSS -->
 <link rel="stylesheet" href="{{ asset('admin/assets/js/plugins/select2/css/select2.min.css') }}">
@@ -8,6 +9,7 @@
     .image-card {
         position: relative;
     }
+
     .image-card .btn-danger {
         position: absolute;
         top: 10px;
@@ -33,29 +35,24 @@
         width: 100%;
         height: 100%;
     }
-    </style>
-    <!-- Main Container -->
-    <div id="main-container">
-        <!-- Hero -->
-        <div class="bg-body-light">
-                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
-                    <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
-                        <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">
-                                <a class="link-fx" href="javascript:void(0)">Products</a>
-                            </li>
-                            <li class="breadcrumb-item" aria-current="page">
-                                Add Product
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
 
-        </div>
-        <!-- END Hero -->
+
+</style>
+
+
+    <!-- Main Container -->
+    <main id="main-container">
         <!-- Page Content -->
         <div class="content">
+            @if(Session::has('success'))
+                <div class="alert alert-success">{{ Session::get('success') }}</div>
+            @endif
+            @if(Session::has('error'))
+                <div class="alert alert-danger">{{ Session::get('error') }}</div>
+            @endif
+
         <form name="productForm" id="productForm" action="" method="POST" onsubmit="return false;" enctype="multipart/form-data">
+
             <!-- Info -->
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
@@ -66,30 +63,36 @@
                         <div class="col-md-10 col-lg-8">
                                 <div class="mb-2">
                                     <label class="form-label" for="name">Name</label>
-                                    <input type="text" class="form-control" id="name" name="name">
+                                    <input value="{{ $product->name }}" type="text" class="form-control" id="name" name="name">
                                     <p></p>
                                 </div>
-                                <div class="row mb-0">
+                                <div class="row">
                                     <div class="col-md-6">
                                         <label class="form-label" for="price">Price in Riel (៛)</label>
-                                        <input type="text" class="form-control" id="price" name="price">
+                                        <input value="{{ $product->price }}" type="text" class="form-control" id="price" name="price">
                                         <p></p>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label" for="price_dis">Discount Price (៛)</label>
-                                        <input type="text" class="form-control" id="price_dis" name="price_dis">
+                                        <input value="{{ $product->discount_price }}" type="text" class="form-control" id="price_dis" name="price_dis">
+                                        <p></p>
                                     </div>
                                 </div>
-                                <div class="row mb-2">
+
+                                <div class="row">
                                     <div class="col-md-6">
                                         <label class="form-label" for="pro_qty">Stock</label>
-                                        <input type="text" class="form-control" id="pro_qty" name="pro_qty">
+                                        <input value="{{ $product->pro_qty }}" type="text" class="form-control" id="pro_qty" name="pro_qty">
+                                        <p></p>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label" for="pro_code">Product Code</label>
-                                        <input type="text" class="form-control" id="pro_code" name="pro_code">
+                                        <input value="{{ $product->pro_code }}" type="text" class="form-control" id="pro_code" name="pro_code">
+                                        <p></p>
                                     </div>
+
                                 </div>
+
                                 <div class="mb-4">
                                     <!-- Select2 (.js-select2 class is initialized in Helpers.jqSelect2()) -->
                                     <!-- For more info and examples you can check out https://github.com/select2/select2 -->
@@ -97,25 +100,28 @@
                                     <select class="js-select2 form-select" id="cate_Id" name="cate_Id" style="width: 100%;" data-placeholder="Choose one..">
                                         <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                         @foreach($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}" {{ $category->id == $product->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
                                         @endforeach
                                     </select>
+                                    <p></p>
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label" for="subcate_Id">Subcategory</label>
                                     <select class="js-select2 form-select" id="subcate_Id" name="subcate_Id" style="width: 100%;" data-placeholder="Choose one..">
                                         <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                         @foreach($subcategories as $subcategory)
-                                            <option value="{{ $subcategory->id }}">{{ $subcategory->sub_name }}</option>
+                                            <option value="{{ $subcategory->id }}" {{ $subcategory->id == $product->subcategory_id ? 'selected' : '' }}>{{ $subcategory->sub_name }}</option>
                                         @endforeach
                                     </select>
+                                    <p></p>
                                 </div>
-                                <div class="mb-4">
+                            <div class="mb-4">
+                                    <!-- Select2 (.js-select2 class is initialized in Helpers.jqSelect2()) -->
                                     <label class="form-label" for="part_id">Partner Or Supplier</label>
                                     <select class="js-select2 form-select" id="part_id" name="part_id" style="width: 100%;" data-placeholder="Choose one..">
                                         <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                         @foreach($partners as $partner)
-                                            <option value="{{ $partner->id }}">{{ $partner->name }}</option>
+                                            <option value="{{ $partner->id }}" {{ $partner->id == $product->partner_id ? 'selected' : '' }}>{{ $partner->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -123,25 +129,27 @@
                                     <!-- Bootstrap Maxlength (.js-maxlength class is initialized in Helpers.jqMaxlength()) -->
                                     <!-- For more info and examples you can check out https://github.com/mimo84/bootstrap-maxlength -->
                                     <label class="form-label" for="short_desc">Short Description</label>
-                                    <textarea class="js-maxlength form-control" id="short_desc" name="short_desc" rows="3" maxlength="250" data-always-show="true" data-placement="top"></textarea>
+                                    <textarea class="js-maxlength form-control" id="short_desc" name="short_desc" rows="3" maxlength="250" data-always-show="true" data-placement="top">{{ $product->short_desc }}</textarea>
                                     <div class="form-text">
                                         250 Character Max
                                     </div>
+                                    <p></p>
                                 </div>
                                 <div class="mb-4">
                                     <!-- CKEditor (js-ckeditor-inline + js-ckeditor ids are initialized in Helpers.jsCkeditor()) -->
                                     <label class="form-label">Description</label>
-                                    <textarea id="js-ckeditor" name="long_desc"></textarea>
+                                    <textarea value="{{ $product->long_desc }}" id="js-ckeditor" name="long_desc">{{ $product->long_desc }}</textarea>
+                                    <p></p>
                                 </div>
                                 <div class="mb-4">
-                                    <label class="mb-2 form-label">Product Status</label>
+                                    <label class="form-label">Product Status</label>
                                     <div class="space-x-2">
                                         <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" value="1" id="special_offer" name="special_offer">
+                                        <input class="form-check-input" type="checkbox" value="1" id="special_offer" name="special_offer" {{ $product->special_offer == 1 ? 'checked' : '' }}>
                                         <label class="form-check-label" for="special_offer">Special Offers</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" value="1" id="featured" name="featured">
+                                        <input class="form-check-input" type="checkbox" value="1" id="featured" name="featured" {{ $product->featured == 1 ? 'checked' : '' }}>
                                         <label class="form-check-label" for="featured">Featured</label>
                                         </div>
                                     </div>
@@ -149,18 +157,19 @@
                                 <div class="mb-4">
                                     <label class="form-label">Published?</label>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" value="1" id="status" name="status" checked>
+                                        <input class="form-check-input" type="checkbox" value="1" id="status" name="status" {{ $product->status == 1 ? 'checked' : '' }}>
                                         <label class="form-check-label" for="status"></label>
                                     </div>
                                 </div>
                                 <div class="mb-4">
-                                    <button type="submit" class="btn btn-alt-primary">Create</button>
+                                    <button type="submit" class="btn btn-alt-primary btn-lg">Update</button>
                                 </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- END Info -->
+
             <!-- Media -->
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
@@ -171,35 +180,55 @@
                         <div class="col-md-10 col-lg-8">
                             <label for="thumbnail" class="form-label">Thumbnail</label>
                             <input type="file" name="thumbnail" id="thumbnail" class="form-control">
+                            <input type="hidden" name="old_img" value="{{ $product->thumbnail }}">
                             <div class="row justify-content-center mt-4">
-                                <img id="preview-image" style="width: 206px;" alt="">
+                            @if($product->thumbnail)
+                                <img id="preview-image" src="{{ asset($product->thumbnail) }}" style="width: 206px;" alt="">
+                            @else
+                                <img id="preview-image" src="{{ asset('/storage/images/default_product_table.webp') }}" style="width: 206px;" alt="Default Image">
+                            @endif
                             </div>
                         </div>
                     </div>
+                    <p></p>
                 </div>
                 <div class="block-content block-content-full">
                     <div class="row justify-content-center">
                         <div class="col-md-10 col-lg-8">
-                            <label for="multi" class="form-label">Multi Image</label>
-                            <div id="image" class="dropzone dz-clickable">
-                                <div class="dz-message needsclick">
-                                    <br>Drop files here or click to upload.<br><br>
-                                </div>
+                                <h3 class="mt-2">Multi Image</h3>
+                                <div id="image" class="dropzone dz-clickable">
+                                    <div class="dz-message needsclick">
+                                        <br>Drop files here or click to upload.<br><br>
+                                        </div>
+                                    </div>
+
                             </div>
+                            </div>
+                    <div class="row m-4" id="image-wrapper">
+                        @if($productImages->isNotEmpty())
+                            @foreach ($productImages as $productImage)
+                                <div class="col-md-4 mb-3" id="product-image-row-{{ $productImage->id }}">
+                                    <div class="card image-card">
+                                        <a href="#" onclick="deleteImage({{ $productImage->id }});" class="btn btn-danger">Delete</a>
+                                        <img src="{{ asset('uploads/products/small/'.$productImage->name) }}" alt="" class="card-img-top">
+                                        <div class="card-body">
+                                            <input type="text" name="caption[]"  value="{{ $productImage->caption }}" class="form-control"/>
+                                            <input type="hidden" name="image_id[]"  value="{{ $productImage->id }}" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
+
                         </div>
                     </div>
-                    <div class="row m-4" id="image-wrapper">
-                        <!-- Additional content here -->
-                    </div>
-                </div>
-            </div>
 
-        </form>
-            </div>
+
+            </form>
             <!-- END Media -->
         </div>
         <!-- END Page Content -->
-
     </main>
     <!-- END Main Container -->
     <!-- jQuery (required for Select2 + Bootstrap Maxlength plugin) -->
@@ -208,14 +237,15 @@
     <!-- Page JS Plugins -->
     <script src="{{ asset('admin/assets/js/plugins/select2/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
-
-    <script src="{{ asset('admin/assets/js/plugins/dropzone/min/dropzone.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/plugins/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/plugins/dropzone/min/dropzone.min.js') }}"></script>
+
     <!-- Page JS Helpers (Select2 + Bootstrap Maxlength + CKEditor plugins) -->
     <script>One.helpersOnLoad(['jq-select2', 'jq-maxlength', 'js-ckeditor']);</script>
 
 
     <script type="text/javascript">
+
                 $(document).ready(function(){
                     $('select[name="cate_Id"]').on('change', function(){
                         var cate_Id = $(this).val();
@@ -231,19 +261,22 @@
                                         $('select[name="subcate_Id"]').append('<option value="'+ value.id + '">' + value.sub_name + '</option>');
                                     });
                                 },
-
                             });
                         } else {
                             alert('danger');
                         }
                     });
                 });
+
+
+        var product_id = {{ $product->id }}
         Dropzone.autoDiscover = false;
         const dropzone = $("#image").dropzone({
         uploadprogress: function(file, progress, bytesSent) {
             $("button[type=submit]").prop('disabled',true);
         },
-        url:  "{{ route('temp-images.create') }}",
+        url:  "{{ route('product-images.store') }}",
+        params: {product_id:product_id},
         maxFiles: 10,
         paramName: 'image',
         addRemoveLinks: true,
@@ -251,7 +284,7 @@
         headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         }, success: function(file, response){
-                var html = `<div class="col-md-4 mb-3" id="product-image-row-${response.image_id}">
+            var html = `<div class="col-md-4 mb-3" id="product-image-row-${response.image_id}">
                             <div class="card image-card">
                                 <a href="#" onclick="deleteImage(${response.image_id});" class="btn btn-danger">Delete</a>
                                 <div class="image-container">
@@ -267,30 +300,29 @@
                 $("button[type=submit]").prop('disabled',false);
             this.removeFile(file);
         }
-        });
-        $("#productForm").submit(function(event){
-            event.preventDefault();
-    $("button[type=submit]").prop('disabled', true);
-    CKEDITOR.instances['js-ckeditor'].updateElement();
+    });
 
-    var formData = new FormData(this); // Create a FormData object from the form
 
-    $.ajax({
-        url: "{{ route('pro.store') }}",
-        data: formData, // Use the FormData object
-        method: 'post',
-        dataType: 'json',
-        processData: false, // Don't process the data
-        contentType: false, // Don't set content type (let jQuery handle it)
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-        },
-        success: function (response) {
-            $("button[type=submit]").prop('disabled', false);
-
-            if (response.status == true) {
-                window.location.href = "{{ route('pro.index') }}";
-            } else {
+    $("#productForm").submit(function(event){
+        event.preventDefault();
+        $("button[type=submit]").prop('disabled',true);
+        CKEDITOR.instances['js-ckeditor'].updateElement();
+        var formData = new FormData(this);
+        $.ajax({
+            url: "{{ route('pro.update',$product->id) }}",
+            data: formData,
+            method: 'post',
+            dataType:'json',
+            processData: false,
+            contentType: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            success: function(response){
+                $("button[type=submit]").prop('disabled',false);
+                if(response.status == true) {
+                    window.location.href="{{ route('pro.index') }}";
+                } else {
                     var errors = response.errors;
                     if (errors.name) {
                         $("#name").addClass('is-invalid')
@@ -303,7 +335,6 @@
                         .removeClass('invalid-feedback')
                         .html("");
                     }
-
                     if (errors.price) {
                         $("#price").addClass('is-invalid')
                         .siblings("p")
@@ -315,13 +346,12 @@
                         .removeClass('invalid-feedback')
                         .html("");
                     }
-
                 }
             }
         });
-        })
+    });
 
-        function preview() {
+    function preview() {
         $('#thumbnail').change(function () {
             var file = this.files[0];
             if (file) {
@@ -345,14 +375,28 @@
     }
     preview();
 
-
-
-
-        function deleteImage(id){
+    function deleteImage(id){
         if (confirm("Are you sure you want to delete?")) {
+            var URL = "{{ route('product-images.delete','ID') }}";
+            newURL = URL.replace('ID',id)
+
             $("#product-image-row-"+id).remove();
+
+            $.ajax({
+                url: newURL,
+                data: {},
+                method: 'delete',
+                dataType:'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                success: function(response){
+                    window.location.href='{{ route("pro.edit",$product->id) }}';
+                }
+            });
         }
-        }
+    }
+
 </script>
 
 @endsection

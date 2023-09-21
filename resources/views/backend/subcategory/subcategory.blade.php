@@ -45,7 +45,7 @@
                     <div class="block-options">
                         <a type="button" class="btn btn-sm btn-alt-primary">Refresh</a>
                         <a onClick="add()" type="button" class="btn btn-sm btn-alt-primary" data-bs-toggle="modal" data-bs-target="#modal3">ADD</a>
-                        
+
                     </div>
                 </div>
                 <div class="block-content block-content-full">
@@ -202,7 +202,7 @@
                             <div class="block-content">
                                 <!-- Select2 is initialized at the bottom of the page -->
                                 <form id="ItemForm" action="javascript:void(0)" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="id" id="id">    
+                                <input type="hidden" name="id" id="id">
                                     <div class="mb-3">
                                         <label class="form-label" for="example-text-input">Name</label>
                                         <input type="text" class="form-control" id="sub_name" name="sub_name" placeholder="SubCategory Name">
@@ -215,7 +215,7 @@
                                             @foreach($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach
-                                            
+
                                         </select>
                                         <span id="cat_error" class="text-danger" style="display: none;">Please select.</span>
 
@@ -233,7 +233,7 @@
                                                 </div>
                                             </div>
                                     </div>
-                                   
+
                                 </div>
                                 <div class="block-content block-content-full text-end bg-body">
                                 <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
@@ -410,8 +410,6 @@
                 }
             });
         }
-
-
     </script>
 
 @endsection

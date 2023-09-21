@@ -1,0 +1,212 @@
+<?php
+
+namespace App\Http\Controllers\Backend;
+use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\ProductImage;
+use App\Models\TempImage;
+use App\Models\Category;
+use App\Models\SubCategory;
+use App\Models\Partner;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use Image;
+
+use Intervention\Image\Exception\ImageException;
+class ProductController extends Controller
+{
+   
+    public function index()
+    {
+        if(request()->ajax()) {
+            return datatables()->of(Product::select(['id', 'name', 'price','thumbnail','status']))
+                ->addColumn('action', 'backend.product.pro_action')
+                ->rawColumns(['action'])
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('backend.product.all_product');
+    }
+    public function create() {
+        $categories = Category::select('id', 'name')->get();
+        $subcategories = SubCategory::select('id', 'sub_name')->get();
+        $partners = Partner::select('id', 'name')->get();
+        return view('backend.product.add_product',compact('categories','subcategories','partners'));
+    }
+    public function store(Request $request) {
+        $validator = Validator::make($request->all(),[
+            'name' => 'required',
+            'price' => 'required|numeric',
+
+        ]);
+        if ($request->hasFile('thumbnail')) {
+            $image = $request->file('thumbnail');
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save('uploads/products/thumbnail/' . $name_gen);
+            $save_url = 'uploads/products/thumbnail/' . $name_gen;
+        } else {
+            $save_url = "";
+        }
+
+
+        $status = $request->has('status') ? 1 : 0;
+        if ($validator->passes()) {
+            $product = new Product;
+            $product->name = $request->name;
+            $product->slug = strtolower(str_replace(' ', '-',$request->name));
+            $product->price = $request->price;
+            $product->discount_price = $request->price_dis;
+            $product->category_id = $request->cate_Id;
+            $product->subcategory_id = $request->subcate_Id;
+            $product->partner_id = $request->part_id;
+            $product->pro_code = $request->pro_code;
+            $product->pro_qty = $request->pro_qty;
+            $product->short_desc = $request->short_desc;
+            $product->long_desc = $request->long_desc;
+            $product->special_offer = $request->special_offer;
+            $product->featured = $request->featured;
+            $product->status = $status;
+            $product->thumbnail = $save_url;
+            $product->save();
+            if (!empty($request->image_id)) {
+                $caption = $request->caption;
+                foreach ($request->image_id as $key => $imageId) {
+                    $tempImage = TempImage::find($imageId);
+                    $extArray = explode('.',$tempImage->name);
+                    $ext = last($extArray);
+                    $productImage = new ProductImage;
+                    $productImage->name = 'NULL';
+                    $productImage->product_id = $product->id;
+                    $productImage->caption = $caption[$key];
+                    $productImage->save();
+                    $newImageName = $productImage->id.'.'.$ext;
+                    $productImage->name = $newImageName;
+                    $productImage->save();
+                    // First Thumbnail
+                    $sourcePath = public_path('uploads/temp/'.$tempImage->name);
+                    $destPath = public_path('uploads/products/small/'.$newImageName);
+                    $img = Image::make($sourcePath);
+                    $img->fit(250,400);
+                    $img->save($destPath);
+                }
+            }
+            
+            $request->session()->flash('success','Product add successfully.');
+            return response()->json([
+                'status' => true,
+                'message' => 'Product added successfully.'
+            ]);
+            
+        } else {
+            return response()->json([
+                'status' => false,
+                'errors' => $validator->errors()
+            ]);
+        }
+    }
+    public function edit($product_id, Request $request) {
+        $product = Product::find($product_id);
+        if ($product == null) {
+            return redirect()->route('pro.index');
+        }
+        $productImages = ProductImage::where('product_id',$product->id)->get();
+        $categories = Category::select('id', 'name')->get();
+        $subcategories = SubCategory::select('id', 'sub_name')->get();
+        $partners = Partner::select('id', 'name')->get();
+        $data['product'] = $product;
+        $data['categories'] = $categories;
+        $data['partners'] = $partners;
+        $data['subcategories'] = $subcategories;
+        $data['productImages'] = $productImages;
+        return view('backend.product.edit_product',$data);
+    }
+    public function update($product_id, Request $request) {
+        $product = Product::find($product_id);
+        if ($product == null) {
+            return response()->json([
+                'status' => false,
+                'notFound' => true
+            ]);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'price' => 'required|numeric',
+            'cate_Id' => 'required|exists:categories,id',
+            'pro_code' => 'nullable|string|max:50',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'errors' => $validator->errors()
+            ]);
+        }
+        $oldImage = $request->old_img;
+
+        if ($request->hasFile('thumbnail')) {
+            // Upload a new image
+            $image = $request->file('thumbnail');
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save('uploads/products/thumbnail/' . $name_gen);
+            $save_url = 'uploads/products/thumbnail/' . $name_gen;
+
+            // Remove the old image
+            if (file_exists($oldImage)) {
+                unlink($oldImage);
+            }
+        } else {
+            $save_url = $oldImage;
+        }
+
+             $status = $request->has('status') ? 1 : 0;
+            if ($validator->passes()) {
+                $product->name = $request->name;
+                $product->slug = strtolower(str_replace(' ', '-',$request->name));
+                $product->price = $request->price;
+                $product->discount_price = $request->price_dis;
+                $product->category_id = $request->cate_Id;
+                $product->subcategory_id = $request->subcate_Id;
+                $product->partner_id = $request->part_id;
+                $product->pro_code = $request->pro_code;
+                $product->pro_qty = $request->pro_qty;
+                $product->short_desc = $request->short_desc;
+                $product->long_desc = $request->long_desc;
+                $product->special_offer = $request->special_offer;
+                $product->featured = $request->featured;
+                $product->thumbnail = $save_url;
+                $product->status = $status;
+                $product->save();
+                if (!empty($request->image_id)) {
+                    $caption = $request->caption;
+                    foreach ($request->image_id as $key => $imageId) {
+                        $productImage = ProductImage::find($imageId);
+                        $productImage->caption = $caption[$key];
+                        $productImage->save();
+                    }
+                }
+                $request->session()->flash('success','Product updated successfully.');
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Product updated successfully.'
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'errors' => $validator->errors()
+                ]);
+            }
+    }
+
+    public function destroy(Request $request)
+    {
+        $item = Product::find($request->id);
+        if (!$item) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
+        $item->delete();
+        return response()->json(['success' => 'Product soft deleted successfully']);
+    }
+
+}

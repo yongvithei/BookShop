@@ -1,10 +1,22 @@
 @extends('admin.index')
 @section('admin')
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Stylesheets -->
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="{{asset('admin/assets/js/plugins/datatables-bs5/css/dataTables.bootstrap5.min.css')}}">
-
+    <style>
+        .pl-loading {
+            min-height: 30px;
+            background-color: #eee;
+            border-radius: 10px;
+        }
+        .img-product {
+            display: inline-block !important;
+            width: 70px;
+            height: 104px;
+            /* border-radius: 10%; */
+        }
+    </style>
     <!-- Main Container -->
     <main id="main-container">
         <!-- Hero -->
@@ -31,77 +43,187 @@
         <div class="content">
 
 
+            @if(Session::has('success'))
+            <div class="alert alert-success">{{ Session::get('success') }}</div>
+            @endif
+
+            @if(Session::has('error'))
+            <div class="alert alert-danger">{{ Session::get('error') }}</div>
+            @endif
             <!-- Dynamic Table with Export Buttons -->
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
                     <h3 class="block-title">All Product</h3>
                     <div class="block-options">
-                        <button type="button" class="btn btn-sm btn-alt-primary">Refresh</button>
-                        <button type="button" class="btn btn-sm btn-alt-primary" data-bs-toggle="modal" data-bs-target="#modal-block-normal">ADD</button>
+                        <a type="button" class="btn btn-sm btn-alt-primary">Refresh</a>
+                        <a href="{{ route('pro.create') }}" type="button" class="btn btn-sm btn-alt-primary">ADD</a>
 
 
                     </div>
                 </div>
                 <div class="block-content block-content-full">
                     <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-                    <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
-                        <thead>
+                    <table id="item-table" class="table table-bordered table-vcenter">
+                    <thead>
                         <tr>
-                            <th class="text-center" style="width: 80px;">ID</th>
-                            <th>Name</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Email</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Access</th>
-                            <th style="width: 15%;">Registered</th>
+                            <th class="text-center" style="width: 30px;">ID</th>
+                            <th class="text-center" style="width: 100px;">Image</th>
+                            <th>Product Name</th>
+                            <th style="width: 19%;" >Price</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">Status</th>
+                            <th style="width: 15%;">Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td class="text-center fs-sm">1</td>
-                            <td class="fw-semibold fs-sm">David Fuller</td>
-                            <td class="d-none d-sm-table-cell fs-sm">
-                                client1<span class="text-muted">@example.com</span>
+                            <td class="fs-sm">
+                                <div class="pl-loading"></div>
                             </td>
-                            <td class="d-none d-sm-table-cell">
-                                <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">VIP</span>
+                            <td class="fw-semibold fs-sm">
+                                <div class="pl-loading"></div>
                             </td>
-                            <td>
-                                <span class="text-muted fs-sm">4 days ago</span>
+                            <td class="d-sm-table-cell fs-sm">
+                                <div class="pl-loading"></div>
                             </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center fs-sm">2</td>
-                            <td class="fw-semibold fs-sm">Justin Hunt</td>
-                            <td class="d-none d-sm-table-cell fs-sm">
-                                client2<span class="text-muted">@example.com</span>
+                            <td class="d-sm-table-cell">
+                                <div class="pl-loading"></div>
                             </td>
-                            <td class="d-none d-sm-table-cell">
-                                <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Business</span>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
                             </td>
-                            <td>
-                                <span class="text-muted fs-sm">7 days ago</span>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-center fs-sm">40</td>
-                            <td class="fw-semibold fs-sm">Megan Fuller</td>
-                            <td class="d-none d-sm-table-cell fs-sm">
-                                client40<span class="text-muted">@example.com</span>
+                            <td class="fs-sm">
+                                <div class="pl-loading"></div>
                             </td>
-                            <td class="d-none d-sm-table-cell">
-                                <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">Trial</span>
+                            <td class="fw-semibold fs-sm">
+                                <div class="pl-loading"></div>
                             </td>
-                            <td>
-                                <span class="text-muted fs-sm">4 days ago</span>
+                            <td class="d-sm-table-cell fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
                             </td>
                         </tr>
+                        <tr>
+                            <td class="fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="fw-semibold fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="fw-semibold fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="fw-semibold fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="fw-semibold fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="fw-semibold fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell fs-sm">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="d-sm-table-cell">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
+                            </td>
+                            <td class="text-center">
+                                <div class="pl-loading"></div>
+                            </td>
+                        </tr>
+
                         </tbody>
                     </table>
                 </div>
             </div>
             <!-- END Dynamic Table with Export Buttons -->
-
-
         </div>
+
+
         <!-- END Page Content -->
     </main>
     <!-- END Main Container -->
@@ -109,31 +231,117 @@
 
     <!-- jQuery (required for DataTables plugin) -->
     <script src="{{ asset('admin/assets/js/lib/jquery.min.js') }}"></script>
-
     <!-- Page JS Plugins -->
     <script src="{{ asset('admin/assets/js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-
-
     <script src="{{ asset('admin/assets/js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
-
-
     <script src="{{ asset('admin/assets/js/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-
-
       <script src="{{ asset('admin/assets/js/plugins/datatables-buttons/dataTables.buttons.min.js') }}"></script>
-
     <script src="{{ asset('admin/assets/js/plugins/datatables-buttons-bs5/js/buttons.bootstrap5.min.js') }}"></script>
-
     <script src="{{ asset('admin/assets/js/plugins/datatables-buttons-jszip/jszip.min.js') }}"></script>
-
-
     <script src="{{ asset('admin/assets/js/plugins/datatables-buttons-pdfmake/pdfmake.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/plugins/datatables-buttons-pdfmake/vfs_fonts.js') }}"></script>
-
     <script src="{{ asset('admin/assets/js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
-
     <!-- Page JS Code -->
     <script src="{{ asset('admin/assets/js/pages/be_tables_datatables.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('#item-table').DataTable({
+            pageLength: 10,
+            lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+            autoWidth: false,
+            serverSide: true,
+            processing: false,
+            ajax: '{{ route('pro.index') }}',
+            columns: [
+                { data: 'id', name: 'id' },
+                {
+        data: 'thumbnail',
+        name: 'thumbnail',
+        render: function (data, type, full, meta) {
+    if (type === 'display' && data) {
+        return '<img src="'+"/"+ data + '" alt="" class="img-product" />';
+    } else {
+        var defaultAvatarUrl = '{{ asset('/storage/images/default_product_table.webp') }}';
+        return '<img src="' + defaultAvatarUrl + '" class="img-product" alt=""/>';
+    }
+}
+            },
+            { data: 'name', name: 'name' },
+            {
+                data: 'price',
+                name: 'price',
+                render: function (data) {
+                    var formattedPrice = '<strong>' + parseFloat(data).toFixed(2) + ' ៛</strong>';
+                    return formattedPrice;
+                }
+            },
+
+
+                {
+                data: 'status',
+                name: 'status',
+                render: function (data) {
+                    if (data === 1) {
+                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Public</span>';
+                    } else {
+                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Private</span>';
+                    }
+                }
+            },
+                { data: 'action', name: 'action', orderable: false },
+            ],
+            order: [[0, 'desc']],
+            columnDefs: [
+        {
+            targets: [0, 1, 3,4,5],
+            className: 'text-center',
+        },
+    ]
+
+
+        });
+    });
+
+    function editFunc(productId) {
+    // Construct the edit URL using the productId and the route function
+    var editUrl = '{{ route('pro.edit', ':productId') }}'.replace(':productId', productId);
+
+    // Redirect to the edit page
+    window.location.href = editUrl;
+}
+
+    function deleteFunc(id) {
+        Swal.fire({
+            title: 'Delete Record?',
+            text: 'Record ID: ' + id + '\nYou won\'t be able to revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('product/delete') }}",
+                    data: { id: id },
+                    dataType: 'json',
+                    success: function (res) {
+                        var oTable = $('#item-table').dataTable();
+                        oTable.fnDraw(false);
+                    }
+                });
+            }
+        });
+    }
+    </script>
 
 @endsection

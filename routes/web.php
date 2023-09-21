@@ -8,6 +8,9 @@ use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\PartnerController;
+use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\ProductImageController;
+use App\Http\Controllers\Backend\TempImageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,6 +58,7 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::post('sub/store', 'store');
         Route::post('sub/edit', 'edit');
         Route::post('sub/delete', 'destroy');
+        Route::get('/subcategory/ajax/{category_id}', 'GetSubCategory');
     });
 
     Route::controller(PartnerController::class)->group(function(){
@@ -63,14 +67,24 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::post('par/edit', 'edit');
         Route::post('par/delete', 'destroy');
     });
+    //Product All Route
+    Route::controller(ProductController::class)->group(function(){
+        Route::get('/product/all', 'index')->name('pro.index');;
+        Route::post('product/delete', 'destroy');
+        Route::get('/product/{product}/edit','edit')->name('pro.edit');
+        Route::post('/product/{product}','update')->name('pro.update');
+        Route::get('/product/add','create')->name('pro.create');
+        Route::post('/product','store')->name('pro.store');
+    });
+    //product image route
+        Route::post('/temp-images',[TempImageController::class,'store'])->name('temp-images.create');
+        Route::post('/product-images',[ProductImageController::class,'store'])->name('product-images.store');
+        Route::delete('/product-images/{image}',[ProductImageController::class,'destroy'])->name('product-images.delete');
        // Example Routes
-    // Route::view('/list/partners', 'backend/partner.partner');
     Route::view('/list/promo', 'backend/promo.promo');
     Route::view('/info/business', 'backend/system.business');
     Route::view('/backup/info', 'backend/system.backup');
     Route::view('/admin/profile', 'backend/profile.profile');
-    Route::view('/product/all', 'backend/product.all_product');
-    Route::view('/product/add', 'backend/product.add_product');
     Route::view('/user/list', 'backend/user.user');
     Route::view('/order/list', 'backend/order.order');
     Route::view('/return/pending', 'backend/return.pending');
