@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\PartnerController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductImageController;
 use App\Http\Controllers\Backend\TempImageController;
+use App\Http\Controllers\Backend\SliderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -81,7 +82,15 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::post('/temp-images',[TempImageController::class,'store'])->name('temp-images.create');
         Route::post('/product-images',[ProductImageController::class,'store'])->name('product-images.store');
         Route::delete('/product-images/{image}',[ProductImageController::class,'destroy'])->name('product-images.delete');
-       // Example Routes
+    //All slider route
+    Route::controller(SliderController::class)->group(function(){
+        Route::get('/list/slider', 'index')->name('all.slider');
+        Route::post('sli/store', 'store');
+        Route::post('sli/edit', 'edit');
+        Route::post('sli/delete', 'destroy');
+    });   
+       
+        // Example Routes
     Route::view('/list/promo', 'backend/promo.promo');
     Route::view('/info/business', 'backend/system.business');
     Route::view('/backup/info', 'backend/system.backup');

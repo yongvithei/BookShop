@@ -1,6 +1,6 @@
 @extends('admin.index')
 
-<meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="_token" content="{{ csrf_token() }}">
 <!-- Page JS Plugins CSS -->
 <link rel="stylesheet" href="{{ asset('admin/assets/js/plugins/select2/css/select2.min.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/assets/js/plugins/dropzone/min/dropzone.min.css') }}">
