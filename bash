@@ -37,3 +37,7 @@ php artisan make:controller Backend/ProductImageController
 php artisan make:controller Backend/TempImageController
 php artisan make:migration create_product_view
 php artisan make:model ProductView
+php artisan make:model Slider -m
+php artisan make:controller Backend/SliderController
+php artisan make:model Coupon -m
+php artisan make:controller Backend/CouponController

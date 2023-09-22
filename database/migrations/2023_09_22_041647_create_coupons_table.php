@@ -11,31 +11,41 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sliders', function (Blueprint $table) {
+        Schema::create('coupons', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('image')->nullable();
+            $table->integer('discount')->default(0);
+            $table->string('validity')->nullable();;
             $table->enum('status', ['Active', 'Inactive'])->default('Active');
             $table->timestamps();
             $table->softDeletes();
         });
-        DB::table('sliders')->insert([
+        DB::table('coupons')->insert([
             [
-                'name' => 'Banner1',
-                'image' => 'null',
+                'name' => 'FRIDAY',
+                'discount' => '10',
+                'validity' => '2024-03-06',
                 'status' => 'Active',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Banner2',
-                'image' => 'null',
+                'name' => 'ABC',
+                'discount' => '5',
+                'validity' => '2024-03-06',
+                'status' => 'Active',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'VITHEI',
+                'discount' => '50',
+                'validity' => '2024-03-06',
                 'status' => 'Active',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
         ]);
-        
     }
 
     /**
@@ -43,6 +53,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sliders');
+        Schema::dropIfExists('coupons');
     }
 };

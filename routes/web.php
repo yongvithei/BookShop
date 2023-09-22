@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductImageController;
 use App\Http\Controllers\Backend\TempImageController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\CouponController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -88,6 +89,13 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::post('sli/store', 'store');
         Route::post('sli/edit', 'edit');
         Route::post('sli/delete', 'destroy');
+    });   
+    //All Coupon route
+    Route::controller(CouponController::class)->group(function(){
+        Route::get('/list/coupon', 'index')->name('all.coupon');
+        Route::post('cou/store', 'store');
+        Route::post('cou/edit', 'edit');
+        Route::post('cou/delete', 'destroy');
     });   
        
         // Example Routes
