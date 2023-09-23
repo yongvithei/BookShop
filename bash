@@ -41,3 +41,8 @@ php artisan make:model Slider -m
 php artisan make:controller Backend/SliderController
 php artisan make:model Coupon -m
 php artisan make:controller Backend/CouponController
+composer require spatie/laravel-permission
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+
+php artisan make:seeder RolesAndPermissionsSeeder
+php artisan db:seed --class=RolesAndPermissionsSeeder

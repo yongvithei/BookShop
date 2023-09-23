@@ -26,7 +26,7 @@ class CouponController extends Controller
                     'id' => $itemId
                 ],
                 [
-                    'name' => $request->nameC,
+                    'name' => strtoupper($request->nameC),
                     'discount' => $request->discount,
                     'validity' => $request->validity,
                     'status' => $request->statusC,
