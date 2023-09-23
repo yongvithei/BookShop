@@ -46,3 +46,5 @@ php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvid
 
 php artisan make:seeder RolesAndPermissionsSeeder
 php artisan db:seed --class=RolesAndPermissionsSeeder
+
+php artisan make:controller Backend/RoleController

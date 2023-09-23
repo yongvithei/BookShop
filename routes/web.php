@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\ProductImageController;
 use App\Http\Controllers\Backend\TempImageController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\RoleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -97,6 +98,14 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::post('cou/edit', 'edit');
         Route::post('cou/delete', 'destroy');
     });   
+
+    // Role All Route
+    Route::controller(RoleController::class)->group(function(){
+        Route::get('/all/role', 'index')->name('all.role');
+        Route::post('role/store', 'store');
+        Route::post('role/edit', 'edit');
+        Route::post('role/delete', 'destroy');
+    });
        
         // Example Routes
     Route::view('/list/promo', 'backend/promo.promo');
