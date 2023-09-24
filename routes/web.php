@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\TempImageController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\PermissionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -93,7 +94,7 @@ Route::middleware(['auth','role:admin'])->group(function() {
     });   
     //All Coupon route
     Route::controller(CouponController::class)->group(function(){
-        Route::get('/list/coupon', 'index')->name('all.coupon');
+        Route::get('/list/promo', 'index')->name('all.coupon');
         Route::post('cou/store', 'store');
         Route::post('cou/edit', 'edit');
         Route::post('cou/delete', 'destroy');
@@ -101,14 +102,22 @@ Route::middleware(['auth','role:admin'])->group(function() {
 
     // Role All Route
     Route::controller(RoleController::class)->group(function(){
-        Route::get('/all/role', 'index')->name('all.role');
+        Route::get('/role/permission', 'index')->name('all.role');
         Route::post('role/store', 'store');
         Route::post('role/edit', 'edit');
         Route::post('role/delete', 'destroy');
+    
+    });
+    // Permission All Route
+    Route::controller(PermissionController::class)->group(function(){
+        Route::get('/assign/permission', 'index')->name('all.per');
+        Route::post('per/store', 'store');
+        Route::post('per/edit', 'edit');
+        // Route::post('role/delete', 'destroy');
     });
        
         // Example Routes
-    Route::view('/list/promo', 'backend/promo.promo');
+
     Route::view('/info/business', 'backend/system.business');
     Route::view('/backup/info', 'backend/system.backup');
     Route::view('/admin/profile', 'backend/profile.profile');
@@ -118,7 +127,6 @@ Route::middleware(['auth','role:admin'])->group(function() {
     Route::view('/return/approve', 'backend/return.approve');
     Route::view('/report/order', 'backend/report.report_order');
     Route::view('/review/all', 'backend/review.review');
-    Route::view('/role/permission', 'backend/role.role&permission');
     Route::view('/role/add_permission&role', 'backend/role.addrole&perm');
     Route::view('/assign/role', 'backend/role.assign');
 });

@@ -178,7 +178,7 @@
                                                 <div class="pl-loading"></div>
                                             </td>
                                         </tr>
-                                        
+
                                     </tbody>
                                 </table>
                                 <div class="py-4 mb-0 justify-content-end">
@@ -193,64 +193,122 @@
                             </div>
                             <div class="tab-pane" id="btabswo-static-profile" role="tabpanel" aria-labelledby="btabswo-static-profile-tab" tabindex="0">
                                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-                                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                                <div class="table-responsive">
+                                <table id="per-table" class="table table-bordered table-vcenter">
                                     <thead>
                                     <tr>
                                         <th class="text-center" style="width: 80px;">ID</th>
                                         <th>Name</th>
-                                        <th class="d-none d-sm-table-cell" style="width: 30%;">Description</th>
-                                        <th class="d-none d-sm-table-cell" style="width: 15%;">Status</th>
+                                        <th style="width: 50%;">Permission</th>
                                         <th style="width: 15%;">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                        <tr>
+                                            <td class="fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>
 
-                                    <tr>
-                                        <td class="text-center fs-sm">39</td>
-                                        <td class="fw-semibold fs-sm">Henry Harrison</td>
-                                        <td class="d-none d-sm-table-cell fs-sm">
-                                            client39<span class="text-muted">@example.com</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">VIP</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit">
-                                                    <i class="fa fa-fw fa-pencil-alt"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove">
-                                                    <i class="fa fa-fw fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center fs-sm">40</td>
-                                        <td class="fw-semibold fs-sm">Alice Moore</td>
-                                        <td class="d-none d-sm-table-cell fs-sm">
-                                            client40<span class="text-muted">@example.com</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Business</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit">
-                                                    <i class="fa fa-fw fa-pencil-alt"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove">
-                                                    <i class="fa fa-fw fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
                                     </tbody>
                                 </table>
+                                </div>
                                 <div class="py-4 mb-0 justify-content-end">
                                     <div class="col-md-1 col-xl-2">
-                                        <button type="button" class="btn w-100 btn-alt-primary" data-bs-toggle="modal" data-bs-target="#per-modal">ADD</button>
-
+                                        <button onClick="addP()" type="button" class="btn w-100 btn-alt-primary" data-bs-toggle="modal" data-bs-target="#per-modal">ADD</button>
                                     </div>
                                 </div>
                             </div>
@@ -277,7 +335,7 @@
                             </div>
                             <form id="roleForm" action="" method="POST" enctype="multipart/form-data" onsubmit="return false;">
                                 <div class="block-content row justify-content-center">
-                                
+
                                 <input type="hidden" name="idR" id="idR">
                                     <div class="col-lg-12 col-xl-12">
                                         <div class="mb-3">
@@ -317,65 +375,67 @@
                     <div class="modal-content">
                         <div class="block block-rounded block-transparent mb-0">
                             <div class="block-header block-header-default">
-                                <h3 class="block-title">Create Category</h3>
+                                <h3 onClick="" class="block-title">Assign Permission to Role</h3>
                                 <div class="block-options">
                                     <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                                         <i class="fa fa-fw fa-times"></i>
                                     </button>
                                 </div>
                             </div>
-                            <form action="" method="POST" enctype="multipart/form-data" onsubmit="return false;">
+                            <form id="perForm" action="" method="POST" enctype="multipart/form-data" onsubmit="return false;">
                                 <div class="block-content row justify-content-center">
-
+                                <input type="hidden" name="r_id" id="r_id">
                                     <div class="col-lg-12 col-xl-12">
                                         <div class="mb-4">
-                                            <label class="form-label" for="one-ecom-product-category">Role</label>
-                                            <label for="example-select2-modal"></label><select class="js-select2 form-select" id="example-select2-modal" name="example-select2-modal" style="width: 100%;" data-container="#per-modal" data-placeholder="Choose one..">
-                                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                                <option value="1">HTML</option>
-                                                <option value="2">CSS</option>
-                                                <option value="3" selected>JavaScript</option>
-                                                <option value="4">PHP</option>
-                                                <option value="5">MySQL</option>
-                                                <option value="6">Ruby</option>
-                                                <option value="7">Angular</option>
-                                                <option value="8">React</option>
-                                                <option value="9">Vue.js</option>
+                                            <label class="form-label" for="role_id">Subcategory</label>
+                                            <select class="js-select2 form-select" id="role_id" name="role_id" style="width: 100%;" data-placeholder="Choose one..">
+                                                <option>Choose one..</option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                                @foreach($roles as $role)
+                                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
-                                        <div class="mb-4">
+                                        <div class="mb-2">
                                             <div class="space-x-2">
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" value="" id="example-checkbox-inline14" name="example-checkbox-inline1" checked>
-                                                    <label class="form-check-label" for="example-checkbox-inline14">Permission All</label>
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultAll" name="flexCheckDefaultAll">
+                                                    <label class="form-check-label" for="flexCheckDefaultAll">Permission All</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <hr>
-                                        <div class="mb-4">
-                                            <div class="space-x-2">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" value="" id="example-checkbox-inline1" name="example-checkbox-inline1" checked>
-                                                    <label class="form-check-label" for="example-checkbox-inline1">Option 1</label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                @foreach($permissions->take($permissions->count() / 2) as $permission)
+                                                <div class="mb-1">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="checkbox" value="{{ $permission->id }}" id="{{ $permission->id }}" name="permission[]">
+                                                        <label class="form-check-label" for="{{ $permission->id }}">{{ $permission->name }}</label>
+                                                    </div>
                                                 </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" value="" id="example-checkbox-inline2" name="example-checkbox-inline2">
-                                                    <label class="form-check-label" for="example-checkbox-inline2">Option 2</label>
+                                                @endforeach
+                                            </div>
+                                            <div class="col-md-6">
+                                                @foreach($permissions->slice($permissions->count() / 2) as $permission)
+                                                <div class="mb-1">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="checkbox" value="{{ $permission->id }}" id="{{ $permission->id }}" name="permission[]">
+                                                        <label class="form-check-label" for="{{ $permission->id }}">{{ $permission->name }}</label>
+                                                    </div>
                                                 </div>
-
+                                                @endforeach
                                             </div>
                                         </div>
 
-                                    </div>
 
+                                    </div>
                                 </div>
 
-
-                            </form>
                             <div class="block-content block-content-full text-end bg-body">
                                 <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Create</button>
+                                <button type="submit" id="btn-saveP" class="btn btn-sm btn-primary">Save changes</button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -397,7 +457,7 @@
 
     <script src="{{ asset('admin/assets/js/pages/be_tables_datatables.min.js')}}"></script>
 
-   
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script type="text/javascript">
@@ -409,6 +469,33 @@
             }
         });
 
+        $('#per-table').DataTable({
+            pageLength: 10,
+            lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+            autoWidth: false,
+            serverSide: true,
+            processing: false,
+            ajax: '{{ route('all.per') }}',
+            columns: [
+                { data: 'id', name: 'id' },
+                { data: 'role_name', name: 'role_name' },
+                { data: 'permission_names', name: 'permission_names' },
+                { data: 'action', name: 'action', orderable: false },
+            ],
+            order: [[0, 'desc']],
+            columnDefs: [
+                {
+                    targets: 0,
+                    className: 'text-center fs-sm'
+                },
+                {
+                    targets: 3,
+                    className: 'text-center'
+                }
+
+            ]
+
+        });
         $('#role-table').DataTable({
             pageLength: 10,
             lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
@@ -419,8 +506,8 @@
             columns: [
                 { data: 'id', name: 'id' },
                 { data: 'name', name: 'name' },
-                { 
-                data: 'status', 
+                {
+                data: 'status',
                 name: 'status',
                 render: function (data) {
                     if (data === 'Active') {
@@ -442,9 +529,9 @@
                     targets: 3,
                     className: 'text-center'
                 }
-                
+
             ]
-        
+
         });
     });
     function addR(){
@@ -455,40 +542,40 @@
         $('#name_errorR').hide();
         $('#error-message').hide();
 
-    }   
-    $('#roleForm').submit(function (e) {
-        e.preventDefault();
-        var nameValue = $('#name').val();
-        if (nameValue.trim() === '') {
-            $('#name_errorR').show();
-            return;
-        }
-        $('#name_errorR').hide();
-        var formData = new FormData(this);
-        $.ajax({
-    type: 'POST',
-    url: "{{ url('role/store')}}",
-    data: formData,
-    cache: false,
-    contentType: false,
-    processData: false,
-    success: function (data) {
-        $("#role-modal").modal('hide');
-        var oTable = $('#role-table').dataTable();
-        oTable.fnDraw(false);
-        $("#btn-saveR").html('Submit');
-        $("#btn-saveR").attr("disabled", false);
-    },
-    error: function (xhr) {
-        if (xhr.status === 422) {
-            var errorMessage = JSON.parse(xhr.responseText).error;
-            console.error(errorMessage);
-            $("#error-message").text(errorMessage).show();
-        } else {
-            console.error('An error occurred while creating the role.');
-        }
     }
-});
+    $('#roleForm').submit(function (e) {
+            e.preventDefault();
+            var nameValue = $('#name').val();
+            if (nameValue.trim() === '') {
+                $('#name_errorR').show();
+                return;
+            }
+            $('#name_errorR').hide();
+            var formData = new FormData(this);
+            $.ajax({
+        type: 'POST',
+        url: "{{ url('role/store')}}",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            $("#role-modal").modal('hide');
+            var oTable = $('#role-table').dataTable();
+            oTable.fnDraw(false);
+            $("#btn-saveR").html('Submit');
+            $("#btn-saveR").attr("disabled", false);
+        },
+        error: function (xhr) {
+            if (xhr.status === 422) {
+                var errorMessage = JSON.parse(xhr.responseText).error;
+                console.error(errorMessage);
+                $("#error-message").text(errorMessage).show();
+            } else {
+                console.error('An error occurred while creating the role.');
+            }
+        }
+    });
 
     });
    function deleteFunc(id) {
@@ -508,8 +595,10 @@
                 data: { id: id },
                 dataType: 'json',
                 success: function (res) {
-                    var oTable = $('#role-table').dataTable();
-                    oTable.fnDraw(false);
+                    var oTableR = $('#role-table').dataTable();
+                    oTableR.fnDraw(false);
+                    var oTableP = $('#per-table').dataTable();
+                    oTableP.fnDraw(false);
                 }
             });
         }
@@ -537,7 +626,64 @@
             }
             }
         });
-    }  
+    }
+    $('#flexCheckDefaultAll').click(function(){
+		if ($(this).is(':checked')) {
+			$('input[type = checkbox]').prop('checked',true);
+		}else{
+			$('input[type = checkbox]').prop('checked',false);
+		}
+	});
+
+    //per
+
+    $('#perForm').submit(function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+        type: 'POST',
+        url: "{{ url('per/store')}}",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            $("#per-modal").modal('hide');
+            var oTable = $('#per-table').dataTable();
+            oTable.fnDraw(false);
+            $("#btn-saveP").html('Submit');
+            $("#btn-saveP").attr("disabled", false);
+        },
+        error: function (xhr) {
+            if (xhr.status === 422) {
+                var errorMessage = JSON.parse(xhr.responseText).error;
+                console.error(errorMessage);
+                $("#error-message").text(errorMessage).show();
+            } else {
+                console.error('An error occurred while creating the role.');
+            }
+        }
+    });
+});
+
+function addP(){
+        $('#perForm').trigger("reset");
+        $('#btn-saveP').html("Create");
+    }
+function editFuncP(id){
+    $('#perForm').trigger("reset");
+        $.ajax({
+            type:"POST",
+            url: "{{ url('per/edit') }}",
+            data: { id: id },
+            dataType: 'json',
+            success: function(res){
+                $('#btn-saveP').html("Save changes");
+                $('#per-modal').modal('show');
+                $('#role_id').val(res.role.id);
+            }
+        });
+    }
     </script>
 
 @endsection

@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Database\QueryException;
 class RoleController extends Controller
 {
     //Role
     public function index()
     {
+        $roles = Role::select('id', 'name')->get();
+        $permissions = Permission::select('id', 'name')->get();
         if(request()->ajax()) {
             return datatables()->of(Role::select(['id', 'name','status']))
                 ->addColumn('action', 'backend.role.role_action')
@@ -18,7 +21,7 @@ class RoleController extends Controller
                 ->addIndexColumn()
                 ->make(true);
         }
-        return view('backend.role.role&permission');
+        return view('backend.role.role&permission',compact('roles','permissions'));
     }
 
     public function store(Request $request)
@@ -44,7 +47,6 @@ class RoleController extends Controller
     {
         $id = array('id' => $request->id);
         $item  = Role::where($id)->first();
-
         return Response()->json($item);
     }
 
@@ -61,6 +63,7 @@ class RoleController extends Controller
 
         return Response()->json($item);
     }
+
 
 
 }

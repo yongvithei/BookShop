@@ -163,33 +163,18 @@
                 </li>
 
                 <li class="nav-main-heading">{{__('body.roles_and_permission')}}</li>
-                <li class="nav-main-item{{ request()->is('role/*') ? ' open' : '' }}">
-                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                        <i class="nav-main-link-icon si si-wrench"></i>
-                        <span class="nav-main-link-name">{{__('body.roles_and_permission')}}</span>
-                    </a>
-                    <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('role/permission') ? ' active' : '' }}" href="/role/permission">
-                                <span class="nav-main-link-name">{{__('body.all')}}</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('role/add_permission&role') ? ' active' : '' }}" href="/role/add_permission&role">
-                                <span class="nav-main-link-name">{{__('body.add_and_edit')}}</span>
-                            </a>
-                        </li>
-
-
-                    </ul>
-                <li class="nav-main-item">
-                    <a class="nav-main-link{{ request()->is('assign/role') ? ' active' : '' }}" href="/assign/role">
-                        <i class="nav-main-link-icon si si-speedometer"></i>
-                        <span class="nav-main-link-name">{{__('body.assign')}}</span>
-                    </a>
-                </li>
-
-
+                    <li class="nav-main-item">
+                        <a class="nav-main-link{{ request()->is('role/permission') ? ' active' : '' }}" href="/role/permission">
+                            <i class="nav-main-link-icon si si-speedometer"></i>
+                            <span class="nav-main-link-name">{{__('body.roles_and_permission')}}</span>
+                        </a>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link{{ request()->is('assign/role') ? ' active' : '' }}" href="/assign/role">
+                            <i class="nav-main-link-icon si si-speedometer"></i>
+                            <span class="nav-main-link-name">{{__('body.assign')}}</span>
+                        </a>
+                    </li>
 
                 <li class="nav-main-heading">{{__('body.system_setting')}}</li>
                 <li class="nav-main-item">
