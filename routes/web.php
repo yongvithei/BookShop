@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\SiteInfoController;
+use App\Http\Controllers\Backend\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -130,15 +131,18 @@ Route::middleware(['auth','role:admin'])->group(function() {
     // Site Info All Route
     Route::controller(SiteInfoController::class)->group(function(){
         Route::view('/info/business', 'backend/system.business')->middleware('can:site.menu');
-        Route::get('/info/web', 'show')->name('all.admin');
+        Route::get('/info/web', 'show');
         Route::post('/sites',  'store');
         Route::put('/site/{item}','update');
     });
-       
-        // Example Routes
+    // User Info All Route
+    Route::controller(UserController::class)->group(function(){
+        Route::get('/user/list', 'index')->name('all.user')->middleware('can:user.menu');
+        Route::post('user/view', 'view');
+    });
+    // Example Routes
     Route::view('/backup/info', 'backend/system.backup');
     Route::view('/admin/profile', 'backend/profile.profile');
-    Route::view('/user/list', 'backend/user.user');
     Route::view('/order/list', 'backend/order.order');
     Route::view('/return/pending', 'backend/return.pending');
     Route::view('/return/approve', 'backend/return.approve');
