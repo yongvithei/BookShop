@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\PermissionController;
+use App\Http\Controllers\Backend\SiteInfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -125,9 +126,16 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::post('admin/delete', 'delete');
         
     });
+
+    // Site Info All Route
+    Route::controller(SiteInfoController::class)->group(function(){
+        Route::view('/info/business', 'backend/system.business')->middleware('can:site.menu');
+        Route::get('/info/web', 'show')->name('all.admin');
+        Route::post('/sites',  'store');
+        Route::put('/site/{item}','update');
+    });
        
         // Example Routes
-    Route::view('/info/business', 'backend/system.business');
     Route::view('/backup/info', 'backend/system.backup');
     Route::view('/admin/profile', 'backend/profile.profile');
     Route::view('/user/list', 'backend/user.user');

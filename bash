@@ -51,3 +51,6 @@ php artisan make:controller Backend/RoleController
 
 php artisan make:migration create_admin_view
 php artisan make:model AdminView
+
+php artisan make:model SiteInfo -m
+php artisan make:controller Backend/SiteInfoController
