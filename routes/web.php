@@ -47,19 +47,19 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth','role:admin'])->group(function() {
-    Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+    Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard')->middleware('can:dashboard.menu');
     Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 
     // Category All Route
     Route::controller(CategoryController::class)->group(function(){
-        Route::get('/all/category', 'index')->name('all.category');
+        Route::get('/all/category', 'index')->name('all.category')->middleware('can:category.menu');
         Route::post('category/store', 'store');
         Route::post('category/edit', 'edit');
         Route::post('category/delete', 'destroy');
     });
     // SubCategory All Route
     Route::controller(SubCategoryController::class)->group(function(){
-        Route::get('/all/subcategory', 'index')->name('all.sub');
+        Route::get('/all/subcategory', 'index')->name('all.sub')->middleware('can:category.menu');
         Route::post('sub/store', 'store');
         Route::post('sub/edit', 'edit');
         Route::post('sub/delete', 'destroy');
@@ -67,14 +67,14 @@ Route::middleware(['auth','role:admin'])->group(function() {
     });
 
     Route::controller(PartnerController::class)->group(function(){
-        Route::get('/list/partners', 'index')->name('all.partner');
+        Route::get('/list/partners', 'index')->name('all.partner')->middleware('can:business.menu');
         Route::post('par/store', 'store');
         Route::post('par/edit', 'edit');
         Route::post('par/delete', 'destroy');
     });
     //Product All Route
     Route::controller(ProductController::class)->group(function(){
-        Route::get('/product/all', 'index')->name('pro.index');;
+        Route::get('/product/all', 'index')->name('pro.index')->middleware('can:product.menu');
         Route::post('product/delete', 'destroy');
         Route::get('/product/{product}/edit','edit')->name('pro.edit');
         Route::post('/product/{product}','update')->name('pro.update');
@@ -88,14 +88,14 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::delete('/product-images/{image}',[ProductImageController::class,'destroy'])->name('product-images.delete');
     //All slider route
     Route::controller(SliderController::class)->group(function(){
-        Route::get('/list/slider', 'index')->name('all.slider');
+        Route::get('/list/slider', 'index')->name('all.slider')->middleware('can:promo.menu');
         Route::post('sli/store', 'store');
         Route::post('sli/edit', 'edit');
         Route::post('sli/delete', 'destroy');
     });   
     //All Coupon route
     Route::controller(CouponController::class)->group(function(){
-        Route::get('/list/promo', 'index')->name('all.coupon');
+        Route::get('/list/promo', 'index')->name('all.coupon')->middleware('can:promo.menu');
         Route::post('cou/store', 'store');
         Route::post('cou/edit', 'edit');
         Route::post('cou/delete', 'destroy');
@@ -103,7 +103,7 @@ Route::middleware(['auth','role:admin'])->group(function() {
 
     // Role All Route
     Route::controller(RoleController::class)->group(function(){
-        Route::get('/role/permission', 'index')->name('all.role');
+        Route::get('/role/permission', 'index')->name('all.role')->middleware('can:role.menu');
         Route::post('role/store', 'store');
         Route::post('role/edit', 'edit');
         Route::post('role/delete', 'destroy');
@@ -111,7 +111,7 @@ Route::middleware(['auth','role:admin'])->group(function() {
     });
     // Permission All Route
     Route::controller(PermissionController::class)->group(function(){
-        Route::get('/assign/permission', 'index')->name('all.per');
+        Route::get('/assign/permission', 'index')->name('all.per')->middleware('can:role.menu');
         Route::post('per/store', 'store');
         Route::post('per/edit', 'edit');
         // Route::post('role/delete', 'destroy');
@@ -119,7 +119,7 @@ Route::middleware(['auth','role:admin'])->group(function() {
 
     // Add Admin All Route
     Route::controller(AdminController::class)->group(function(){
-        Route::get('/list/admin', 'index')->name('all.admin');
+        Route::get('/list/admin', 'index')->name('all.admin')->middleware('can:assign.menu');
         Route::post('admin/store', 'store');
         Route::post('admin/edit', 'edit');
         Route::post('admin/delete', 'delete');

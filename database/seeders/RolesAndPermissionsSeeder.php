@@ -6,6 +6,9 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\PermissionRegistrar;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class RolesAndPermissionsSeeder extends Seeder
 {
@@ -14,6 +17,8 @@ class RolesAndPermissionsSeeder extends Seeder
      */
     public function run(): void
     {
+        // Reset cached roles and permissions
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
         // Create roles
         $roleSeller = Role::create(['name' => 'Seller']);
         $roleAdmin = Role::create(['name' => 'Admin']);
@@ -34,7 +39,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $permissionAssign = Permission::create(['name' => 'assign.menu']);
         $permissionSite = Permission::create(['name' => 'site.menu']);
         $permissionBackup = Permission::create(['name' => 'backup.menu']);
-        
+
 
         // Assign permissions to roles
         $roleSeller->givePermissionTo([
@@ -84,6 +89,31 @@ class RolesAndPermissionsSeeder extends Seeder
             $permissionSite,
             $permissionBackup
         ]);
+
+        $user = \App\Models\User::factory()->create([
+            'name' => 'admin',
+            'username' => 'vithei',
+            'email' => 'vithei@gmail.com',
+            'password' => Hash::make('root'),
+            'remember_token' => Str::random(10),
+            'role' => 'Admin',
+            'email_verified_at' => now(),
+            'created_at'=> now(),
+            'updated_at'=> now(),
+        ]);
+        $user->assignRole($roleAdmin);
+        $user = \App\Models\User::factory()->create([
+            'name' => 'admin',
+            'username' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('root'),
+            'remember_token' => Str::random(10),
+            'role' => 'Admin',
+            'email_verified_at' => now(),
+            'created_at'=> now(),
+            'updated_at'=> now(),
+        ]);
+        $user->assignRole($roleAdmin);
 
 
     }
