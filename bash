@@ -48,3 +48,6 @@ php artisan make:seeder RolesAndPermissionsSeeder
 php artisan db:seed --class=RolesAndPermissionsSeeder
 
 php artisan make:controller Backend/RoleController
+
+php artisan make:migration create_admin_view
+php artisan make:model AdminView

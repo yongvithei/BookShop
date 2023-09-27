@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\PermissionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -115,9 +116,17 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::post('per/edit', 'edit');
         // Route::post('role/delete', 'destroy');
     });
+
+    // Add Admin All Route
+    Route::controller(AdminController::class)->group(function(){
+        Route::get('/list/admin', 'index')->name('all.admin');
+        Route::post('admin/store', 'store');
+        Route::post('admin/edit', 'edit');
+        Route::post('admin/delete', 'delete');
+        
+    });
        
         // Example Routes
-
     Route::view('/info/business', 'backend/system.business');
     Route::view('/backup/info', 'backend/system.backup');
     Route::view('/admin/profile', 'backend/profile.profile');

@@ -170,7 +170,7 @@
                         </a>
                     </li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link{{ request()->is('assign/role') ? ' active' : '' }}" href="/assign/role">
+                        <a class="nav-main-link{{ request()->is('list/admin') ? ' active' : '' }}" href="/list/admin">
                             <i class="nav-main-link-icon si si-speedometer"></i>
                             <span class="nav-main-link-name">{{__('body.assign')}}</span>
                         </a>
