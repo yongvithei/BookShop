@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\SiteInfoController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\SystemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -140,8 +141,14 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::get('/user/list', 'index')->name('all.user')->middleware('can:user.menu');
         Route::post('user/view', 'view');
     });
-    // Example Routes
+     // Backup All Route
     Route::view('/backup/info', 'backend/system.backup');
+    Route::controller(SystemController::class)->group(function(){
+        Route::get('/clear-cache', 'clearCache')->name('clear-cache');
+        Route::get('/backup-all', 'backupall')->name('backupall');
+        Route::get('/dbdumps', 'dbdumps')->name('dbdumps');
+    });
+    // Example Routes
     Route::view('/admin/profile', 'backend/profile.profile');
     Route::view('/order/list', 'backend/order.order');
     Route::view('/return/pending', 'backend/return.pending');

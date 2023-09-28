@@ -54,3 +54,7 @@ php artisan make:model AdminView
 
 php artisan make:model SiteInfo -m
 php artisan make:controller Backend/SiteInfoController
+
+;extension=zip => extension=zip
+composer require spatie/laravel-backup
+php artisan vendor:publish --provider="Spatie\Backup\BackupServiceProvider"
