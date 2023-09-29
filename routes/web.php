@@ -95,14 +95,14 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::post('sli/store', 'store');
         Route::post('sli/edit', 'edit');
         Route::post('sli/delete', 'destroy');
-    });   
+    });
     //All Coupon route
     Route::controller(CouponController::class)->group(function(){
         Route::get('/list/promo', 'index')->name('all.coupon')->middleware('can:promo.menu');
         Route::post('cou/store', 'store');
         Route::post('cou/edit', 'edit');
         Route::post('cou/delete', 'destroy');
-    });   
+    });
 
     // Role All Route
     Route::controller(RoleController::class)->group(function(){
@@ -110,7 +110,7 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::post('role/store', 'store');
         Route::post('role/edit', 'edit');
         Route::post('role/delete', 'destroy');
-    
+
     });
     // Permission All Route
     Route::controller(PermissionController::class)->group(function(){
@@ -126,7 +126,10 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::post('admin/store', 'store');
         Route::post('admin/edit', 'edit');
         Route::post('admin/delete', 'delete');
-        
+
+        Route::get('/admin/profile', 'editProfile')->name('admin.profile.sp');
+        Route::post('/admin/profile/store', 'updateProfile')->name('admin.profile.store');
+        Route::get('/admin/profile/password', 'editProfile')->name('admin.profile');
     });
 
     // Site Info All Route
@@ -148,8 +151,14 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::get('/backup-all', 'backupall')->name('backupall');
         Route::get('/dbdumps', 'dbdumps')->name('dbdumps');
     });
+
+    //Profile All Route
+
+    Route::controller(AdminController::class)->group(function(){
+         });
+
+
     // Example Routes
-    Route::view('/admin/profile', 'backend/profile.profile');
     Route::view('/order/list', 'backend/order.order');
     Route::view('/return/pending', 'backend/return.pending');
     Route::view('/return/approve', 'backend/return.approve');

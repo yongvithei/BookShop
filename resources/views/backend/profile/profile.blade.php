@@ -2,6 +2,7 @@
 @section('admin')
 <!-- Main Container -->
 <main id="main-container">
+
     <!-- Hero -->
     <div class="bg-body-light">
 
@@ -21,7 +22,7 @@
 
     </div>
     <!-- END Hero -->
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Page Content -->
     <!-- For advanced Tabs usage you can check out https://getbootstrap.com/docs/5.3/components/navs-tabs/ -->
     <div class="content">
@@ -32,50 +33,56 @@
                 <!-- Vertical Block Tabs Default Style -->
                 <div class="block block-rounded row g-0">
                     <ul class="nav nav-tabs nav-tabs-block flex-md-column col-md-2" role="tablist">
-
                         <li class="nav-item d-md-flex flex-md-column">
-                            <button class="nav-link text-md-start active" id="btabs-vertical-profile-tab" data-bs-toggle="tab" data-bs-target="#btabs-vertical-profile" role="tab" aria-controls="btabs-vertical-profile" aria-selected="false">
+                            <a class="nav-link text-md-start{{ request()->is('admin/profile') ? ' active' : '' }}" href="/admin/profile">
                                 <i class="fa fa-fw fa-user-circle opacity-50 me-1 d-none d-sm-inline-block"></i> Profile
-                            </button>
+                            </a>
                         </li>
                         <li class="nav-item d-md-flex flex-md-column">
-                            <button class="nav-link text-md-start" id="btabs-vertical-settings-tab" data-bs-toggle="tab" data-bs-target="#btabs-vertical-settings" role="tab" aria-controls="btabs-vertical-settings" aria-selected="false">
+                            <a class="nav-link text-md-start{{ request()->is('admin/profile/password') ? ' active' : '' }}" href="/admin/profile/password">
                                 <i class="fa fa-fw fa-cog opacity-50 me-1 d-none d-sm-inline-block"></i> Settings
-                            </button>
+                            </a>
                         </li>
                     </ul>
                     <div class="tab-content col-md-8">
-
-                        <div class="block-content tab-pane active" id="btabs-vertical-profile" role="tabpanel" aria-labelledby="btabs-vertical-profile-tab" tabindex="0">
-                            <h4 class="fw-semibold text-center">Profile Content</h4>
+                        <div class="block-content tab-pane {{ request()->is('admin/profile') ? ' active' : '' }}" id="btabs-vertical-profile" role="tabpanel" aria-labelledby="btabs-vertical-profile-tab" tabindex="0">
+                                <h4 class="fw-semibold text-center">Profile</h4>
                             <!-- User Profile -->
                             <div class="block block-rounded">
-
-                                <div class="block-content">
-                                    <form action="" method="POST" enctype="multipart/form-data" onsubmit="return false;">
+                            @if (session('status') === 'saved')
+                            <div class="alert alert-success alert-dismissible text-center" role="alert">
+                                <p class="mb-0">Update successful</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            @endif
+                                <form method="post" action="{{ route('admin.profile.store') }}" enctype="multipart/form-data">
+                                    @csrf
                                         <div class="block-content row justify-content-center">
-
                                             <div class="col-lg-9 col-xl-9">
                                                 <div class="mb-4">
-                                                    <label class="form-label" for="one-profile-edit-username">Username</label>
-                                                    <input type="text" class="form-control" id="one-profile-edit-username" name="one-profile-edit-username" placeholder="Enter your username.." value="john.parker">
+                                                    <label class="form-label" for="name">Name</label>
+                                                    <input id="name" name="name" type="text" value="{{ old('name', $user->name) }}" required autofocus autocomplete="username" class="form-control" />
+                                                    <span class="text-danger">{{ $errors->first('name') }}</span>
                                                 </div>
                                                 <div class="mb-4">
-                                                    <label class="form-label" for="one-profile-edit-name">Name</label>
-                                                    <input type="text" class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" placeholder="Enter your name.." value="John Parker">
+                                                    <label class="form-label" for="username">Username</label>
+                                                    <input id="username" name="username" type="text" value="{{ old('username', $user->username) }}" required autofocus autocomplete="username" class="form-control" />
+                                                    <span class="text-danger">{{ $errors->first('username') }}</span>
                                                 </div>
                                                 <div class="mb-4">
                                                     <label class="form-label" for="one-profile-edit-email">Email Address</label>
-                                                    <input type="email" class="form-control" id="one-profile-edit-email" name="one-profile-edit-email" placeholder="Enter your email.." value="john.parker@example.com">
+                                                    <input id="email" name="email" type="text" value="{{ old('email', $user->email) }}" required class="form-control" />
+                                                    <span class="text-danger">{{ $errors->first('email') }}</span>
                                                 </div>
                                                 <div class="mb-4">
-                                                    <label class="form-label">Your Avatar</label>
+                                                    <label class="form-label">Your Profile</label>
                                                     <div class="mb-4">
-                                                        <img class="img-avatar" src="{{asset('admin/assets/media/avatars/avatar13.jpg')}}" alt="">
+                                                    <img id="showImage" src="{{ (!empty($user->photo)) ? url('uploads/admin/'.$user->photo):url('uploads/no_image.jpg') }}" alt="Admin" style="width:100px; height: 100px;"  >
                                                     </div>
                                                     <div class="mb-4">
-                                                        <label for="one-profile-edit-avatar" class="form-label">Choose a new avatar</label>
-                                                        <input class="form-control" type="file" id="one-profile-edit-avatar">
+                                                        <label for="photo" class="form-label">Choose a image</label>
+                                                        <input type="file" name="photo" class="form-control"  id="image"/>
+                                                        <span class="text-danger">{{ $errors->first('photo') }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-4">
@@ -85,40 +92,47 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
+                                </form>
                             </div>
                             <!-- END User Profile -->
-
                         </div>
-                        <div class="block-content tab-pane" id="btabs-vertical-settings" role="tabpanel" aria-labelledby="btabs-vertical-settings-tab" tabindex="0">
+                        <div class="block-content tab-pane{{ request()->is('admin/profile/password') ? ' active' : '' }}" id="btabs-vertical-settings" role="tabpanel" aria-labelledby="btabs-vertical-settings-tab" tabindex="0">
                             <h4 class="fw-semibold text-center">Change Password</h4>
                             <!-- Change Password -->
                             <div class="block block-rounded">
-
+                                @if (session('status') === 'password-updated')
+                                    <div class="alert alert-success alert-dismissible text-center" role="alert">
+                                        <p class="mb-0">Update successful</p>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                @endif
                                 <div class="block-content">
-                                    <form action="" method="POST" onsubmit="return false;">
+                                    <form method="post" action="{{ route('password.update') }}">
+                                        @csrf
+                                        @method('put')
                                         <div class="block-content row justify-content-center">
-
                                             <div class="col-lg-9 col-xl-9">
                                                 <div class="mb-4">
-                                                    <label class="form-label" for="one-profile-edit-password">Current Password</label>
-                                                    <input type="password" class="form-control" id="one-profile-edit-password" name="one-profile-edit-password">
+                                                    <label class="form-label" for="current_password">Current Password</label>
+                                                    <input type="password" class="form-control" id="current_password" name="current_password">
+                                                    <span class="text-danger">{{ $errors->updatePassword->first('current_password') }}</span>
                                                 </div>
                                                 <div class="row mb-4">
                                                     <div class="col-12">
-                                                        <label class="form-label" for="one-profile-edit-password-new">New Password</label>
-                                                        <input type="password" class="form-control" id="one-profile-edit-password-new" name="one-profile-edit-password-new">
+                                                        <label class="form-label" for="password">New Password</label>
+                                                        <input type="password" class="form-control" id="password" name="password" autocomplete="new-password">
+                                                        <span class="text-danger">{{ $errors->updatePassword->first('password') }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-4">
                                                     <div class="col-12">
-                                                        <label class="form-label" for="one-profile-edit-password-new-confirm">Confirm New Password</label>
-                                                        <input type="password" class="form-control" id="one-profile-edit-password-new-confirm" name="one-profile-edit-password-new-confirm">
+                                                        <label class="form-label" for="password_confirmation">Confirm New Password</label>
+                                                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+                                                        <span class="text-danger">{{ $errors->updatePassword->first('password_confirmation') }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-4">
-                                                    <button type="submit" class="btn btn-alt-primary">
+                                                    <button type="submit" class="btn btn-alt-primary" value="Save Changes">
                                                         Update
                                                     </button>
                                                 </div>
@@ -141,4 +155,22 @@
     <!-- END Page Content -->
 </main>
 <!-- END Main Container -->
+
+<script src="{{ asset('admin/assets/js/lib/jquery.min.js') }}"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#image').change(function(e){
+			var reader = new FileReader();
+			reader.onload = function(e){
+				$('#showImage').attr('src',e.target.result);
+			}
+			reader.readAsDataURL(e.target.files['0']);
+		});
+	});
+
+
+</script>
+
+
 @endsection

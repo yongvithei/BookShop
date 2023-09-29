@@ -11,8 +11,47 @@ use Illuminate\Validation\Rules;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use App\Models\AdminView;
+use Illuminate\View\View;
+use Illuminate\Support\Facades\Redirect;
 class AdminController extends Controller
 {
+    public function editProfile(Request $request): View
+    {
+        return view('backend.profile.profile', [
+            'user' => $request->user(),
+        ]);
+    }
+    public function updateProfile(Request $request): RedirectResponse
+{
+        $id = Auth::user()->id;
+        $data = User::find($id);
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'username' => ['required','string','max:255',
+                Rule::unique(User::class)->ignore($id),
+            ],
+            'email' => ['required','string','email','max:255',
+                Rule::unique(User::class)->ignore($id),
+            ],
+            'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $data->name = $validatedData['name'];
+        $data->username = $validatedData['username'];
+        $data->email = $validatedData['email'];
+
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            @unlink(public_path('uploads/admin/'.$data->photo));
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('uploads/admin'), $filename);
+            $data->photo = $filename;
+        }
+
+        $data->save();
+        return Redirect::route('admin.profile.sp')->with('status', 'saved');
+    }
+
     //crud function
     public function index()
     {
