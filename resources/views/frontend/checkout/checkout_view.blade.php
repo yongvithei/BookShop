@@ -139,7 +139,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <div class="d-grid"> <a href="/checkOut"
+                                                        <div class="d-grid"> <a href="/payment"
                                                                 class="btn btn-dark btn-ecomm">{{ __('main.proceed_to_checkout') }}<i
                                                                     class='bx bx-chevron-right'></i></a>
                                                         </div>

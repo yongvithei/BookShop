@@ -91,4 +91,11 @@ return [
 
     'order_summary' => 'Order summary',
     'order_total' => 'Order Total',
+    'choose_payment_method' => 'Choose Payment Method',
+    'cash_on_delivery' => 'Cash on Delivery',
+    'confirm_payment' => 'Confirm Payment',
+    'select_your_bank' => 'Select your Bank',
+    'please_select_bank' => '--Please Select Your Bank--',
+    'back_to_shipping' => 'Back to Shipping',
+    'review_your_order' => 'Review Your Order',
 ];

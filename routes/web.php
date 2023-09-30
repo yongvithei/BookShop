@@ -178,5 +178,5 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     Route::view('/product_detail', 'frontend/product/product_detail');
     Route::view('/cart', 'frontend/mycart/view_mycart');
     Route::view('/checkOut', 'frontend/checkout/checkout_view');
-
+    Route::view('/payment', 'frontend/payment/stripe');
 require __DIR__.'/auth.php';
