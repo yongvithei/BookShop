@@ -167,9 +167,9 @@ Route::middleware(['auth','role:admin'])->group(function() {
     Route::view('/role/add_permission&role', 'backend/role.addrole&perm');
     Route::view('/assign/role', 'backend/role.assign');
     // Frontend Routes
-    Route::view('/', 'frontend/main');
+
 });
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
-
+    Route::view('/', 'frontend/main');
 require __DIR__.'/auth.php';

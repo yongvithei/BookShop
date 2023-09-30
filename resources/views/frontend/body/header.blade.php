@@ -37,7 +37,7 @@
 								</a>
 								<div class="dropdown-menu dropdown-menu-lg-end">
 									<a class="dropdown-item d-flex allign-items-center" href="javascript:;"><i
-									class="flag-icon flag-icon-um me-2"></i><span>English</span></a>	
+									class="flag-icon flag-icon-um me-2"></i><span>English</span></a>
 									<a class="dropdown-item d-flex allign-items-center" href="javascript:;"><i
 									class="flag-icon flag-icon-kh me-2"></i><span>Khmer</span></a>
 								</div>
@@ -92,8 +92,13 @@
 							<div class="top-cart-icons float-end">
 								<nav class="navbar navbar-expand">
 									<ul class="navbar-nav ms-auto">
-										<li class="nav-item"><a href="" class="nav-link cart-link"><i class='bx bx-user'></i></a>
+										 @auth
+										 <li class="nav-item"><a href="/dashboard" class="nav-link cart-link"><i class='bx bx-user'></i></a>
 										</li>
+										  @else
+										  <li class="nav-item"><a href="/login" class="nav-link cart-link"><i class='bx bx-user'></i></a>
+										</li>
+										   @endauth
 										<li class="nav-item"><a href="" class="nav-link cart-link"><i class='bx bx-heart'></i></a>
 										</li>
 										<li class="nav-item dropdown dropdown-large">
@@ -152,7 +157,7 @@
 							<h5 class="py-2">Navigation</h5>
 						</div>
 						<ul class="navbar-nav">
-							<li class="nav-item active"> <a class="nav-link" href="/">Home </a> 
+							<li class="nav-item active"> <a class="nav-link" href="/">Home </a>
 							</li>
 							<li class="nav-item dropdown">	<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">Categories <i class='bx bx-chevron-down'></i></a>
 								<div class="dropdown-menu dropdown-large-menu">
@@ -200,7 +205,7 @@
 												</li>
 											</ul>
 										</div>
-										
+
 									</div>
 									<!-- end row -->
 								</div>
@@ -258,13 +263,13 @@
 									</li>
 								</ul>
 							</li>
-							<li class="nav-item"> <a class="nav-link" href="">Blog </a> 
+							<li class="nav-item"> <a class="nav-link" href="">Blog </a>
 							</li>
-							<li class="nav-item"> <a class="nav-link" href="">About Us </a> 
+							<li class="nav-item"> <a class="nav-link" href="">About Us </a>
 							</li>
-							<li class="nav-item"> <a class="nav-link" href="">Contact Us </a> 
+							<li class="nav-item"> <a class="nav-link" href="">Contact Us </a>
 							</li>
-							<li class="nav-item"> <a class="nav-link" href="">Our Store</a> 
+							<li class="nav-item"> <a class="nav-link" href="">Our Store</a>
 							</li>
 							<li class="nav-item dropdown">	<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">My Account  <i class='bx bx-chevron-down'></i></a>
 								<ul class="dropdown-menu">
