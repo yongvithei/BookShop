@@ -18,7 +18,7 @@
                         autocomplete="current-password" />
                 </div>
                 <div class="py-2">
-                    <span class="mb-1 text-md">{{ __('auth.password') }}</span>
+                    <span class="mb-1 text-md">{{ __('auth.passwords') }}</span>
                     <input type="password" name="password" id="password"
                         class="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
                         value="{{ old('password') }}" required autofocus autocomplete="password" />

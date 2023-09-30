@@ -69,16 +69,19 @@
 							</div>
 						</div>
 						<div class="col col-md order-4 order-md-2">
+							
 							<div class="input-group flex-nowrap px-xl-4">
+							
 							<input type="text" class="form-control w-100" placeholder="{{__('main.search_for_products')}}">
 								<!-- <select class="form-select flex-shrink-0" aria-label="Default select example" style="width: 10.5rem;">
 									<option selected>All Categories</option>
 									<option value="1">One</option>
 									<option value="2">Two</option>
 									<option value="3">Three</option>
-								</select>	 -->
-								<span class="input-group-text cursor-pointer bg-transparent"><i class='bx bx-search'></i></span>
+								</select>	 -->	
+								<span class="input-group-text cursor-pointer bg-transparent"><a href="/search"><i class='bx bx-search'></i></span></a>
 							</div>
+							
 						</div>
 						<div class="col-4 col-md-auto order-3 d-none d-xl-flex align-items-center">
 							<div class="fs-1 text-black"><i class='bx bx-headphone'></i>
@@ -211,57 +214,7 @@
 								</div>
 								<!-- dropdown-large.// -->
 							</li>
-							<li class="nav-item dropdown">	<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">Shop  <i class='bx bx-chevron-down'></i></a>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item dropdown-toggle dropdown-toggle-nocaret" href="#">Shop Layouts <i class='bx bx-chevron-right float-end'></i></a>
-										<ul class="submenu dropdown-menu">
-											<li><a class="dropdown-item" href="">Shop Grid - Left Sidebar</a>
-											</li>
-											<li><a class="dropdown-item" href="">Shop Grid - Right Sidebar</a>
-											</li>
-											<li><a class="dropdown-item" href="">Shop List - Left Sidebar</a>
-											</li>
-											<li><a class="dropdown-item" href="">Shop List - Right Sidebar</a>
-											</li>
-											<li><a class="dropdown-item" href="">Shop Grid - Top Filter</a>
-											</li>
-											<li><a class="dropdown-item" href="">Shop List - Top Filter</a>
-											</li>
-										</ul>
-									</li>
-									<li><a class="dropdown-item dropdown-toggle dropdown-toggle-nocaret" href="#">Shop Pages <i class='bx bx-chevron-right float-end'></i></a>
-										<ul class="submenu dropdown-menu">
-											<li><a class="dropdown-item" href="">Shop Cart</a>
-											</li>
-											<li><a class="dropdown-item" href="">Shop Categories</a>
-											</li>
-											<li><a class="dropdown-item" href="">Checkout Details</a>
-											</li>
-											<li><a class="dropdown-item" href="">Checkout Shipping</a>
-											</li>
-											<li><a class="dropdown-item" href="">Checkout Payment</a>
-											</li>
-											<li><a class="dropdown-item" href="">Checkout Review</a>
-											</li>
-											<li><a class="dropdown-item" href="">Checkout Complete</a>
-											</li>
-											<li><a class="dropdown-item" href="">Order Tracking</a>
-											</li>
-											<li><a class="dropdown-item" href="">Product Comparison</a>
-											</li>
-										</ul>
-									</li>
-									<li><a class="dropdown-item" href="">About Us</a>
-									</li>
-									<li><a class="dropdown-item" href="">Contact Us</a>
-									</li>
-									<li><a class="dropdown-item" href="">Sign In</a>
-									</li>
-									<li><a class="dropdown-item" href="">Sign Up</a>
-									</li>
-									<li><a class="dropdown-item" href="">Forgot Password</a>
-									</li>
-								</ul>
+							<li class="nav-item"> <a class="nav-link" href="/shop">Shop</a>
 							</li>
 							<li class="nav-item"> <a class="nav-link" href="">Blog </a>
 							</li>

@@ -53,4 +53,17 @@ return [
     'secure_payment' => 'Secure Payment',
     'free_returns' => 'Free Returns',
     'customer_support' => 'Customer Support',
+
+    //product
+    'all_products' => 'All Products',
+    'home' => 'Home',
+    'price' => 'Price',
+    'select_category' => 'Select Category',
+    'filter_button' => 'Filter',
+    'sort_by' => 'Sort By:',
+    'show' => 'Show:',
+    'categories' => 'Categories',
+    'search_result_found' => 'Search Result Found',
+    'found' => 'Found',
+    'search_result'=>'Search Result',
 ];

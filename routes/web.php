@@ -172,4 +172,8 @@ Route::middleware(['auth','role:admin'])->group(function() {
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     Route::view('/', 'frontend/main');
+    Route::view('/shop', 'frontend/product/shop_page');
+    Route::view('/shoplist', 'frontend/product/shop_list');
+    Route::view('/search', 'frontend/product/search');
+    Route::view('/product_detail', 'frontend/product/product_detail');
 require __DIR__.'/auth.php';

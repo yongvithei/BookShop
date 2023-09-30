@@ -32,7 +32,7 @@
         <x-input-error :messages="$errors->get('email')" class="mt-2" />
     </div>
     <div class="py-2">
-        <span class="mb-1 text-md">{{ __('auth.password') }}</span>
+        <span class="mb-1 text-md">{{ __('auth.passwords') }}</span>
         <input type="password" name="password" id="password"
             class="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
             value="{{ old('password') }}" required autofocus autocomplete="password" />
@@ -46,7 +46,7 @@
             autocomplete="password_confirmation" />
         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
     </div>
-   
+
     <div class="m-2">
     </div>
     <button
@@ -68,8 +68,7 @@
 </button>
 
 <div class="text-center text-gray-400">
-    <span class="text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        ">
+    <span class="text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
         {{ __('auth.already_registered') }}
     </span>
     <a href="{{ route('login') }}" class="font-bold text-black" >{{ __('auth.login_here') }}</a>

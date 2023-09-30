@@ -19,7 +19,7 @@ return [
     //login
     'welcome_back' => 'Welcome back',
     'email_or_username' => 'Email Or Username',
-    'password' => 'Password',
+    'passwords' => 'Password',
     'remember_me' => 'Remember me',
     'forgot_password' => 'Forgot your password?',
     'or' => 'Or',
