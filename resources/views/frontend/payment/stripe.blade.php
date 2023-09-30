@@ -147,7 +147,7 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="d-grid">
-                                                                    <a href="javascript:;"
+                                                                    <a href="/complete"
                                                                         class="btn btn-dark btn-ecomm rounded-0">{{ __('main.confirm_payment') }}</a>
                                                                 </div>
 

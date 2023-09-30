@@ -98,4 +98,9 @@ return [
     'please_select_bank' => '--Please Select Your Bank--',
     'back_to_shipping' => 'Back to Shipping',
     'review_your_order' => 'Review Your Order',
+
+    'estimated_delivery_time' => 'Estimated Delivery time:',
+    'shipping_by' => 'Shipping BY:',
+    'status' => 'Status:',
+    'tracking_number' => 'Tracking #:',
 ];

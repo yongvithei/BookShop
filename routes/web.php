@@ -179,4 +179,7 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     Route::view('/cart', 'frontend/mycart/view_mycart');
     Route::view('/checkOut', 'frontend/checkout/checkout_view');
     Route::view('/payment', 'frontend/payment/stripe');
+    Route::view('/complete', 'frontend/complete/complete');
+    Route::view('/order/tracking', 'frontend/tracking/tracking_order');
+
 require __DIR__.'/auth.php';
