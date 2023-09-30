@@ -69,19 +69,19 @@
 							</div>
 						</div>
 						<div class="col col-md order-4 order-md-2">
-							
+
 							<div class="input-group flex-nowrap px-xl-4">
-							
+
 							<input type="text" class="form-control w-100" placeholder="{{__('main.search_for_products')}}">
 								<!-- <select class="form-select flex-shrink-0" aria-label="Default select example" style="width: 10.5rem;">
 									<option selected>All Categories</option>
 									<option value="1">One</option>
 									<option value="2">Two</option>
 									<option value="3">Three</option>
-								</select>	 -->	
-								<span class="input-group-text cursor-pointer bg-transparent"><a href="/search"><i class='bx bx-search'></i></span></a>
+								</select>	 -->
+								<span class="input-group-text cursor-pointer bg-transparent"><a href="/search"><i class='bx bx-search'></i></a></span>
 							</div>
-							
+
 						</div>
 						<div class="col-4 col-md-auto order-3 d-none d-xl-flex align-items-center">
 							<div class="fs-1 text-black"><i class='bx bx-headphone'></i>
@@ -139,7 +139,7 @@
 													</div>
 												</a>
 												<div class="d-grid p-3 border-top">
-													<a href="javascript:;" class="btn btn-dark btn-ecomm">{{__('main.checkout')}}</a>
+													<a href="/cart" class="btn btn-dark btn-ecomm">{{__('main.checkout')}}</a>
 												</div>
 
 											</div>

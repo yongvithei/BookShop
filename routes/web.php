@@ -176,4 +176,6 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     Route::view('/shoplist', 'frontend/product/shop_list');
     Route::view('/search', 'frontend/product/search');
     Route::view('/product_detail', 'frontend/product/product_detail');
+    Route::view('/cart', 'frontend/mycart/view_mycart');
+
 require __DIR__.'/auth.php';

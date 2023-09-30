@@ -21,12 +21,10 @@ return [
     'twitter' => 'Twitter',
     'github' => 'GitHub',
     'dribbble' => 'Dribbble',
-    'contact_us' => 'Contact Us',
     'address' => '123 Main St, City, Country',
     'phone' => '+1 (123) 456-7890',
     'shop' => 'Shop',
     'products' => 'Products',
-    'categories' => 'Categories',
     'policy_and_privacy' => 'Policy And Privacy',
     'returns_policy' => 'Returns Policy',
     'refund_policy' => 'Refund Policy',
@@ -35,9 +33,7 @@ return [
     'faqs' => 'FAQs',
     'live_chat' => 'Live Chat',
     'links' => 'Links',
-    'about' => 'About',
     'services' => 'Services',
-    'contact' => 'Contact',
     'map' => 'Map',
     'about_us' => 'About us',
     'home' => 'Home',
@@ -48,7 +44,6 @@ return [
     'featured_products' => 'FEATURED PRODUCTS',
     'more_products' => 'More Products',
     'new_arrivals' => 'New Arrivals',
-    'view_all' => 'View All',
     'free_delivery' => 'Free Delivery',
     'secure_payment' => 'Secure Payment',
     'free_returns' => 'Free Returns',
@@ -56,7 +51,6 @@ return [
 
     //product
     'all_products' => 'All Products',
-    'home' => 'Home',
     'price' => 'Price',
     'select_category' => 'Select Category',
     'filter_button' => 'Filter',
@@ -66,4 +60,17 @@ return [
     'search_result_found' => 'Search Result Found',
     'found' => 'Found',
     'search_result'=>'Search Result',
+
+    //cart
+    'continue_shopping' => 'Continue Shopping',
+    'update_cart' => 'Update Cart',
+    'remove' => 'Remove',
+    'apply_discount_code' => 'Apply Discount Code',
+    'subtotal' => 'Subtotal',
+    'shipping' => 'Shipping',
+    'taxes' => 'Taxes',
+    'discount' => 'Discount',
+    'order_total' => 'Order Total',
+    'proceed_to_checkout' => 'Proceed to Checkout',
+
 ];
