@@ -31,9 +31,9 @@ use App\Http\Controllers\Backend\SystemController;
 */
 Route::get('/locale/{locale}', [LocalizationController::class, 'setLang']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -166,6 +166,8 @@ Route::middleware(['auth','role:admin'])->group(function() {
     Route::view('/review/all', 'backend/review.review');
     Route::view('/role/add_permission&role', 'backend/role.addrole&perm');
     Route::view('/assign/role', 'backend/role.assign');
+    // Frontend Routes
+    Route::view('/', 'frontend/main');
 });
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
