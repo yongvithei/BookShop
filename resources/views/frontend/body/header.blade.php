@@ -96,7 +96,7 @@
 								<nav class="navbar navbar-expand">
 									<ul class="navbar-nav ms-auto">
 										 @auth
-										 <li class="nav-item"><a href="/dashboard" class="nav-link cart-link"><i class='bx bx-user'></i></a>
+										 <li class="nav-item"><a href="/user/dashboard" class="nav-link cart-link"><i class='bx bx-user'></i></a>
 										</li>
 										  @else
 										  <li class="nav-item"><a href="/login" class="nav-link cart-link"><i class='bx bx-user'></i></a>

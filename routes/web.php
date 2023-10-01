@@ -181,5 +181,9 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     Route::view('/payment', 'frontend/payment/stripe');
     Route::view('/complete', 'frontend/complete/complete');
     Route::view('/order/tracking', 'frontend/tracking/tracking_order');
-
+    Route::view('/user/dashboard', 'frontend/dashboard/dashboard');
+    Route::view('/user/orderlist', 'frontend/dashboard/order');
+    Route::view('/user/address', 'frontend/dashboard/address');
+    Route::view('/user/account/details', 'frontend/dashboard/account_details');
+    Route::view('/user/account/password', 'frontend/dashboard/password');
 require __DIR__.'/auth.php';

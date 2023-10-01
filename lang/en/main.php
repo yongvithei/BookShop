@@ -103,4 +103,18 @@ return [
     'shipping_by' => 'Shipping BY:',
     'status' => 'Status:',
     'tracking_number' => 'Tracking #:',
+
+    //account dashboard
+    'dashboard' => 'Dashboard',
+    'orders' => 'Orders',
+    'addresses' => 'Addresses',
+    'account_details' => 'Account Details',
+    'password' => 'Password',
+    'logout' => 'Logout',
+
+    'current_password' => 'Current Password',
+    'new_password' => 'New Password',
+    'confirm_new_password' => 'Confirm New Password',
+    'save_changes' => 'Save Changes',
+
 ];
