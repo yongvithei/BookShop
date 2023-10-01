@@ -102,7 +102,7 @@
 										  <li class="nav-item"><a href="/login" class="nav-link cart-link"><i class='bx bx-user'></i></a>
 										</li>
 										   @endauth
-										<li class="nav-item"><a href="" class="nav-link cart-link"><i class='bx bx-heart'></i></a>
+										<li class="nav-item"><a href="/wishlist" class="nav-link cart-link"><i class='bx bx-heart'></i></a>
 										</li>
 										<li class="nav-item dropdown dropdown-large">
 											<a href="#" class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link" data-bs-toggle="dropdown">	<span class="alert-count">8</span>
