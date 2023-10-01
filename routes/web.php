@@ -186,4 +186,6 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     Route::view('/user/address', 'frontend/dashboard/address');
     Route::view('/user/account/details', 'frontend/dashboard/account_details');
     Route::view('/user/account/password', 'frontend/dashboard/password');
+    Route::view('/contact', 'frontend/about/contact');
+    Route::view('/about', 'frontend/about/about');
 require __DIR__.'/auth.php';

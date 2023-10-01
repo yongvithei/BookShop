@@ -1,21 +1,21 @@
 
 	<!-- Footer Area -->
-    <footer class="bg-slate-50">	
+    <footer class="bg-slate-50">
 			<div
 			  class="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8"
 			>
 			<hr>
 			  <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
-				
+
 				<div>
 				  <div class="text-teal-600">
 					<!-- svg image -->
 				  </div>
-		  
+
 				  <p class="mt-4 max-w-xs text-gray-500">
 				  {{__('main.company_info')}}
 				  </p>
-		  
+
 				  <ul class="mt-8 flex gap-6">
 					<li>
 					  <a
@@ -25,7 +25,7 @@
 						class="text-gray-700 transition hover:opacity-75"
 					  >
 						<span class="sr-only">{{__('main.facebook')}}</span>
-		  
+
 						<svg
 						  class="h-6 w-6"
 						  fill="currentColor"
@@ -40,7 +40,7 @@
 						</svg>
 					  </a>
 					</li>
-		  
+
 					<li>
 					  <a
 						href="/"
@@ -49,7 +49,7 @@
 						class="text-gray-700 transition hover:opacity-75"
 					  >
 						<span class="sr-only">{{__('main.instagram')}}</span>
-		  
+
 						<svg
 						  class="h-6 w-6"
 						  fill="currentColor"
@@ -64,7 +64,7 @@
 						</svg>
 					  </a>
 					</li>
-		  
+
 					<li>
 					  <a
 						href="/"
@@ -73,7 +73,7 @@
 						class="text-gray-700 transition hover:opacity-75"
 					  >
 						<span class="sr-only">{{__('main.twitter')}}</span>
-		  
+
 						<svg
 						  class="h-6 w-6"
 						  fill="currentColor"
@@ -86,7 +86,7 @@
 						</svg>
 					  </a>
 					</li>
-		  
+
 					<li>
 					  <a
 						href="/"
@@ -95,7 +95,7 @@
 						class="text-gray-700 transition hover:opacity-75"
 					  >
 						<span class="sr-only">{{__('main.gitHub')}}</span>
-		  
+
 						<svg
 						  class="h-6 w-6"
 						  fill="currentColor"
@@ -110,7 +110,7 @@
 						</svg>
 					  </a>
 					</li>
-		  
+
 					<li>
 					  <a
 						href="/"
@@ -135,32 +135,32 @@
 					</li>
 				  </ul>
 				</div>
-		  
+
 				<div
 				  class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4"
 				>
 				  <div>
 					<p class="font-medium text-gray-900">{{__('main.links')}}</p>
-		  
+
 					<ul class="mt-6 space-y-4 text-sm">
 					  <li>
 						<a href="#" class="text-gray-700 transition hover:opacity-75">
 						{{__('main.home')}}
 						</a>
 					  </li>
-		  
+
 					  <li>
 						<a href="#" class="text-gray-700 transition hover:opacity-75">
 						{{__('main.shop')}}
 						</a>
 					  </li>
-		  
+
 					  <li>
 						<a href="#" class="text-gray-700 transition hover:opacity-75">
 						{{__('main.products')}}
 						</a>
 					  </li>
-		  
+
 					  <li>
 						<a href="#" class="text-gray-700 transition hover:opacity-75">
 						{{__('main.categories')}}
@@ -191,7 +191,7 @@
 					<p class="font-medium text-gray-900">{{__('main.customer_service')}}</p>
 					<ul class="mt-6 space-y-4 text-sm">
 					  <li>
-						<a href="#" class="text-gray-700 transition hover:opacity-75">
+						<a href="/contact" class="text-gray-700 transition hover:opacity-75">
 						{{__('main.contact')}}
 						</a>
 					  </li>
@@ -211,12 +211,12 @@
 					<p class="font-medium text-gray-900">{{__('main.company')}}</p>
 					<ul class="mt-6 space-y-4 text-sm">
 					  <li>
-						<a href="#" class="text-gray-700 transition hover:opacity-75">
+						<a href="/contact" class="text-gray-700 transition hover:opacity-75">
 						{{__('main.map')}}
 						</a>
 					  </li>
 					  <li>
-						<a href="#" class="text-gray-700 transition hover:opacity-75">
+						<a href="/about" class="text-gray-700 transition hover:opacity-75">
 						{{__('main.about_us')}}
 						</a>
 					  </li>
@@ -224,7 +224,7 @@
 				  </div>
 				</div>
 			  </div>
-		  
+
 			  <p class="text-xs text-gray-500">
 				&copy; 2024. Company Name. All rights reserved.
 			  </p>

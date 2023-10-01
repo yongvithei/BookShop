@@ -117,4 +117,22 @@ return [
     'confirm_new_password' => 'Confirm New Password',
     'save_changes' => 'Save Changes',
 
+    //contact
+    'drop_us_a_line' => 'Drop us a line',
+    'enter_your_name' => 'Enter Your Name',
+    'enter_email' => 'Enter Email',
+    'phone_number' => 'Phone Number',
+    'message' => 'Message',
+    'send_message' => 'Send Message',
+    'address' => 'Address',
+    'street_name' => '123 Street Name',
+    'city' => 'City',
+    'country' => 'Cambodia',
+    'phone' => 'Phone',
+    'toll_free' => 'Toll Free',
+    'mobile' => 'Mobile',
+    'email' => 'Email',
+    'working_days' => 'WORKING DAYS',
+    'working_hours' => 'Mon - FRI / 8:30 AM - 6:30 PM',
+
 ];
