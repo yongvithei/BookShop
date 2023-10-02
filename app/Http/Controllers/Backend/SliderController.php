@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Slider;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
 class SliderController extends Controller
 {
     public function index()
@@ -19,30 +21,52 @@ class SliderController extends Controller
         }
         return view('backend.promo.promo');
     }
-        public function store(Request $request)
-    {
-        $itemId = $request->id;
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/sliders', $fileName);
-        } else {
-            $fileName = $request->image_hidden;
-        }
+       public function store(Request $request)
+{
+    $itemId = $request->id;
 
-        $item =  Slider::updateOrCreate(
-            [
-                'id' => $itemId
-            ],
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'status' => 'required|in:Active,Inactive',
+        'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    // Check if an image was uploaded
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $fileName = time() . '.' . $image->getClientOriginalExtension();
+
+        // Resize the image to your desired dimensions
+        $resizeWidth = 1400; // Adjust to your desired width
+        $resizeHeight = 600; // Adjust to your desired height
+        $resizedImage = Image::make($image)->resize($resizeWidth, $resizeHeight)->encode();
+
+        // Store the resized image
+        Storage::put('public/sliders/' . $fileName, $resizedImage);
+
+        // Update or create the slider record
+        $item = Slider::updateOrCreate(
+            ['id' => $itemId],
             [
                 'name' => $request->name,
                 'image' => $fileName,
                 'status' => $request->status,
             ]
         );
-
-        return response()->json($item);
+    } else {
+        // No new image uploaded, use the existing image
+        $item = Slider::updateOrCreate(
+            ['id' => $itemId],
+            [
+                'name' => $request->name,
+                'image' => $request->image_hidden,
+                'status' => $request->status,
+            ]
+        );
     }
+
+    return response()->json($item);
+}
 
 
     public function edit(Request $request)
