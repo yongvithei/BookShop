@@ -5,65 +5,36 @@
 							<a href="" class="btn btn-dark ms-auto rounded-0">{{ __('main.view_all') }}<i class='bx bx-chevron-right'></i></a>
 						</div>
 						<hr/>
-
-						<div class="product-grid">
+							@php
+								$categories = Cache::remember('categories', now()->addMinutes(30), function () {
+									return App\Models\Category::where('status', 'Active')
+									->orderBy('name', 'ASC')
+									->select('id', 'name','slug')
+									->get();
+								});
+							@endphp
+						<div class="product-grid py-2">
 							<div class="browse-category owl-carousel owl-theme">
+								@foreach($categories as $category)
+									@php
+										$products = Cache::remember('products_' . $category->id, now()->addMinutes(30), function () use ($category) {
+											return App\Models\Product::where('category_id', $category->id)
+												->where('status', 1)
+												->select('id')
+												->get();
+										});
+									@endphp
 								<div class="item">
 									<div class="card rounded-0 product-card border">
-										<div class="card-body">
-											<img src="{{asset('/frontend/assets/images/categories/01.png')}}" class="img-fluid" alt="...">
-										</div>
 										<div class="card-footer text-center">
-											<h6 class="mb-1 text-uppercase">Fashion</h6>
-											<p class="mb-0 font-12 text-uppercase">10 Products</p>
+											<a href="{{ url('product/category/'.$category->id.'/'.$category->slug) }}">
+											<h6 class="mb-1 text-uppercase">{{ $category->name }}</h6>
+											<p class="mb-0 font-12 text-uppercase">{{ count($products) }} Products</p>
+											</a>
 										</div>
 									</div>
 								</div>
-								<div class="item">
-									<div class="card rounded-0 product-card border">
-										<div class="card-body">
-											<img src="{{asset('/frontend/assets/images/categories/01.png')}}" class="img-fluid" alt="...">
-										</div>
-										<div class="card-footer text-center">
-											<h6 class="mb-1 text-uppercase">Fashion</h6>
-											<p class="mb-0 font-12 text-uppercase">10 Products</p>
-										</div>
-									</div>
-								</div>
-								<div class="item">
-									<div class="card rounded-0 product-card border">
-										<div class="card-body">
-											<img src="{{asset('/frontend/assets/images/categories/01.png')}}" class="img-fluid" alt="...">
-										</div>
-										<div class="card-footer text-center">
-											<h6 class="mb-1 text-uppercase">Fashion</h6>
-											<p class="mb-0 font-12 text-uppercase">10 Products</p>
-										</div>
-									</div>
-								</div>
-								<div class="item">
-									<div class="card rounded-0 product-card border">
-										<div class="card-body">
-											<img src="{{asset('/frontend/assets/images/categories/01.png')}}" class="img-fluid" alt="...">
-										</div>
-										<div class="card-footer text-center">
-											<h6 class="mb-1 text-uppercase">Fashion</h6>
-											<p class="mb-0 font-12 text-uppercase">10 Products</p>
-										</div>
-									</div>
-								</div>
-								<div class="item">
-									<div class="card rounded-0 product-card border">
-										<div class="card-body">
-											<img src="{{asset('/frontend/assets/images/categories/01.png')}}" class="img-fluid" alt="...">
-										</div>
-										<div class="card-footer text-center">
-											<h6 class="mb-1 text-uppercase">Fashion</h6>
-											<p class="mb-0 font-12 text-uppercase">10 Products</p>
-										</div>
-									</div>
-								</div>
-								
+								@endforeach 
 							</div>
 						</div>
 					</div>

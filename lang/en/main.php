@@ -38,7 +38,7 @@ return [
     'home' => 'Home',
     'brands' => 'Brands',
     'best_selling_products' => 'Best Selling Products',
-    'browse_category' => 'Browse Category',
+    'browse_category' => 'All Category',
     'view_all' => 'View All',
     'featured_products' => 'FEATURED PRODUCTS',
     'more_products' => 'More Products',
