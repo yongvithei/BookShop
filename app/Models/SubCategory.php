@@ -16,4 +16,8 @@ class SubCategory extends Model
         'sub_slug',
         'status',
     ];
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'cat_id');
+    }
 }

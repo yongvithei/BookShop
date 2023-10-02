@@ -1,6 +1,6 @@
 <?php
 return [
-    'welcome' => 'Welcome to our shop',
+    'welcome' => 'Welcome',
     'track_order' => 'Track Order',
     'about' => 'About',
     'our_stores' => 'Our Stores',

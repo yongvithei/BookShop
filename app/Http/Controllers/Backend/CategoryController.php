@@ -31,6 +31,7 @@ class CategoryController extends Controller
                     [
                     'name' => $request->name,
                     'desc' => $request->desc,
+                    'slug' => strtolower(str_replace(' ', '-',$request->name)),
                     'status' => $request->status,
                     ]);
 

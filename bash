@@ -58,3 +58,5 @@ php artisan make:controller Backend/SiteInfoController
 ;extension=zip => extension=zip
 composer require spatie/laravel-backup
 php artisan vendor:publish --provider="Spatie\Backup\BackupServiceProvider"
+
+php artisan make:controller Frontend/IndexController

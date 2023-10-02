@@ -23,7 +23,7 @@
 
     @vite(['resources/css/app.css'])
     <!-- stylesheet -->
-    <title>FitGirl</title>
+    <title>BookShop</title>
 </head>
 
 <body>

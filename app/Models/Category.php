@@ -12,6 +12,12 @@ class Category extends Model
     protected $fillable = [
         'name',
         'desc',
+        'slug',
         'status',
     ];
+    // Define the relationship to SubCategory model
+    public function subcategories()
+    {
+        return $this->hasMany(SubCategory::class, 'cat_id');
+    }
 }

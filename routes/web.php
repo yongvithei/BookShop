@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\SiteInfoController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\SystemController;
+use App\Http\Controllers\Frontend\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -171,7 +172,7 @@ Route::middleware(['auth','role:admin'])->group(function() {
 });
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
-    Route::view('/', 'frontend/main');
+    Route::get('/', [IndexController::class, 'index']);
     Route::view('/shop', 'frontend/product/shop_page');
     Route::view('/shoplist', 'frontend/product/shop_list');
     Route::view('/search', 'frontend/product/search');

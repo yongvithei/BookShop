@@ -3,15 +3,13 @@
 			<div class="top-menu border-bottom">
 				<div class="container">
 					<nav class="navbar navbar-expand">
-						<div class="shiping-title text-uppercase font-13 d-none d-sm-flex">{{__('main.welcome')}}</div>
+						<div class="shiping-title text-uppercase font-13 d-none d-sm-flex">{{__('main.welcome')}} {{ optional(Auth::user())->name ?? 'To Our Shop' }}</div>
 						<ul class="navbar-nav ms-auto d-none d-lg-flex">
 							<li class="nav-item"> <a class="nav-link" href="">{{__('main.track_order')}}</a>
 							</li>
-							<li class="nav-item"> <a class="nav-link" href="">{{__('main.about')}}</a>
+							<li class="nav-item"> <a class="nav-link" href="//about">{{__('main.about')}}</a>
 							</li>
 							<li class="nav-item"> <a class="nav-link" href="">{{__('main.our_stores')}}</a>
-							</li>
-							<li class="nav-item"> <a class="nav-link" href="">{{__('main.blog')}}</a>
 							</li>
 							<li class="nav-item">	<a class="nav-link" href="">{{__('main.contact')}}</a>
 							</li>
@@ -155,88 +153,56 @@
 			<div class="primary-menu border-top px-32">
 				<div class="container">
 					<nav id="navbar_main" class="mobile-offcanvas navbar navbar-expand-lg">
-						<div class="offcanvas-header">
-							<button class="btn-close float-end"></button>
-							<h5 class="py-2">Navigation</h5>
-						</div>
-						<ul class="navbar-nav">
-							<li class="nav-item active"> <a class="nav-link" href="/">Home </a>
-							</li>
-							<li class="nav-item dropdown">	<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">Categories <i class='bx bx-chevron-down'></i></a>
-								<div class="dropdown-menu dropdown-large-menu">
-									<div class="row">
-										<div class="col-md-6">
-											<h6 class="large-menu-title">Fashion</h6>
-											<ul class="">
-												<li><a href="#">Casual T-Shirts</a>
-												</li>
-												<li><a href="#">Formal Shirts</a>
-												</li>
-												<li><a href="#">Jackets</a>
-												</li>
-												<li><a href="#">Jeans</a>
-												</li>
-												<li><a href="#">Dresses</a>
-												</li>
-												<li><a href="#">Sneakers</a>
-												</li>
-												<li><a href="#">Belts</a>
-												</li>
-												<li><a href="#">Sports Shoes</a>
-												</li>
-											</ul>
-										</div>
-										<!-- end col-3 -->
-										<div class="col-md-6">
-											<h6 class="large-menu-title">Electronics</h6>
-											<ul class="">
-												<li><a href="#">Mobiles</a>
-												</li>
-												<li><a href="#">Laptops</a>
-												</li>
-												<li><a href="#">Macbook</a>
-												</li>
-												<li><a href="#">Televisions</a>
-												</li>
-												<li><a href="#">Lighting</a>
-												</li>
-												<li><a href="#">Smart Watch</a>
-												</li>
-												<li><a href="#">Galaxy Phones</a>
-												</li>
-												<li><a href="#">PC Monitors</a>
-												</li>
-											</ul>
-										</div>
+					    <div class="offcanvas-header">
+					        <button class="btn-close float-end"></button>
+					        <h5 class="py-2">Navigation</h5>
+					    </div>
+					    <ul class="navbar-nav">
+					        <li class="nav-item"> <a class="nav-link" href="/">Home </a>
+					        </li>
+					        @php
+					        $categories = Cache::remember('all_categories', now()->addMinutes(30), function () {
+					        return App\Models\Category::where('status', 'Active')
+					        ->orderBy('name', 'ASC')
+					        ->get();
+					        });
+					        @endphp
 
-									</div>
-									<!-- end row -->
-								</div>
-								<!-- dropdown-large.// -->
+					        <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
+					                data-bs-toggle="dropdown">Categories<i class='bx bx-chevron-down'></i></a>
+					            <ul class="dropdown-menu">
+					                @foreach($categories as $cate)
+							        <li><a class="dropdown-item"
+							                href="{{ url('product/category/'.$cate->id.'/'.$cate->slug) }}">{{ $cate->name }}</a>
+							        </li>
+							        @endforeach
+							    </ul>
 							</li>
+							
+							@php
+							$cateWithSub = Cache::remember('category_with_subcategories', now()->addMinutes(30), function () {
+							return App\Models\Category::with('subcategories')
+							->where('status', 'Active')
+							->orderBy('id')
+							->limit(4)
+							->get();
+							});
+							@endphp
+
+							@foreach($cateWithSub as $category)
+							<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
+							        data-bs-toggle="dropdown">{{ $category->name }}<i class='bx bx-chevron-down'></i></a>
+							    <ul class="dropdown-menu">
+							        @foreach($category->subcategories as $subcategory)
+							        <li><a class="dropdown-item"
+							                href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->sub_slug) }}">{{ $subcategory->sub_name }}</a>
+							        </li>
+							        @endforeach
+							    </ul>
+							</li>
+							@endforeach
+
 							<li class="nav-item"> <a class="nav-link" href="/shop">Shop</a>
-							</li>
-							<li class="nav-item"> <a class="nav-link" href="">Blog </a>
-							</li>
-							<li class="nav-item"> <a class="nav-link" href="">About Us </a>
-							</li>
-							<li class="nav-item"> <a class="nav-link" href="">Contact Us </a>
-							</li>
-							<li class="nav-item"> <a class="nav-link" href="">Our Store</a>
-							</li>
-							<li class="nav-item dropdown">	<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">My Account  <i class='bx bx-chevron-down'></i></a>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="">Dashboard</a>
-									</li>
-									<li><a class="dropdown-item" href="">Downloads</a>
-									</li>
-									<li><a class="dropdown-item" href="">Orders</a>
-									</li>
-									<li><a class="dropdown-item" href="">Payment Methods</a>
-									</li>
-									<li><a class="dropdown-item" href="">User Details</a>
-									</li>
-								</ul>
 							</li>
 						</ul>
 					</nav>
