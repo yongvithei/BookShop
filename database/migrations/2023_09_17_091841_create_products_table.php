@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('pro_qty')->nullable();
             $table->text('short_desc')->nullable();
             $table->text('long_desc')->nullable();  
-            $table->integer('special_offer')->nullable();
+            $table->integer('new')->nullable();
             $table->integer('featured')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->string('thumbnail')->nullable();

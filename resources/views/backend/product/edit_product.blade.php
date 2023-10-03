@@ -149,8 +149,8 @@
                                     <label class="form-label">Product Status</label>
                                     <div class="space-x-2">
                                         <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" value="1" id="special_offer" name="special_offer" {{ $product->special_offer == 1 ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="special_offer">Special Offers</label>
+                                        <input class="form-check-input" type="checkbox" value="1" id="new" name="new" {{ $product->new == 1 ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="new">New Arrivals</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="checkbox" value="1" id="featured" name="featured" {{ $product->featured == 1 ? 'checked' : '' }}>

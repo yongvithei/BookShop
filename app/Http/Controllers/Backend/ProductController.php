@@ -65,7 +65,7 @@ class ProductController extends Controller
             $product->pro_qty = $request->pro_qty;
             $product->short_desc = $request->short_desc;
             $product->long_desc = $request->long_desc;
-            $product->special_offer = $request->special_offer;
+            $product->new = $request->new;
             $product->featured = $request->featured;
             $product->status = $status;
             $product->thumbnail = $save_url;
@@ -179,7 +179,7 @@ class ProductController extends Controller
                 $product->pro_qty = $request->pro_qty;
                 $product->short_desc = $request->short_desc;
                 $product->long_desc = $request->long_desc;
-                $product->special_offer = $request->special_offer;
+                $product->new = $request->new;
                 $product->featured = $request->featured;
                 $product->thumbnail = $save_url;
                 $product->status = $status;

@@ -137,8 +137,8 @@
                                     <label class="mb-2 form-label">Product Status</label>
                                     <div class="space-x-2">
                                         <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" value="1" id="special_offer" name="special_offer">
-                                        <label class="form-check-label" for="special_offer">Special Offers</label>
+                                        <input class="form-check-input" type="checkbox" value="1" id="new" name="new">
+                                        <label class="form-check-label" for="new">New Arrivals</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="checkbox" value="1" id="featured" name="featured">
