@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Product;
 use App\Models\Partner;
+use App\Models\ProductImage;
 
 class IndexController extends Controller
 {
@@ -33,4 +34,14 @@ class IndexController extends Controller
 
         return view('frontend.main', compact('news','featureds','partners'));
     }
+
+    public function ProductDetails($id,$name){
+
+        $product = Product::findOrFail($id);
+        $multiImage = ProductImage::where('product_id',$id)->get();
+        $cat_id = $product->category_id;
+        $related = Product::where('category_id',$cat_id)->where('id','!=',$id)->orderBy('id','DESC')->limit(4)->get();
+        
+        return view('frontend.product.product_detail',compact('product','multiImage','related'));
+     }
 }

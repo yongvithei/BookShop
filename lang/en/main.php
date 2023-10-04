@@ -49,7 +49,7 @@ return [
     'customer_support' => 'Customer Support',
 
     //product
-    'all_products' => 'All Products',
+    // 'product_details' => 'All Products',
     'price' => 'Price',
     'select_category' => 'Select Category',
     'filter_button' => 'Filter',

@@ -173,10 +173,13 @@ Route::middleware(['auth','role:admin'])->group(function() {
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     Route::get('/', [IndexController::class, 'index']);
+    Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+
+
     Route::view('/shop', 'frontend/product/shop_page');
     Route::view('/shoplist', 'frontend/product/shop_list');
     Route::view('/search', 'frontend/product/search');
-    Route::view('/product_detail', 'frontend/product/product_detail');
+    // Route::view('/product_detail', 'frontend/product/product_detail');
     Route::view('/cart', 'frontend/mycart/view_mycart');
     Route::view('/checkOut', 'frontend/checkout/checkout_view');
     Route::view('/payment', 'frontend/payment/stripe');

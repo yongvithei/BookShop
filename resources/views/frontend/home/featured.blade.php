@@ -22,7 +22,7 @@
                 @foreach($products as $product)
                 <div class="col my-3">
                     <div class="card rounded-lg product-card shadow-sm">
-                        <a href="">
+                        <a href="{{ url('product/details/'.$product->id.'/'.$product->name) }}">
                             <div class="relative">
                                 <img src="{{ asset($product->thumbnail) }}" class="card-img-top" alt="...">
                                 <div class="absolute top-2 right-2">
@@ -38,7 +38,7 @@
                                     <p class="product-catergory font-13 mb-1">{{ $product->category->name ?? 'N/A' }}
                                     </p>
                                 </a>
-                                <a href="javascript:;">
+                                <a href="{{ url('product/details/'.$product->id.'/'.$product->name) }}">
                                     <h6 class="product-name mb-2">{{$product->name}}</h6>
                                 </a>
                                 <div class="d-flex align-items-center">
