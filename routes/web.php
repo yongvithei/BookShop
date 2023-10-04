@@ -174,8 +174,10 @@ Route::middleware(['auth','role:admin'])->group(function() {
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     Route::get('/', [IndexController::class, 'index']);
     Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
-
-
+    Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct']);
+    Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
+    
+    
     Route::view('/shop', 'frontend/product/shop_page');
     Route::view('/shoplist', 'frontend/product/shop_list');
     Route::view('/search', 'frontend/product/search');
