@@ -19,6 +19,7 @@ use App\Http\Controllers\Backend\SiteInfoController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\SystemController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -178,7 +179,12 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
     // Product View Modal With Ajax
     Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
-    
+    Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+    // Get Data from mini Cart
+    Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
+    Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+    /// Add to cart store data For Product Details Page 
+    Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
     Route::view('/shop', 'frontend/product/shop_page');
     Route::view('/shoplist', 'frontend/product/shop_list');
     Route::view('/search', 'frontend/product/search');

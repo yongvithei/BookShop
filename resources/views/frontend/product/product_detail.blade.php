@@ -78,7 +78,7 @@
                                             <label class="form-label">Quantity</label>
                                             <div class="input-group input-group-sm">
                                                 <input type="number" class="form-control" min="0" max="999" value="1"
-                                                    id="quantityInput">
+                                                    id="dquantityInput">
                                                 <button class="btn btn-outline-secondary" type="button"
                                                     id="incrementQuantity">+</button>
                                                 <button class="btn btn-outline-secondary" type="button"
@@ -123,8 +123,10 @@
 
                                     <!--end row-->
                                     <div class="d-flex gap-2 mt-3">
-                                        <a href="javascript:;" class="btn btn-white btn-ecomm"> <i
-                                                class="bx bxs-cart-add"></i>Add to Cart</a> <a href="javascript:;"
+                                         <input type="hidden" id="dproduct_id" value="{{ $product->id }}">
+                                        <button type="submit" onclick="addToCartDetails()" class="btn btn-white btn-ecomm"> <i
+                                                class="bx bxs-cart-add"></i>Add to Cart</button> 
+                                        <a href="javascript:;"
                                             class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to
                                             Wishlist</a>
                                     </div>
@@ -272,7 +274,7 @@
                                                 {{ $product->category->name ?? 'N/A' }}</p>
                                         </a>
                                         <a href="{{ url('product/details/'.$product->id.'/'.$product->name) }}">
-                                            <h6 class="product-name mb-2">{{$product->name}}</h6>
+                                            <h6 class="product-name mb-2" id="dname">{{$product->name}}</h6>
                                         </a>
                                         <div class="d-flex align-items-center">
                                             <div class="mb-1 product-price">
@@ -331,21 +333,21 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const quantityInput = document.getElementById('quantityInput');
+        const dquantityInput = document.getElementById('dquantityInput');
         const incrementButton = document.getElementById('incrementQuantity');
         const decrementButton = document.getElementById('decrementQuantity');
 
         incrementButton.addEventListener('click', function () {
-            const currentValue = parseInt(quantityInput.value);
+            const currentValue = parseInt(dquantityInput.value);
             if (currentValue < 999) {
-                quantityInput.value = currentValue + 1;
+                dquantityInput.value = currentValue + 1;
             }
         });
 
         decrementButton.addEventListener('click', function () {
-            const currentValue = parseInt(quantityInput.value);
+            const currentValue = parseInt(dquantityInput.value);
             if (currentValue > 0) {
-                quantityInput.value = currentValue - 1;
+                dquantityInput.value = currentValue - 1;
             }
         });
     });

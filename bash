@@ -60,3 +60,4 @@ composer require spatie/laravel-backup
 php artisan vendor:publish --provider="Spatie\Backup\BackupServiceProvider"
 
 php artisan make:controller Frontend/IndexController
+php artisan make:controller Frontend/CartController

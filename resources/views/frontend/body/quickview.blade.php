@@ -5,7 +5,7 @@
     <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-xl-down">
         <div class="modal-content rounded-0 border-0">
             <div class="modal-body">
-                <button type="button" class="text-2xl btn-close float-end" data-bs-dismiss="modal"> <i
+                <button type="button" class="text-2xl btn-close float-end" data-bs-dismiss="modal" id="closeModal"> <i
                         class='bx bx-x'></i></button>
                 <div class="row g-0">
                     <div class="col-12 col-lg-6">
@@ -65,6 +65,7 @@
 
                             <!--end row-->
                             <div class="d-flex gap-2 mt-3">
+                                 <input type="hidden" id="product_id">
                                 <a onclick="addToCart()" class="rounded-xl btn btn-dark btn-ecomm"> <i
                                         class="bx bxs-cart-add"></i>Add to Cart</a> <a href="javascript:;"
                                     class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200"><i
@@ -82,16 +83,19 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{asset('/frontend/assets/js/jquery.min.js')}}"></script>
 <!--end quick view product-->
 <script type="text/javascript">
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+ $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        });
     let pQty = 0;
-    // Start product view with Modal 
+    // Start product view with Modal
     function productView(id) {
         // alert(id)
         $.ajax({
@@ -105,7 +109,9 @@
                 $('#pname').text(data.product.name || 'N/A');
                 $('#pcode').text(data.product.id || 'N/A');
                 $('#pprice').text('$' + (data.product.discount_price || data.product.price || 'N/A'));
-                $('#pqty').text(data.product.qty || 'N/A');
+                $('#pqty').val(data.product.qty || 'N/A');
+                $('#product_id').val(id);
+
                 if (data.product.category) {
                     $('#pcate').text(data.product.category.name || 'N/A');
                 } else {
@@ -160,4 +166,163 @@
             quantityInput.value = currentValue - 1;
         }
     });
+    function addToCart() {
+     let product_name = $('#pname').text();
+     let id = $('#product_id').val();
+     let quantity = $('#quantityInput').val();
+     let price = parseFloat($('#pprice').text().replace('$', '')); // Extract and parse the price
+
+     $.ajax({
+         type: "POST",
+         dataType: 'json',
+         data: {
+             quantity: quantity,
+             product_name: product_name,
+             price: price // Include the product price
+         },
+         url: "/cart/data/store/" + id,
+         success: function (data) {
+             // console.log(data);
+             miniCart();
+             $('#closeModal').click();
+             // Start Message
+             const Toast = Swal.mixin({
+                 toast: true,
+                 position: 'top-end',
+                 icon: 'success',
+                 showConfirmButton: false,
+                 timer: 3000
+             });
+
+             if ($.isEmptyObject(data.error)) {
+                 Toast.fire({
+                     icon: 'success',
+                     title: data.success
+                 });
+             } else {
+                 Toast.fire({
+                     icon: 'error',
+                     title: data.error
+                 });
+             }
+         }
+     });
+    }
+    function addToCartDetails(){
+     let product_name = $('#dname').text();
+     let id = $('#dproduct_id').val();
+     let quantity = $('#dquantityInput').val();
+     let price = parseFloat($('#dprice').text().replace('$', ''));
+     $.ajax({
+         type: "POST",
+         dataType: 'json',
+         data: {
+             quantity: quantity,
+             product_name: product_name,
+             price: price // Include the product price
+         },
+          url: "/dcart/data/store/"+id,
+         success: function (data) {
+             // console.log(data);
+             miniCart();
+             $('#closeModal').click();
+             // Start Message
+             const Toast = Swal.mixin({
+                 toast: true,
+                 position: 'top-end',
+                 icon: 'success',
+                 showConfirmButton: false,
+                 timer: 3000
+             });
+
+             if ($.isEmptyObject(data.error)) {
+                 Toast.fire({
+                     icon: 'success',
+                     title: data.success
+                 });
+             } else {
+                 Toast.fire({
+                     icon: 'error',
+                     title: data.error
+                 });
+             }
+         }
+     });
+    } 
+
+   function miniCart() {
+    $.ajax({
+        type: 'GET',
+        url: '/product/mini/cart',
+        dataType: 'json',
+        success: function (response) {
+             // console.log(response)
+        $('span[id="cartSubTotal"]').text(response.cartTotal);
+        $('#cartQty').text(response.cartQty);
+        $('#cartQty2').text(response.cartQty);
+            var miniCart = "";
+
+            $.each(response.carts, function (key, value) {
+                // Construct the full image URL based on your image data
+                var imageUrl = '/' + value.options.image;
+
+                miniCart += '<a class="dropdown-item" href="javascript:;">' +
+                    '<div class="d-flex align-items-center">' +
+                    '<div class="flex-grow-1">' +
+                    '<h6 class="cart-product-title">' + value.name + '</h6>' +
+                    '<p class="cart-product-price">' + value.qty + ' X $' + value.price + '</p>' +
+                    '</div>' +
+                    '<div class="position-relative">' +
+                    '<div class="cart-product-cancel position-absolute">' +
+                    '<button type="submit" class="btn btn-link" id="' + value.rowId + '" onclick="miniCartRemove(this.id)">' +
+                    '<i class="bx bx-x"></i>' +
+                    '</button>' +
+                    '</div>' +
+                    '<div class="cart-product">' +
+                    '<img src="' + imageUrl + '" class="" alt="product image">' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</a>';
+            });
+
+            $('#miniCart').html(miniCart);
+        }
+    });
+}
+miniCart();
+
+/// Mini Cart Remove Start 
+    function miniCartRemove(rowId){
+     $.ajax({
+        type: 'GET',
+        url: '/minicart/product/remove/'+rowId,
+        dataType:'json',
+        success:function(data){
+        miniCart();
+             // Start Message 
+            const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  icon: 'success', 
+                  showConfirmButton: false,
+                  timer: 3000 
+            })
+            if ($.isEmptyObject(data.error)) {
+                    
+                    Toast.fire({
+                    type: 'success',
+                    title: data.success, 
+                    })
+            }else{
+               
+           Toast.fire({
+                    type: 'error',
+                    title: data.error, 
+                    })
+                }
+              // End Message  
+        }
+     })
+   }
 </script>
