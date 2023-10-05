@@ -88,11 +88,10 @@
 
                                     </div>
                                     <div class="mt-2">
-                                        @if($product->pro_qty > 0)
-                                        <label class="form-label">{{$product->pro_qty}} Available</label>
-                                        @else
-                                        <label class="form-label text-red-600">Stock Out</label>
-                                        @endif
+                                        <label class="form-label {{ $product->pro_qty > 0 ? '' : 'text-red-600' }}">
+                                            {{ $product->pro_qty > 0 ? $product->pro_qty . ' Available' : 'Stock Out' }}
+                                        </label>
+
                                         <div class="product-rating d-flex align-items-center mt-1">
                                             <div class="rates cursor-pointer font-13"> <i
                                                     class="bx bxs-star text-warning"></i>
@@ -264,55 +263,55 @@
                                             </a>
                                         </div>
 
-                            </div>
-                                </a>
-                            <div class="card-body">
-                                <div class="product-info">
-                                    <a href="javascript:;">
-                                        <p class="product-catergory font-13 mb-1">
-                                            {{ $product->category->name ?? 'N/A' }}</p>
-                                    </a>
-                                    <a href="{{ url('product/details/'.$product->id.'/'.$product->name) }}">
-                                        <h6 class="product-name mb-2">{{$product->name}}</h6>
-                                    </a>
-                                    <div class="d-flex align-items-center">
-                                        <div class="mb-1 product-price">
-                                            @if($product->discount_price == NULL)
-                                            <span class="text-dark fs-5">$ {{ $product->price }}</span>
-                                            @else
-                                            <span
-                                                class="me-1 text-decoration-line-through">${{$product->discount_price}}</span>
-                                            <span class="text-dark fs-5">$ {{ $product->price }}</span>
-                                            @endif
-                                        </div>
-
-                                        <div class="cursor-pointer ms-auto"> <span>5.0</span> <i
-                                                class="bx bxs-star text-white"></i>
-                                        </div>
                                     </div>
-                                    <div class="product-action mt-2">
-                                        <div class="grid grid-cols-2 gap-2">
-                                            <a href="javascript:;" class="rounded-xl btn btn-dark btn-ecomm"> <i
-                                                    class='bx bxs-cart-add'></i>Add</a>
-                                            <a href="javascript:;"
-                                                class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200"
-                                                data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i
-                                                    class='bx bxs-show'></i>View</a>
+                                </a>
+                                <div class="card-body">
+                                    <div class="product-info">
+                                        <a href="javascript:;">
+                                            <p class="product-catergory font-13 mb-1">
+                                                {{ $product->category->name ?? 'N/A' }}</p>
+                                        </a>
+                                        <a href="{{ url('product/details/'.$product->id.'/'.$product->name) }}">
+                                            <h6 class="product-name mb-2">{{$product->name}}</h6>
+                                        </a>
+                                        <div class="d-flex align-items-center">
+                                            <div class="mb-1 product-price">
+                                                @if($product->discount_price == NULL)
+                                                <span class="text-dark fs-5">$ {{ $product->price }}</span>
+                                                @else
+                                                <span
+                                                    class="me-1 text-decoration-line-through">${{$product->discount_price}}</span>
+                                                <span class="text-dark fs-5">$ {{ $product->price }}</span>
+                                                @endif
+                                            </div>
+
+                                            <div class="cursor-pointer ms-auto"> <span>5.0</span> <i
+                                                    class="bx bxs-star text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div class="product-action mt-2">
+                                            <div class="grid grid-cols-2 gap-2">
+                                                <a href="javascript:;" class="rounded-xl btn btn-dark btn-ecomm"> <i
+                                                        class='bx bxs-cart-add'></i>Add</a>
+                                                <a href="javascript:;"
+                                                    class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200"
+                                                    data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i
+                                                        class='bx bxs-show'></i>View</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    @endforeach
-                    <!-- loop -->
+                        @endforeach
+                        <!-- loop -->
 
+                    </div>
                 </div>
             </div>
+        </section>
+        <!--end similar products-->
     </div>
-    </section>
-    <!--end similar products-->
-</div>
 </div>
 <!--end page wrapper -->
 

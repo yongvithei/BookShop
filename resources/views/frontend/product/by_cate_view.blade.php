@@ -103,7 +103,7 @@
                                                             <a href="javascript:;"
                                                                 class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200"
                                                                 data-bs-toggle="modal"
-                                                                data-bs-target="#QuickViewProduct"><i
+                                                                data-bs-target="#QuickViewProduct" id="{{ $pro->id }}" onclick="productView(this.id)"><i
                                                                     class='bx bxs-show'></i>View</a>
                                                         </div>
                                                     </div>

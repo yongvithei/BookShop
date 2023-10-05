@@ -62,4 +62,14 @@ class IndexController extends Controller
 
       return view('frontend.product.by_sub_view',compact('products','breadsub'));
     }
+
+    public function ProductViewAjax($id){
+
+        $product = Product::with('category','subcategory')->findOrFail($id);
+
+        return response()->json(array(
+         'product' => $product,
+        ));
+
+     }
 }
