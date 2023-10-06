@@ -26,7 +26,7 @@
                             <div class="relative">
                                 <img src="{{ asset($product->thumbnail) }}" class="card-img-top" alt="...">
                                 <div class="absolute top-2 right-2">
-                                    <a href="javascript:;" class="product-wishlist product-action">
+                                    <a id="{{ $product->id }}" onclick="addToWishList(this.id)" href="javascript:;" class="product-wishlist product-action">
                                         <i class="bx bx-heart text-red-500 text-2xl"></i>
                                     </a>
                                 </div>
@@ -61,7 +61,7 @@
                                 <div class="product-action mt-2">
                                     <div class="grid grid-cols-2 gap-2">
                                         <a href="javascript:;" class="rounded-xl btn btn-dark btn-ecomm"> <i
-                                                class='bx bxs-cart-add'></i>Add</a>
+                                                class='bx bxs-cart-add' ></i>Add</a>
                                         <a href="javascript:;"
                                             class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200"
                                             data-bs-toggle="modal" data-bs-target="#QuickViewProduct" id="{{ $product->id }}" onclick="productView(this.id)"><i

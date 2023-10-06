@@ -7,14 +7,12 @@
         <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
             <div class="container">
                 <div class="page-breadcrumb d-flex align-items-center">
-                    <h3 class="breadcrumb-title pe-3">Wishlist</h3>
+                    <h3 class="breadcrumb-title pe-3"><span id="wishQty"></span> Items in Wishlist </h3>
                     <div class="ms-auto">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 p-0">
                                 <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i>
                                         Home</a>
-                                </li>
-                                <li class="breadcrumb-item"><a href="javascript:;">Wishlist</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">Wishlist</li>
                             </ol>
@@ -28,46 +26,9 @@
         <section class="py-4">
             <div class="container">
                 <div class="product-grid">
-                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+                    <div id="wishlist" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
                         <!-- loop	 -->
-                        <div class="col">
-                            <div class="card rounded-0 product-card">
-                                <a href="product-details.html">
-                                    <img src="{{asset('/frontend/assets/images/products/01.png')}}" class="card-img-top"
-                                        alt="...">
-                                </a>
-                                <div class="card-body">
-                                    <div class="product-info">
-                                        <a href="javascript:;">
-                                            <p class="product-catergory font-13 mb-1">Catergory Name</p>
-                                        </a>
-                                        <a href="javascript:;">
-                                            <h6 class="product-name mb-2">Product Short Name</h6>
-                                        </a>
-                                        <div class="d-flex align-items-center">
-                                            <div class="mb-1 product-price"> <span
-                                                    class="me-1 text-decoration-line-through">$99.00</span>
-                                                <span class="text-white fs-5">$49.00</span>
-                                            </div>
-                                            <div class="cursor-pointer ms-auto"> <i class="bx bxs-star text-white"></i>
-                                                <i class="bx bxs-star text-white"></i>
-                                                <i class="bx bxs-star text-white"></i>
-                                                <i class="bx bxs-star text-white"></i>
-                                                <i class="bx bxs-star text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div class="product-action mt-2">
-                                            <div class="d-grid gap-2">
-                                                <a href="javascript:;" class="btn btn-white btn-ecomm"> <i
-                                                        class='bx bxs-cart-add'></i>Add to Cart</a>
-                                                <a href="javascript:;" class="btn btn-light btn-ecomm"><i
-                                                        class='bx bx-zoom-in'></i>Remove From List</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                         <!-- loop	 -->
                     </div>
                     <!--end row-->
@@ -78,5 +39,128 @@
     </div>
 </div>
 <!--end page wrapper -->
+
+<!-- Include your CSS styles for the product cards -->
+<!--start quick view product-->
+@include('frontend.body.quickview')
+<!--end quick view product-->
+
+<!-- Include your JavaScript code -->
+<script src="{{asset('/frontend/assets/js/jquery.min.js')}}"></script>
+
+<!--  /// Start Load Wishlist Data -->
+<script type="text/javascript">
+    $(document).ready(function () {
+    wishlist();
+});
+
+function wishlist() {
+    $.ajax({
+        type: "GET",
+        dataType: 'json',
+        url: "/get-wishlist-product/",
+        success: function (response) {
+        console.log(response.wishlist);
+        $('#wishQty').text(response.wishQty);
+        $('#wishlist').html('');
+        if (response.wishQty > 0) {
+        // Loop through the wishlist items and create product cards
+        $.each(response.wishlist, function (key, value) {
+
+        let imageUrl = '/' + value.product.thumbnail;
+        let url = "{{ url('product/details/') }}" + '/' + value.product.id + '/' + value.product.name;
+        let productCard = `
+        <div class="col">
+            <div class="card rounded-0 product-card">
+                <a href="${url}">
+                    <img src="${imageUrl}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <div class="product-info">
+
+                        <a href="${url}">
+                            <h6 class="product-name mb-2">${value.product.name}</h6>
+                        </a>
+                        ${value.product.discount_price !== null ?
+                        `<div class="mb-1 product-price">
+                            <span class="me-1 text-decoration-line-through">$${value.product.discount_price}</span>
+                            <span class="text-dark fs-5">$${value.product.price}</span>
+                        </div>` :
+                        `<div class="d-flex align-items-center">
+                            <span class="text-dark fs-5">$${value.product.price}</span>
+                        </div>`
+                        }
+                        <div class="cursor-pointer ms-auto">
+                            <i class="bx bxs-star text-dark"></i>
+                            <i class="bx bxs-star text-dark"></i>
+                            <i class="bx bxs-star text-dark"></i>
+                            <i class="bx bxs-star text-dark"></i>
+                            <i class="bx bxs-star text-dark"></i>
+                        </div>
+                    </div>
+                    <div class="product-action mt-2">
+                        <div class="d-grid gap-2">
+                            <a href="javascript:;" class="btn btn-white btn-ecomm">
+                                <i class="bx bxs-cart-add"></i>Add to Cart
+                            </a>
+                            <a type="submit" id="${value.id}" onclick="wishlistRemove(this.id)" class="btn btn-light btn-ecomm">
+                              <i class='bx bx-trash'></i>Remove From List
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
+
+
+
+        // Append the product card to the wishlist container
+        $('#wishlist').append(productCard);
+        });
+        } else {
+            // Update the UI to handle an empty wishlist
+            $('#wishlist').html('<p>Your wishlist is empty.</p>');
+        }
+        }
+    });
+}
+
+    // Wishlist Remove Start
+    function wishlistRemove(id){
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                url: "/wishlist-remove/"+id,
+                success:function(data){
+                wishlist();
+                     // Start Message
+            const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+
+                  showConfirmButton: false,
+                  timer: 3000
+            })
+            if ($.isEmptyObject(data.error)) {
+
+                    Toast.fire({
+                    type: 'success',
+                    icon: 'success',
+                    title: data.success,
+                    })
+            }else{
+
+           Toast.fire({
+                    type: 'error',
+                    icon: 'error',
+                    title: data.error,
+                    })
+                }
+              // End Message
+                }
+            })
+        }
+</script>
 
 @endsection

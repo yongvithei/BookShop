@@ -248,81 +248,125 @@
              }
          }
      });
-    } 
+    }
 
-   function miniCart() {
-    $.ajax({
-        type: 'GET',
-        url: '/product/mini/cart',
-        dataType: 'json',
-        success: function (response) {
-             // console.log(response)
-        $('span[id="cartSubTotal"]').text(response.cartTotal);
-        $('#cartQty').text(response.cartQty);
-        $('#cartQty2').text(response.cartQty);
-            var miniCart = "";
+    function miniCart() {
+        $.ajax({
+            type: 'GET',
+            url: '/product/mini/cart',
+            dataType: 'json',
+            success: function (response) {
+                // console.log(response)
+            $('span[id="cartSubTotal"]').text(response.cartTotal);
+            $('#cartQty').text(response.cartQty);
+            $('#cartQty2').text(response.cartQty);
+                var miniCart = "";
 
-            $.each(response.carts, function (key, value) {
-                // Construct the full image URL based on your image data
-                var imageUrl = '/' + value.options.image;
+                $.each(response.carts, function (key, value) {
+                    // Construct the full image URL based on your image data
+                    var imageUrl = '/' + value.options.image;
 
-                miniCart += '<a class="dropdown-item" href="javascript:;">' +
-                    '<div class="d-flex align-items-center">' +
-                    '<div class="flex-grow-1">' +
-                    '<h6 class="cart-product-title">' + value.name + '</h6>' +
-                    '<p class="cart-product-price">' + value.qty + ' X $' + value.price + '</p>' +
-                    '</div>' +
-                    '<div class="position-relative">' +
-                    '<div class="cart-product-cancel position-absolute">' +
-                    '<button type="submit" class="btn btn-link" id="' + value.rowId + '" onclick="miniCartRemove(this.id)">' +
-                    '<i class="bx bx-x"></i>' +
-                    '</button>' +
-                    '</div>' +
-                    '<div class="cart-product">' +
-                    '<img src="' + imageUrl + '" class="" alt="product image">' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>' +
-                    '</a>';
-            });
+                    miniCart += '<a class="dropdown-item" href="javascript:;">' +
+                        '<div class="d-flex align-items-center">' +
+                        '<div class="flex-grow-1">' +
+                        '<h6 class="cart-product-title">' + value.name + '</h6>' +
+                        '<p class="cart-product-price">' + value.qty + ' X $' + value.price + '</p>' +
+                        '</div>' +
+                        '<div class="position-relative">' +
+                        '<div class="cart-product-cancel position-absolute">' +
+                        '<button type="submit" class="btn btn-link" id="' + value.rowId + '" onclick="miniCartRemove(this.id)">' +
+                        '<i class="bx bx-x"></i>' +
+                        '</button>' +
+                        '</div>' +
+                        '<div class="cart-product">' +
+                        '<img src="' + imageUrl + '" class="" alt="product image">' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</a>';
+                });
 
-            $('#miniCart').html(miniCart);
-        }
-    });
-}
-miniCart();
-
-/// Mini Cart Remove Start 
-    function miniCartRemove(rowId){
-     $.ajax({
-        type: 'GET',
-        url: '/minicart/product/remove/'+rowId,
-        dataType:'json',
-        success:function(data){
-        miniCart();
-             // Start Message 
-            const Toast = Swal.mixin({
-                  toast: true,
-                  position: 'top-end',
-                  icon: 'success', 
-                  showConfirmButton: false,
-                  timer: 3000 
-            })
-            if ($.isEmptyObject(data.error)) {
-                    
+                $('#miniCart').html(miniCart);
+            }
+        });
+    }
+    miniCart();
+/// Mini Cart Remove Start
+    function miniCartRemove(rowId) {
+        $.ajax({
+            type: 'GET',
+            url: '/minicart/product/remove/' + rowId,
+            dataType: 'json',
+            success: function (data) {
+                miniCart();
+                // Start Message
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                if ($.isEmptyObject(data.error)) {
                     Toast.fire({
-                    type: 'success',
-                    title: data.success, 
-                    })
-            }else{
-               
-           Toast.fire({
-                    type: 'error',
-                    title: data.error, 
-                    })
+                        icon: 'success',
+                        title: data.success
+                    });
+                } else {
+                    Toast.fire({
+                        icon: 'error',
+                        title: data.error
+                    });
                 }
-              // End Message  
-        }
-     })
-   }
+                // End Message
+            }
+        });
+    }
+
+
+   <!--  /// Start Wishlist Add -->
+
+    function addToWishList(product_id) {
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            url: "/addWishlist/" + product_id,
+            success: function (data) {
+                // Start Message
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+                if ($.isEmptyObject(data.error)) {
+                    // If the request is successful, you can add a link to the message
+                    const messageWithLink = `
+                        <div>
+                            <a href="/wishlist">Go to Wishlist</a>
+                        </div>
+                    `;
+                    Toast.fire({
+                        icon: 'success',
+                        title: data.success,
+                        html: messageWithLink, // Use the html option to include the link
+                    });
+                } else {
+                    const messageWithLink = `
+                        <div>
+                            <a href="/wishlist">Go to Wishlist</a>
+                        </div>
+                    `;
+                    Toast.fire({
+                        icon: 'error',
+                        title: data.error,
+                        html: messageWithLink,
+                    });
+                }
+                //end message
+            }
+        });
+    }
+
 </script>

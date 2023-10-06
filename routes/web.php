@@ -20,6 +20,7 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\SystemController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\User\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -185,7 +186,20 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
     /// Add to cart store data For Product Details Page 
     Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
-    Route::view('/shop', 'frontend/product/shop_page');
+    /// Add to Wishlist 
+    Route::post('/addWishlist/{product_id}', [WishlistController::class, 'AddToWishList']);
+
+    /// User All Route
+    Route::middleware(['auth','role:user'])->group(function() {
+        // Wishlist All Route 
+        Route::controller(WishlistController::class)->group(function(){
+            Route::view('/wishlist', 'frontend.wishlist.wishlist');
+            Route::get('/get-wishlist-product' , 'GetWishlistProduct');
+            Route::get('/wishlist-remove/{id}' , 'WishlistRemove');
+        }); 
+    });
+
+    
     Route::view('/shoplist', 'frontend/product/shop_list');
     Route::view('/search', 'frontend/product/search');
     // Route::view('/product_detail', 'frontend/product/product_detail');
@@ -201,5 +215,4 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     Route::view('/user/account/password', 'frontend/dashboard/password');
     Route::view('/contact', 'frontend/about/contact');
     Route::view('/about', 'frontend/about/about');
-    Route::view('/wishlist', 'frontend/wishlist/wishlist');
 require __DIR__.'/auth.php';

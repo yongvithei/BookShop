@@ -21,9 +21,10 @@
 								<!-- loop -->
 								<div class="item my-3">
 									<div class="card rounded-lg product-card shadow-sm">
-										<div class="card-header bg-transparent border-bottom-0">
+										<div class="bg-transparent border-bottom-0">
 											<div class="d-flex align-items-center justify-content-end">
-												<a href="javascript:;">
+												<div class="absolute top-2 right-2">
+												<a id="{{ $product->id }}" onclick="addToWishList(this.id)" href="javascript:;">
 													<div class="product-wishlist product-action"> <i class='bx bx-heart'></i>
 													</div>
 												</a>
@@ -32,6 +33,7 @@
 										<a href="">
 											<img src="{{ asset($product->thumbnail) }}" class="card-img-top" alt="...">
 										</a>
+									</div>
 										<div class="card-body">
 											<div class="product-info">
 												<a href="javascript:;">
