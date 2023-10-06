@@ -68,6 +68,7 @@ return [
     'subtotal' => 'Subtotal',
     'taxes' => 'Taxes',
     'discount' => 'Discount',
+    'coupon' => 'Coupon',
 
     //check out
     'cart' => 'Cart',

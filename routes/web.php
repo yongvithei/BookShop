@@ -184,32 +184,36 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     // Get Data from mini Cart
     Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
     Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
-    /// Add to cart store data For Product Details Page 
+    /// Add to cart store data For Product Details Page
     Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
-    /// Add to Wishlist 
+    /// Add to Wishlist
     Route::post('/addWishlist/{product_id}', [WishlistController::class, 'AddToWishList']);
 
     /// User All Route
     Route::middleware(['auth','role:user'])->group(function() {
-        // Wishlist All Route 
+        // Wishlist All Route
         Route::controller(WishlistController::class)->group(function(){
             Route::view('/wishlist', 'frontend.wishlist.wishlist');
             Route::get('/get-wishlist-product' , 'GetWishlistProduct');
             Route::get('/wishlist-remove/{id}' , 'WishlistRemove');
-        }); 
-        // Cart All Route 
+        });
+        // Cart All Route
         Route::controller(CartController::class)->group(function(){
             Route::get('/mycart' , 'MyCart')->name('mycart');
             Route::get('/get-cart-product' , 'GetCartProduct');
             Route::get('/cart-remove/{rowId}' , 'CartRemove');
             Route::get('/cart-decrement/{rowId}' , 'CartDecrement');
             Route::get('/cart-increment/{rowId}' , 'CartIncrement');
-        }); 
+            /// Frontend Coupon Option
+            Route::post('/coupon-apply', 'CouponApply');
+            Route::get('/coupon-calculation','CouponCalculation');
+            Route::get('/coupon-remove', 'CouponRemove');
+        });
     });
 
-    
 
-    
+
+
     Route::view('/shoplist', 'frontend/product/shop_list');
     Route::view('/search', 'frontend/product/search');
     // Route::view('/product_detail', 'frontend/product/product_detail');

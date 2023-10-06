@@ -7,7 +7,7 @@
         <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
             <div class="container">
                 <div class="page-breadcrumb d-flex align-items-center">
-                    <h3 class="breadcrumb-title pe-3">Shop Cart</h3>
+                    <h3 class="breadcrumb-title pe-3">My Cart</h3>
                     <div class="ms-auto">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 p-0">
@@ -49,34 +49,23 @@
                         </div>
                         <div class="col-12 col-xl-4">
                             <div class="checkout-form p-3 bg-light">
-                                <div class="card rounded-0 border bg-transparent shadow-none">
+                                @if(Session::has('coupon'))
+                                @else
+                                <div class="card rounded-0 border bg-transparent shadow-none" id="couponField">
                                     <div class="card-body">
                                         <p class="fs-5">{{ __('main.apply_discount_code') }}</p>
                                         <div class="input-group">
-                                            <input type="text" class="form-control rounded-0"
+                                            <input id="coupon_name" type="text" class="form-control rounded-0"
                                                 placeholder="Enter discount code">
-                                            <button class="btn bg-dark btn-ecomm text-white" type="button">Apply
+                                            <button type="submit" onclick="applyCoupon()" class="btn bg-dark btn-ecomm text-white" type="button">Apply
                                                 Discount</button>
                                         </div>
                                     </div>
                                 </div>
-
+                                @endif
                                 <div class="card rounded-0 border bg-transparent mb-0 shadow-none">
-                                    <div class="card-body">
-                                        <p class="mb-2">{{ __('main.subtotal') }}: <span
-                                                class="float-end">$198.00</span></p>
-                                        <p class="mb-2">{{ __('main.shipping') }}: <span class="float-end">--</span></p>
-                                        <p class="mb-2">{{ __('main.taxes') }}: <span class="float-end">$14.00</span>
-                                        </p>
-                                        <p class="mb-0">{{ __('main.discount') }}: <span class="float-end">--</span></p>
-                                        <div class="my-3 border-top"></div>
-                                        <h5 class="mb-0">{{ __('main.order_total') }}: <span
-                                                class="float-end">$212.00</span></h5>
-                                        <div class="my-4"></div>
-                                        <div class="d-grid">
-                                            <a href="/checkOut"
-                                                class="btn btn-dark btn-ecomm">{{ __('main.proceed_to_checkout') }}</a>
-                                        </div>
+                                    <div class="card-body" id="couponCalField">
+
                                     </div>
                                 </div>
                             </div>
@@ -97,6 +86,9 @@
 <script src="{{asset('/frontend/assets/js/jquery.min.js')}}"></script>
 <!--  // Start Load MY Cart // -->
 <script type="text/javascript">
+    $(document).ready(function () {
+        couponCalculation();
+        });
     function cart() {
         $.ajax({
             type: 'GET',
@@ -159,6 +151,7 @@
                 url: "/cart-remove/"+id,
                 success:function(data){
                     cart();
+                    couponCalculation();
                     miniCart();
                      // Start Message
             const Toast = Swal.mixin({
@@ -194,21 +187,131 @@
             dataType: 'json',
             success:function(data){
                 cart();
+                couponCalculation();
                 miniCart();
             }
         });
     }
-    // Cart INCREMENT 
- function cartIncrement(rowId){
-    $.ajax({
-        type: 'GET',
-        url: "/cart-increment/"+rowId,
-        dataType: 'json',
-        success:function(data){
-            cart();
-            miniCart();
+    // Cart INCREMENT
+    function cartIncrement(rowId){
+        $.ajax({
+            type: 'GET',
+            url: "/cart-increment/"+rowId,
+            dataType: 'json',
+            success:function(data){
+                cart();
+                couponCalculation();
+                miniCart();
+            }
+        });
+    }
+    function applyCoupon(){
+        var coupon_name = $('#coupon_name').val();
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            data: {coupon_name:coupon_name},
+            url: "/coupon-apply",
+            success:function(data){
+                couponCalculation();
+                if (data.validity === true) {
+                    $('#couponField').hide();
+                }
+                // Start Message
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+                if ($.isEmptyObject(data.error)) {
+
+                    Toast.fire({
+                        icon: 'success',
+                        title: data.success,
+                    })
+                }else{
+                    Toast.fire({
+                        icon: 'error',
+                        title: data.error,
+                    })
+                }
+                // End Message
+            }
+        })
+    }
+    // Start CouponCalculation Method
+    function couponCalculation(){
+        $.ajax({
+            type: 'GET',
+            url: "/coupon-calculation",
+            dataType: 'json',
+            success:function(data){
+                 if (data.total) {
+                 $('#couponCalField').html(
+                        `<p class="mb-2">{{ __('main.subtotal') }}: <span class="float-end">$${data.total}</span></p>
+                        <p class="mb-0">{{ __('main.discount') }}: <span class="float-end">--</span></p>
+                        <div class="my-3 border-top"></div>
+                        <h5 class="mb-0">{{ __('main.order_total') }}: <span class="float-end">$${data.total}</span></h5>
+                        <div class="my-4"></div>
+                        <div class="d-grid">
+                            <a href="/checkOut" class="btn btn-dark btn-ecomm">{{ __('main.proceed_to_checkout') }}</a>
+                        </div>
+                ` ) } else {
+                    $('#couponCalField').html(`
+                        <p class="mb-2">{{ __('main.subtotal') }}: <span class="float-end">$${data.subtotal}</span></p>
+                        <p class="mb-1">{{ __('main.coupon') }}: <span class="float-end">${data.coupon_name}</span></p>
+                        <p class="mb-1">{{ __('main.discount') }}: <span class="float-end">$${data.discount_amount} <a type="submit" onclick="couponRemove()"><i class='bx bx-trash'></i> </a></span></p>
+                        <div class="my-3 border-top"></div>
+                        <h5 class="mb-0">{{ __('main.order_total') }}: <span class="float-end">$${data.total_amount}</span></h5>
+                        <div class="my-4"></div>
+                        <div class="d-grid">
+                            <a href="/checkOut" class="btn btn-dark btn-ecomm">{{ __('main.proceed_to_checkout') }}</a>
+                        </div>
+                    ` )
+                    }
+                }
+
+        })
+    }
+
+    couponCalculation();
+
+    // Coupon Remove Start
+  function couponRemove(){
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                url: "/coupon-remove",
+                success:function(data){
+                   couponCalculation();
+                   $('#couponField').show();
+                     // Start Message
+            const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+
+                  showConfirmButton: false,
+                  timer: 3000
+            })
+            if ($.isEmptyObject(data.error)) {
+
+                    Toast.fire({
+                    type: 'success',
+                    icon: 'success',
+                    title: data.success,
+                    })
+            }else{
+
+           Toast.fire({
+                    type: 'error',
+                    icon: 'error',
+                    title: data.error,
+                    })
+                }
+              // End Message
+                }
+            })
         }
-    });
- }
 </script>
 @endsection
