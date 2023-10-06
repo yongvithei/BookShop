@@ -197,13 +197,23 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
             Route::get('/get-wishlist-product' , 'GetWishlistProduct');
             Route::get('/wishlist-remove/{id}' , 'WishlistRemove');
         }); 
+        // Cart All Route 
+        Route::controller(CartController::class)->group(function(){
+            Route::get('/mycart' , 'MyCart')->name('mycart');
+            Route::get('/get-cart-product' , 'GetCartProduct');
+            Route::get('/cart-remove/{rowId}' , 'CartRemove');
+            Route::get('/cart-decrement/{rowId}' , 'CartDecrement');
+            Route::get('/cart-increment/{rowId}' , 'CartIncrement');
+        }); 
     });
+
+    
 
     
     Route::view('/shoplist', 'frontend/product/shop_list');
     Route::view('/search', 'frontend/product/search');
     // Route::view('/product_detail', 'frontend/product/product_detail');
-    Route::view('/cart', 'frontend/mycart/view_mycart');
+    // Route::view('/cart', 'frontend/mycart/view_mycart');
     Route::view('/checkOut', 'frontend/checkout/checkout_view');
     Route::view('/payment', 'frontend/payment/stripe');
     Route::view('/complete', 'frontend/complete/complete');

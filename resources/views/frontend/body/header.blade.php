@@ -123,7 +123,7 @@
 													</div>
 												</a>
 												<div class="d-grid p-3 border-top">
-													<a href="/cart" class="btn btn-dark btn-ecomm">{{__('main.checkout')}}</a>
+													<a href="{{ route('mycart') }}" class="btn btn-dark btn-ecomm">{{__('main.checkout')}}</a>
 												</div>
 
 											</div>
