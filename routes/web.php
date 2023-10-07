@@ -18,6 +18,9 @@ use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\SiteInfoController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\SystemController;
+use App\Http\Controllers\Backend\ShippingAreaController;
+use App\Http\Controllers\Backend\CityController;
+use App\Http\Controllers\Backend\DistController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
@@ -153,6 +156,21 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::get('/clear-cache', 'clearCache')->name('clear-cache');
         Route::get('/backup-all', 'backupall')->name('backupall');
         Route::get('/dbdumps', 'dbdumps')->name('dbdumps');
+    });
+    // Shipping All Route
+    Route::controller(CityController::class)->group(function(){
+        Route::get('/shipping/area', 'index')->name('all.city');
+        Route::post('city/store', 'store');
+        Route::post('city/edit', 'edit');
+        Route::post('city/delete', 'destroy');
+    });
+
+    // SubCategory All Route
+    Route::controller(DistController::class)->group(function(){
+        Route::get('/all/dist', 'index')->name('all.dist');
+        Route::post('dist/store', 'store');
+        Route::post('dist/edit', 'edit');
+        Route::post('dist/delete', 'destroy');
     });
 
     //Profile All Route

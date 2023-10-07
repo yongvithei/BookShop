@@ -59,7 +59,13 @@ php artisan make:controller Backend/SiteInfoController
 composer require spatie/laravel-backup
 php artisan vendor:publish --provider="Spatie\Backup\BackupServiceProvider"
 
+composer require anayarojo/shoppingcart
+php artisan vendor:publish --provider="Gloudemans\Shoppingcart\ShoppingcartServiceProvider" --tag="config"
 php artisan make:controller Frontend/IndexController
 php artisan make:controller Frontend/CartController
 php artisan make:controller User/WishlistController
 php artisan make:model Wishlist -m
+php artisan make:model ShipCity -m
+php artisan make:model ShipDistrict -m
+php artisan make:controller Backend/CityController
+php artisan make:controller Backend/DistrictController

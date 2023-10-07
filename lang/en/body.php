@@ -5,7 +5,7 @@ return [
     'order_management'=>'ORDER MANAGEMENT',
     'report'=>'Report',
     'product_management'=>'PRODUCT MANAGEMENT',
-    'report'=>'Report',
+    'shippingarea'=>'Shipping Area',
     'products'=>'Products',
     'all_product'=>'All Product',
     'add_product'=>'Add Product',
@@ -46,7 +46,7 @@ return [
 
 
 
-    
-    
-    
+
+
+
 ];

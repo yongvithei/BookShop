@@ -88,6 +88,12 @@
                         <span class="nav-main-link-name">{{__('body.report')}}</span>
                     </a>
                 </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link{{ request()->is('shipping/area') ? ' active' : '' }}" href="/shipping/area">
+                        <i class="nav-main-link-icon si si-cursor"></i>
+                        <span class="nav-main-link-name">{{__('body.shippingarea')}}</span>
+                    </a>
+                </li>
             @endif
             @if(Auth::user()->can('product.menu'))
                 <li class="nav-main-heading">{{__('body.product_management')}}</li>

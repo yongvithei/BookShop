@@ -4,6 +4,7 @@ return [
     'eng'=>'អង់គ្លេស',
     'order_management'=>'ការគ្រប់គ្រងការបញ្ជាទិញ',
     'report'=>'របាយការណ៍',
+    'shippingarea'=>'តំបន់ដឹកជញ្ជូន',
     'product_management'=>'ការគ្រប់គ្រងផលិតផល',
     'products' => 'ផលិតផល',
     'add_product' => 'បន្ថែមផលិតផល',
