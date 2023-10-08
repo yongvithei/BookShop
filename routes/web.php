@@ -20,6 +20,7 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\SystemController;
 use App\Http\Controllers\Backend\CityController;
 use App\Http\Controllers\Backend\DistController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
@@ -177,10 +178,12 @@ Route::middleware(['auth','role:admin'])->group(function() {
 
     Route::controller(AdminController::class)->group(function(){
          });
-
+    Route::controller(OrderController::class)->group(function(){
+        Route::get('/order/list', 'index')->name('all.order')->middleware('can:order.menu');
+    });
 
     // Example Routes
-    Route::view('/order/list', 'backend/order.order');
+//    Route::view('/order/list', 'backend/order.order');
     Route::view('/return/pending', 'backend/return.pending');
     Route::view('/return/approve', 'backend/return.approve');
     Route::view('/report/order', 'backend/report.report_order');
@@ -231,16 +234,16 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
             Route::get('/district-get/ajax/{division_id}' , 'DistrictGetAjax');
             Route::post('/checkout/store' , 'CheckoutStore')->name('checkout.store');
 
-        }); 
-        
-        // Checkout Page Route 
+        });
+
+        // Checkout Page Route
         Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
         });
-         // Stripe All Route 
+         // Stripe All Route
         Route::controller(StripeController::class)->group(function(){
             Route::post('/stripe/order' , 'StripeOrder')->name('stripe.order');
             Route::post('/cash/order' , 'CashOrder')->name('cash.order');
-        }); 
+        });
 
 
     Route::view('/shoplist', 'frontend/product/shop_list');
