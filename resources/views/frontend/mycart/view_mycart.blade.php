@@ -35,16 +35,7 @@
 
                                 <!--loop-->
 
-                                <div class="d-lg-flex align-items-center gap-2"> <a href="javascript:;"
-                                        class="btn btn-dark btn-ecomm">
-                                        <i class='bx bx-shopping-bag'></i> {{ __('main.continue_shopping') }}
-                                    </a>
-                                    <a href="javascript:;" class="btn btn-light btn-ecomm ms-auto"><i
-                                            class='bx bx-x-circle'></i> Clear Cart</a>
-                                    <a href="javascript:;" class="btn btn-white btn-ecomm">
-                                        <i class='bx bx-refresh'></i> {{ __('main.update_cart') }}
-                                    </a>
-                                </div>
+
                             </div>
                         </div>
                         <div class="col-12 col-xl-4">
@@ -255,7 +246,7 @@
                         <h5 class="mb-0">{{ __('main.order_total') }}: <span class="float-end">$${data.total}</span></h5>
                         <div class="my-4"></div>
                         <div class="d-grid">
-                            <a href="/checkOut" class="btn btn-dark btn-ecomm">{{ __('main.proceed_to_checkout') }}</a>
+                            <a href="{{ route('checkout') }}" class="btn btn-dark btn-ecomm">{{ __('main.proceed_to_checkout') }}</a>
                         </div>
                 ` ) } else {
                     $('#couponCalField').html(`
@@ -266,7 +257,7 @@
                         <h5 class="mb-0">{{ __('main.order_total') }}: <span class="float-end">$${data.total_amount}</span></h5>
                         <div class="my-4"></div>
                         <div class="d-grid">
-                            <a href="/checkOut" class="btn btn-dark btn-ecomm">{{ __('main.proceed_to_checkout') }}</a>
+                            <a href="{{ route('checkout') }}" class="btn btn-dark btn-ecomm">{{ __('main.proceed_to_checkout') }}</a>
                         </div>
                     ` )
                     }

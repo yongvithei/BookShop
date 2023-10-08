@@ -18,13 +18,13 @@ use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\SiteInfoController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\SystemController;
-use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\CityController;
 use App\Http\Controllers\Backend\DistController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
-
+use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\StripeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -227,18 +227,28 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
             Route::get('/coupon-calculation','CouponCalculation');
             Route::get('/coupon-remove', 'CouponRemove');
         });
-    });
+        Route::controller(CheckoutController::class)->group(function(){
+            Route::get('/district-get/ajax/{division_id}' , 'DistrictGetAjax');
+            Route::post('/checkout/store' , 'CheckoutStore')->name('checkout.store');
 
-
+        }); 
+        
+        // Checkout Page Route 
+        Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
+        });
+         // Stripe All Route 
+        Route::controller(StripeController::class)->group(function(){
+            Route::post('/stripe/order' , 'StripeOrder')->name('stripe.order');
+        }); 
 
 
     Route::view('/shoplist', 'frontend/product/shop_list');
     Route::view('/search', 'frontend/product/search');
     // Route::view('/product_detail', 'frontend/product/product_detail');
     // Route::view('/cart', 'frontend/mycart/view_mycart');
-    Route::view('/checkOut', 'frontend/checkout/checkout_view');
-    Route::view('/payment', 'frontend/payment/stripe');
-    Route::view('/complete', 'frontend/complete/complete');
+    // Route::view('/checkOut', 'frontend/checkout/checkout_view');
+    // Route::view('/payment', 'frontend/payment/stripe');
+    Route::view('/complete', 'frontend/complete/complete')->name('order.complete');
     Route::view('/order/tracking', 'frontend/tracking/tracking_order');
     Route::view('/user/dashboard', 'frontend/dashboard/dashboard');
     Route::view('/user/orderlist', 'frontend/dashboard/order');

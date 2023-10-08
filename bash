@@ -69,3 +69,13 @@ php artisan make:model ShipCity -m
 php artisan make:model ShipDistrict -m
 php artisan make:controller Backend/CityController
 php artisan make:controller Backend/DistrictController
+php artisan make:controller User/CheckoutController
+
+https://dashboard.stripe.com/test/apikeys //get api key
+https://stripe.com/docs/development/quickstart //installation
+https://stripe.com/docs/payments/accept-a-payment-charges //setup
+https://stripe.com/docs/testing //testing
+
+php artisan make:controller User/StripeController
+php artisan make:model Order -m
+php artisan make:model OrderItem -m

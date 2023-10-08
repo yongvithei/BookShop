@@ -42,7 +42,7 @@
                                                 </div>
 
                                             </a>
-                                            <a class="step-item active current" href="">
+                                            <a class="step-item current " href="">
                                                 <div class="step-progress"><span class="step-count">2</span>
                                                 </div>
                                                 <div class="step-label"><i
@@ -71,77 +71,65 @@
                                             <h2 class="h5 mb-0">Shipping Address</h2>
                                             <div class="my-3 border-bottom"></div>
                                             <div class="form-body">
-                                                <form class="row g-3">
+                                                <form method="post" action="{{ route('checkout.store') }}" class="row g-3">
+                                                    @csrf
                                                     <div class="col-md-6">
-                                                        <label class="form-label">{{ __('main.first_name') }}</label>
-                                                        <input type="text" class="form-control rounded-0">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label class="form-label">{{ __('main.last_name') }}</label>
-                                                        <input type="text" class="form-control rounded-0">
+                                                        <label class="form-label">{{ __('main.name') }}</label>
+                                                        <input type="text" name="ship_name" value="{{ Auth::user()->name }}" class="form-control rounded-0">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">{{ __('main.email') }}</label>
-                                                        <input type="text" class="form-control rounded-0">
+                                                        <input type="text" name="ship_email" value="{{ Auth::user()->email }}" class="form-control rounded-0">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">{{ __('main.phone_number') }}</label>
-                                                        <input type="text" class="form-control rounded-0">
+                                                        <input type="text" name="ship_phone" class="form-control rounded-0" placeholder="Required" required>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="form-label">{{ __('main.company') }}</label>
-                                                        <input type="text" class="form-control rounded-0">
+                                                        <label class="form-label">{{ __('main.zip_postal_code') }}</label>
+                                                        <input type="text" name="post_code" class="form-control rounded-0" placeholder="Optional">
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label
-                                                            class="form-label">{{ __('main.state_province') }}</label>
-                                                        <select class="form-select rounded-0">
-                                                            <option>United Kingdom</option>
-                                                            <option>California</option>
+                                                         <label
+                                                            class="form-label">{{ __('main.province') }}</label>
+                                                        <select name="city_id" class="form-select rounded-0">
+                                                            <option value="1">Select</option>
+                                                              @foreach($cities as $item)
+                                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                                @endforeach
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label
-                                                            class="form-label">{{ __('main.zip_postal_code') }}</label>
-                                                        <input type="text" class="form-control rounded-0">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label class="form-label">{{ __('main.country') }}</label>
-                                                        <select class="form-select rounded-0">
-                                                            <option>United States</option>
-                                                            <option>India</option>
-                                                            <option>China</option>
-                                                            <option>Turkey</option>
+                                                       <label class="form-label">{{ __('main.district') }}</label>
+                                                        <select name="district_id" class="form-select rounded-0">
+                                                           <option value="1">Select City First</option>
                                                         </select>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <label class="form-label">{{ __('main.address1') }}</label>
-                                                        <textarea class="form-control rounded-0"></textarea>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label class="form-label">{{ __('main.address2') }}</label>
-                                                        <textarea class="form-control rounded-0"></textarea>
+
+                                                    <div class="col-md-12">
+                                                        <label class="form-label">{{ __('main.notes') }}</label>
+                                                        <textarea class="form-control rounded-0" name="notes" rows="3"></textarea>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <h6 class="mb-0 h5">{{ __('main.billing_address') }}</h6>
+
                                                         <div class="my-3 border-bottom"></div>
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox"
                                                                 id="gridCheck" checked>
                                                             <label class="form-check-label"
-                                                                for="gridCheck">{{ __('main.same_as_shipping') }}</label>
+                                                                for="gridCheck">{{ __('main.agree') }}</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <div class="d-grid"> <a href="javascript:;"
+                                                        <div class="d-grid"> <a href="{{ route('mycart') }}"
                                                                 class="btn btn-light btn-ecomm"><i
                                                                     class='bx bx-chevron-left'></i>{{ __('main.back_to_cart') }}</a>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <div class="d-grid"> <a href="/payment"
-                                                                class="btn btn-dark btn-ecomm">{{ __('main.proceed_to_checkout') }}<i
-                                                                    class='bx bx-chevron-right'></i></a>
+                                                        <div class="d-grid"> <button type="submit"
+                                                                class="btn btn-dark btn-ecomm bg-dark">{{ __('main.proceed_to_checkout') }}<i
+                                                                    class='bx bx-chevron-right'></i></button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -159,73 +147,48 @@
                                         <div class="card rounded-0 border bg-transparent shadow-none">
                                             <div class="card-body">
                                                 <p class="fs-5">{{ __('main.order_summary') }}</p>
+                                                @foreach($carts as $item)
                                                 <!--loop-->
                                                 <div class="my-3 border-top"></div>
                                                 <div class="d-flex align-items-center">
                                                     <a class="d-block flex-shrink-0" href="javascript:;">
-                                                        <img src="{{asset('/frontend/assets/images/products/01.png')}}"
+                                                        <img src="{{ asset($item->options->image) }}"
                                                             width="75" alt="Product">
                                                     </a>
                                                     <div class="ps-2">
-                                                        <h6 class="mb-1"><a href="javascript:;" class="text-dark">White
-                                                                Polo T-Shirt</a></h6>
+                                                        <h6 class="mb-1"><a href="javascript:;" class="text-dark">{{ $item->name }}</a></h6>
                                                         <div class="widget-product-meta"><span
-                                                                class="me-2">$19.<small>00</small></span><span
-                                                                class="">x 1</span>
+                                                                class="me-2">${{ $item->price }}</span><span
+                                                                class="">x {{ $item->qty }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <!--loop-->
-                                                <!--loop-->
-                                                <div class="my-3 border-top"></div>
-                                                <div class="d-flex align-items-center">
-                                                    <a class="d-block flex-shrink-0" href="javascript:;">
-                                                        <img src="{{asset('/frontend/assets/images/products/01.png')}}"
-                                                            width="75" alt="Product">
-                                                    </a>
-                                                    <div class="ps-2">
-                                                        <h6 class="mb-1"><a href="javascript:;" class="text-dark">White
-                                                                Polo T-Shirt</a></h6>
-                                                        <div class="widget-product-meta"><span
-                                                                class="me-2">$19.<small>00</small></span><span
-                                                                class="">x 1</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!--loop-->
-                                                <!--loop-->
-                                                <div class="my-3 border-top"></div>
-                                                <div class="d-flex align-items-center">
-                                                    <a class="d-block flex-shrink-0" href="javascript:;">
-                                                        <img src="{{asset('/frontend/assets/images/products/01.png')}}"
-                                                            width="75" alt="Product">
-                                                    </a>
-                                                    <div class="ps-2">
-                                                        <h6 class="mb-1"><a href="javascript:;" class="text-dark">White
-                                                                Polo T-Shirt</a></h6>
-                                                        <div class="widget-product-meta"><span
-                                                                class="me-2">$19.<small>00</small></span><span
-                                                                class="">x 1</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!--loop-->
+                                                @endforeach
                                             </div>
                                         </div>
                                         <div class="card rounded-0 border bg-transparent mb-0 shadow-none">
+                                             @if(Session::has('coupon'))
                                             <div class="card-body">
                                                 <p class="mb-2">{{ __('main.subtotal') }}: <span
-                                                        class="float-end">$198.00</span></p>
+                                                        class="float-end">${{ $cartTotal }}</span></p>
                                                 <p class="mb-2">{{ __('main.shipping') }}: <span
-                                                        class="float-end">--</span></p>
-                                                <p class="mb-2">{{ __('main.taxes') }}: <span
-                                                        class="float-end">$14.00</span></p>
+                                                        class="float-end">Free</span></p>
+                                                <p class="mb-2">{{ __('main.coupon_name') }}: <span
+                                                        class="float-end">{{ session()->get('coupon')['coupon_name'] }} ( {{ session()->get('coupon')['coupon_discount'] }}% )</span></p>
                                                 <p class="mb-0">{{ __('main.discount') }}: <span
-                                                        class="float-end">--</span></p>
+                                                        class="float-end">${{ session()->get('coupon')['discount_amount'] }}</span></p>
                                                 <div class="my-3 border-top"></div>
                                                 <h5 class="mb-0">{{ __('main.order_total') }}: <span
-                                                        class="float-end">212.00</span></h5>
+                                                        class="float-end">${{ session()->get('coupon')['total_amount'] }}</span></h5>
                                             </div>
+                                            @else
+                                            <div class="card-body">
+                                                <div class="my-3 border-top"></div>
+                                                <h5 class="mb-0">{{ __('main.order_total') }}: <span
+                                                        class="float-end">${{ $cartTotal }}</span></h5>
+                                            </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -240,5 +203,31 @@
     </div>
 </div>
 <!--end page wrapper -->
+<script src="{{asset('/frontend/assets/js/jquery.min.js')}}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('select[name="city_id"]').on('change', function () {
+            var city_id = $(this).val();
+            if (city_id) {
+                $.ajax({
+                    url: "{{ url('/district-get/ajax') }}/" + city_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        // console.log(data);
+                        var d = $('select[name="district_id"]').empty();
+                        $.each(data, function (key, value) {
+                            $('select[name="district_id"]').append(
+                                '<option value="' + value.id + '">' + value
+                                .name + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('Please Select');
+            }
+        });
+    });
+</script>
 
 @endsection
