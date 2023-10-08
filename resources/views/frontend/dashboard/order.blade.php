@@ -34,115 +34,54 @@
 										@include('frontend.dashboard.sidebar')
 									</div>
 									<div class="col-lg-8">
-										<div class="card shadow-none mb-0">
-											<div class="card-body">
-												<div class="table-responsive">
-													<table class="table">
-														<thead class="table-light">
-															<tr>
-																<th>Order</th>
-																<th>Date</th>
-																<th>Status</th>
-																<th>Total</th>
-																<th>Actions</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr>
-																<td>#800</td>
-																<td>Novermber 15, 2021</td>
-																<td>
-																	<div class="badge rounded-pill bg-success w-100">Completed</div>
+									    <div class="card shadow-none mb-0">
+									        <div class="card-body">
+									            <div class="table-responsive">
+									                <table class="table">
+									                    <thead class="table-light">
+									                        <tr>
+									                            <th>№</th>
+									                            <th>Invoice</th>
+																<th>Payment</th>
+									                            <th>Date</th>
+									                            <th>Total</th>
+									                            <th>Status</th>
+									                            <th>Actions</th>
+									                        </tr>
+									                    </thead>
+									                    <tbody>
+									                        @foreach($orders as $key=> $order)
+									                        <tr>
+									                            <td>{{ $key+1 }}</td>
+									                            <td> {{ $order->invoice_no }}</td>
+																<td> {{ $order->payment_method }}</td>
+									                            <td> {{ $order->order_date }}</td>
+									                            <td> ${{ $order->amount }}</td>
+									                            <td>
+									                                @if($order->status == 'pending')
+									                                <span class="badge rounded-pill bg-warning">Pending</span>
+									                                @elseif($order->status == 'confirm')
+									                                <span class="badge rounded-pill bg-info">Confirm</span>
+									                                @elseif($order->status == 'processing')
+									                                <span class="badge rounded-pill bg-danger">Processing</span>
+									                                @elseif($order->status == 'deliverd')
+									                                <span class="badge rounded-pill bg-success">Deliverd</span>
+									                                @endif
 																</td>
-																<td>$100.00 for 1 item</td>
-																<td>
-																	<div class="d-flex gap-2">	<a href="javascript:;" class="btn btn-dark btn-sm rounded-0">View</a>
+									                            <td>
+
+									                                <div class="d-flex gap-2"> <a href="{{ url('user/order_details/'.$order->id) }}"
+                                                                                                  class="btn btn-dark btn-sm rounded-0">View</a>
+                                                                            <a href="{{ url('user/order_details/'.$order->id) }}" class="btn-sm btn-danger">Invoice</a>
 																	</div>
 																</td>
-															</tr>
-															<tr>
-																<td>#796</td>
-																<td>Novermber 12, 2021</td>
-																<td>
-																	<div class="badge rounded-pill bg-danger w-100">Failed</div>
-																</td>
-																<td>$100.00 for 1 item</td>
-																<td>
-																	<div class="d-flex gap-2"> <a href="javascript:;" class="btn btn-dark btn-sm rounded-0">View</a>
-																		<a href="javascript:;" class="btn btn-dark btn-sm rounded-0">Pay</a>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<td>#859</td>
-																<td>Novermber 10, 2021</td>
-																<td>
-																	<div class="badge rounded-pill bg-danger w-100">Failed</div>
-																</td>
-																<td>$100.00 for 1 item</td>
-																<td>
-																	<div class="d-flex gap-2"> <a href="javascript:;" class="btn btn-dark btn-sm rounded-0">View</a>
-																		<a href="javascript:;" class="btn btn-dark btn-sm rounded-0">Pay</a>
-																		<a href="javascript:;" class="btn btn-dark btn-sm rounded-0">Cancel</a>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<td>#869</td>
-																<td>Novermber 9, 2021</td>
-																<td>
-																	<div class="badge rounded-pill bg-danger w-100">Cancelled</div>
-																</td>
-																<td>$120.00 for 1 item</td>
-																<td>
-																	<div class="d-flex gap-2"> <a href="javascript:;" class="btn btn-dark btn-sm rounded-0">View</a>
-																		<a href="javascript:;" class="btn btn-dark btn-sm rounded-0">Pay</a>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<td>#829</td>
-																<td>Novermber 8, 2021</td>
-																<td>
-																	<div class="badge rounded-pill bg-success w-100">Completed</div>
-																</td>
-																<td>$224.00 for 2 item</td>
-																<td>
-																	<div class="d-flex gap-2"> <a href="javascript:;" class="btn btn-dark btn-sm rounded-0">View</a>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<td>#879</td>
-																<td>Novermber 8, 2021</td>
-																<td>
-																	<div class="badge rounded-pill bg-success w-100">Completed</div>
-																</td>
-																<td>$126.00 for 3 item</td>
-																<td>
-																	<div class="d-flex gap-2"> <a href="javascript:;" class="btn btn-dark btn-sm rounded-0">View</a>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<td>#863</td>
-																<td>Novermber 4, 2021</td>
-																<td>
-																	<div class="badge rounded-pill bg-danger w-100">Failed</div>
-																</td>
-																<td>$200.00 for 2 item</td>
-																<td>
-																	<div class="d-flex gap-2"> <a href="javascript:;" class="btn btn-dark btn-sm rounded-0">View</a>
-																		<a href="javascript:;" class="btn btn-dark btn-sm rounded-0">Pay</a>
-																		<a href="javascript:;" class="btn btn-dark btn-sm rounded-0">Cancel</a>
-																	</div>
-																</td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
-											</div>
-										</div>
+									                        </tr>
+									                        @endforeach
+									                    </tbody>
+									                </table>
+									            </div>
+									        </div>
+									    </div>
 									</div>
 								</div>
 								<!--end row-->

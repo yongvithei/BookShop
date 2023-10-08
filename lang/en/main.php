@@ -105,7 +105,6 @@ return [
     //account dashboard
     'dashboard' => 'Dashboard',
     'orders' => 'Orders',
-    'addresses' => 'Addresses',
     'account_details' => 'Account Details',
     'password' => 'Password',
     'logout' => 'Logout',

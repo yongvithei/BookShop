@@ -14,11 +14,6 @@
                 @lang('main.orders')
                 <i class='bx bx-cart-alt fs-5'></i>
             </a>
-            <a href="/user/address"
-                class="list-group-item d-flex justify-content-between align-items-center {{ request()->is('user/address') ? ' active' : '' }}">
-                @lang('main.addresses')
-                <i class='bx bx-home-smile fs-5'></i>
-            </a>
             <a href="/user/account/details"
                 class="list-group-item d-flex justify-content-between align-items-center {{ request()->is('user/account/details') ? ' active' : '' }}">
                 @lang('main.account_details')

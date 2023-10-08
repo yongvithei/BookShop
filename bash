@@ -79,3 +79,5 @@ https://stripe.com/docs/testing //testing
 php artisan make:controller User/StripeController
 php artisan make:model Order -m
 php artisan make:model OrderItem -m
+php artisan make:controller User/UserProfileController
+

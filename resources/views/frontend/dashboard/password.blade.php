@@ -35,23 +35,35 @@
 										@include('frontend.dashboard.sidebar')
 									</div>
 									<div class="col-lg-8">
+                                        @if (session('status') === 'password-updated')
+                                            <div class="alert alert-success alert-dismissible text-center" role="alert">
+                                                <p class="mb-0">Update successful</p>
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                        @endif
 										<div class="card shadow-none mb-0 border">
 											<div class="card-body">
-												<form class="row g-3">
+                                                <form method="post" class="row g-3" action="{{ route('password.update') }}">
+                                                    @csrf
+                                                    @method('put')
+
     <div class="col-12">
-        <label class="form-label">@lang('main.current_password')</label>
-        <input type="text" class="form-control" value=".................">
+        <label for="current_password" class="form-label">@lang('main.current_password')</label>
+        <input type="password" class="form-control" id="current_password" name="current_password">
+        <span class="text-danger">{{ $errors->updatePassword->first('current_password') }}</span>
     </div>
     <div class="col-12">
-        <label class="form-label">@lang('main.new_password')</label>
-        <input type="text" class="form-control" value=".................">
+        <label class="form-label" for="password">@lang('main.new_password')</label>
+        <input type="password" class="form-control" id="password" name="password" autocomplete="new-password">
+        <span class="text-danger">{{ $errors->updatePassword->first('password') }}</span>
     </div>
     <div class="col-12">
-        <label class="form-label">@lang('main.confirm_new_password')</label>
-        <input type="text" class="form-control" value=".................">
+        <label class="form-label" for="password_confirmation">@lang('main.confirm_new_password')</label>
+        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+        <span class="text-danger">{{ $errors->updatePassword->first('password_confirmation') }}</span>
     </div>
     <div class="col-12">
-        <button type="button" class="bg-dark text-white btn-ecomm">@lang('main.save_changes')</button>
+        <button type="submit" class="bg-dark text-white btn-ecomm">@lang('main.save_changes')</button>
     </div>
 </form>
 

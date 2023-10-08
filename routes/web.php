@@ -26,6 +26,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
+use App\Http\Controllers\User\UserProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -238,12 +239,22 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
 
         // Checkout Page Route
         Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
-        });
+
          // Stripe All Route
         Route::controller(StripeController::class)->group(function(){
             Route::post('/stripe/order' , 'StripeOrder')->name('stripe.order');
             Route::post('/cash/order' , 'CashOrder')->name('cash.order');
         });
+        // User Profile All Route
+        Route::controller(UserProfileController::class)->group(function(){
+            Route::get('/user/account/details', 'editProfile')->name('user.profile');
+            Route::post('/user/account/store', 'updateProfile')->name('user.profile.store');
+            Route::get('/user/orderlist' , 'UserOrderPage')->name('user.order.page');
+            Route::get('/user/order_details/{order_id}' , 'UserOrderDetails');
+            
+        });
+        Route::view('/user/account/password', 'frontend/dashboard/password');
+    });
 
 
     Route::view('/shoplist', 'frontend/product/shop_list');
@@ -255,10 +266,10 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     Route::view('/complete', 'frontend/complete/complete')->name('order.complete');
     Route::view('/order/tracking', 'frontend/tracking/tracking_order');
     Route::view('/user/dashboard', 'frontend/dashboard/dashboard');
-    Route::view('/user/orderlist', 'frontend/dashboard/order');
-    Route::view('/user/address', 'frontend/dashboard/address');
-    Route::view('/user/account/details', 'frontend/dashboard/account_details');
-    Route::view('/user/account/password', 'frontend/dashboard/password');
+    // Route::view('/user/orderlist', 'frontend/dashboard/order');
+    // Route::view('/user/address', 'frontend/dashboard/address');
+//    Route::view('/user/account/details', 'frontend/dashboard/account_details');
+    
     Route::view('/contact', 'frontend/about/contact');
     Route::view('/about', 'frontend/about/about');
 require __DIR__.'/auth.php';
