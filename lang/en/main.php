@@ -72,6 +72,7 @@ return [
 
     //check out
     'cart' => 'Cart',
+    'confirm' => 'Confirm',
     'shipping' => 'Shipping',
     'payment' => 'Payment',
     'tracking' => 'Tracking',

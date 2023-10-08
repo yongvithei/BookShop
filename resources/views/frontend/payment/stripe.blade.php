@@ -7,7 +7,7 @@
         <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
             <div class="container">
                 <div class="page-breadcrumb d-flex align-items-center">
-                    <h3 class="breadcrumb-title pe-3">Checkout{{ $data['ship_email'] }}</h3>
+                    <h3 class="breadcrumb-title pe-3">Checkout</h3>
                     <div class="ms-auto">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 p-0">
@@ -82,7 +82,6 @@
                                                         <div class="tab-icon"><i class='bx bx-money font-18 me-1'></i>
                                                         </div>
                                                         <div class="tab-title">{{ __('main.cash_on_delivery') }}</div>
-
                                                     </div>
                                                 </a>
                                             </li>
@@ -144,6 +143,37 @@
                                                             delivery is when a buyer pays for goods or services once
                                                             they are received.</p>
                                                     </div>
+                                                    <form action="{{ route('cash.order') }}" method="post">
+                                                        @csrf
+                                                        <div class="form-row">
+                                                            <label for="card-element">
+                                                                <input type="hidden" name="name"
+                                                                    value="{{ $data['ship_name'] }}">
+                                                                <input type="hidden" name="email"
+                                                                    value="{{ $data['ship_email'] }}">
+                                                                <input type="hidden" name="phone"
+                                                                    value="{{ $data['ship_phone'] }}">
+                                                                <input type="hidden" name="post_code"
+                                                                    value="{{ $data['post_code'] }}">
+                                                                <input type="hidden" name="city_id"
+                                                                    value="{{ $data['city_id'] }}">
+                                                                <input type="hidden" name="district_id"
+                                                                    value="{{ $data['district_id'] }}">
+                                                                <input type="hidden" name="notes"
+                                                                    value="{{ $data['notes'] }}">
+                                                            </label>
+                                                            <!-- Used to display form errors. -->
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="d-grid">
+                                                                    <button class="btn btn-dark btn-ecomm rounded-0">{{ __('main.confirm') }}</button>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="net-banking" role="tabpanel">
@@ -279,47 +309,47 @@ var style = {
     iconColor: '#fa755a'
   }
 };
-    `// Create an instance of the card Element.
-    var card = elements.create('card', {
-        style: style
-    });
-    // Add an instance of the card Element into the `card-element` <div>.
-    card.mount('#card-element');
-    // Handle real-time validation errors from the card Element.
-    card.on('change', function (event) {
-        var displayError = document.getElementById('card-errors');
-        if (event.error) {
-            displayError.textContent = event.error.message;
+// Create an instance of the card Element.
+var card = elements.create('card', {
+    style: style
+});
+// Add an instance of the card Element into the `card-element` <div>.
+card.mount('#card-element');
+// Handle real-time validation errors from the card Element.
+card.on('change', function (event) {
+    var displayError = document.getElementById('card-errors');
+    if (event.error) {
+        displayError.textContent = event.error.message;
+    } else {
+        displayError.textContent = '';
+    }
+});
+// Handle form submission.
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    stripe.createToken(card).then(function (result) {
+        if (result.error) {
+            // Inform the user if there was an error.
+            var errorElement = document.getElementById('card-errors');
+            errorElement.textContent = result.error.message;
         } else {
-            displayError.textContent = '';
+            // Send the token to your server.
+            stripeTokenHandler(result.token);
         }
     });
-    // Handle form submission.
+});
+// Submit the form with the token ID.
+function stripeTokenHandler(token) {
+    // Insert the token ID into the form it gets submitted to the server
     var form = document.getElementById('payment-form');
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        stripe.createToken(card).then(function (result) {
-            if (result.error) {
-                // Inform the user if there was an error.
-                var errorElement = document.getElementById('card-errors');
-                errorElement.textContent = result.error.message;
-            } else {
-                // Send the token to your server.
-                stripeTokenHandler(result.token);
-            }
-        });
-    });
-    // Submit the form with the token ID.
-    function stripeTokenHandler(token) {
-        // Insert the token ID into the form it gets submitted to the server
-        var form = document.getElementById('payment-form');
-        var hiddenInput = document.createElement('input');
-        hiddenInput.setAttribute('type', 'hidden');
-        hiddenInput.setAttribute('name', 'stripeToken');
-        hiddenInput.setAttribute('value', token.id);
-        form.appendChild(hiddenInput);
-        // Submit the form
-        form.submit();
-    }`
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'stripeToken');
+    hiddenInput.setAttribute('value', token.id);
+    form.appendChild(hiddenInput);
+    // Submit the form
+    form.submit();
+}
 </script>
 @endsection
