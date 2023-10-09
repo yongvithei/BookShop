@@ -72,7 +72,7 @@
 
 									                                <div class="d-flex gap-2"> <a href="{{ url('user/order_details/'.$order->id) }}"
                                                                                                   class="btn btn-dark btn-sm rounded-0">View</a>
-                                                                            <a href="{{ url('user/order_details/'.$order->id) }}" class="btn-sm btn-danger">Invoice</a>
+                                                                            <a href="{{ url('user/invoice_download/'.$order->id) }}" class="btn-sm btn-danger">Invoice</a>
 																	</div>
 																</td>
 									                        </tr>

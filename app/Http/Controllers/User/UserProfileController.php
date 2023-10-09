@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\RedirectResponse;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class UserProfileController extends Controller
 {
@@ -64,6 +65,18 @@ class UserProfileController extends Controller
         $orderItem = OrderItem::with('product')->where('order_id',$order_id)->orderBy('id','DESC')->get();
 
         return view('frontend.dashboard.order_detail',compact('order','orderItem'));
+    }
+    public function UserOrderInvoice($order_id){
+
+        $order = Order::with('city','district','user')->where('id',$order_id)->where('user_id',Auth::id())->first();
+        $orderItem = OrderItem::with('product')->where('order_id',$order_id)->orderBy('id','DESC')->get();
+
+        $pdf = Pdf::loadView('frontend.dashboard.order_invoice', compact('order','orderItem'))->setPaper('a4')->setOption([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+        ]);
+        return $pdf->download('invoice.pdf');
+
     }
     
 }

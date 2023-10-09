@@ -251,13 +251,14 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
             Route::post('/user/account/store', 'updateProfile')->name('user.profile.store');
             Route::get('/user/orderlist' , 'UserOrderPage')->name('user.order.page');
             Route::get('/user/order_details/{order_id}' , 'UserOrderDetails');
-            
+            Route::get('/user/invoice_download/{order_id}' , 'UserOrderInvoice');  
         });
         Route::view('/user/account/password', 'frontend/dashboard/password');
     });
 
 
     Route::view('/shoplist', 'frontend/product/shop_list');
+    Route::view('/invoice', 'frontend/dashboard/order_invoice');
     Route::view('/search', 'frontend/product/search');
     // Route::view('/product_detail', 'frontend/product/product_detail');
     // Route::view('/cart', 'frontend/mycart/view_mycart');
