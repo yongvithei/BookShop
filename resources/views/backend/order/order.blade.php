@@ -144,7 +144,7 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="modal" data-bs-target="#modal-block-extra-large">
+                                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="modal" data-bs-target="#modal_order">
                                                             <i class="fa fa-fw fa-pencil-alt"></i>
                                                         </button>
                                                         <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove">
@@ -186,7 +186,7 @@
 
             </div>
             <!-- Extra Large Block Modal -->
-            <div class="modal" id="modal-block-extra-large" tabindex="-1" role="dialog" aria-labelledby="modal-block-extra-large" aria-hidden="true">
+            <div class="modal" id="modal_order" tabindex="-1" role="dialog" aria-labelledby="modal_order" aria-hidden="true">
                 <div class="modal-dialog modal-xl" role="document">
                     <div class="modal-content">
                         <div class="block block-rounded block-transparent mb-0">
@@ -210,42 +210,42 @@
                                             <div class="block-content">
                                                 <div class="row">
                                                     <div class="col-lg-6">
-                                                        <!-- Billing Address -->
+                                                        <!-- Shipping Address -->
                                                         <div class="block block-rounded block-bordered">
                                                             <div class="block-header border-bottom">
                                                                 <h3 class="block-title">Shipping Details</h3>
                                                             </div>
                                                             <div class="block-content">
-                                                                <div class="fs-4 mb-1">John Parker</div>
+                                                                <div class="fs-4 mb-1">Name: <span ship_name></span></div>
+                                                                <div class="fs-sm">Email: <span ship_email></span></div>
+                                                                <div class="fs-sm">City: <span ship_city></span></div>
+                                                                <div class="fs-sm">District: <span ship_district></span></div>
+                                                                <div class="fs-sm">PostCode: <span ship_post></span></div>
+                                                                <div class="fs-sm">Order Date: <span order_date></span></div>
                                                                 <address class="fs-sm">
-                                                                    Sunrise Str 620<br>
-                                                                    Melbourne<br>
-                                                                    Australia, 11-587<br><br>
-                                                                    <i class="fa fa-phone"></i> (999) 888-55555<br>
-                                                                    <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">company@example.com</a>
-                                                                </address>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END Billing Address -->
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <!-- Shipping Address -->
-                                                        <div class="block block-rounded block-bordered">
-                                                            <div class="block-header border-bottom">
-                                                                <h3 class="block-title">ORDER DETAILS INVOICE : EOS57109333</h3>
-                                                            </div>
-                                                            <div class="block-content">
-                                                                <div class="fs-4 mb-1">John Parker</div>
-                                                                <address class="fs-sm">
-                                                                    Sunrise Str 620<br>
-                                                                    Melbourne<br>
-                                                                    Australia, 11-587<br><br>
-                                                                    <i class="fa fa-phone"></i> (999) 888-55555<br>
-                                                                    <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">company@example.com</a>
+                                                                    <i class="fa fa-phone"></i> <span ship_phone></span><br>
                                                                 </address>
                                                             </div>
                                                         </div>
                                                         <!-- END Shipping Address -->
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <!-- User Address -->
+                                                        <div class="block block-rounded block-bordered">
+                                                            <div class="block-header border-bottom">
+                                                                <h3 class="block-title">ORDER DETAILS INVOICE : <span invoice_no></span></h3>
+                                                            </div>
+                                                            <div class="block-content">
+                                                                <div class="fs-4 mb-1" name>Name</div>
+                                                                <div class="fs-sm">Email: <span email></span></div>
+                                                                <div class="fs-sm">Payment Method: <span payment_method></span></div>
+                                                                <div class="fs-sm">Transaction_id: <span transaction_id></span></div>
+                                                                <div class="fs-sm">Invoice id: <span invoice_no></span></div>
+                                                                <div class="fs-sm">Amount: <span amount></span></div>
+                                                                <div class="fs-sm">Status: <span class="badge bg-success" status></span></div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- END User Address -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -417,7 +417,7 @@
             $('#order-table').DataTable({
                 pageLength: 10,
                 lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
-                autoWidth: false,
+                autoWidth: true,
                 serverSide: true,
                 processing: false,
                 ajax: '{{ route('all.order') }}',
@@ -462,5 +462,36 @@
                 ]
             });
         });
+
+        function viewFunc(id) {
+        $.ajax({
+
+            type: "POST",
+            url: "{{ url('order/detail') }}",
+            data: { id: id },
+            dataType: 'json',
+            success: function (res) {
+
+                $('#modal_order').modal('show');
+                $('#id').val(res.id);
+                $('[ship_name]').text(res.ship_name);
+                $('[ship_phone]').text(res.ship_phone);
+                $('[ship_email]').text(res.ship_email);
+                $('[ship_city]').text(res.ship_city);
+                $('[ship_district]').text(res.ship_district);
+                $('[ship_post]').text(res.ship_post);
+                $('[order_date]').text(res.order_date);
+
+                $('[name]').text(res.name);
+                $('[email]').text(res.email);
+                $('[payment_method]').text(res.payment_method);
+                $('[transaction_id]').text(res.transaction_id);
+                $('[invoice_no]').text(res.invoice_no);
+                $('[amount]').text(res.amount);
+                $('[status]').text(res.status);
+            }
+        });
+    }
+
     </script>
 @endsection

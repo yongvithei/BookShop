@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use Yajra\DataTables\Exceptions\Exception;
-
+use App\Models\OrderView;
 class OrderController extends Controller
 {
     /**
@@ -23,5 +23,11 @@ class OrderController extends Controller
                 ->make(true);
         }
         return view('backend.order.order');
+    }
+    public function viewDetail(Request $request)
+    {
+        $id = array('id' => $request->id);
+        $item  = OrderView::where($id)->first();
+        return Response()->json($item);
     }
 }

@@ -80,4 +80,7 @@ php artisan make:controller User/StripeController
 php artisan make:model Order -m
 php artisan make:model OrderItem -m
 php artisan make:controller User/UserProfileController
+composer require barryvdh/laravel-dompdf
 
+php artisan make:migration create_order_view
+php artisan make:model OrderView
