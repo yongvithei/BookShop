@@ -181,7 +181,9 @@ Route::middleware(['auth','role:admin'])->group(function() {
          });
     Route::controller(OrderController::class)->group(function(){
         Route::get('/order/list', 'index')->name('all.order')->middleware('can:order.menu');
-         Route::post('order/detail', 'viewDetail');
+        Route::post('order/detail', 'viewDetail');
+        Route::post('/get-order-item', 'getOrderItem')->name('order.items');
+
     });
 
     // Example Routes

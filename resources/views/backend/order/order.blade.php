@@ -110,6 +110,121 @@
                                                     <div class="pl-loading"></div>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td class="text-center fs-sm">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="fw-semibold fs-sm">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="d-sm-table-cell fs-sm">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="d-sm-table-cell">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center fs-sm">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="fw-semibold fs-sm">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="d-sm-table-cell fs-sm">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="d-sm-table-cell">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center fs-sm">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="fw-semibold fs-sm">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="d-sm-table-cell fs-sm">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="d-sm-table-cell">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center fs-sm">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="fw-semibold fs-sm">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="d-sm-table-cell fs-sm">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="d-sm-table-cell">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center fs-sm">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="fw-semibold fs-sm">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="d-sm-table-cell fs-sm">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="d-sm-table-cell">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="pl-loading"></div>
+                                                </td>
+                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -233,16 +348,16 @@
                                                         <!-- User Address -->
                                                         <div class="block block-rounded block-bordered">
                                                             <div class="block-header border-bottom">
-                                                                <h3 class="block-title">ORDER DETAILS INVOICE : <span invoice_no></span></h3>
+                                                                <h3 class="block-title">INVOICE : <span invoice_no></span></h3>
                                                             </div>
                                                             <div class="block-content">
-                                                                <div class="fs-4 mb-1" name>Name</div>
+                                                                <div class="fs-4 mb-1">Name: <span name></span></div>
                                                                 <div class="fs-sm">Email: <span email></span></div>
                                                                 <div class="fs-sm">Payment Method: <span payment_method></span></div>
                                                                 <div class="fs-sm">Transaction_id: <span transaction_id></span></div>
                                                                 <div class="fs-sm">Invoice id: <span invoice_no></span></div>
                                                                 <div class="fs-sm">Amount: <span amount></span></div>
-                                                                <div class="fs-sm">Status: <span class="badge bg-success" status></span></div>
+                                                                <div class="fs-sm mb-3">Status: <span class="badge bg-success" status></span></div>
                                                             </div>
                                                         </div>
                                                         <!-- END User Address -->
@@ -256,126 +371,109 @@
                                         <!-- Shopping Cart -->
                                         <div class="block block-rounded">
                                             <div class="block-header block-header-default">
-                                                <h3 class="block-title">Shopping Cart (4)</h3>
+                                                <h3 class="block-title">Product Order</h3>
                                             </div>
-                                            <div class="block-content">
+                                           
                                                 <div class="table-responsive">
-                                                    <table class="table table-borderless table-striped table-vcenter">
+                                                    <table id="item-table" class="table table-borderless table-striped table-vcenter">
                                                         <thead>
                                                         <tr>
-                                                            <th class="text-center" style="width: 100px;">ID</th>
-                                                            <th class="d-none d-md-table-cell">Product</th>
-                                                            <th class="d-none d-sm-table-cell text-center">Added</th>
-                                                            <th>Status</th>
-                                                            <th class="d-none d-sm-table-cell text-end">Value</th>
-                                                            <th class="text-center">Action</th>
+                                                            <th>Product name</th>
+                                                            <th>pro_code</th>
+                                                            <th>order qty</th>
+                                                            <th>qty instock</th>
+                                                            <th>price</th>
+                                                            <th>total_price</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
                                                         <tr>
                                                             <td class="text-center fs-sm">
-                                                                <a class="fw-semibold" href="javascript:void(0)">
-                                                                    <strong>PID.0154</strong>
-                                                                </a>
+                                                                <div class="pl-loading"></div>
                                                             </td>
-                                                            <td class="d-none d-md-table-cell fs-sm">
-                                                                <a href="javascript:void(0)">Product #4</a>
+                                                            <td class="fw-semibold fs-sm">
+                                                                <div class="pl-loading"></div>
                                                             </td>
-                                                            <td class="d-none d-sm-table-cell text-center fs-sm">27/04/2019</td>
-                                                            <td>
-                                                                <span class="badge bg-danger">Out of Stock</span>
+                                                            <td class="d-sm-table-cell fs-sm">
+                                                                <div class="pl-loading"></div>
                                                             </td>
-                                                            <td class="text-end d-none d-sm-table-cell fs-sm">
-                                                                <strong>$80,00</strong>
+                                                            <td class="d-sm-table-cell">
+                                                                <div class="pl-loading"></div>
                                                             </td>
-                                                            <td class="text-center fs-sm">
-                                                                <a class="btn btn-sm btn-alt-secondary" href="javascript:void(0)" data-bs-toggle="tooltip" title="View">
-                                                                    <i class="fa fa-fw fa-eye"></i>
-                                                                </a>
-                                                                <a class="btn btn-sm btn-alt-danger" href="javascript:void(0)" data-bs-toggle="tooltip" title="Delete">
-                                                                    <i class="fa fa-fw fa-times text-danger"></i>
-                                                                </a>
+                                                            <td class="text-center">
+                                                                <div class="pl-loading"></div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="pl-loading"></div>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="text-center fs-sm">
-                                                                <a class="fw-semibold" href="javascript:void(0)">
-                                                                    <strong>PID.0153</strong>
-                                                                </a>
+                                                                <div class="pl-loading"></div>
                                                             </td>
-                                                            <td class="d-none d-md-table-cell fs-sm">
-                                                                <a href="javascript:void(0)">Product #3</a>
+                                                            <td class="fw-semibold fs-sm">
+                                                                <div class="pl-loading"></div>
                                                             </td>
-                                                            <td class="d-none d-sm-table-cell text-center fs-sm">21/01/2019</td>
-                                                            <td>
-                                                                <span class="badge bg-danger">Out of Stock</span>
+                                                            <td class="d-sm-table-cell fs-sm">
+                                                                <div class="pl-loading"></div>
                                                             </td>
-                                                            <td class="text-end d-none d-sm-table-cell fs-sm">
-                                                                <strong>$21,00</strong>
+                                                            <td class="d-sm-table-cell">
+                                                                <div class="pl-loading"></div>
                                                             </td>
-                                                            <td class="text-center fs-sm">
-                                                                <a class="btn btn-sm btn-alt-secondary" href="javascript:void(0)" data-bs-toggle="tooltip" title="View">
-                                                                    <i class="fa fa-fw fa-eye"></i>
-                                                                </a>
-                                                                <a class="btn btn-sm btn-alt-danger" href="javascript:void(0)" data-bs-toggle="tooltip" title="Delete">
-                                                                    <i class="fa fa-fw fa-times text-danger"></i>
-                                                                </a>
+                                                            <td class="text-center">
+                                                                <div class="pl-loading"></div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="pl-loading"></div>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="text-center fs-sm">
-                                                                <a class="fw-semibold" href="javascript:void(0)">
-                                                                    <strong>PID.0152</strong>
-                                                                </a>
+                                                                <div class="pl-loading"></div>
                                                             </td>
-                                                            <td class="d-none d-md-table-cell fs-sm">
-                                                                <a href="javascript:void(0)">Product #2</a>
+                                                            <td class="fw-semibold fs-sm">
+                                                                <div class="pl-loading"></div>
                                                             </td>
-                                                            <td class="d-none d-sm-table-cell text-center fs-sm">18/05/2019</td>
-                                                            <td>
-                                                                <span class="badge bg-success">Available</span>
+                                                            <td class="d-sm-table-cell fs-sm">
+                                                                <div class="pl-loading"></div>
                                                             </td>
-                                                            <td class="text-end d-none d-sm-table-cell fs-sm">
-                                                                <strong>$37,00</strong>
+                                                            <td class="d-sm-table-cell">
+                                                                <div class="pl-loading"></div>
                                                             </td>
-                                                            <td class="text-center fs-sm">
-                                                                <a class="btn btn-sm btn-alt-secondary" href="javascript:void(0)" data-bs-toggle="tooltip" title="View">
-                                                                    <i class="fa fa-fw fa-eye"></i>
-                                                                </a>
-                                                                <a class="btn btn-sm btn-alt-danger" href="javascript:void(0)" data-bs-toggle="tooltip" title="Delete">
-                                                                    <i class="fa fa-fw fa-times text-danger"></i>
-                                                                </a>
+                                                            <td class="text-center">
+                                                                <div class="pl-loading"></div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="pl-loading"></div>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="text-center fs-sm">
-                                                                <a class="fw-semibold" href="javascript:void(0)">
-                                                                    <strong>PID.0151</strong>
-                                                                </a>
+                                                                <div class="pl-loading"></div>
                                                             </td>
-                                                            <td class="d-none d-md-table-cell fs-sm">
-                                                                <a href="javascript:void(0)">Product #1</a>
+                                                            <td class="fw-semibold fs-sm">
+                                                                <div class="pl-loading"></div>
                                                             </td>
-                                                            <td class="d-none d-sm-table-cell text-center fs-sm">06/08/2019</td>
-                                                            <td>
-                                                                <span class="badge bg-success">Available</span>
+                                                            <td class="d-sm-table-cell fs-sm">
+                                                                <div class="pl-loading"></div>
                                                             </td>
-                                                            <td class="text-end d-none d-sm-table-cell fs-sm">
-                                                                <strong>$94,00</strong>
+                                                            <td class="d-sm-table-cell">
+                                                                <div class="pl-loading"></div>
                                                             </td>
-                                                            <td class="text-center fs-sm">
-                                                                <a class="btn btn-sm btn-alt-secondary" href="javascript:void(0)" data-bs-toggle="tooltip" title="View">
-                                                                    <i class="fa fa-fw fa-eye"></i>
-                                                                </a>
-                                                                <a class="btn btn-sm btn-alt-danger" href="javascript:void(0)" data-bs-toggle="tooltip" title="Delete">
-                                                                    <i class="fa fa-fw fa-times text-danger"></i>
-                                                                </a>
+                                                            <td class="text-center">
+                                                                <div class="pl-loading"></div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="pl-loading"></div>
                                                             </td>
                                                         </tr>
+
+                                                      
+
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                            </div>
+                                           
                                         </div>
                                         <!-- END Shopping Cart -->
                                     </div>
@@ -384,7 +482,7 @@
                             </div>
                             <div class="block-content block-content-full text-end bg-body">
                                 <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Confirm</button>
+                                <button id="buttonConfirm" type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Confirm</button>
                             </div>
                         </div>
                     </div>
@@ -400,12 +498,10 @@
     <!-- jQuery (required for DataTables plugin) -->
     <script src="{{asset('admin/assets/js/lib/jquery.min.js')}}"></script>
     <!-- Page JS Plugins -->
-
     <script src="{{asset('admin/assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/plugins/datatables-buttons/dataTables.buttons.min.js')}}"></script>
     <!-- Page JS Code -->
-
     <script src="{{ asset('admin/assets/js/pages/be_tables_datatables.min.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -462,36 +558,69 @@
                 ]
             });
         });
-
-        function viewFunc(id) {
-        $.ajax({
-
-            type: "POST",
-            url: "{{ url('order/detail') }}",
-            data: { id: id },
+    function viewFunc(id) {
+    $.ajax({
+        type: "POST",
+        url: "{{ route('order.items') }}",
+            data: {
+                id: id
+            },
             dataType: 'json',
-            success: function (res) {
+            success: function (resOrderItems) {
+                $.ajax({
+                            type: "POST",
+                            url: "{{ url('order/detail') }}",
+                            data: {
+                                id: id
+                            },
+                            dataType: 'json',
+                            success: function (resOrderDetail) {
+                                    $('#modal_order').modal('show');
+                                    $('#id').val(resOrderDetail.order_id);
+                                    // Clear any existing rows in the table body
+                                    $('#item-table tbody').html('');
+                                    // Initialize a variable to track the condition
+                                    var shouldDisableConfirmButton = false;
+                                    // Iterate through the order items and add rows to the table
+                                    $.each(resOrderItems, function (index, item) {
+                                        var row = '<tr><td>' + item.name + '</td><td>' + item.pro_code + '</td><td>' + item.orderqty + '</td><td>' + item.qtyinstock + '</td><td>' + item.price + '</td><td>' + item.total_price + '$' + '</td></tr>';
+                                        // Check the condition for each row
+                                        if (item.qtyinstock < item.orderqty) {
+                                            shouldDisableConfirmButton = true;
+                                        }
+                                        row += '</td></tr>';
+                                        $('#item-table tbody').append(row);
+                                    });
+                                    // Update the "Confirm" button's disabled attribute and text based on the condition
+                                    if (shouldDisableConfirmButton) {
+                                        $('#buttonConfirm').prop('disabled', true);
+                                        $('#buttonConfirm').text('Low Qty'); // Change the button text to "Low Qty"
+                                    } else {
+                                        $('#buttonConfirm').prop('disabled', false);
+                                        $('#buttonConfirm').text('Confirm'); // Change the button text back to "Confirm"
+                                    }
+                    // Populate the user data into the modal table
+                    $('[ship_name]').text(resOrderDetail.ship_name);
+                    $('[ship_phone]').text(resOrderDetail.ship_phone);
+                    $('[ship_email]').text(resOrderDetail.ship_email);
+                    $('[ship_city]').text(resOrderDetail.ship_city);
+                    $('[ship_district]').text(resOrderDetail.ship_district);
+                    $('[ship_post]').text(resOrderDetail.ship_post);
+                    $('[order_date]').text(resOrderDetail.order_date);
 
-                $('#modal_order').modal('show');
-                $('#id').val(res.id);
-                $('[ship_name]').text(res.ship_name);
-                $('[ship_phone]').text(res.ship_phone);
-                $('[ship_email]').text(res.ship_email);
-                $('[ship_city]').text(res.ship_city);
-                $('[ship_district]').text(res.ship_district);
-                $('[ship_post]').text(res.ship_post);
-                $('[order_date]').text(res.order_date);
+                    $('[name]').text(resOrderDetail.name);
+                    $('[email]').text(resOrderDetail.email);
+                    $('[payment_method]').text(resOrderDetail.payment_method);
+                    $('[transaction_id]').text(resOrderDetail.transaction_id);
+                    $('[invoice_no]').text(resOrderDetail.invoice_no);
+                    $('[amount]').text(resOrderDetail.amount);
+                    $('[status]').text(resOrderDetail.status);
+                }
+            });
+        }
+    });
+}
 
-                $('[name]').text(res.name);
-                $('[email]').text(res.email);
-                $('[payment_method]').text(res.payment_method);
-                $('[transaction_id]').text(res.transaction_id);
-                $('[invoice_no]').text(res.invoice_no);
-                $('[amount]').text(res.amount);
-                $('[status]').text(res.status);
-            }
-        });
-    }
 
     </script>
 @endsection
