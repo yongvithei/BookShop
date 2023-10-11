@@ -183,6 +183,14 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::get('/order/list', 'index')->name('all.order')->middleware('can:order.menu');
         Route::post('order/detail', 'viewDetail');
         Route::post('/get-order-item', 'getOrderItem')->name('order.items');
+        Route::post('order/cancelled', 'cancelled');
+        Route::post('order/edit', 'editOrder');
+        Route::get('confirm/list', 'indexconfirm')->name('confirm.order');
+        Route::get('pending/list', 'indexpending')->name('pending.order');
+        Route::get('delivery/list', 'indexdelivery')->name('delivery.order');
+        Route::get('delivered/list', 'indexdelivered')->name('delivered.order');
+        Route::get('cancelled/list', 'indexcancelled')->name('cancelled.order');
+        Route::post('order/update', 'update')->name('order.update');
 
     });
 
@@ -254,7 +262,7 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
             Route::post('/user/account/store', 'updateProfile')->name('user.profile.store');
             Route::get('/user/orderlist' , 'UserOrderPage')->name('user.order.page');
             Route::get('/user/order_details/{order_id}' , 'UserOrderDetails');
-            Route::get('/user/invoice_download/{order_id}' , 'UserOrderInvoice');  
+            Route::get('/user/invoice_download/{order_id}' , 'UserOrderInvoice');
         });
         Route::view('/user/account/password', 'frontend/dashboard/password');
     });
@@ -273,7 +281,7 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     // Route::view('/user/orderlist', 'frontend/dashboard/order');
     // Route::view('/user/address', 'frontend/dashboard/address');
 //    Route::view('/user/account/details', 'frontend/dashboard/account_details');
-    
+
     Route::view('/contact', 'frontend/about/contact');
     Route::view('/about', 'frontend/about/about');
 require __DIR__.'/auth.php';
