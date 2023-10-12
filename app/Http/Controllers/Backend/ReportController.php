@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\RedirectResponse;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\OrderView;
 class ReportController extends Controller
 {
     public function SearchByDate(Request $request)
@@ -37,6 +38,17 @@ class ReportController extends Controller
         }
         return view('backend.report.by_year', compact('formatYear'));
     }
+    public function SearchByMonth(Request $request){
+
+        $year = null;
+        $month = null;
+        if ($request->has('year') && !empty($request->year)) {
+            $year = $request->year;
+            $month = $request->month;
+        } else {
+        }
+        return view('backend.report.by_month', compact('year','month'));
+    }
     public function GetSearchByDate(Request $request)
     {
         if (request()->ajax()) {
@@ -47,17 +59,16 @@ class ReportController extends Controller
                     ->make(true);
         }
     }
-    public function GetSearchByYear(Request $request)
+     public function GetSearchByName()
     {
         if (request()->ajax()) {
-                return datatables()->of(Order::select(['id', 'invoice_no', 'order_date', 'amount', 'payment_method', 'status']))
+                return datatables()->of(OrderView::select(['id', 'name', 'order_date', 'amount', 'payment_method', 'status']))
                     ->addColumn('action', 'backend.report.order_action')
                     ->rawColumns(['action'])
                     ->addIndexColumn()
                     ->make(true);
-            }
+        }
     }
-
     public function OrderInvoice($order_id){
 
         $order = Order::with('city','district','user')->where('id',$order_id)->first();

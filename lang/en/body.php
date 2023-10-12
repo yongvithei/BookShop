@@ -43,6 +43,7 @@ return [
     'setting' => 'Setting',
     'logout' => 'Logout',
     'search..' => 'Search..',
+    'preview' => 'Preview',
 
 
 

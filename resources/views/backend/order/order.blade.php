@@ -1090,5 +1090,9 @@
 
     // Call the function to add options to the select element
     addOptionsToSelect();
+    function downloadInvoice(orderId) {
+        // Use JavaScript to navigate to the desired URL
+        window.location.href = `/admin/invoice_download/${orderId}`;
+    }
 </script>
 @endsection

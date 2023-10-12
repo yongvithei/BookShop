@@ -61,6 +61,9 @@
                         <a class="dropdown-item d-flex align-items-center justify-content-between" href="/backup/info">
                             <span class="fs-sm fw-medium">{{__('body.setting')}}</span>
                         </a>
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="/">
+                            <span class="fs-sm fw-medium">{{__('body.preview')}}</span>
+                        </a>
                     </div>
                     <div role="separator" class="dropdown-divider m-0"></div>
                     <div class="p-2">

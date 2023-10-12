@@ -97,20 +97,17 @@
                         </div>
 
                         <div class="block-content">
+                          
                             <label class="form-label">Select User</label>
                             <select name="year_name" class="form-select mb-3" aria-label="Default select example">
-                                <option selected="">Open this Select User</option>
-                                <option value="user">user</option>
-                                <option value="user2">user2</option>
-                                <option value="user4">user4</option>
-                                <option value="user6">user6</option>
-                                <option value="user7">user7</option>
+                                <option selected="">Show All Users</option>
                             </select>
                             <div class="mb-3">
-                                <button type="submit" class="btn btn-alt-primary">
+                                <a href="/search/by/name" class="btn btn-alt-primary">
                                     Search
-                                </button>
+                                </a>
                             </div>
+                           
                         </div>
                     </div>
                 </div>
@@ -169,6 +166,8 @@
                             </div>
                         </div>
                         <div class="block-content">
+                              <form method="post" action="{{ route('search-by-month')}}">
+		                    @csrf
                             <label class="form-label">Select Month:</label>
                             <select name="month" class="form-select mb-3" aria-label="Default select example">
                                 <option selected="">Open this select Month</option>
@@ -185,27 +184,22 @@
                                 <option value="November">November</option>
                                 <option value="December">December</option>
                             </select>
-                        </div>
-                        
-                        <div class="block-content">
-                            
-                                <label class="form-label">Select Year:</label>
+                            <label class="form-label">Select Year:</label>
                                 <select name="year" class="form-select mb-3" aria-label="Default select example">
                                     <option selected="">Open this select Year</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
                                     <option value="2023">2023</option>
                                     <option value="2024">2024</option>
                                     <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
                                 </select>
                                 <div class="mb-3">
                                     <button type="submit" class="btn btn-alt-primary">
                                         Search
                                     </button>
                                 </div>
-                            
+                            </form>
                         </div>
-                        
+                       
                     </div>
                 </div>
 

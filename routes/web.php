@@ -194,21 +194,26 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::post('order/update', 'update')->name('order.update');
 
     });
-     // Report All Route 
+     // Report All Route
     Route::view('/report/order', 'backend/report.report_order');
+    Route::view('/search/by/name', 'backend/report.by_name');
     Route::controller(ReportController::class)->group(function(){
         Route::get('/report/view' , 'ReportView')->name('report.view');
         Route::post('/search/by/date' , 'SearchByDate')->name('search-by-date');
         Route::post('/search/by/year' , 'SearchByYear')->name('search-by-year');
+        Route::post('/search/by/month' , 'SearchByMonth')->name('search-by-month');
         Route::get('search/by/date' , 'GetSearchByDate')->name('by-date');
         Route::get('/admin/invoice_download/{order_id}' , 'OrderInvoice');
+        Route::get('search/name' , 'GetSearchByName')->name('by-name');
+
+
     });
 
     // Example Routes
 //    Route::view('/order/list', 'backend/order.order');
     // Route::view('/return/pending', 'backend/return.pending');
     // Route::view('/return/approve', 'backend/return.approve');
-    
+
     Route::view('/review/all', 'backend/review.review');
     // Route::view('/role/add_permission&role', 'backend/role.addrole&perm');
     // Route::view('/assign/role', 'backend/role.assign');
