@@ -55,8 +55,10 @@
                             </div>
                         </div>
                         <div class="block-content">
+                            <form method="post" action="{{ route('search-by-year')}}">
+		                    @csrf
                             <label class="form-label">Select Year:</label>
-                            <select name="year_name" class="form-select mb-3" aria-label="Default select example">
+                            <select name="year_number" class="form-select mb-3" aria-label="Default select example">
                                 <option selected="">Open this select Year</option>
                                 <option value="2021">2021</option>
                                 <option value="2022">2022</option>
@@ -69,6 +71,7 @@
                                     Search
                                 </button>
                             </div>
+                            </form>
                         </div>
 
                     </div>
@@ -130,17 +133,20 @@
                             </div>
                         </div>
                         <div class="block-content">
+                            <form method="post" action="{{ route('search-by-date')}}">
+		                    @csrf
                             <div class="row mb-4">
-                                <div class="col-xl-12">
-                                    <label class="form-label" for="example-flatpickr-friendly">Search By Date</label>
-                                    <input type="text" class="js-flatpickr form-control" id="example-flatpickr-friendly" name="example-flatpickr-friendly" placeholder="F j, Y" data-alt-input="true" data-date-format="Y-m-d" data-alt-format="F j, Y">
-                                </div>
+                                    <div class="col-xl-12">
+                                        <label class="form-label" for="date">Search By Date</label>
+                                        <input type="text" class="js-flatpickr form-control" id="date" name="date" placeholder="F j, Y" data-alt-input="true" data-date-format="Y-m-d" data-alt-format="F j, Y">
+                                    </div>
                             </div>
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-alt-primary">
                                     Search
                                 </button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -180,22 +186,26 @@
                                 <option value="December">December</option>
                             </select>
                         </div>
+                        
                         <div class="block-content">
-                            <label class="form-label">Select Year:</label>
-                            <select name="year_name" class="form-select mb-3" aria-label="Default select example">
-                                <option selected="">Open this select Year</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
-                                <option value="2024">2024</option>
-                                <option value="2025">2025</option>
-                            </select>
-                            <div class="mb-3">
-                                <button type="submit" class="btn btn-alt-primary">
-                                    Search
-                                </button>
-                            </div>
+                            
+                                <label class="form-label">Select Year:</label>
+                                <select name="year" class="form-select mb-3" aria-label="Default select example">
+                                    <option selected="">Open this select Year</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                </select>
+                                <div class="mb-3">
+                                    <button type="submit" class="btn btn-alt-primary">
+                                        Search
+                                    </button>
+                                </div>
+                            
                         </div>
+                        
                     </div>
                 </div>
 

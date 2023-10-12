@@ -86,3 +86,4 @@ php artisan make:migration create_order_view
 php artisan make:model OrderView
 php artisan make:migration create_order_item_view
 php artisan make:model OrderItemView
+php artisan make:controller Backend/ReportController

@@ -27,6 +27,7 @@ use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\UserProfileController;
+use App\Http\Controllers\Backend\ReportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -193,15 +194,24 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::post('order/update', 'update')->name('order.update');
 
     });
+     // Report All Route 
+    Route::view('/report/order', 'backend/report.report_order');
+    Route::controller(ReportController::class)->group(function(){
+        Route::get('/report/view' , 'ReportView')->name('report.view');
+        Route::post('/search/by/date' , 'SearchByDate')->name('search-by-date');
+        Route::post('/search/by/year' , 'SearchByYear')->name('search-by-year');
+        Route::get('search/by/date' , 'GetSearchByDate')->name('by-date');
+        Route::get('/admin/invoice_download/{order_id}' , 'OrderInvoice');
+    });
 
     // Example Routes
 //    Route::view('/order/list', 'backend/order.order');
-    Route::view('/return/pending', 'backend/return.pending');
-    Route::view('/return/approve', 'backend/return.approve');
-    Route::view('/report/order', 'backend/report.report_order');
+    // Route::view('/return/pending', 'backend/return.pending');
+    // Route::view('/return/approve', 'backend/return.approve');
+    
     Route::view('/review/all', 'backend/review.review');
-    Route::view('/role/add_permission&role', 'backend/role.addrole&perm');
-    Route::view('/assign/role', 'backend/role.assign');
+    // Route::view('/role/add_permission&role', 'backend/role.addrole&perm');
+    // Route::view('/assign/role', 'backend/role.assign');
     // Frontend Routes
 
 });
