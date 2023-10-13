@@ -10,6 +10,9 @@ use App\Models\ProductImage;
 use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use App\Models\User;
 
 class IndexController extends Controller
 {
@@ -34,7 +37,18 @@ class IndexController extends Controller
                 ->limit(4)
                 ->get();
         });
-
+        if (Auth::check()) {
+        $user = Auth::user();
+        // Attempt to retrieve the last_seen value from cache
+        $lastSeen = Cache::get('user_' . $user->id . '_last_seen');
+        // If the value is not found in cache or has expired, update it in the database and re-cache it
+            if ($lastSeen === null) {
+                $lastSeen = Carbon::now()->addSeconds(180);
+                User::where('id', $user->id)->update(['last_seen' => $lastSeen]);
+                // Cache the updated value with a short expiry time (e.g., 180 seconds)
+                Cache::put('user_' . $user->id . '_last_seen', $lastSeen, 180);
+            }
+        }
         return view('frontend.main', compact('news','featureds','partners'));
     }
 

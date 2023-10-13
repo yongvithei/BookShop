@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('provider_id')->nullable();
             $table->string('provider_token')->nullable();
             $table->enum('role',['admin','user'])->default('user');
+            $table->timestamp('last_seen')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

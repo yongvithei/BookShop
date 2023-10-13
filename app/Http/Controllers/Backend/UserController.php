@@ -11,7 +11,7 @@ class UserController extends Controller
     {
         if (request()->ajax()) {
             return datatables()->of(User::where('role', 'user')
-                ->select(['id', 'name', 'email', 'email_verified_at']))
+                ->select(['id', 'name', 'email', 'last_seen']))
                 ->addColumn('action', 'backend.user.action')
                 ->rawColumns(['action'])
                 ->addIndexColumn()
@@ -24,5 +24,9 @@ class UserController extends Controller
         $id = array('id' => $request->id);
         $item  = User::where($id)->first();
         return Response()->json($item);
+    }
+    public function checkUserOnline($userId) {
+        $isOnline = Cache::has('user-is-online' . $userId);
+        return response()->json(['isOnline' => $isOnline]);
     }
 }

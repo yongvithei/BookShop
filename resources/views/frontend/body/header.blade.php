@@ -3,7 +3,11 @@
 			<div class="top-menu border-bottom">
 				<div class="container">
 					<nav class="navbar navbar-expand">
-						<div class="shiping-title text-uppercase font-13 d-none d-sm-flex">{{__('main.welcome')}} {{ optional(Auth::user())->name ?? 'To Our Shop' }}</div>
+						<div class="shiping-title text-uppercase font-13 d-none d-sm-flex">{{ __('main.welcome') }} {{ optional(Auth::user())->name ?? 'To Our Shop' }}
+							@if (Auth::user() && Auth::user()->role === 'admin')
+								<a href="/admin/dashboard">* Go back</a>
+							@endif
+						</div>
 						<ul class="navbar-nav ms-auto d-none d-lg-flex">
 							<li class="nav-item"> <a class="nav-link" href="">{{__('main.track_order')}}</a>
 							</li>

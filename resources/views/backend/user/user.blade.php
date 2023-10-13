@@ -53,7 +53,7 @@
                             <th class="text-center" style="width: 80px;">ID</th>
                             <th>Name</th>
                             <th class="d-none d-sm-table-cell" style="width: 30%;">Email</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Verified</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">Last Seen</th>
                             <th style="width: 15%;">Action</th>
                         </tr>
                         </thead>
@@ -274,6 +274,7 @@
     <script src="{{asset('admin/assets/js/plugins/datatables-buttons/dataTables.buttons.min.js')}}"></script>
     <!-- Page JS Code -->
     <script src="{{ asset('admin/assets/js/pages/be_tables_datatables.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $.ajaxSetup({
@@ -288,39 +289,41 @@
                 serverSide: true,
                 processing: false,
                 ajax: '{{ route('all.user') }}',
-                columns: [
-                    { data: 'id', name: 'id' },
-                    { data: 'name', name: 'name' },
-                    { data: 'email', name: 'email' },
-                    {
-                        data: 'email_verified_at',
-                        name: 'email_verified_at',
-                        render: function (data) {
-                            if (data === null) {
-                                return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Unverified</span>';
-                            } else {
-                                return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Verified</span>';
+                 columns: [
+        { data: 'id', name: 'id' },
+        { data: 'name', name: 'name' },
+        { data: 'email', name: 'email' },
+        {
+    data: 'last_seen',
+    name: 'last_seen',
+    render: function (data, type, row) {
+        var lastSeenTime = moment(data); // Assuming 'data' is a valid date
 
-                            }
-                        }
-                    },
-                    { data: 'action', name: 'action', orderable: false },
+        // Calculate the difference in minutes
+        var minutesSinceLastSeen = moment().diff(lastSeenTime, 'minutes');
+
+        if (minutesSinceLastSeen < 1) {
+            return '<span class="badge badge-pill bg-success">Active Now</span>';
+        } else if (data !== null) {
+            var diffForHumans = lastSeenTime.fromNow(); // Display time difference
+            return '<span class="badge badge-pill bg-danger">' + diffForHumans + '</span>';
+        }
+
+        // Handle the case where neither is true (optional)
+        return 'N/A';
+    }
+},
+
+        { data: 'action', name: 'action', orderable: false },
+  
                 ],
                 order: [[0, 'desc']],
                 columnDefs: [
-                    {
-                        targets: 0,
-                        className: 'text-center fs-sm'
-                    },
-                    {
-                        targets: 3,
-                        className: 'text-center'
-                    },
-                    {
-                        targets: 4,
-                        className: 'text-center'
-                    }
-                ]
+            {
+                targets: [0, 3, 4],
+                className: 'text-center',
+            },
+        ]
             });
         });
     function viewFunc(id) {
