@@ -93,19 +93,53 @@
                                         </label>
 
                                         <div class="product-rating d-flex align-items-center mt-1">
-                                            <div class="rates cursor-pointer font-13"> <i
-                                                    class="bx bxs-star text-warning"></i>
+                                             @if($avarage == 0)
+
+       @elseif($avarage == 1 || $avarage < 2)
+                                            <div class="rates cursor-pointer font-13">
+                                                <i class="bx bxs-star text-warning"></i>
+                                                <i class="bx bxs-star text-light-4"></i>
+                                                <i class="bx bxs-star text-light-4"></i>
+                                                <i class="bx bxs-star text-light-4"></i>
+                                                <i class="bx bxs-star text-light-4"></i>
+                                            </div>
+                                             @elseif($avarage == 2 || $avarage < 3)
+                                            <div class="rates cursor-pointer font-13">
+                                                <i class="bx bxs-star text-warning"></i>
+                                                <i class="bx bxs-star text-warning"></i>
+                                                <i class="bx bxs-star text-light-4"></i>
+                                                <i class="bx bxs-star text-light-4"></i>
+                                                <i class="bx bxs-star text-light-4"></i>
+                                            </div>
+                                            @elseif($avarage == 3 || $avarage < 4)
+                                           <div class="rates cursor-pointer font-13">
+                                                <i class="bx bxs-star text-warning"></i>
+                                                <i class="bx bxs-star text-warning"></i>
+                                                <i class="bx bxs-star text-warning"></i>
+                                                <i class="bx bxs-star text-light-4"></i>
+                                                <i class="bx bxs-star text-light-4"></i>
+                                            </div>
+                                             @elseif($avarage == 4 || $avarage < 5)
+                                            <div class="rates cursor-pointer font-13">
+                                                <i class="bx bxs-star text-warning"></i>
                                                 <i class="bx bxs-star text-warning"></i>
                                                 <i class="bx bxs-star text-warning"></i>
                                                 <i class="bx bxs-star text-warning"></i>
                                                 <i class="bx bxs-star text-light-4"></i>
                                             </div>
-                                            <div class="ms-1">
-                                                <p class="mb-0">(24 Ratings)</p>
+                                            @elseif($avarage == 5 || $avarage < 5)
+                                             <div class="rates cursor-pointer font-13">
+                                                <i class="bx bxs-star text-warning"></i>
+                                                <i class="bx bxs-star text-warning"></i>
+                                                <i class="bx bxs-star text-warning"></i>
+                                                <i class="bx bxs-star text-warning"></i>
+                                                <i class="bx bxs-star text-warning"></i>
                                             </div>
-
+                                            @endif
+                                            <div class="ms-1">
+                                                <p class="mb-0">({{ count($reviewcount)}} Ratings)</p>
+                                            </div>
                                         </div>
-
                                         <dl class="row mt-1">
                                             <dt class="col-sm-2">Product id</dt>
                                             <dd class="col-sm-9">{{$product->id}}</dd>
@@ -125,7 +159,7 @@
                                     <div class="d-flex gap-2 mt-3">
                                          <input type="hidden" id="dproduct_id" value="{{ $product->id }}">
                                         <button type="submit" onclick="addToCartDetails()" class="btn btn-white btn-ecomm"> <i
-                                                class="bx bxs-cart-add"></i>Add to Cart</button> 
+                                                class="bx bxs-cart-add"></i>Add to Cart</button>
                                         <a href="javascript:;"
                                             class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to
                                             Wishlist</a>
@@ -161,7 +195,7 @@
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" data-bs-toggle="tab" href="#reviews" role="tab" aria-selected="false">
                                 <div class="d-flex align-items-center">
-                                    <div class="tab-title text-uppercase fw-500">(3) Reviews</div>
+                                    <div class="tab-title text-uppercase fw-500">({{ count($reviewcount) }}) Reviews</div>
                                 </div>
                             </a>
                         </li>
@@ -173,45 +207,96 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="reviews" role="tabpanel">
+                            @php
+                            $reviews = App\Models\Review::where('product_id',$product->id)->latest()->limit(5)->get();
+                            @endphp
                             <div class="row">
                                 <div class="col col-lg-8">
                                     <div class="product-review">
-                                        <h5 class="mb-4">2 Reviews For The Product</h5>
+                                        <h5 class="mt-9">This product review</h5>
                                         <div class="review-list">
+                                            @foreach($reviews as $item)
+                                            @if($item->status == 0)
+                                            @else
                                             <!-- loop -->
                                             <div class="d-flex align-items-start">
                                                 <div class="review-user">
-                                                    <img src="{{asset('/frontend/assets/images/avatars/avatar-1.png')}}"
+                                                    <img src="{{ (!empty($item->user->photo)) ? url('upload/user_images/'.$item->user->photo):url('uploads/no_image.jpg') }}"
                                                         width="65" height="65" class="rounded-circle" alt="" />
                                                 </div>
                                                 <div class="review-content ms-3">
-                                                    <div class="rates cursor-pointer fs-6"> <i
-                                                            class="bx bxs-star text-white"></i>
+                                                    @if($item->rating == NULL)
+                                                    @elseif($item->rating == 1)
+                                                    <div class="rates cursor-pointer fs-6">
+                                                        <i class="bx bxs-star text-light-4"></i>
                                                         <i class="bx bxs-star text-white"></i>
                                                         <i class="bx bxs-star text-white"></i>
                                                         <i class="bx bxs-star text-white"></i>
+                                                        <i class="bx bxs-star text-white"></i>
+                                                    </div>
+                                                    @elseif($item->rating == 2)
+                                                    <div class="rates cursor-pointer fs-6">
+                                                        <i class="bx bxs-star text-light-4"></i>
+                                                        <i class="bx bxs-star text-light-4"></i>
+                                                        <i class="bx bxs-star text-white"></i>
+                                                        <i class="bx bxs-star text-white"></i>
+                                                        <i class="bx bxs-star text-white"></i>
+                                                    </div>
+                                                    @elseif($item->rating == 3)
+                                                    <div class="rates cursor-pointer fs-6">
+                                                        <i class="bx bxs-star text-light-4"></i>
+                                                        <i class="bx bxs-star text-light-4"></i>
+                                                        <i class="bx bxs-star text-light-4"></i>
+                                                        <i class="bx bxs-star text-white"></i>
+                                                        <i class="bx bxs-star text-white"></i>
+                                                    </div>
+                                                    @elseif($item->rating == 4)
+                                                    <div class="rates cursor-pointer fs-6">
+                                                        <i class="bx bxs-star text-light-4"></i>
+                                                        <i class="bx bxs-star text-light-4"></i>
+                                                        <i class="bx bxs-star text-light-4"></i>
+                                                        <i class="bx bxs-star text-light-4"></i>
+                                                        <i class="bx bxs-star text-white"></i>
+                                                    </div>
+                                                    @elseif($item->rating == 5)
+                                                    <div class="rates cursor-pointer fs-6">
+                                                        <i class="bx bxs-star text-light-4"></i>
+                                                        <i class="bx bxs-star text-light-4"></i>
+                                                        <i class="bx bxs-star text-light-4"></i>
+                                                        <i class="bx bxs-star text-light-4"></i>
                                                         <i class="bx bxs-star text-light-4"></i>
                                                     </div>
+                                                    @endif
                                                     <div class="d-flex align-items-center mb-2">
-                                                        <h6 class="mb-0">name</h6>
-                                                        <p class="mb-0 ms-auto">Date</p>
+                                                        <h6 class="mx-1">{{ $item->user->name }}</h6>
+                                                        <p class="mb-0 ms-auto">
+                                                            ({{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }})
+                                                        </p>
                                                     </div>
-                                                    <p>Comment</p>
+                                                    <p>{{ $item->comment }}</p>
                                                 </div>
                                             </div>
                                             <hr />
                                             <!-- loop -->
-
+                                            @endif
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col col-lg-4">
+                                    @guest
+                                    <p> <b>You Need To Login First To Review This Product <a href="{{ route('login')}}">Login Here </a> </b></p>
+                                    @else
                                     <div class="add-review bg-gray-200">
                                         <div class="form-body p-3">
                                             <h4 class="mb-4">Write a Review</h4>
+                                             <form action="{{ route('store.review') }}" method="post" id="commentForm">
+                                             @csrf
+                                              <input type="hidden" name="product_id" value="{{ $product->id }}">
                                             <div class="mb-3">
                                                 <label class="form-label">Rating</label>
-                                                <select class="form-select rounded-0">
+                                                <select name="quality" class="form-select rounded-0">
                                                     <option selected>Choose Rating</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
@@ -222,14 +307,16 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Comment</label>
-                                                <textarea class="form-control rounded-0" rows="3"></textarea>
+                                                <textarea name="comment" id="comment" class="form-control rounded-0" rows="3"></textarea>
                                             </div>
                                             <div class="d-grid">
-                                                <button type="button" class="btn btn-light btn-ecomm">Submit a
+                                                <button type="submit" class="btn btn-light btn-ecomm">Submit a
                                                     Review</button>
                                             </div>
+                                            </form>
                                         </div>
                                     </div>
+                                    @endguest
                                 </div>
                             </div>
                             <!--end row-->

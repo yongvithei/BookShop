@@ -27,6 +27,7 @@ use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\UserProfileController;
+use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\Backend\ReportController;
 /*
 |--------------------------------------------------------------------------
@@ -281,7 +282,9 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
         });
         Route::view('/user/account/password', 'frontend/dashboard/password');
     });
-
+    Route::controller(ReviewController::class)->group(function(){
+        Route::post('/store/review' , 'StoreReview')->name('store.review'); 
+    });
 
     Route::view('/shoplist', 'frontend/product/shop_list');
     Route::view('/invoice', 'frontend/dashboard/order_invoice');
