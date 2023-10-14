@@ -291,8 +291,12 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
             Route::get('/user/orderlist' , 'UserOrderPage')->name('user.order.page');
             Route::get('/user/order_details/{order_id}' , 'UserOrderDetails');
             Route::get('/user/invoice_download/{order_id}' , 'UserOrderInvoice');
+            Route::post('/order/tracking' , 'OrderTracking')->name('order.tracking');
         });
+        Route::view('/user/track-order', 'frontend/dashboard/track_order');
         Route::view('/user/account/password', 'frontend/dashboard/password');
+        Route::view('/complete', 'frontend/complete/complete')->name('order.complete');
+
     });
     Route::controller(ReviewController::class)->group(function(){
         Route::post('/store/review' , 'StoreReview')->name('store.review');
@@ -305,9 +309,9 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     // Route::view('/cart', 'frontend/mycart/view_mycart');
     // Route::view('/checkOut', 'frontend/checkout/checkout_view');
     // Route::view('/payment', 'frontend/payment/stripe');
-    Route::view('/complete', 'frontend/complete/complete')->name('order.complete');
-    Route::view('/order/tracking', 'frontend/tracking/tracking_order');
+   // Route::view('/order/tracking', 'frontend/tracking/tracking_order');
     Route::view('/user/dashboard', 'frontend/dashboard/dashboard');
+
     // Route::view('/user/orderlist', 'frontend/dashboard/order');
     // Route::view('/user/address', 'frontend/dashboard/address');
 //    Route::view('/user/account/details', 'frontend/dashboard/account_details');

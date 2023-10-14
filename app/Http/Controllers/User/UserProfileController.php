@@ -78,5 +78,19 @@ class UserProfileController extends Controller
         return $pdf->download('invoice.pdf');
 
     }
+    public function OrderTracking(Request $request){
+
+        $invoice = $request->code;
+
+        $track = Order::where('invoice_no',$invoice)->first();
+
+        if ($track) {
+           return view('frontend.tracking.tracking_order',compact('track'));
+        } else{
+            return redirect()->back(); 
+        }
+
+    }
+
     
 }

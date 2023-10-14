@@ -14,6 +14,11 @@
                 @lang('main.orders')
                 <i class='bx bx-cart-alt fs-5'></i>
             </a>
+             <a href="/user/track-order"
+                class="list-group-item d-flex justify-content-between align-items-center {{ request()->is('user/track-order') ? ' active' : '' }}">
+                Track Order
+                <i class='bx bx-cart-alt fs-5'></i>
+            </a>
             <a href="/user/account/details"
                 class="list-group-item d-flex justify-content-between align-items-center {{ request()->is('user/account/details') ? ' active' : '' }}">
                 @lang('main.account_details')

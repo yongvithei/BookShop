@@ -30,24 +30,24 @@
         <!--start shop cart-->
         <section class="py-4">
             <div class="container">
-                <h6 class="mb-0">Order ID: OD45345345435</h6>
+                <h6 class="mb-0">Order ID: {{ $track->invoice_no }}</h6>
                 <hr>
                 <div class="row row-cols-1 row-cols-lg-4 rounded-4 gx-3 m-0 border">
                     <div class="col p-4 text-center border-end">
-                        <h6 class="mb-1">{{ __('main.estimated_delivery_time') }}</h6>
-                        <p class="mb-0">24 Apr 2077</p>
+                        <h6 class="mb-1">{{ __('main.order_date') }}</h6>
+                        <p class="mb-0">{{ $track->order_date }}</p>
                     </div>
                     <div class="col p-4 text-center border-end">
-                        <h6 class="mb-1">{{ __('main.shipping_by') }}</h6>
-                        <p class="mb-0">BladOfOlympus | +855-9710XXXX</p>
+                        <h6 class="mb-1">{{ __('main.shipping_to') }}</h6>
+                        <p class="mb-0">{{ $track->name }}<br>Phone: {{ $track->phone }}<br> {{ $track->city->name }}/{{ $track->district->name }}</p>
                     </div>
                     <div class="col p-4 text-center border-end">
                         <h6 class="mb-1">{{ __('main.status') }}</h6>
-                        <p class="mb-0">Picked by the courier</p>
+                        <p class="mb-0">{{ $track->status }}</p>
                     </div>
                     <div class="col p-4 text-center">
                         <h6 class="mb-1">{{ __('main.tracking_number') }}</h6>
-                        <p class="mb-0">BD045903594059</p>
+                        <p class="mb-0">{{ $track->invoice_no }}</p>
                     </div>
                 </div>
 
@@ -57,17 +57,18 @@
                     <div class="card bg-transparent rounded-0 shadow-none">
                         <div class="card-body">
                             <div class="steps steps-light">
-                                <a class="step-item active" href="javascript:;">
+                                @if($track->status == 'pending')
+                                <a class="step-item" href="javascript:;">
                                     <div class="step-progress"><span class="step-count"><i
                                                 class='bx bx-check'></i></span>
                                     </div>
                                     <div class="step-label">Order confirmed</div>
                                 </a>
-                                <a class="step-item active" href="javascript:;">
+                                <a class="step-item" href="javascript:;">
                                     <div class="step-progress"><span class="step-count"><i
                                                 class='bx bx-user-circle'></i></span>
                                     </div>
-                                    <div class="step-label">Picked by courier</div>
+                                    <div class="step-label">Proccssing</div>
                                 </a>
                                 <a class="step-item" href="javascript:;">
                                     <div class="step-progress"><span class="step-count"><i class='bx bx-car'></i></span>
@@ -80,6 +81,103 @@
                                     </div>
                                     <div class="step-label">Ready for pickup</div>
                                 </a>
+                                @elseif($track->status == 'confirm')
+                                <a class="step-item active" href="javascript:;">
+                                    <div class="step-progress"><span class="step-count"><i
+                                                class='bx bx-check'></i></span>
+                                    </div>
+                                    <div class="step-label">Order confirmed</div>
+                                </a>
+                                <a class="step-item active" href="javascript:;">
+                                    <div class="step-progress"><span class="step-count"><i
+                                                class='bx bx-user-circle'></i></span>
+                                    </div>
+                                    <div class="step-label">Proccssing</div>
+                                </a>
+                                <a class="step-item" href="javascript:;">
+                                    <div class="step-progress"><span class="step-count"><i class='bx bx-car'></i></span>
+                                    </div>
+                                    <div class="step-label">On the way</div>
+                                </a>
+                                <a class="step-item" href="javascript:;">
+                                    <div class="step-progress"><span class="step-count"><i
+                                                class='bx bx-planet'></i></span>
+                                    </div>
+                                    <div class="step-label">Ready for pickup</div>
+                                </a>
+                                @elseif($track->status == 'delivering')
+                                <a class="step-item active" href="javascript:;">
+                                    <div class="step-progress"><span class="step-count"><i
+                                                class='bx bx-check'></i></span>
+                                    </div>
+                                    <div class="step-label">Order confirmed</div>
+                                </a>
+                                <a class="step-item active" href="javascript:;">
+                                    <div class="step-progress"><span class="step-count"><i
+                                                class='bx bx-user-circle'></i></span>
+                                    </div>
+                                    <div class="step-label">Proccssing And Package</div>
+                                </a>
+                                <a class="step-item active" href="javascript:;">
+                                    <div class="step-progress"><span class="step-count"><i class='bx bx-car'></i></span>
+                                    </div>
+                                    <div class="step-label">On the way</div>
+                                </a>
+                                <a class="step-item" href="javascript:;">
+                                    <div class="step-progress"><span class="step-count"><i
+                                                class='bx bx-planet'></i></span>
+                                    </div>
+                                    <div class="step-label">Ready for pickup</div>
+                                </a>
+                                @elseif($track->status == 'delivered')
+                                <a class="step-item active" href="javascript:;">
+                                    <div class="step-progress"><span class="step-count"><i
+                                                class='bx bx-check'></i></span>
+                                    </div>
+                                    <div class="step-label">Order confirmed</div>
+                                </a>
+                                <a class="step-item active" href="javascript:;">
+                                    <div class="step-progress"><span class="step-count"><i
+                                                class='bx bx-user-circle'></i></span>
+                                    </div>
+                                    <div class="step-label">Proccssing</div>
+                                </a>
+                                <a class="step-item active" href="javascript:;">
+                                    <div class="step-progress"><span class="step-count"><i class='bx bx-car'></i></span>
+                                    </div>
+                                    <div class="step-label">On the way</div>
+                                </a>
+                                <a class="step-item active" href="javascript:;">
+                                    <div class="step-progress"><span class="step-count"><i
+                                                class='bx bx-planet'></i></span>
+                                    </div>
+                                    <div class="step-label">Ready for pickup</div>
+                                </a>
+                                @else
+                                 <a class="step-item" href="javascript:;">
+                                    <div class="step-progress"><span class="step-count"><i
+                                                class='bx bx-check'></i></span>
+                                    </div>
+                                    <div class="step-label">Order confirmed</div>
+                                </a>
+                                <a class="step-item" href="javascript:;">
+                                    <div class="step-progress"><span class="step-count"><i
+                                                class='bx bx-user-circle'></i></span>
+                                    </div>
+                                    <div class="step-label">Proccssing</div>
+                                </a>
+                                <a class="step-item" href="javascript:;">
+                                    <div class="step-progress"><span class="step-count"><i class='bx bx-car'></i></span>
+                                    </div>
+                                    <div class="step-label">On the way</div>
+                                </a>
+                                <a class="step-item" href="javascript:;">
+                                    <div class="step-progress"><span class="step-count"><i
+                                                class='bx bx-planet'></i></span>
+                                    </div>
+                                    <div class="step-label">Ready for pickup</div>
+                                </a>
+                                @endif
                             </div>
                         </div>
                     </div>
