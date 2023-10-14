@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use Yajra\DataTables\Exceptions\Exception;
 use App\Models\OrderView;
+use App\Models\OrderItem;
 use App\Models\OrderItemView;
+use App\Models\Product; 
 use Carbon\Carbon;
+use DB;
 class OrderController extends Controller
 {
     /**
@@ -103,6 +106,14 @@ class OrderController extends Controller
     public function update(Request $request){
         $id = $request->oid;
         // Find the Order model by its ID
+        $status = $request->status;
+        if($status==="delivered"){
+            $product = OrderItem::where('order_id',$id)->get();
+            foreach($product as $item){
+                Product::where('id',$item->product_id)
+                        ->update(['pro_qty' => DB::raw('pro_qty-'.$item->qty) ]);
+            } 
+        }
         $item = Order::find($id);
         if ($item) {
             // Update the attributes with the new values

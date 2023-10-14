@@ -14,7 +14,7 @@ return new class extends Migration
         DB::statement('
             CREATE OR REPLACE VIEW orderitem_view AS
            SELECT
-                i.order_id as id,
+                i.order_id as order_id,
                 p.name,
                 p.pro_code,
                 i.qty as orderqty,
