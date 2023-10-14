@@ -57,7 +57,7 @@ return [
     'sort_by' => 'Sort By:',
     'show' => 'Show:',
     'categories' => 'Categories',
-    'search_result_found' => 'Search Result Found',
+    'search_result_found' => 'Search Result',
     'found' => 'Found',
     'search_result'=>'Search Result',
 

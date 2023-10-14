@@ -241,6 +241,11 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
     // Product View Modal With Ajax
     Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
+    // Search All Route 
+    Route::controller(IndexController::class)->group(function(){
+        Route::post('/search' , 'ProductSearch')->name('product.search'); 
+        Route::post('/search-product' , 'SearchProduct'); 
+    });
     Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
     // Get Data from mini Cart
     Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);

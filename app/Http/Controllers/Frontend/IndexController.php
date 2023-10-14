@@ -86,4 +86,22 @@ class IndexController extends Controller
         ));
 
      }
+    public function ProductSearch(Request $request){
+
+        $request->validate(['search' => "required"]);
+        $item = $request->search;
+        $products = Product::where('name','LIKE',"%$item%")->get();
+        return view('frontend.product.search',compact('products','item'));
+
+    }
+    public function SearchProduct(Request $request){
+
+       $request->validate(['search' => "required"]);
+
+        $item = $request->search;
+        $products = Product::where('name','LIKE',"%$item%")->select('name','thumbnail','price', 'discount_price','id')->limit(6)->get();
+
+        return view('frontend.product.search_product',compact('products'));
+
+     }
 }
