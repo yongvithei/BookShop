@@ -63,7 +63,10 @@
                             <div class="col-12 col-lg-7">
                                 <div class="product-info-section p-3">
                                     <h3 class="mt-3 mt-lg-0 mb-0">{{$product->name}}</h3>
-
+@php
+                                    $reviewcount = App\Models\Review::where('product_id',$product->id)->where('status',1)->latest()->get();
+                                    $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
+                                    @endphp
                                     <div class="d-flex align-items-center mt-3 gap-2">
                                         @if($product->discount_price == NULL)
                                         <h4 class="mb-0">${{$product->price}}</h4>
@@ -95,7 +98,7 @@
                                         <div class="product-rating d-flex align-items-center mt-1">
                                              @if($avarage == 0)
 
-       @elseif($avarage == 1 || $avarage < 2)
+                                            @elseif($avarage == 1 || $avarage < 2)
                                             <div class="rates cursor-pointer font-13">
                                                 <i class="bx bxs-star text-warning"></i>
                                                 <i class="bx bxs-star text-light-4"></i>

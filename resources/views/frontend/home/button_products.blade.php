@@ -14,11 +14,11 @@
 										</div>
 										<div class="ms-0">
 											<h6 class="fw-light mb-1">{{ $new->name }}</h6>
-											<div class="rating font-12"> <i class="bx bxs-star text-warning"></i>
-												<i class="bx bxs-star text-warning"></i>
-												<i class="bx bxs-star text-warning"></i>
-												<i class="bx bxs-star text-warning"></i>
-												<i class="bx bxs-star text-warning"></i>
+											@php
+											$avarage = App\Models\Review::where('product_id',$new->id)->where('status',1)->avg('rating');
+											@endphp
+											<div class="cursor-pointer ms-auto"> <span>{{ number_format($avarage, 1) }}</span> <i
+											        class="bx bxs-star text-warning"></i>
 											</div>
 										@if($new->discount_price != NULL)
 											<p class="mb-0"><strong>$ {{$new->discount_price}}</strong></p>
@@ -44,11 +44,11 @@
 										</div>
 										<div class="ms-0">
 											<h6 class="fw-light mb-1">{{ $featured->name }}</h6>
-											<div class="rating font-12"> <i class="bx bxs-star text-warning"></i>
-												<i class="bx bxs-star text-warning"></i>
-												<i class="bx bxs-star text-warning"></i>
-												<i class="bx bxs-star text-warning"></i>
-												<i class="bx bxs-star text-warning"></i>
+											@php
+											$avarage = App\Models\Review::where('product_id',$featured->id)->where('status',1)->avg('rating');
+											@endphp
+											<div class="cursor-pointer ms-auto"> <span>{{ number_format($avarage, 1) }}</span> <i
+											        class="bx bxs-star text-warning"></i>
 											</div>
 											@if($new->discount_price != NULL)
 											<p class="mb-0"><strong>$ {{$featured->discount_price}}</strong></p>
@@ -74,11 +74,11 @@
 										</div>
 										<div class="ms-0">
 											<h6 class="fw-light mb-1">{{ $new->name }}</h6>
-											<div class="rating font-12"> <i class="bx bxs-star text-warning"></i>
-												<i class="bx bxs-star text-warning"></i>
-												<i class="bx bxs-star text-warning"></i>
-												<i class="bx bxs-star text-warning"></i>
-												<i class="bx bxs-star text-warning"></i>
+											@php
+											$avarage = App\Models\Review::where('product_id',$featured->id)->where('status',1)->avg('rating');
+											@endphp
+											<div class="cursor-pointer ms-auto"> <span>{{ number_format($avarage, 1) }}</span> <i
+											        class="bx bxs-star text-warning"></i>
 											</div>
 											@if($new->discount_price != NULL)
 											<p class="mb-0"><strong>$ {{$new->discount_price}}</strong></p>
@@ -104,11 +104,11 @@
 										</div>
 										<div class="ms-0">
 											<h6 class="fw-light mb-1">{{ $featured->name }}</h6>
-											<div class="rating font-12"> <i class="bx bxs-star text-warning"></i>
-												<i class="bx bxs-star text-warning"></i>
-												<i class="bx bxs-star text-warning"></i>
-												<i class="bx bxs-star text-warning"></i>
-												<i class="bx bxs-star text-warning"></i>
+											@php
+											$avarage = App\Models\Review::where('product_id',$featured->id)->where('status',1)->avg('rating');
+											@endphp
+											<div class="cursor-pointer ms-auto"> <span>{{ number_format($avarage, 1) }}</span> <i
+											        class="bx bxs-star text-warning"></i>
 											</div>
 											@if($new->discount_price != NULL)
 											<p class="mb-0"><strong>$ {{$featured->discount_price}}</strong></p>

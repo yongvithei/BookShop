@@ -28,6 +28,7 @@ return [
     'returns_policy' => 'Returns Policy',
     'refund_policy' => 'Refund Policy',
     'customer_service' => 'Customer Service',
+    'company' => 'Company',
     'faqs' => 'FAQs',
     'live_chat' => 'Live Chat',
     'links' => 'Links',

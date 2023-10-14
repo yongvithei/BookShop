@@ -51,7 +51,10 @@
 															<span class="fs-5">$ {{$product->price}}</span>
 														@endif
 													</div>
-													<div class="cursor-pointer ms-auto">	<span>5.0</span>  <i class="bx bxs-star text-white"></i>
+													@php
+													$avarage = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
+													@endphp
+													<div class="cursor-pointer ms-auto">	<span>{{ number_format($avarage, 1) }}</span>  <i class="bx bxs-star text-warning"></i>
 													</div>
 												</div>
 												<div class="product-action mt-2">

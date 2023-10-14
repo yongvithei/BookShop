@@ -50,13 +50,52 @@
                                             <span class="fs-5">$ {{$product->price}}</span>
                                         @endif
                                     </div>
+                                    @php
+                                    $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
+                                    @endphp
+                                     @if($avarage == 0)
+                                    @elseif($avarage == 1 || $avarage < 2)                     
+                                   <div class="cursor-pointer ms-auto">
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-light-4"></i>
+                                        <i class="bx bxs-star text-light-4"></i>
+                                        <i class="bx bxs-star text-light-4"></i>
+                                        <i class="bx bxs-star text-light-4"></i>
+                                    </div>
+                                    @elseif($avarage == 2 || $avarage < 3)                     
                                     <div class="cursor-pointer ms-auto">
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-light-4"></i>
+                                        <i class="bx bxs-star text-light-4"></i>
+                                        <i class="bx bxs-star text-light-4"></i>
+                                    </div>
+                                    @elseif($avarage == 3 || $avarage < 4)                     
+                                    <div class="cursor-pointer ms-auto">
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-light-4"></i>
+                                        <i class="bx bxs-star text-light-4"></i>
+                                    </div>
+                                    @elseif($avarage == 4 || $avarage < 5)                     
+                                     <div class="cursor-pointer ms-auto">
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-light-4"></i>
+                                    </div>
+                                    @elseif($avarage == 5 || $avarage < 5)                     
+                                     <div class="cursor-pointer ms-auto">
                                         <i class="bx bxs-star text-warning"></i>
                                         <i class="bx bxs-star text-warning"></i>
                                         <i class="bx bxs-star text-warning"></i>
                                         <i class="bx bxs-star text-warning"></i>
                                         <i class="bx bxs-star text-warning"></i>
                                     </div>
+                                    @endif
+                                    
                                 </div>
                                 <div class="product-action mt-2">
                                     <div class="grid grid-cols-2 gap-2">
