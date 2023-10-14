@@ -299,7 +299,7 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     });
 
     Route::view('/shoplist', 'frontend/product/shop_list');
-    Route::view('/invoice', 'frontend/dashboard/order_invoice');
+    // Route::view('/invoice', 'frontend/dashboard/order_invoice');
     Route::view('/search', 'frontend/product/search');
     // Route::view('/product_detail', 'frontend/product/product_detail');
     // Route::view('/cart', 'frontend/mycart/view_mycart');
@@ -312,6 +312,7 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     // Route::view('/user/address', 'frontend/dashboard/address');
 //    Route::view('/user/account/details', 'frontend/dashboard/account_details');
 
+    //already
     Route::view('/contact', 'frontend/about/contact');
     Route::view('/about', 'frontend/about/about');
 require __DIR__.'/auth.php';

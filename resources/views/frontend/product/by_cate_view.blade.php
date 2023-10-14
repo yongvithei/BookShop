@@ -1,6 +1,8 @@
 @extends('frontend.index')
 @section('main')
-
+@section('title')
+   Categories
+@endsection
 <!--start page wrapper -->
 <div class="page-wrapper">
     <div class="page-content">

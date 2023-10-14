@@ -1,6 +1,8 @@
 @extends('frontend.index')
 @section('main')
-
+@section('title')
+    Book Shop
+@endsection
 <!--start top header wrapper-->
 <!--start slider section-->
 @include('frontend.home.slider')

@@ -45,14 +45,7 @@
 								</div>
 							</li>
 						</ul>
-						<ul class="navbar-nav social-link ms-lg-2 ms-auto">
-							<li class="nav-item"> <a class="nav-link" href="javascript:;"><i class='bx bxl-facebook'></i></a>
-							</li>
-							<li class="nav-item"> <a class="nav-link" href="javascript:;"><i class='bx bxl-twitter'></i></a>
-							</li>
-							<li class="nav-item"> <a class="nav-link" href="javascript:;"><i class='bx bxl-linkedin'></i></a>
-							</li>
-						</ul>
+						
 					</nav>
 				</div>
 			</div>
@@ -64,8 +57,13 @@
 								<div class="mobile-toggle-menu d-lg-none px-lg-2" data-trigger="#navbar_main"><i class='bx bx-menu'></i>
 								</div>
 								<div class="logo d-none d-lg-flex">
+									@php
+										$siteinfo = Cache::remember('sitefooter', now()->addMinutes(30), function () {
+											return App\Models\SiteInfo::find(1);
+										});
+									@endphp
 									<a href="/">
-										<img src="{{asset('/frontend/assets/images/logo-icon.png')}}" class="logo-icon" alt="" />
+										<img src="{{ asset('images/' . $siteinfo->image) }}" class="logo-icon" alt="" />
 									</a>
 								</div>
 							</div>

@@ -1,5 +1,8 @@
 @extends('frontend.index')
 @section('main')
+@section('title')
+   Product Detail
+@endsection
 <!--start page wrapper -->
 <div class="page-wrapper">
     <div class="page-content">

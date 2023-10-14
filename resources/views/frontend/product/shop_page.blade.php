@@ -1,6 +1,8 @@
 @extends('frontend.index')
 @section('main')
-
+@section('title')
+   Shop Pages
+@endsection
 <link href="{{asset('/frontend/assets/plugins/nouislider/nouislider.min.css')}}" rel="stylesheet" />
 <!--start page wrapper -->
 <div class="page-wrapper">

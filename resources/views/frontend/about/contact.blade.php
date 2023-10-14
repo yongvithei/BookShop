@@ -1,6 +1,8 @@
 @extends('frontend.index')
 @section('main')
-
+@section('title')
+    Contact
+@endsection
 <!--start page wrapper -->
 <div class="page-wrapper">
     <div class="page-content">
@@ -26,12 +28,17 @@
         </section>
         <!--end breadcrumb-->
         <!--start page content-->
+            @php
+                $siteinfo = Cache::remember('sitefooter', now()->addMinutes(30), function () {
+                return App\Models\SiteInfo::find(1);
+                });
+            @endphp
         <section class="py-4">
             <div class="container">
                 <h3 class="d-none">Google Map</h3>
                 <div class="contact-map p-3 bg-light rounded-0 shadow-none">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.836488827363!2d103.2095014742702!3d13.109542887218648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31054a29b054941d%3A0x1d499446e74506f9!2sNorea%20Pagoda!5e0!3m2!1sen!2ssg!4v1694107879802!5m2!1sen!2ssg"
+                        src="{{ $siteinfo->map }}"
                         class="w-100" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
 
@@ -73,16 +80,15 @@
                 <div class="p-3 bg-light">
                     <div class="address mb-3">
                         <h6 class="mb-0 text-uppercase">@lang('main.address')</h6>
-                        <p class="mb-0 font-12">@lang('main.street_name'), @lang('main.city'), @lang('main.country')</p>
+                        <p class="mb-0 font-12">{{ $siteinfo->address }}</p>
                     </div>
                     <div class="phone mb-3">
-                        <h6 class="mb-0 text-uppercase">@lang('main.phone')</h6>
-                        <p class="mb-0 font-13">@lang('main.toll_free') (123) 12331</p>
-                        <p class="mb-0 font-13">@lang('main.mobile') : +885-08610XXXX</p>
+                        <h6 class="mb-0 text-uppercase">Phone Number</h6>
+                        <p class="mb-0 font-13">{{ $siteinfo->support_phone }}</p>
                     </div>
                     <div class="email mb-3">
                         <h6 class="mb-0 text-uppercase">@lang('main.email')</h6>
-                        <p class="mb-0 font-13">mail@example.com</p>
+                        <p class="mb-0 font-13">{{ $siteinfo->email }}</p>
                     </div>
                     <div class="working-days mb-3">
                         <h6 class="mb-0 text-uppercase">@lang('main.working_days')</h6>

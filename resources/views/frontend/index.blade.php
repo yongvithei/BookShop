@@ -4,6 +4,12 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
+    <title> @yield('title')</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="title" content="Book Shop" />
+    <meta name="author" content="Yong Vithei" />
+    <meta name="keywords" content="bookshop, books, book store, literature, bestsellers, fiction, non-fiction, book recommendations, book lovers, online bookstore, bookshop near me, bookshop in Battambang, bookshop events, book signings, book club, new releases"/>
+    <meta name="description" content="Welcome to Ponleu Vichea - your one-stop destination for all things books. Explore a vast collection of fiction, non-fiction, bestsellers, and more. Join our book club, attend book signings, and discover literary events in Battambang. Find your next literary adventure with us!"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
     <link rel="icon" href="{{asset('/frontend/assets/images/favicon-32x32.png')}}" type="image/png" />
@@ -23,7 +29,7 @@
 
     @vite(['resources/css/app.css'])
     <!-- stylesheet -->
-    <title>BookShop</title>
+    
 </head>
 
 <body>
