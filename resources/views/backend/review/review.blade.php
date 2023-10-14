@@ -1,11 +1,18 @@
 @extends('admin.index')
 @section('admin')
     <!-- Stylesheets -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Page JS Plugins CSS -->
+     <style>
+        .pl-loading {
+            min-height: 30px;
+            background-color: #eee;
+            border-radius: 10px;
+        }
+    </style>
     <link rel="stylesheet" href="{{ asset('admin/assets/js/plugins/datatables-bs5/css/dataTables.bootstrap5.min.css' )}}">
     {{--    @vite(['resources/css/app.css'])--}}
     <!-- UntitleUI framework -->
-    <link rel="stylesheet" href="{{ asset('admin/assets/js/plugins/flatpickr/flatpickr.min.css')}}">
     <!-- Main Container -->
     <main id="main-container">
 
@@ -57,138 +64,368 @@
                             </li>
                         </ul>
                         <div class="block-content tab-content">
-                            <div class="tab-pane active" id="btabswo-static-home" role="tabpanel" aria-labelledby="btabswo-static-home-tab" tabindex="0">
+                            <div class="tab-pane active" id="btabswo-static-home" role="tabpanel"
+                                aria-labelledby="btabswo-static-home-tab" tabindex="0">
                                 <!-- Dynamic Table Full -->
+                                <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
+                                <table id="item-table" class="table table-bordered table-vcenter">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="width: 80px;">ID</th>
+                                            <th style="width: 30%;">Comment</th>
+                                            <th class="d-none d-sm-table-cell" style="width: 15%;">User</th>
+                                            <th class="d-none d-sm-table-cell" style="width: 15%;">Product</th>
+                                            <th class="d-none d-sm-table-cell" style="width: 20%;">Rating</th>
+                                            <th class="d-none d-sm-table-cell" style="width: 10%;">Status</th>
+                                            <th style="width: 15%;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td class="text-center fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td class="text-center fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td class="text-center fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td class="text-center fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>
 
-
-
-                                        <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-                                        <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-                                            <thead>
-                                            <tr>
-                                                <th class="text-center" style="width: 80px;">ID</th>
-                                                <th>Name</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 30%;">Description</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 15%;">Status</th>
-                                                <th style="width: 15%;">Action</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-
-                                            <tr>
-                                                <td class="text-center fs-sm">39</td>
-                                                <td class="fw-semibold fs-sm">Henry Harrison</td>
-                                                <td class="d-none d-sm-table-cell fs-sm">
-                                                    client39<span class="text-muted">@example.com</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell">
-                                                    <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">VIP</span>
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="btn-group">
-                                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit">
-                                                            <i class="fa fa-fw fa-pencil-alt"></i>
-                                                        </button>
-                                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove">
-                                                            <i class="fa fa-fw fa-times"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center fs-sm">40</td>
-                                                <td class="fw-semibold fs-sm">Alice Moore</td>
-                                                <td class="d-none d-sm-table-cell fs-sm">
-                                                    client40<span class="text-muted">@example.com</span>
-                                                </td>
-                                                <td class="d-none d-sm-table-cell">
-                                                    <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Business</span>
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="btn-group">
-                                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit">
-                                                            <i class="fa fa-fw fa-pencil-alt"></i>
-                                                        </button>
-                                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove">
-                                                            <i class="fa fa-fw fa-times"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                        <div class="py-4 mb-0 justify-content-end">
-                                            <div class="col-md-1 col-xl-2">
-                                                <button type="button" class="btn w-100 btn-alt-primary" data-bs-toggle="modal" data-bs-target="#modal-block-normal">ADD</button>
-
-                                            </div>
-                                        </div>
-
-
+                                         <tr>
+                                            <td class="text-center fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td class="text-center fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>   
+                                    </tbody>
+                                </table>
                                 <!-- END Dynamic Table Full -->
                             </div>
                             <div class="tab-pane" id="btabswo-static-profile" role="tabpanel" aria-labelledby="btabswo-static-profile-tab" tabindex="0">
                                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-                                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                                  <table id="item-approve" class="table table-bordered table-vcenter">
                                     <thead>
-                                    <tr>
-                                        <th class="text-center" style="width: 80px;">ID</th>
-                                        <th>Name</th>
-                                        <th class="d-none d-sm-table-cell" style="width: 30%;">Description</th>
-                                        <th class="d-none d-sm-table-cell" style="width: 15%;">Status</th>
-                                        <th style="width: 15%;">Action</th>
-                                    </tr>
+                                        <tr>
+                                            <th class="text-center" style="width: 80px;">ID</th>
+                                            <th style="width: 30%;">Comment</th>
+                                            <th class="d-none d-sm-table-cell" style="width: 15%;">User</th>
+                                            <th class="d-none d-sm-table-cell" style="width: 15%;">Product</th>
+                                            <th class="d-none d-sm-table-cell" style="width: 20%;">Rating</th>
+                                            <th class="d-none d-sm-table-cell" style="width: 10%;">Status</th>
+                                            <th style="width: 15%;">Action</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
+                                        <tr>
+                                            <td class="text-center fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td class="text-center fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td class="text-center fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td class="text-center fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td class="text-center fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>
 
-                                    <tr>
-                                        <td class="text-center fs-sm">39</td>
-                                        <td class="fw-semibold fs-sm">Henry Harrison</td>
-                                        <td class="d-none d-sm-table-cell fs-sm">
-                                            client39<span class="text-muted">@example.com</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">VIP</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit">
-                                                    <i class="fa fa-fw fa-pencil-alt"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove">
-                                                    <i class="fa fa-fw fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center fs-sm">40</td>
-                                        <td class="fw-semibold fs-sm">Alice Moore</td>
-                                        <td class="d-none d-sm-table-cell fs-sm">
-                                            client40<span class="text-muted">@example.com</span>
-                                        </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Business</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit">
-                                                    <i class="fa fa-fw fa-pencil-alt"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove">
-                                                    <i class="fa fa-fw fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                         <tr>
+                                            <td class="text-center fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td class="text-center fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="fw-semibold fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell fs-sm">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="d-sm-table-cell">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="pl-loading"></div>
+                                            </td>
+                                        </tr>   
                                     </tbody>
                                 </table>
-                                <div class="py-4 mb-0 justify-content-end">
-                                    <div class="col-md-1 col-xl-2">
-                                        <button type="button" class="btn w-100 btn-alt-primary" data-bs-toggle="modal" data-bs-target="#modal-coupon">ADD</button>
-
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -198,128 +435,7 @@
 
             </div>
 
-            <!-- Slider Modal -->
-            <div class="modal" id="modal-block-normal" tabindex="-1" role="dialog" aria-labelledby="modal-block-normal" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="block block-rounded block-transparent mb-0">
-                            <div class="block-header block-header-default">
-                                <h3 class="block-title">Add Slider</h3>
-                                <div class="block-options">
-                                    <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
-                                        <i class="fa fa-fw fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <form action="" method="POST" enctype="multipart/form-data" onsubmit="return false;">
-                                <div class="block-content row justify-content-center">
-
-                                    <div class="col-lg-12 col-xl-12">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="example-text-input">Slider Name</label>
-                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="Slider Name">
-                                        </div>
-
-                                        <div class="mb-4">
-                                            <label class="form-label">Preview Image</label>
-                                            <div class="mb-4">
-                                                <img class="img-avatar" src="{{ asset('admin/assets/media/avatars/avatar13.jpg')}}" alt="">
-                                            </div>
-                                            <div class="mb-4">
-                                                <label for="one-profile-edit-avatar" class="form-label">Choose For Slider</label>
-                                                <input class="form-control" type="file" id="one-profile-edit-avatar">
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Status</label>
-                                            <div class="space-x-2">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="example-radios-inline1" name="example-radios-inline" value="option1" checked="">
-                                                    <label class="form-check-label" for="example-radios-inline1">Active</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="example-radios-inline2" name="example-radios-inline" value="option2">
-                                                    <label class="form-check-label" for="example-radios-inline2">Inactive</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-
-                            </form>
-                            <div class="block-content block-content-full text-end bg-body">
-                                <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Create</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END Normal Block Modal -->
-            <!-- modal-coupon -->
-            <div class="modal" id="modal-coupon" tabindex="-1" role="dialog" aria-labelledby="modal-block-normal" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="block block-rounded block-transparent mb-0">
-                            <div class="block-header block-header-default">
-                                <h3 class="block-title">Create Coupon</h3>
-                                <div class="block-options">
-                                    <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
-                                        <i class="fa fa-fw fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <form action="" method="POST" enctype="multipart/form-data" onsubmit="return false;">
-                                <div class="block-content row justify-content-center">
-
-                                    <div class="col-lg-12 col-xl-12">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="example-text-input">Coupon Name</label>
-                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="Coupon Code">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="example-text-input">Percent</label>
-                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="%">
-                                        </div>
-                                        <div class="row mb-4">
-                                            <div class="col-lg -12 col-xl-12">
-                                                <label class="form-label" for="example-flatpickr-default">Expired Date</label>
-                                                <input type="text" class="js-flatpickr form-control" id="example-flatpickr-default" name="example-flatpickr-default" placeholder="Y-m-d">
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label">Status</label>
-                                            <div class="space-x-2">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="example-radios-inline1" name="example-radios-inline" value="option1" checked="">
-                                                    <label class="form-check-label" for="example-radios-inline1">Active</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="example-radios-inline2" name="example-radios-inline" value="option2">
-                                                    <label class="form-check-label" for="example-radios-inline2">Inactive</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-
-                            </form>
-                            <div class="block-content block-content-full text-end bg-body">
-                                <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Create</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END Normal Block Modal -->
+         
         </div>
         <!-- END Page Content -->
     </main>
@@ -327,17 +443,200 @@
     <!-- jQuery (required for DataTables plugin) -->
     <script src="{{asset('admin/assets/js/lib/jquery.min.js')}}"></script>
     <!-- Page JS Plugins -->
-
-
     <script src="{{asset('admin/assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/plugins/datatables-buttons/dataTables.buttons.min.js')}}"></script>
     <!-- Page JS Code -->
-
     <script src="{{ asset('admin/assets/js/pages/be_tables_datatables.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script src="{{ asset('admin/assets/js/plugins/flatpickr/flatpickr.min.js')}}"></script>
-    <script>One.helpersOnLoad(['js-flatpickr', 'jq-datepicker',  'jq-select2', 'jq-rangeslider']);</script>
+<script>
 
+ $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
+        $('#item-table').DataTable({
+            pageLength: 10,
+            lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+            autoWidth: false,
+            serverSide: true,
+            processing: false,
+            ajax: '{{ route('all.review') }}',
+            columns: [
+                { data: 'id', name: 'id' },
+                { data: 'comment', name: 'comment' },
+                { data: 'user_name', name: 'user_name' },
+                { data: 'pro_name', name: 'pro_name' },
+                { 
+                data: 'rating',
+                name: 'rating',
+                render: function (data) {
+                    if (data == 1) {
+                        return '<i class="fa fa-star"></i>';
+                    } else if (data == 2) {
+                        return '<i class="fa fa-star"></i><i class="fa fa-star"></i>';
+                    } else if (data == 3) {
+                        return '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>';
+                    } else if (data == 4) {
+                        return '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>';
+                    } else if (data == 5) {
+                        return '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>';
+                    } else {
+                        return ''; // Default case, return an empty string or handle it as needed.
+                    }
+                }
+            },
+                { 
+                data: 'status', 
+                name: 'status',
+                render: function (data) {
+                    if (data == 0) {
+                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Pending</span>';
+                    } else {
+                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Approve</span>';
+                    }
+                }
+            },
+                { data: 'action', name: 'action', orderable: false },
+            ],
+            order: [[0, 'desc']],
+             columnDefs: [{
+            targets: [0, 2, 3, 4],
+            className: 'text-center',
+        }],
+        });
+        $('#item-approve').DataTable({
+            pageLength: 10,
+            lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+            autoWidth: false,
+            serverSide: true,
+            processing: false,
+            ajax: '{{ route('all.approve') }}',
+            columns: [
+                { data: 'id', name: 'id' },
+                { data: 'comment', name: 'comment' },
+                { data: 'user_name', name: 'user_name' },
+                { data: 'pro_name', name: 'pro_name' },
+                { 
+                data: 'rating',
+                name: 'rating',
+                render: function (data) {
+                    if (data == 1) {
+                        return '<i class="fa fa-star"></i>';
+                    } else if (data == 2) {
+                        return '<i class="fa fa-star"></i><i class="fa fa-star"></i>';
+                    } else if (data == 3) {
+                        return '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>';
+                    } else if (data == 4) {
+                        return '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>';
+                    } else if (data == 5) {
+                        return '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>';
+                    } else {
+                        return ''; // Default case, return an empty string or handle it as needed.
+                    }
+                }
+            },
+                { 
+                data: 'status', 
+                name: 'status',
+                render: function (data) {
+                    if (data == 0) {
+                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Pending</span>';
+                    } else {
+                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Approve</span>';
+                    }
+                }
+            },
+                { data: 'action', name: 'action', orderable: false },
+            ],
+            order: [[0, 'desc']],
+             columnDefs: [{
+            targets: [0, 2, 3, 4],
+            className: 'text-center',
+        }],
+        });
+    });
+    function approveFunc(id) {
+        Swal.fire({
+            title: 'Approve this Record?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Approve it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('review/approve') }}",
+                    data: { id: id },
+                    dataType: 'json',
+                    success: function (res) {
+                        var oTable = $('#item-approve').dataTable();
+                        oTable.fnDraw(false);
+                        var aoTable = $('#item-table').dataTable();
+                        aoTable.fnDraw(false);
+                    }
+                });
+            }
+        });
+    }
+    function revokeFunc(id) {
+        Swal.fire({
+            title: 'Revoke this Record?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Revoke it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('review/revoke') }}",
+                    data: { id: id },
+                    dataType: 'json',
+                    success: function (res) {
+                        var oTable = $('#item-approve').dataTable();
+                        oTable.fnDraw(false);
+                        var aoTable = $('#item-table').dataTable();
+                        aoTable.fnDraw(false);
+                    }
+                });
+            }
+        });
+    }
+function deleteFunc(id) {
+    Swal.fire({
+        title: 'Delete Record?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "POST",
+                url: "{{ url('review/delete') }}",
+                data: { id: id },
+                dataType: 'json',
+                success: function (res) {
+                    var oTable = $('#item-approve').dataTable();
+                    oTable.fnDraw(false);
+                    var aoTable = $('#item-table').dataTable();
+                    aoTable.fnDraw(false);
+                }
+            });
+        }
+    });
+}
+    </script>
 @endsection

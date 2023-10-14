@@ -89,3 +89,5 @@ php artisan make:model OrderItemView
 php artisan make:controller Backend/ReportController
 php artisan make:model Review -m
 php artisan make:controller User/ReviewController
+php artisan make:migration create_review_view
+php artisan make:model ReviewView

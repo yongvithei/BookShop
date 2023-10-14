@@ -209,13 +209,22 @@ Route::middleware(['auth','role:admin'])->group(function() {
 
 
     });
+    // Admin Review All Route
+    Route::controller(ReviewController::class)->group(function(){
+        Route::get('review/list', 'index')->name('all.review');
+        Route::get('approve/list', 'indexapprove')->name('all.approve');
+        Route::post('review/delete', 'destroy');
+        Route::post('review/approve', 'approve');
+        Route::post('review/revoke', 'revoke');
+    });
+    Route::view('/review/all', 'backend/review.review')->middleware('can:review.menu');
 
     // Example Routes
 //    Route::view('/order/list', 'backend/order.order');
     // Route::view('/return/pending', 'backend/return.pending');
     // Route::view('/return/approve', 'backend/return.approve');
 
-    Route::view('/review/all', 'backend/review.review');
+
     // Route::view('/role/add_permission&role', 'backend/role.addrole&perm');
     // Route::view('/assign/role', 'backend/role.assign');
     // Frontend Routes
@@ -223,6 +232,9 @@ Route::middleware(['auth','role:admin'])->group(function() {
 });
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
+
+//end admin route
+
     Route::get('/', [IndexController::class, 'index']);
     Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
     Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct']);
@@ -283,7 +295,7 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
         Route::view('/user/account/password', 'frontend/dashboard/password');
     });
     Route::controller(ReviewController::class)->group(function(){
-        Route::post('/store/review' , 'StoreReview')->name('store.review'); 
+        Route::post('/store/review' , 'StoreReview')->name('store.review');
     });
 
     Route::view('/shoplist', 'frontend/product/shop_list');
