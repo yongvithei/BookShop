@@ -1,7 +1,7 @@
 @extends('frontend.index')
 @section('main')
 @section('title')
-   Shop List
+Shop List
 @endsection
 <link href="{{asset('/frontend/assets/plugins/nouislider/nouislider.min.css')}}" rel="stylesheet" />
 <!--start page wrapper -->
@@ -54,25 +54,27 @@
                                     <div class="size-range mb-4">
                                         <h6 class="text-uppercase mb-3">{{ __('main.select_category') }}</h6>
                                         <ul class="list-unstyled mb-0 categories-list">
+
                                             <!-- loop -->
+                                            @foreach($categories as $category)
                                             <li>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="book">
-                                                    <label class="form-check-label" for="book">book</label>
+                                                    <input class="form-check-input" name="category[]" type="checkbox" value="{{ $category->slug }}" id="box{{ $category->id }}">
+                                                    <label class="form-check-label" for="book" id="box{{ $category->id }}">{{ $category->name }} </label>
                                                 </div>
                                             </li>
+                                            @endforeach
                                             <!-- loop -->
+
                                         </ul>
-                                        <a href="javascript:;"
-                                            class="rounded-lg btn btn-dark hover:shadow-xl bg-slate-800">{{ __('main.filter_button') }}</a>
+                                        <a href=" javascript:;" class="rounded-lg btn btn-dark hover:shadow-xl bg-slate-800">{{ __('main.filter_button') }}</a>
                                     </div>
                                     <hr>
                                     <div class="product-categories">
                                         <h6 class="text-uppercase mb-3">Categories</h6>
                                         <ul class="list-unstyled mb-0 categories-list">
                                             <!-- loop -->
-                                            <li><a href="javascript:;">Books <span
-                                                        class="float-end badge rounded-pill bg-primary">42</span></a>
+                                            <li><a href="javascript:;">Books <span class="float-end badge rounded-pill bg-primary">42</span></a>
                                             </li>
                                             <!-- loop -->
                                         </ul>
@@ -111,18 +113,15 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div> <a href="/shop" class="btn btn-ligth rounded-0"><i
-                                            class='bx bxs-grid me-0'></i></a>
+                                <div> <a href="/shop" class="btn btn-ligth rounded-0"><i class='bx bxs-grid me-0'></i></a>
                                 </div>
-                                <div> <a href="/shoplist" class="btn btn-white rounded-0"><i
-                                            class='bx bx-list-ul me-0'></i></a>
+                                <div> <a href="/shoplist" class="btn btn-white rounded-0"><i class='bx bx-list-ul me-0'></i></a>
                                 </div>
                             </div>
                             <div class="product-grid">
                                 <!-- loop -->
                                 <div class="card rounded-0 product-card">
-                                    <div
-                                        class="d-flex align-items-center justify-content-end gap-3 position-absolute end-0 top-0 m-3">
+                                    <div class="d-flex align-items-center justify-content-end gap-3 position-absolute end-0 top-0 m-3">
                                         <a href="javascript:;">
                                             <div class="product-wishlist product-action"> <i class="bx bx-heart"></i>
                                             </div>
@@ -130,8 +129,7 @@
                                     </div>
                                     <div class="row g-0">
                                         <div class="col-md-4">
-                                            <img src="{{asset('/frontend/assets/images/products/01.png')}}"
-                                                class="img-fluid" alt="...">
+                                            <img src="{{asset('/frontend/assets/images/products/01.png')}}" class="img-fluid" alt="...">
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">
@@ -144,13 +142,11 @@
                                                     </a>
                                                     <p class="card-text">Short Desciption</p>
                                                     <div class="d-flex align-items-center">
-                                                        <div class="mb-1 product-price"> <span
-                                                                class="me-1 text-decoration-line-through">Discount
+                                                        <div class="mb-1 product-price"> <span class="me-1 text-decoration-line-through">Discount
                                                                 Price</span>
                                                             <span class="fs-5">Price</span>
                                                         </div>
-                                                        <div class="cursor-pointer ms-auto"> <i
-                                                                class="bx bxs-star text-warning"></i>
+                                                        <div class="cursor-pointer ms-auto"> <i class="bx bxs-star text-warning"></i>
                                                             <i class="bx bxs-star text-warning"></i>
                                                             <i class="bx bxs-star text-warning"></i>
                                                             <i class="bx bxs-star text-warning"></i>
@@ -159,12 +155,7 @@
                                                     </div>
                                                     <div class="product-action mt-2">
                                                         <div class="d-flex gap-2">
-                                                            <a href="javascript:;" class="btn btn-dark btn-ecomm"> <i
-                                                                    class="bx bxs-cart-add"></i>Add to Cart</a> <a
-                                                                href="javascript:;" class="btn btn-light btn-ecomm"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#QuickViewProduct"><i
-                                                                    class="bx bx-zoom-in"></i>Quick View</a>
+                                                            <a href="javascript:;" class="btn btn-dark btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</a> <a href="javascript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class="bx bx-zoom-in"></i>Quick View</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -178,30 +169,23 @@
                             <hr>
                             <nav class="d-flex justify-content-between" aria-label="Page navigation">
                                 <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="javascript:;"><i
-                                                class='bx bx-chevron-left'></i> Prev</a>
+                                    <li class="page-item"><a class="page-link" href="javascript:;"><i class='bx bx-chevron-left'></i> Prev</a>
                                     </li>
                                 </ul>
                                 <ul class="pagination">
-                                    <li class="page-item active d-none d-sm-block" aria-current="page"><span
-                                            class="page-link">1<span class="visually-hidden">(current)</span></span>
+                                    <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span>
                                     </li>
-                                    <li class="page-item d-none d-sm-block"><a class="page-link"
-                                            href="javascript:;">2</a>
+                                    <li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">2</a>
                                     </li>
-                                    <li class="page-item d-none d-sm-block"><a class="page-link"
-                                            href="javascript:;">3</a>
+                                    <li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">3</a>
                                     </li>
-                                    <li class="page-item d-none d-sm-block"><a class="page-link"
-                                            href="javascript:;">4</a>
+                                    <li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">4</a>
                                     </li>
-                                    <li class="page-item d-none d-sm-block"><a class="page-link"
-                                            href="javascript:;">5</a>
+                                    <li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">5</a>
                                     </li>
                                 </ul>
                                 <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="javascript:;"
-                                            aria-label="Next">Next <i class='bx bx-chevron-right'></i></a>
+                                    <li class="page-item"><a class="page-link" href="javascript:;" aria-label="Next">Next <i class='bx bx-chevron-right'></i></a>
                                     </li>
                                 </ul>
                             </nav>

@@ -60,6 +60,8 @@ return [
     'search_result_found' => 'Search Result',
     'found' => 'Found',
     'search_result'=>'Search Result',
+    'all_products' => 'All Products',
+    
 
     //cart
     'continue_shopping' => 'Continue Shopping',

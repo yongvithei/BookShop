@@ -1,7 +1,7 @@
 @extends('frontend.index')
 @section('main')
 @section('title')
-   Shop Pages
+Shop Pages
 @endsection
 <link href="{{asset('/frontend/assets/plugins/nouislider/nouislider.min.css')}}" rel="stylesheet" />
 <!--start page wrapper -->
@@ -37,47 +37,48 @@
                         <div class="filter-sidebar d-none d-xl-flex">
                             <div class="card rounded-0 w-100">
                                 <div class="card-body">
-                                    <div class="align-items-center d-flex d-xl-none">
-                                        <h6 class="text-uppercase mb-0">Filter</h6>
-                                        <div class="btn-mobile-filter-close btn-close ms-auto cursor-pointer"></div>
-                                    </div>
-                                    <hr class="d-flex d-xl-none" />
-                                    <div class="price-range">
-                                        <h6 class="text-uppercase mb-3">{{ __('price') }}</h6>
-                                        <div class="my-4" id="slider"></div>
-                                        <div class="d-flex align-items-center mb-2">
-                                            <div class="ms-auto">
-                                                <p class="mb-0">Price: $200.00 - $900.00</p>
+                                    <form method="post" action="{{ route('shop.filter') }}">
+                                        @csrf
+                                        <div class="align-items-center d-flex d-xl-none">
+                                            <h6 class="text-uppercase mb-0">Filter</h6>
+                                            <div class="btn-mobile-filter-close btn-close ms-auto cursor-pointer"></div>
+                                        </div>
+                                        <hr class="d-flex d-xl-none" />
+                                        <div class="price-range">
+                                            <h6 class="text-uppercase mb-3">{{ __('price') }}</h6>
+                                            <div class="my-4" id="slider"></div>
+                                            <div class="d-flex align-items-center mb-2">
+                                                <div class="ms-auto">
+                                                    <p class="mb-0">Price: $200.00 - $900.00</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <hr>
-                                    <div class="size-range mb-4">
-                                        <h6 class="text-uppercase mb-3">{{ __('main.select_category') }}</h6>
-                                        <ul class="list-unstyled mb-0 categories-list">
-                                            <!-- loop -->
-                                            <li>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="book">
-                                                    <label class="form-check-label" for="book">book</label>
-                                                </div>
-                                            </li>
-                                            <!-- loop -->
-                                        </ul>
-                                        <a href="javascript:;"
-                                            class="rounded-lg btn btn-dark hover:shadow-xl bg-slate-800">{{ __('main.filter_button') }}</a>
-                                    </div>
-                                    <hr>
-                                    <div class="product-categories">
-                                        <h6 class="text-uppercase mb-3">{{ __('main.categories') }}</h6>
-                                        <ul class="list-unstyled mb-0 categories-list">
-                                            <!-- loop -->
-                                            <li><a href="javascript:;">Books <span
-                                                        class="float-end badge rounded-pill bg-primary">42</span></a>
-                                            </li>
-                                            <!-- loop -->
-                                        </ul>
-                                    </div>
+                                        <hr>
+                                        @if(!empty($_GET['category']))
+                                        @php
+                                        $filterCat = explode(',',$_GET['category']);
+                                        @endphp
+
+                                        @endif
+
+                                        <div class="size-range mb-4">
+                                            <h6 class="text-uppercase mb-3">{{ __('main.select_category') }}</h6>
+                                            <ul class="list-unstyled mb-0 categories-list">
+                                                <!-- loop -->
+                                                @foreach($categories as $category)
+                                                <li>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" name="category[]" type="checkbox" value="{{ $category->slug }}" @if(!empty($filterCat) && in_array($category->slug,$filterCat)) checked @endif onchange="this.form.submit()" />
+                                                        <label class="form-check-label" for="book" id="box{{ $category->id }}">{{ $category->name }} </label>
+                                                    </div>
+                                                </li>
+                                                @endforeach
+                                                <!-- loop -->
+                                            </ul>
+                                            <a href="javascript:;" class="rounded-lg btn btn-dark hover:shadow-xl bg-slate-800">{{ __('main.filter_button') }}</a>
+                                        </div>
+                                        <hr>
+
                                 </div>
                             </div>
                         </div>
@@ -113,98 +114,85 @@
                                 </div>
                                 <div> <a href="" class="btn btn-white rounded-0"><i class='bx bxs-grid me-0'></i></a>
                                 </div>
-                                <div> <a href="/shoplist" class="btn btn-light rounded-0"><i
-                                            class='bx bx-list-ul me-0'></i></a>
+                                <div> <a href="/shoplist" class="btn btn-light rounded-0"><i class='bx bx-list-ul me-0'></i></a>
                                 </div>
                             </div>
                             <div class="product-grid">
                                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3">
-                                    <div class="col my-3">
-                                        <div class="card rounded-lg product-card shadow-sm ">
-                                            <div class="card-header bg-transparent border-bottom-0">
-                                                <div class="d-flex align-items-center justify-content-end gap-3">
-                                                    <a href="javascript:;">
-                                                        <div class="product-wishlist product-action"> <i
-                                                                class='bx bx-heart'></i>
-                                                        </div>
-                                                    </a>
+                                    @if(count($products) > 0)
+                                    @foreach($products as $product)
+                                    <!-- loop	 -->
+                                    <div class="col">
+                                        <div class="card rounded-lg product-card shadow-sm">
+                                            <a href="{{ url('product/details/'.$product->id.'/'.$product->name) }}">
+                                                <div class="relative">
+                                                    <img src="{{ asset($product->thumbnail) }}" class="card-img-top" alt="...">
+                                                    <div class="absolute top-2 right-2">
+                                                        <a href="javascript:;" class="product-wishlist product-action">
+                                                            <i class="bx bx-heart text-red-500 text-2xl"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <img src="{{asset('/frontend/assets/images/products/01.png')}}"
-                                                class="card-img-top" alt="...">
+                                            </a>
                                             <div class="card-body">
                                                 <div class="product-info">
-                                                    <a href="/product_detail">
-                                                        <p class="product-catergory font-13 mb-1">Catergory Name</p>
-                                                        <h6 class="product-name mb-2">Product Short Name</h6>
+                                                    <a href="{{ url('product/details/'.$product->id.'/'.$product->name) }}">
+                                                        <h6 class="product-name mb-2">{{$product->name}}</h6>
                                                     </a>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="mb-1 product-price"> <span
-                                                                class="me-1 text-decoration-line-through">$99.00</span>
-                                                            <span class="fs-5">$49.00</span>
-                                                        </div>
-                                                        <div class="cursor-pointer ms-auto">
-                                                            <i class="bx bxs-star text-warning"></i>
-                                                            <i class="bx bxs-star text-warning"></i>
-                                                            <i class="bx bxs-star text-warning"></i>
-                                                            <i class="bx bxs-star text-warning"></i>
-                                                            <i class="bx bxs-star text-warning"></i>
-                                                        </div>
-                                                    </div>
+                                                    @if($product->discount_price != NULL)
+                                                    <span class="me-1 text-decoration-line-through">$
+                                                        {{$product->discount_price}}</span>
+                                                    <span class="fs-5">$ {{$product->price}}</span>
+                                                    @else
+                                                    <span class="fs-5">$ {{$product->price}}</span>
+                                                    @endif
                                                     <div class="product-action mt-2">
                                                         <div class="grid grid-cols-2 gap-2">
-                                                            <a href="javascript:;"
-                                                                class="rounded-xl btn btn-dark btn-ecomm"> <i
-                                                                    class='bx bxs-cart-add'></i>Add</a>
-                                                            <a href="javascript:;"
-                                                                class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#QuickViewProduct"><i
-                                                                    class='bx bxs-show'></i>View</a>
+                                                            <a href="javascript:;" class="rounded-xl btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add</a>
+                                                            <a href="javascript:;" class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200" data-bs-toggle="modal" data-bs-target="#QuickViewProduct" id="{{ $product->id }}" onclick="productView(this.id)"><i class='bx bxs-show'></i>View</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- loop	 -->
+                                    @endforeach
+                                    @else
+                                    <div class="card-body">
+                                        <h1 class="text-center text-xl">No products available</h1>
+                                        @endif
+                                    </div>
+                                    <!--end row-->
                                 </div>
-                                <!--end row-->
+                                <hr>
+                                <nav class="d-flex justify-content-between" aria-label="Page navigation">
+                                    <ul class="pagination">
+                                        <li class="page-item"><a class="page-link" href="javascript:;"><i class='bx bx-chevron-left'></i> Prev</a>
+                                        </li>
+                                    </ul>
+                                    <ul class="pagination">
+                                        <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span>
+                                        </li>
+                                        <li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">2</a>
+                                        </li>
+                                        <li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">3</a>
+                                        </li>
+                                        <li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">4</a>
+                                        </li>
+                                        <li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">5</a>
+                                        </li>
+                                    </ul>
+                                    <ul class="pagination">
+                                        <li class="page-item"><a class="page-link" href="javascript:;" aria-label="Next">Next <i class='bx bx-chevron-right'></i></a>
+                                        </li>
+                                    </ul>
+                                </nav>
                             </div>
-                            <hr>
-                            <nav class="d-flex justify-content-between" aria-label="Page navigation">
-                                <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="javascript:;"><i
-                                                class='bx bx-chevron-left'></i> Prev</a>
-                                    </li>
-                                </ul>
-                                <ul class="pagination">
-                                    <li class="page-item active d-none d-sm-block" aria-current="page"><span
-                                            class="page-link">1<span class="visually-hidden">(current)</span></span>
-                                    </li>
-                                    <li class="page-item d-none d-sm-block"><a class="page-link"
-                                            href="javascript:;">2</a>
-                                    </li>
-                                    <li class="page-item d-none d-sm-block"><a class="page-link"
-                                            href="javascript:;">3</a>
-                                    </li>
-                                    <li class="page-item d-none d-sm-block"><a class="page-link"
-                                            href="javascript:;">4</a>
-                                    </li>
-                                    <li class="page-item d-none d-sm-block"><a class="page-link"
-                                            href="javascript:;">5</a>
-                                    </li>
-                                </ul>
-                                <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="javascript:;"
-                                            aria-label="Next">Next <i class='bx bx-chevron-right'></i></a>
-                                    </li>
-                                </ul>
-                            </nav>
                         </div>
                     </div>
+                    <!--end row-->
                 </div>
-                <!--end row-->
-            </div>
         </section>
         <!--end shop area-->
     </div>

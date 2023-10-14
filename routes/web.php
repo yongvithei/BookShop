@@ -23,6 +23,7 @@ use App\Http\Controllers\Backend\DistController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
@@ -306,10 +307,17 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     Route::controller(ReviewController::class)->group(function(){
         Route::post('/store/review' , 'StoreReview')->name('store.review');
     });
+    Route::controller(ShopController::class)->group(function () {
+        Route::get('/shop', 'ShopPage')->name('shop.page');
+        Route::post('/shop/filter', 'ShopFilter')->name('shop.filter');
+    });
 
-    Route::view('/shoplist', 'frontend/product/shop_list');
+
+
+
+    //Route::view('/shoplist', 'frontend/product/shop_list');
     // Route::view('/invoice', 'frontend/dashboard/order_invoice');
-    Route::view('/search', 'frontend/product/search');
+    //Route::view('/search', 'frontend/product/search');
     // Route::view('/product_detail', 'frontend/product/product_detail');
     // Route::view('/cart', 'frontend/mycart/view_mycart');
     // Route::view('/checkOut', 'frontend/checkout/checkout_view');
