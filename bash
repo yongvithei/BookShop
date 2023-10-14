@@ -91,3 +91,7 @@ php artisan make:model Review -m
 php artisan make:controller User/ReviewController
 php artisan make:migration create_review_view
 php artisan make:model ReviewView
+php artisan notifications:table
+php artisan migrate
+php artisan make:notification OrderComplete
+php artisan make:notification RegisterUser

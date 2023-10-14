@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
-
+use App\Notifications\RegisterUser;
+use Illuminate\Support\Facades\Notification;
 class RegisteredUserController extends Controller
 {
     /**
@@ -47,7 +48,8 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-
+        $newuser = User::where('role', 'admin')->get();
+        Notification::send($newuser, new RegisterUser($request));
         return redirect(RouteServiceProvider::HOME);
     }
 }

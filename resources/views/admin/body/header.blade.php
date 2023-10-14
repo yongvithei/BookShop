@@ -30,8 +30,8 @@
                 <div class="input-group input-group-sm">
                     <input type="text" class="form-control form-control-alt" placeholder="{{__('body.search..')}}" id="page-header-search-input2" name="page-header-search-input2">
                     <span class="input-group-text border-0">
-                  <i class="fa fa-fw fa-search"></i>
-                </span>
+                        <i class="fa fa-fw fa-search"></i>
+                    </span>
                 </div>
             </form>
             <!-- END Search Form -->
@@ -67,7 +67,7 @@
                     </div>
                     <div role="separator" class="dropdown-divider m-0"></div>
                     <div class="p-2">
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('admin.logout') }}" >
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('admin.logout') }}">
                             <span class="fs-sm fw-medium">{{__('body.logout')}}</span>
                         </a>
 
@@ -88,72 +88,24 @@
                         <h5 class="dropdown-header text-uppercase">{{__('body.notification')}}</h5>
                     </div>
                     <ul class="nav-items mb-0">
+                        @php
+                        $user = Auth::user();
+                        @endphp
+                        @forelse($user->notifications as $notification)
                         <li>
                             <a class="text-dark d-flex py-2" href="javascript:void(0)">
                                 <div class="flex-shrink-0 me-2 ms-3">
                                     <i class="fa fa-fw fa-check-circle text-success"></i>
                                 </div>
                                 <div class="flex-grow-1 pe-2">
-                                    <div class="fw-semibold">You have a new follower</div>
-                                    <span class="fw-medium text-muted">15 min ago</span>
+                                    <div class="fw-semibold">{{ $notification->data['message'] }}</div>
+                                    <span class="fw-medium text-muted">{{ Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
                                 </div>
                             </a>
                         </li>
-                        <li>
-                            <a class="text-dark d-flex py-2" href="javascript:void(0)">
-                                <div class="flex-shrink-0 me-2 ms-3">
-                                    <i class="fa fa-fw fa-plus-circle text-primary"></i>
-                                </div>
-                                <div class="flex-grow-1 pe-2">
-                                    <div class="fw-semibold">1 new sale, keep it up</div>
-                                    <span class="fw-medium text-muted">22 min ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="text-dark d-flex py-2" href="javascript:void(0)">
-                                <div class="flex-shrink-0 me-2 ms-3">
-                                    <i class="fa fa-fw fa-times-circle text-danger"></i>
-                                </div>
-                                <div class="flex-grow-1 pe-2">
-                                    <div class="fw-semibold">Update failed, restart server</div>
-                                    <span class="fw-medium text-muted">26 min ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="text-dark d-flex py-2" href="javascript:void(0)">
-                                <div class="flex-shrink-0 me-2 ms-3">
-                                    <i class="fa fa-fw fa-plus-circle text-primary"></i>
-                                </div>
-                                <div class="flex-grow-1 pe-2">
-                                    <div class="fw-semibold">2 new sales, keep it up</div>
-                                    <span class="fw-medium text-muted">33 min ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="text-dark d-flex py-2" href="javascript:void(0)">
-                                <div class="flex-shrink-0 me-2 ms-3">
-                                    <i class="fa fa-fw fa-user-plus text-success"></i>
-                                </div>
-                                <div class="flex-grow-1 pe-2">
-                                    <div class="fw-semibold">You have a new subscriber</div>
-                                    <span class="fw-medium text-muted">41 min ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="text-dark d-flex py-2" href="javascript:void(0)">
-                                <div class="flex-shrink-0 me-2 ms-3">
-                                    <i class="fa fa-fw fa-check-circle text-success"></i>
-                                </div>
-                                <div class="flex-grow-1 pe-2">
-                                    <div class="fw-semibold">You have a new follower</div>
-                                    <span class="fw-medium text-muted">42 min ago</span>
-                                </div>
-                            </a>
-                        </li>
+                        @empty
+
+                        @endforelse
                     </ul>
                     <div class="p-2 border-top text-center">
                         <a class="d-inline-block fw-medium" href="javascript:void(0)">
@@ -196,5 +148,3 @@
     <!-- END Header Loader -->
 </header>
 <!-- END Header -->
-
-
