@@ -103,7 +103,7 @@
 	border-radius: 3px
 }
 .noUi-connect {
-	background: #0d6efd
+	background: #000000
 }
 .noUi-draggable {
 	cursor: ew-resize
@@ -112,15 +112,15 @@
 	cursor: ns-resize
 }
 .noUi-handle {
-	border: 1px solid #0d6efd;
+	border: 1px solid #000000;
     border-radius: 26px;
-    background: #0d6efd;
+    background: #000000;
     cursor: pointer;
     box-shadow: none;
 }
 .noUi-active {
 	box-shadow: none;
-    border: 1px solid #0d6efd
+    border: 1px solid #000000
 }
 .noUi-handle:after, .noUi-handle:before {
 	content: "";
@@ -128,7 +128,7 @@
 	position: absolute;
 	height: 14px;
 	width: 1px;
-	background: #0d6efd
+	background: #000000
 	left: 14px;
 	top: 6px
 }

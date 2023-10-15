@@ -44,15 +44,17 @@ Shop Pages
                                             <div class="btn-mobile-filter-close btn-close ms-auto cursor-pointer"></div>
                                         </div>
                                         <hr class="d-flex d-xl-none" />
-                                        <div class="price-range">
+                                       <div class="price-range">
                                             <h6 class="text-uppercase mb-3">{{ __('price') }}</h6>
                                             <div class="my-4" id="slider"></div>
                                             <div class="d-flex align-items-center mb-2">
                                                 <div class="ms-auto">
-                                                    <p class="mb-0">Price: $200.00 - $900.00</p>
+                                                   <p class="mb-0">Price: $<span id="price-min">0.00</span> - $<span id="price-max">1000.00</span></p>
+                                                    <input type="text" name="price_range" id="price-range-input" style="display: none;">
                                                 </div>
                                             </div>
                                         </div>
+
                                         <hr>
                                         @if(!empty($_GET['category']))
                                         @php
@@ -75,10 +77,11 @@ Shop Pages
                                                 @endforeach
                                                 <!-- loop -->
                                             </ul>
-                                            <a href="javascript:;" class="rounded-lg btn btn-dark hover:shadow-xl bg-slate-800">{{ __('main.filter_button') }}</a>
+                                            <button href="javascript:;" class="rounded-lg btn btn-dark hover:shadow-xl bg-slate-800">{{ __('main.filter_button') }}</button>
                                         </div>
                                         <hr>
 
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -193,7 +196,9 @@ Shop Pages
                     </div>
                     <!--end row-->
                 </div>
+            </div>
         </section>
+
         <!--end shop area-->
     </div>
 </div>
@@ -212,10 +217,37 @@ Shop Pages
 <!--plugins-->
 <script src="{{asset('/frontend/assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('/frontend/assets/plugins/nouislider/nouislider.min.js')}}"></script>
-<script src="{{asset('/frontend/assets/js/price-slider.js')}}"></script>
 
 
 
 <!--app JS-->
+<script>
+    // Initialize Nouislider
+    var slider = document.getElementById('slider');
+    var priceRangeInput = document.getElementById('price-range-input');
+    noUiSlider.create(slider, {
+        start: [0, 969], // Initial values
+        connect: true, // Create a range slider
+        range: {
+            'min': 0,
+            'max': 1000 // Set your desired price range
+        }
+    });
+
+    // Get the price elements
+    var priceMin = document.getElementById('price-min');
+    var priceMax = document.getElementById('price-max');
+
+    // Update price when slider values change
+    slider.noUiSlider.on('update', function (values, handle) {
+        if (handle === 0) {
+            priceMin.innerText = values[0];
+        }
+        if (handle === 1) {
+            priceMax.innerText = values[1];
+        }
+        priceRangeInput.value = values.join('-');
+    });
+</script>
 
 @endsection

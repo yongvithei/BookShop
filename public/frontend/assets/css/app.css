@@ -437,7 +437,7 @@ ul.categories-list li {
 		left: 0;
 		top: 0;
 		overflow-y: scroll;
-		background-color: #212529;
+		background-color: #ffffff;
 		z-index: 5;
 	}
 }

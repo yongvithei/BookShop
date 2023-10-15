@@ -20,6 +20,12 @@ class ShopController extends Controller
              $products = Product::where('status',1)->orderBy('id','DESC')->get();
          }
 
+         // Price Range 
+
+         if(!empty($_GET['price'])){
+            $price = explode('-',$_GET['price']);
+            $products = $products->whereBetween('price',$price);
+         }
         $categories = Category::orderBy('name', 'ASC')->get();
 
         return view('frontend.product.shop_page', compact('products', 'categories'));
@@ -42,9 +48,18 @@ class ShopController extends Controller
                 }
             }
         }
+        // Filter For Price Range
+        $priceRangeUrl = "";
+
+        if (!empty($data['price_range'])) {
+            // Handle the price range filter, e.g., building the URL or performing a database query
+            $priceRangeUrl = '&price=' . $data['price_range'];
+
+            // You can now use $priceRangeUrl to filter your products or construct URLs as needed.
+        }
 
 
-        return redirect()->route('shop.page', $catUrl );
+        return redirect()->route('shop.page', $catUrl.$priceRangeUrl);
     }// End Method
 
 

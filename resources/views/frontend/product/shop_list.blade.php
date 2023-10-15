@@ -213,7 +213,6 @@ Shop List
 <!--plugins-->
 <script src="{{asset('/frontend/assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('/frontend/assets/plugins/nouislider/nouislider.min.js')}}"></script>
-<script src="{{asset('/frontend/assets/js/price-slider.js')}}"></script>
 
 
 
