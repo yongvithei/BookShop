@@ -8,6 +8,7 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
                 'resources/js/hotReload.app.js',
+                'resources/js/components/Cart.jsx',
             ],
             refresh: true,
         }),

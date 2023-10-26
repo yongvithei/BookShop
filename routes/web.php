@@ -220,15 +220,8 @@ Route::middleware(['auth','role:admin'])->group(function() {
     });
     Route::view('/review/all', 'backend/review.review')->middleware('can:review.menu');
 
-    // Example Routes
-//    Route::view('/order/list', 'backend/order.order');
-    // Route::view('/return/pending', 'backend/return.pending');
-    // Route::view('/return/approve', 'backend/return.approve');
+    Route::view('/pos', 'backend/pos/pos');
 
-
-    // Route::view('/role/add_permission&role', 'backend/role.addrole&perm');
-    // Route::view('/assign/role', 'backend/role.assign');
-    // Frontend Routes
 
 });
 

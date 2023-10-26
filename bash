@@ -96,3 +96,4 @@ php artisan migrate
 php artisan make:notification OrderComplete
 php artisan make:notification RegisterUser
 php artisan make:controller Frontend/ShopController
+npm install react react-dom
