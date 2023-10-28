@@ -223,6 +223,7 @@ Route::middleware(['auth','role:admin'])->group(function() {
     Route::view('/admin/pos', 'backend/pos/pos');
     Route::view('/pos/customer', 'backend/pos/customer');
     Route::view('/pos/order', 'backend/pos/order');
+    Route::view('/pos/dashboard', 'backend/pos/dashboard');
 
 
 });

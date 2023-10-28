@@ -47,62 +47,8 @@
                             <span class="nav-main-link-name">Go Back</span>
                         </a>
                     </li>
-                    
+
                     <li class="nav-main-heading">Extra</li>
-                    
-                    <li class="nav-main-item ms-lg-auto">
-                        
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
-                            aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon fa fa-brush"></i>
-                            <span class="nav-main-link-name d-lg-none">Themes</span>
-                        </a>
-                        <ul class="nav-main-submenu nav-main-submenu-right">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" data-toggle="theme" data-theme="default" href="#">
-                                    <i class="nav-main-link-icon fa fa-square text-default"></i>
-                                    <span class="nav-main-link-name">Default</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" data-toggle="theme"
-                                    data-theme="assets/css/themes/amethyst.min.css" href="#">
-                                    <i class="nav-main-link-icon fa fa-square text-amethyst"></i>
-                                    <span class="nav-main-link-name">Amethyst</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" data-toggle="theme" data-theme="assets/css/themes/city.min.css"
-                                    href="#">
-                                    <i class="nav-main-link-icon fa fa-square text-city"></i>
-                                    <span class="nav-main-link-name">City</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" data-toggle="theme" data-theme="assets/css/themes/flat.min.css"
-                                    href="#">
-                                    <i class="nav-main-link-icon fa fa-square text-flat"></i>
-                                    <span class="nav-main-link-name">Flat</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" data-toggle="theme"
-                                    data-theme="assets/css/themes/modern.min.css" href="#">
-                                    <i class="nav-main-link-icon fa fa-square text-modern"></i>
-                                    <span class="nav-main-link-name">Modern</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" data-toggle="theme"
-                                    data-theme="assets/css/themes/smooth.min.css" href="#">
-                                    <i class="nav-main-link-icon fa fa-square text-smooth"></i>
-                                    <span class="nav-main-link-name">Smooth</span>
-                                </a>
-                            </li>
-                        </ul>
-                        
-                    </li>
-                       
 
                 </ul>
             </div>
