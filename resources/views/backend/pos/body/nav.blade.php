@@ -18,25 +18,25 @@
             <div id="main-navigation" class="d-none d-lg-block mt-2 mt-lg-0">
                 <ul class="nav-main nav-main-dark nav-main-horizontal nav-main-hover">
                     <li class="nav-main-item">
-                        <a class="nav-main-link" href="">
+                        <a class="nav-main-link {{ request()->is('pos/dashboard') ? ' active' : '' }}" href="/pos/dashboard">
                             <i class="nav-main-link-icon si si-compass"></i>
                             <span class="nav-main-link-name">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link active" href="">
+                        <a class="nav-main-link {{ request()->is('admin/pos') ? ' active' : '' }}" href="/admin/pos">
                             <i class="nav-main-link-icon si si-compass"></i>
                             <span class="nav-main-link-name">POS</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link" href="">
+                        <a class="nav-main-link {{ request()->is('pos/customer') ? ' active' : '' }}" href="/pos/customer">
                             <i class="nav-main-link-icon si si-compass"></i>
                             <span class="nav-main-link-name">Customer</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link" href="">
+                        <a class="nav-main-link {{ request()->is('pos/order') ? ' active' : '' }}" href="/pos/order">
                             <i class="nav-main-link-icon si si-compass"></i>
                             <span class="nav-main-link-name">Order</span>
                         </a>

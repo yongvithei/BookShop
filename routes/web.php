@@ -220,7 +220,9 @@ Route::middleware(['auth','role:admin'])->group(function() {
     });
     Route::view('/review/all', 'backend/review.review')->middleware('can:review.menu');
 
-    Route::view('/pos', 'backend/pos/pos');
+    Route::view('/admin/pos', 'backend/pos/pos');
+    Route::view('/pos/customer', 'backend/pos/customer');
+    Route::view('/pos/order', 'backend/pos/order');
 
 
 });
