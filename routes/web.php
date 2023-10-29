@@ -21,6 +21,7 @@ use App\Http\Controllers\Backend\SystemController;
 use App\Http\Controllers\Backend\CityController;
 use App\Http\Controllers\Backend\DistController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\ShopController;
@@ -221,7 +222,15 @@ Route::middleware(['auth','role:admin'])->group(function() {
     Route::view('/review/all', 'backend/review.review')->middleware('can:review.menu');
 
     Route::view('/admin/pos', 'backend/pos/pos');
+
     Route::view('/pos/customer', 'backend/pos/customer');
+    Route::controller(CustomerController::class)->group(function(){
+        Route::get('/list/customer', 'index')->name('all.customer');
+        Route::post('cus/store', 'store');
+        Route::post('cus/edit', 'edit');
+        Route::post('cus/delete', 'destroy');
+    });
+
     Route::view('/pos/order', 'backend/pos/order');
     Route::view('/pos/dashboard', 'backend/pos/dashboard');
 

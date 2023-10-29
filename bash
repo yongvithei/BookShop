@@ -97,3 +97,5 @@ php artisan make:notification OrderComplete
 php artisan make:notification RegisterUser
 php artisan make:controller Frontend/ShopController
 npm install react react-dom
+php artisan make:model Customer -m
+php artisan make:controller Backend/CustomerController
