@@ -47,9 +47,6 @@
                             <span class="nav-main-link-name">Go Back</span>
                         </a>
                     </li>
-
-                    <li class="nav-main-heading">Extra</li>
-
                 </ul>
             </div>
             <!-- END Main Navigation -->
