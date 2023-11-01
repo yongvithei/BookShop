@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Image;
-
+use App\Http\Resources\ProductResource;
 use Intervention\Image\Exception\ImageException;
 class ProductController extends Controller
 {
@@ -221,6 +221,17 @@ class ProductController extends Controller
         }
         $item->delete();
         return response()->json(['success' => 'Product soft deleted successfully']);
+    }
+
+    public function allProduct(Request $request){
+        $products = new Product();
+        if ($request->search) {
+            $products = $products->where('name', 'LIKE', "%{$request->search}%");
+        }
+        $products = $products->latest()->paginate(10);
+        if (request()->wantsJson()) {
+            return ProductResource::collection($products);
+        }
     }
 
 }

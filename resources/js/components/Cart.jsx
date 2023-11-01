@@ -1,5 +1,7 @@
 import ReactDOM from 'react-dom/client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 
 const ShoppingCart = () => {
   return (
@@ -67,6 +69,23 @@ const ShoppingCart = () => {
 };
 
 const SellingInfo = () => {
+
+  const [customers, setCustomers] = useState([]);
+
+  const loadCustomers = () => {
+    axios.get(`/pos/customers`).then((res) => {
+      const customers = res.data;
+
+      setCustomers(customers);
+    })
+    .catch((error) => {
+      console.error("Error loading customers: ", error);
+    });
+  };
+    useEffect(() => {
+      loadCustomers();
+    },[]);
+
   return (
     <div className="block block-rounded js-ecom-div-nav d-none d-xl-block">
       <div className="block-header block-header-default">
@@ -77,9 +96,10 @@ const SellingInfo = () => {
       <div className="block-content">
         <div className="mb-4">
           <label className="form-label" htmlFor="val-select1">Customer<span className="text-danger"> *</span></label>
-          <select className="js-select2 form-select" id="val-select1" name="val-select1" style={{ width: '100%' }}>
-            <option value="walking_customer" defaultValue>Walking customer</option>
-            <option value="customer1">customer1</option>
+          <select className="form-select" id="val-select1" name="val-select1" style={{ width: '100%' }}>
+            {customers.map((cus) => (
+                <option key={cus.id} value={cus.id}>{`${cus.name}`}</option>
+              ))}
           </select>
         </div>
         <div className="mb-4">
@@ -94,101 +114,139 @@ const SellingInfo = () => {
   );
 };
 
+const Product = () => {
+  const [products, setProducts] = useState([]);
+
+  const loadProducts = async (search = "") => {
+    try {
+      const query = !!search ? `?search=${search}` : "";
+      const res = await axios.get(`/pos/products${query}`);
+      const loadedProducts = res.data.data;
+      setProducts(loadedProducts);
+    } catch (error) {
+      console.error('Error loading products: ', error);
+    }
+  };
+
+  useEffect(() => {
+    loadProducts();
+  },[]);
+  return (
+   <div>
+       <form className="js-form-icon-search mb-2" action="" method="POST">
+           <div className="input-group input-group-lg">
+               <input type="text" className="js-icon-search form-control fs-base" placeholder="Search Product" />
+               <span className="input-group-text">
+                   <i className="fa fa-search"></i>
+               </span>
+           </div>
+       </form>
+       {/* END Search Section */}
+       {/* Sort and Show Filters */}
+       <div className="d-flex justify-content-between">
+           <div className="mb-3">
+               <select id="ecom-results-show" name="ecom-results-show" className="form-select form-select-sm" size="1">
+                   <option value="0" defaultValue>SHOW</option>
+                   <option value="9">9</option>
+                   <option value="18">18</option>
+                   <option value="36">36</option>
+                   <option value="72">72</option>
+               </select>
+           </div>
+           <div className="mb-3">
+               <select id="ecom-results-sort" name="ecom-results-sort" className="form-select form-select-sm" size="1">
+                   <option value="0" defaultValue>SORT BY</option>
+                   <option value="1">Popularity</option>
+                   <option value="2">Name (A to Z)</option>
+                   <option value="3">Name (Z to A)</option>
+                   <option value="4">Price (Lowest to Highest)</option>
+                   <option value="5">Price (Highest to Lowest)</option>
+                   <option value="6">Sales (Lowest to Highest)</option>
+                   <option value="7">Sales (Highest to Lowest)</option>
+               </select>
+           </div>
+       </div>
+
+       {/* END Sort and Show Filters */}
+       {/* {products.map((p) => (
+                            <div>
+                                <img src={p.image_url} alt="" />
+                                <h5
+                                    style={
+                                        window.APP.warning_quantity > p.quantity
+                                            ? { color: "red" }
+                                            : {}
+                                    }
+                                >
+                                    {p.name}({p.quantity})
+                                </h5>
+                            </div>
+                        ))} */}
+       {/* Products */}
+       <div className="row items-push">
+       {products.map((pro) => (
+
+           <div key={pro.id} className="col-md-6 col-xl-3">
+               <div className="block block-rounded h-100 mb-0">
+                   <div className="block-content p-1">
+                       <div className="options-container">
+                           <img className="img-fluid options-item"
+                               src={pro.thumbnail} alt="" />
+                           <div className="options-overlay bg-black-75">
+                               <div className="options-overlay-content">
+                                   <a className="btn btn-sm btn-alt-secondary" href="">
+                                       View
+                                   </a>
+                                   <a className="btn btn-sm btn-alt-secondary" href="">
+                                       <i className="fa fa-plus text-success me-1"></i> Add to cart
+                                   </a>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div className="block-content">
+                       <div className="mb-2">
+                           <div className="fw-semibold float-end ms-1">$ {pro.price}</div>
+                           <a className="h6" href="">
+                           {pro.name}
+                           </a>
+                       </div>
+                   </div>
+               </div>
+
+           </div>))}
+       </div>
+
+       {/* END Products */}
+       <div className="text-end">
+           <a className="btn btn-alt-secondary" href="">
+               Next Page <i className="fa fa-arrow-right ms-1"></i>
+           </a>
+       </div>
+   </div>
+  );
+};
+
 const Cart = () => {
 return (
-<div>
-    <div className="row push">
-        <div className="col-xl-5 order-xl-1">
-            <ShoppingCart />
-            <SellingInfo />
-        </div>
-
-        <div className="col-xl-7 order-xl-0">
-            <form className="js-form-icon-search mb-2" action="" method="POST">
-                <div className="input-group input-group-lg">
-                    <input type="text" className="js-icon-search form-control fs-base" placeholder="Search Product" />
-                    <span className="input-group-text">
-                        <i className="fa fa-search"></i>
-                    </span>
-                </div>
-            </form>
-            {/* END Search Section */}
-            {/* Sort and Show Filters */}
-            <div className="d-flex justify-content-between">
-                <div className="mb-3">
-                    <select id="ecom-results-show" name="ecom-results-show" className="form-select form-select-sm"
-                        size="1">
-                        <option value="0" defaultValue>SHOW</option>
-                        <option value="9">9</option>
-                        <option value="18">18</option>
-                        <option value="36">36</option>
-                        <option value="72">72</option>
-                    </select>
-                </div>
-                <div className="mb-3">
-                    <select id="ecom-results-sort" name="ecom-results-sort" className="form-select form-select-sm"
-                        size="1">
-                        <option value="0" defaultValue>SORT BY</option>
-                        <option value="1">Popularity</option>
-                        <option value="2">Name (A to Z)</option>
-                        <option value="3">Name (Z to A)</option>
-                        <option value="4">Price (Lowest to Highest)</option>
-                        <option value="5">Price (Highest to Lowest)</option>
-                        <option value="6">Sales (Lowest to Highest)</option>
-                        <option value="7">Sales (Highest to Lowest)</option>
-                    </select>
-                </div>
-            </div>
-
-            {/* END Sort and Show Filters */}
-            {/* Products */}
-            <div className="row items-push">
-                <div className="col-md-6 col-xl-3">
-                    <div className="block block-rounded h-100 mb-0">
-                        <div className="block-content p-1">
-                            <div className="options-container">
-                                <img className="img-fluid options-item"
-                                    src="{{asset('admin/assets/media/various/ecom_product6.png')}}" alt="" />
-                                <div className="options-overlay bg-black-75">
-                                    <div className="options-overlay-content">
-                                        <a className="btn btn-sm btn-alt-secondary" href="">
-                                            View
-                                        </a>
-                                        <a className="btn btn-sm btn-alt-secondary" href="">
-                                            <i className="fa fa-plus text-success me-1"></i> Add to cart
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="block-content">
-                            <div className="mb-2">
-                                <div className="fw-semibold float-end ms-1">$500</div>
-                                <a className="h6" href="">
-                                    Super Badges Pack
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* END Products */}
-            <div className="text-end">
-                <a className="btn btn-alt-secondary" href="">
-                    Next Page <i className="fa fa-arrow-right ms-1"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-);
+  <div>
+      <div className="row push">
+          <div className="col-xl-5 order-xl-1">
+              <ShoppingCart />
+              <SellingInfo />
+          </div>
+          <div className="col-xl-7 order-xl-0">
+              <Product />
+          </div>
+      </div>
+  </div>
+  );
 };
 
 export default Cart;
 
 if (document.getElementById("cart")) {
-const root = ReactDOM.createRoot(document.getElementById('cart'));
-root.render(
-<Cart />);
+  const root = ReactDOM.createRoot(document.getElementById('cart'));
+  root.render(
+  <Cart />);
 }

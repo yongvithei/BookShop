@@ -99,3 +99,5 @@ php artisan make:controller Frontend/ShopController
 npm install react react-dom
 php artisan make:model Customer -m
 php artisan make:controller Backend/CustomerController
+extension=gd
+php artisan make:resource ProductResource

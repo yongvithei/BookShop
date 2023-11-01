@@ -96,6 +96,8 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::get('/product/add','create')->name('pro.create');
         Route::post('/product','store')->name('pro.store');
         Route::post('pro/view','view');
+        Route::get('/pos/products', 'allProduct');
+
     });
     //product image route
         Route::post('/temp-images',[TempImageController::class,'store'])->name('temp-images.create');
@@ -229,6 +231,8 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::post('cus/store', 'store');
         Route::post('cus/edit', 'edit');
         Route::post('cus/delete', 'destroy');
+        Route::get('/pos/customers', 'allCustommer');
+
     });
 
     Route::view('/pos/order', 'backend/pos/order');

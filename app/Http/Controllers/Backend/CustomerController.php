@@ -67,4 +67,13 @@ class CustomerController extends Controller
     $deleted = $item->delete();
     return Response()->json($item);
     }
+
+    public function allCustommer()
+    {
+        if (request()->wantsJson()) {
+            return response(
+                Customer::all()
+            );
+        }
+    }
 }
