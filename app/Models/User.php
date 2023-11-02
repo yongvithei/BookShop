@@ -59,4 +59,9 @@ class User extends Authenticatable
         }
         return $username;
     }
+
+    public function cart()
+    {
+        return $this->belongsToMany(Product::class, 'pos_cart')->withPivot('pro_qty');
+    }
 }

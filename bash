@@ -101,3 +101,5 @@ php artisan make:model Customer -m
 php artisan make:controller Backend/CustomerController
 extension=gd
 php artisan make:resource ProductResource
+php artisan make:migration create_pos_cart_table
+php artisan make:controller PosCartController

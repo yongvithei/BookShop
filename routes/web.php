@@ -22,6 +22,7 @@ use App\Http\Controllers\Backend\CityController;
 use App\Http\Controllers\Backend\DistController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\CustomerController;
+use App\Http\Controllers\Backend\PosCartController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\ShopController;
@@ -237,6 +238,15 @@ Route::middleware(['auth','role:admin'])->group(function() {
 
     Route::view('/pos/order', 'backend/pos/order');
     Route::view('/pos/dashboard', 'backend/pos/dashboard');
+    //POS Cart
+    Route::controller(PosCartController::class)->group(function(){
+        Route::get('/pos/cart', 'index')->name('cart.index');
+        Route::post('/pos/cart', 'store')->name('cart.store');
+        Route::delete('/pos/cart/delete', 'delete');
+        Route::delete('/pos/cart/empty', 'empty');
+        Route::post('/pos/cart/change-qty', 'changeQty');
+
+    });
 
 
 });

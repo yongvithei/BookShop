@@ -1,11 +1,133 @@
 import ReactDOM from 'react-dom/client';
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
+
+const Cart = () => {
+
+  // Customers State
+  const [customers, setCustomers] = useState([]);
+  const [carts, setCarts] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  const loadCustomers = () => {
+    axios.get('/pos/customers')
+      .then((res) => {
+        const customers = res.data;
+        setCustomers(customers);
+      })
+      .catch((error) => {
+        console.error('Error loading customers: ', error);
+      });
+  };
+
+  const loadCart = () => {
+    axios.get('/pos/cart')
+      .then((res) => {
+        const cart = res.data;
+        setCarts(cart);
+      })
+      .catch((error) => {
+        console.error('Error loading cart: ', error);
+      });
+  };
+
+  const loadProducts = async (search = "") => {
+    try {
+      const query = !!search ? `?search=${search}` : "";
+      const res = await axios.get(`/pos/products${query}`);
+      const loadedProducts = res.data.data;
+      setProducts(loadedProducts);
+    } catch (error) {
+      console.error('Error loading products: ', error);
+    }
+  };
+  // Add a product to the cart
+  const addProductToCart = (pro_code) => {
+    const product = products.find((pro) => pro.pro_code === pro_code);
+    if (!!product) {
+      const cartItem = carts.find((c) => c.id === product.id);
+      if (!!cartItem) {
+        // Update quantity
+        if (product.pro_qty > cartItem.pivot.pro_qty) {
+          const updatedCart = carts.map((c) =>
+            c.id === product.id
+              ? { ...c, pivot: { ...c.pivot, pro_qty: c.pivot.pro_qty + 1 } }
+              : c
+          );
+          setCarts(updatedCart);
+        }
+      } else if (product.pro_qty > 0) {
+        const newCartItem = {
+          ...product,
+          pivot: { pro_qty: 1, product_id: product.id, user_id: 1 },
+        };
+        setCarts([...carts, newCartItem]);
+      }
+
+      axios
+        .post('/pos/cart', { barcode: pro_code }) // Use pro_code for barcode
+        .then((res) => {
+          // Reload the cart data or perform any other actions
+          loadCart();
+        })
+        .catch((err) => {
+          Swal.fire('Error!', err.response.data.message, 'error');
+        });
+    }
+  };
+  //delete from cart
+  const handleClickDelete = (product_id) => {
+    axios
+      .post('/pos/cart/delete', { product_id, _method: 'DELETE' })
+      .then((res) => {
+        const updatedCart = carts.filter((c) => c.id !== product_id);
+        setCarts(updatedCart);
+      });
+  };
+  //getTotal from cart
+  const getTotal = (carts) => {
+    const total = carts.reduce((accumulator, c) => accumulator + c.pivot.pro_qty * c.price, 0);
+    return total.toFixed(2);
+  };
+  const handleEmptyCart = () => {
+    axios.post('/pos/cart/empty', { _method: 'DELETE' }).then((res) => {
+      setCarts([]);
+    });
+  };
+  // change qty
+  const handleChangeQty = (product_id, qty) => {
+    const updatedCart = carts.map((c) => {
+      if (c.id === product_id) {
+        c.pivot.pro_qty = qty;
+      }
+      return c;
+    });
+
+    setCarts(updatedCart);
+
+    if (!qty) return;
+
+    axios
+      .post('/pos/cart/change-qty', { product_id, pro_qty: qty })
+      .then((res) => {})
+      .catch((err) => {
+        Swal.fire('Error!', err.response.data.message, 'error');
+      });
+  };
+  // Load Data
+  useEffect(() => {
+    loadCustomers();
+    loadCart();
+    loadProducts();
+  }, []);
 
 
-const ShoppingCart = () => {
-  return (
-    <div className="block block-rounded js-ecom-div-cart d-none d-xl-block">
+return (
+  <div>
+      <div className="row push">
+          <div className="col-xl-5 order-xl-1">
+          <div className="block block-rounded js-ecom-div-cart d-none d-xl-block">
       <div className="block-header block-header-default d-flex justify-content-center">
         <form action="" method="POST" onSubmit={e => e.preventDefault()}>
           <div className="input-group">
@@ -27,67 +149,50 @@ const ShoppingCart = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="fw-semibold fs-sm">
-                  <a href="">Carol White</a>
-                </td>
-                <td className="d-sm-table-cell">
-                  <div className="d-flex align-items-center">
-                    <input type="number" className="form-control" id="count" name="count" value="1" min="0" max="999" step="1" />
-                    <button type="button" className="btn btn-sm btn btn-danger ms-1">
-                      <i className="far fa-trash-can"></i>
-                    </button>
-                  </div>
-                </td>
-                <td className="d-sm-table-cell text-center">
-                  <a href="">1000$</a>
-                </td>
-              </tr>
-              <tr className="table-active">
-                <td className="text-end" colSpan="2">
-                  <span className="h4 fw-medium">Total</span>
-                </td>
-                <td className="text-end">
-                  <span className="h4 fw-semibold">$100</span>
-                </td>
-              </tr>
-            </tbody>
+    {carts.map((c) => (
+      <React.Fragment key={c.id}>
+        <tr>
+          <td className="fw-semibold fs-sm">
+            <a href="">{c.name}</a>
+          </td>
+          <td className="d-sm-table-cell">
+            <div className="d-flex align-items-center">
+              <input type="number" className="form-control" id="count" name="count" value={c.pivot.pro_qty} min="0" max="99999" step="1"
+                onChange={(event) => handleChangeQty(c.id, event.target.value)} />
+              <button type="button" className="btn btn-sm btn btn-danger ms-1" onClick={() => handleClickDelete(c.id)}>
+                <i className="far fa-trash-can"></i>
+              </button>
+            </div>
+          </td>
+          <td className="d-sm-table-cell text-center">
+            <a href="">{(c.price * c.pivot.pro_qty).toFixed(2)}$</a>
+          </td>
+        </tr>
+      </React.Fragment>
+    ))}
+    <tr className="table-active">
+      <td className="text-end" colSpan="2">
+        <span className="h4 fw-medium">Total</span>
+      </td>
+      <td className="text-end">
+        <span className="h4 fw-semibold">$ {getTotal(carts)}</span>
+      </td>
+    </tr>
+  </tbody>
           </table>
         </div>
       </div>
       <div className="block-content block-content-full bg-body-light text-end">
-        <a className="btn btn-light mx-2" href="">
+        <button className="btn btn-light mx-2" onClick={handleEmptyCart} disabled={!carts.length}>
           Cancel
-        </a>
+        </button>
         <a className="btn btn-primary" href="">
           Submit
           <i className="fa fa-arrow-right opacity-50"></i>
         </a>
       </div>
     </div>
-  );
-};
-
-const SellingInfo = () => {
-
-  const [customers, setCustomers] = useState([]);
-
-  const loadCustomers = () => {
-    axios.get(`/pos/customers`).then((res) => {
-      const customers = res.data;
-
-      setCustomers(customers);
-    })
-    .catch((error) => {
-      console.error("Error loading customers: ", error);
-    });
-  };
-    useEffect(() => {
-      loadCustomers();
-    },[]);
-
-  return (
-    <div className="block block-rounded js-ecom-div-nav d-none d-xl-block">
+              <div className="block block-rounded js-ecom-div-nav d-none d-xl-block">
       <div className="block-header block-header-default">
         <h3 className="block-title">
           <i className="fa fa-fw fa-boxes text-muted me-1"></i>Selling information
@@ -111,28 +216,9 @@ const SellingInfo = () => {
         </div>
       </div>
     </div>
-  );
-};
-
-const Product = () => {
-  const [products, setProducts] = useState([]);
-
-  const loadProducts = async (search = "") => {
-    try {
-      const query = !!search ? `?search=${search}` : "";
-      const res = await axios.get(`/pos/products${query}`);
-      const loadedProducts = res.data.data;
-      setProducts(loadedProducts);
-    } catch (error) {
-      console.error('Error loading products: ', error);
-    }
-  };
-
-  useEffect(() => {
-    loadProducts();
-  },[]);
-  return (
-   <div>
+          </div>
+          <div className="col-xl-7 order-xl-0">
+          <div>
        <form className="js-form-icon-search mb-2" action="" method="POST">
            <div className="input-group input-group-lg">
                <input type="text" className="js-icon-search form-control fs-base" placeholder="Search Product" />
@@ -168,25 +254,12 @@ const Product = () => {
        </div>
 
        {/* END Sort and Show Filters */}
-       {/* {products.map((p) => (
-                            <div>
-                                <img src={p.image_url} alt="" />
-                                <h5
-                                    style={
-                                        window.APP.warning_quantity > p.quantity
-                                            ? { color: "red" }
-                                            : {}
-                                    }
-                                >
-                                    {p.name}({p.quantity})
-                                </h5>
-                            </div>
-                        ))} */}
+
        {/* Products */}
        <div className="row items-push">
        {products.map((pro) => (
 
-           <div key={pro.id} className="col-md-6 col-xl-3">
+           <div className="col-md-6 col-xl-3" key={pro.id}>
                <div className="block block-rounded h-100 mb-0">
                    <div className="block-content p-1">
                        <div className="options-container">
@@ -195,10 +268,7 @@ const Product = () => {
                            <div className="options-overlay bg-black-75">
                                <div className="options-overlay-content">
                                    <a className="btn btn-sm btn-alt-secondary" href="">
-                                       View
-                                   </a>
-                                   <a className="btn btn-sm btn-alt-secondary" href="">
-                                       <i className="fa fa-plus text-success me-1"></i> Add to cart
+                                   <i className="fa fa-eye me-1"></i> View
                                    </a>
                                </div>
                            </div>
@@ -210,6 +280,11 @@ const Product = () => {
                            <a className="h6" href="">
                            {pro.name}
                            </a>
+                       </div>
+                       <div className="mb-2">
+                       <a className="btn btn-sm btn-alt-secondary" onClick={() => addProductToCart(pro.pro_code)}>
+                           <i className="fa fa-plus text-success me-1"></i> Add to cart
+                       </a>
                        </div>
                    </div>
                </div>
@@ -224,19 +299,6 @@ const Product = () => {
            </a>
        </div>
    </div>
-  );
-};
-
-const Cart = () => {
-return (
-  <div>
-      <div className="row push">
-          <div className="col-xl-5 order-xl-1">
-              <ShoppingCart />
-              <SellingInfo />
-          </div>
-          <div className="col-xl-7 order-xl-0">
-              <Product />
           </div>
       </div>
   </div>
