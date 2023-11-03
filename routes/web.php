@@ -23,6 +23,7 @@ use App\Http\Controllers\Backend\DistController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\PosCartController;
+use App\Http\Controllers\Backend\PosOrderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\ShopController;
@@ -247,6 +248,8 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::post('/pos/cart/change-qty', 'changeQty');
 
     });
+    Route::post('/pos/orders', [PosOrderController::class,'store']);
+    
 
 
 });

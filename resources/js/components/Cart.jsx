@@ -5,10 +5,13 @@ import Swal from "sweetalert2";
 
 const Cart = () => {
 
-  // Customers State
   const [customers, setCustomers] = useState([]);
   const [carts, setCarts] = useState([]);
   const [products, setProducts] = useState([]);
+  const [barcode, setBarcode] = useState('');
+  const [search, setSearch] = useState('');
+  const [customerId, setCustomerId] = useState('');
+  const [delayTimer, setDelayTimer] = useState(null);
 
   const loadCustomers = () => {
     axios.get('/pos/customers')
@@ -70,9 +73,40 @@ const Cart = () => {
         .then((res) => {
           // Reload the cart data or perform any other actions
           loadCart();
+          // Display a success alert
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer);
+              toast.addEventListener('mouseleave', Swal.resumeTimer);
+            }
+          });
+          Toast.fire({
+            icon: 'success',
+            title: "Product Added Successfully",
+          });
         })
         .catch((err) => {
-          Swal.fire('Error!', err.response.data.message, 'error');
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer);
+              toast.addEventListener('mouseleave', Swal.resumeTimer);
+            }
+          });
+  
+          Toast.fire({
+            icon: 'error',
+            title: err.response.data.message,
+          });
         });
     }
   };
@@ -115,6 +149,128 @@ const Cart = () => {
         Swal.fire('Error!', err.response.data.message, 'error');
       });
   };
+  // Barcode OnChange
+  const handleOnChangeBarcode = (event) => {
+    const newBarcode = event.target.value;
+    setBarcode(newBarcode);
+
+    if (!!newBarcode) {
+      // If there's already a timer running, clear it
+      if (delayTimer) {
+        clearTimeout(delayTimer);
+      }
+      // Set a new timer to wait for a pause in input before sending the request
+      const newTimer = setTimeout(() => {
+        scanBarcode(newBarcode);
+      }, 350); // Adjust the delay time as needed
+      setDelayTimer(newTimer);
+    }
+  }
+  //sent from OnChange
+  const scanBarcode = (barcode) => {
+    axios
+      .post("/pos/cart", { barcode })
+      .then((res) => {
+        // Handle success, e.g., loadCart() and clear the barcode input
+        loadCart();
+        setBarcode('');
+        // Display a success alert
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+          }
+        });
+        Toast.fire({
+          icon: 'success',
+          title: "Product Added Successfully",
+        });
+      })
+      .catch((err) => {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+          }
+        });
+
+        Toast.fire({
+          icon: 'warning',
+          title: err.response.data.message,
+        });
+      });
+  }
+  //Barcode Scan Submit
+  const handleScanBarcode = (event) => {
+    event.preventDefault();
+    if (!!barcode) {
+        axios
+            .post("/pos/cart", { barcode })
+            .then((res) => {
+              loadCart();
+              setBarcode('');
+            })
+            .catch((err) => {
+                Swal.fire("Error!", err.response.data.message, "error");
+            });
+    }
+  }
+  //Product set new search
+  const handleChangeSearch = (event) => {
+    const newSearch = event.target.value;
+    setSearch(newSearch);
+  }
+  //Product search with enter
+  const handleSearch = (event) => {
+    if (event.keyCode === 13) {
+      loadProducts(event.target.value);
+    }
+  }
+  //get customer id
+  const handleCustomerIdChange = (event) => {
+    setCustomerId(event.target.value);
+  };
+  //handle checkout
+  const handleClickSubmit = () => {
+    Swal.fire({
+        title: "Received Amount",
+        input: "text",
+        inputValue: getTotal(carts),
+        showCancelButton: true,
+        confirmButtonText: "Send",
+        showLoaderOnConfirm: true,
+        preConfirm: (amount) => {
+            return axios
+                .post("/pos/orders", {
+                    customer_id: customerId,
+                    amount,
+                })
+                .then((res) => {
+                    loadCart();
+                    return res.data;
+                })
+                .catch((err) => {
+                    Swal.showValidationMessage(err.response.data.message);
+                });
+        },
+        allowOutsideClick: () => !Swal.isLoading(),
+    }).then((result) => {
+        if (result.value) {
+            //
+        }
+    });
+  }
+
   // Load Data
   useEffect(() => {
     loadCustomers();
@@ -129,9 +285,9 @@ return (
           <div className="col-xl-5 order-xl-1">
           <div className="block block-rounded js-ecom-div-cart d-none d-xl-block">
       <div className="block-header block-header-default d-flex justify-content-center">
-        <form action="" method="POST" onSubmit={e => e.preventDefault()}>
+        <form onSubmit={handleScanBarcode}>
           <div className="input-group">
-            <input type="text" className="form-control form-control-alt" id="search" name="search" placeholder="Barcode" />
+            <input type="text" className="form-control form-control-alt" id="search" name="search" placeholder="Barcode"  value={barcode} onChange={handleOnChangeBarcode}/>
             <span className="input-group-text bg-body border-0">
               <i className="fa fa-barcode"></i>
             </span>
@@ -186,10 +342,12 @@ return (
         <button className="btn btn-light mx-2" onClick={handleEmptyCart} disabled={!carts.length}>
           Cancel
         </button>
-        <a className="btn btn-primary" href="">
+        <button type="button" disabled={!carts.length}
+                              onClick={handleClickSubmit}
+                              className="btn btn-primary">
           Submit
           <i className="fa fa-arrow-right opacity-50"></i>
-        </a>
+        </button>
       </div>
     </div>
               <div className="block block-rounded js-ecom-div-nav d-none d-xl-block">
@@ -201,7 +359,7 @@ return (
       <div className="block-content">
         <div className="mb-4">
           <label className="form-label" htmlFor="val-select1">Customer<span className="text-danger"> *</span></label>
-          <select className="form-select" id="val-select1" name="val-select1" style={{ width: '100%' }}>
+          <select className="form-select" id="val-select1" name="val-select1" style={{ width: '100%' }} value={customerId} onChange={handleCustomerIdChange}>
             {customers.map((cus) => (
                 <option key={cus.id} value={cus.id}>{`${cus.name}`}</option>
               ))}
@@ -219,14 +377,17 @@ return (
           </div>
           <div className="col-xl-7 order-xl-0">
           <div>
-       <form className="js-form-icon-search mb-2" action="" method="POST">
-           <div className="input-group input-group-lg">
-               <input type="text" className="js-icon-search form-control fs-base" placeholder="Search Product" />
+      
+           <div className="input-group input-group-lg mb-2">
+               <input type="text" className="js-icon-search form-control fs-base" placeholder="Search Product" 
+                value={search}
+                onChange={handleChangeSearch}
+                onKeyDown={handleSearch} />
                <span className="input-group-text">
                    <i className="fa fa-search"></i>
                </span>
            </div>
-       </form>
+   
        {/* END Search Section */}
        {/* Sort and Show Filters */}
        <div className="d-flex justify-content-between">
@@ -267,7 +428,7 @@ return (
                                src={pro.thumbnail} alt="" />
                            <div className="options-overlay bg-black-75">
                                <div className="options-overlay-content">
-                                   <a className="btn btn-sm btn-alt-secondary" href="">
+                                   <a className="btn btn-sm btn-alt-secondary" href={`/product/${pro.id}/edit`}>
                                    <i className="fa fa-eye me-1"></i> View
                                    </a>
                                </div>

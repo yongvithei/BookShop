@@ -103,3 +103,7 @@ extension=gd
 php artisan make:resource ProductResource
 php artisan make:migration create_pos_cart_table
 php artisan make:controller PosCartController
+php artisan make:model PosOrder -m
+php artisan make:controller Backend/PosOrderController
+php artisan make:model PosOrderItem -m
+php artisan make:request OrderStoreRequest
