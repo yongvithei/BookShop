@@ -2,6 +2,16 @@
 @section('pos')
 <!-- Main Container -->
 <main id="main-container">
+    @php
+        $date = date('Y-m-d');
+        $todayAmount = App\Models\PosOrder::whereDate('created_at',$date)->sum('amount');
+        $todayReceived = App\Models\PosOrder::whereDate('created_at',$date)->sum('received');
+        $todayCount = App\Models\PosOrder::whereDate('created_at',$date)->count('id');
+        $cusCount = App\Models\Customer::where('status',"Active")->count('id');
+        
+        $customers = App\Models\Customer::with('posOrders')->where('status','Active')->take(9)->get();
+        $orders = App\Models\PosOrder::with('customerId')->latest()->take(9)->get();
+    @endphp
     <!-- Navigation -->
     @include('backend.pos.body.nav')
     <!-- END Navigation -->
@@ -12,32 +22,32 @@
             <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                 <a class="block block-rounded block-link-pop" href="javascript:void(0)">
                     <div class="block-content block-content-full">
-                        <div class="fs-sm fw-semibold text-uppercase text-muted">Total Paid</div>
-                        <div class="fs-2 fw-normal text-dark">120,580</div>
+                        <div class="fs-sm fw-semibold text-uppercase text-muted">Today Total Sell</div>
+                        <div class="fs-2 fw-normal text-dark">$ {{ $todayAmount }}</div>
                     </div>
                 </a>
             </div>
             <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                 <a class="block block-rounded block-link-pop" href="javascript:void(0)">
                     <div class="block-content block-content-full">
-                        <div class="fs-sm fw-semibold text-uppercase text-muted">Incomplete payment</div>
-                        <div class="fs-2 fw-normal text-dark">$150</div>
+                        <div class="fs-sm fw-semibold text-uppercase text-muted">Today Received payment</div>
+                        <div class="fs-2 fw-normal text-dark">$ {{ $todayReceived }}</div>
                     </div>
                 </a>
             </div>
             <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                 <a class="block block-rounded block-link-pop" href="javascript:void(0)">
                     <div class="block-content block-content-full">
-                        <div class="fs-sm fw-semibold text-uppercase text-muted">Earnings</div>
-                        <div class="fs-2 fw-normal text-dark">$3,200</div>
+                        <div class="fs-sm fw-semibold text-uppercase text-muted">Today Sell </div>
+                        <div class="fs-2 fw-normal text-dark">{{$todayCount}}</div>
                     </div>
                 </a>
             </div>
             <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                 <a class="block block-rounded block-link-pop" href="javascript:void(0)">
                     <div class="block-content block-content-full">
-                        <div class="fs-sm fw-semibold text-uppercase text-muted">Pending Order</div>
-                        <div class="fs-2 fw-normal text-dark">21</div>
+                        <div class="fs-sm fw-semibold text-uppercase text-muted">Customer</div>
+                        <div class="fs-2 fw-normal text-dark">{{$cusCount}}</div>
                     </div>
                 </a>
             </div>
@@ -45,7 +55,7 @@
         <!-- END Stats -->
 
         <!-- Dashboard Charts -->
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-lg-6">
                 <div class="block block-rounded block-mode-loading-untitleui">
                     <div class="block-header block-header-default">
@@ -60,9 +70,7 @@
                         </div>
                     </div>
                     <div class="block-content p-0 text-center">
-                        <!-- Chart.js is initialized in js/pages/be_pages_dashboard_v1.min.js which was auto compiled from _js/pages/be_pages_dashboard_v1.js) -->
-                        <!-- For more info and examples you can check out http://www.chartjs.org/docs/ -->
-                        <div class="pt-3" style="height: 360px;"><canvas id="js-chartjs-dashboard-earnings"></canvas></div>
+                    <div class="pt-3" style="height: 360px;"><canvas id="js-chartjs-dashboard-earnings"></canvas></div>
                     </div>
 
                 </div>
@@ -81,14 +89,11 @@
                         </div>
                     </div>
                     <div class="block-content p-0 text-center">
-                        <!-- Chart.js is initialized in js/pages/be_pages_dashboard_v1.min.js which was auto compiled from _js/pages/be_pages_dashboard_v1.js) -->
-                        <!-- For more info and examples you can check out http://www.chartjs.org/docs/ -->
                         <div class="pt-3" style="height: 360px;"><canvas id="js-chartjs-dashboard-sales"></canvas></div>
                     </div>
-
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- END Dashboard Charts -->
 
         <!-- Customers and Latest Orders -->
@@ -113,138 +118,29 @@
                             <tr class="text-uppercase">
                                 <th class="fw-bold" style="width: 80px;">ID</th>
                                 <th class="d-none d-sm-table-cell fw-bold text-center" style="width: 100px;">Photo</th>
-                                <th class="fw-bold">Name</th>
+                                <th class="fw-bold text-center">Name</th>
                                 <th class="d-none d-sm-table-cell fw-bold text-center" style="width: 80px;">Orders</th>
-                                <th class="fw-bold text-center" style="width: 60px;"></th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
+                            @foreach($customers as $cus)
                                 <td>
-                                    <span class="fw-semibold">#01368</span>
+                                    <span class="fw-semibold">{{ $cus->id }}</span>
                                 </td>
                                 <td class="d-none d-sm-table-cell text-center">
-                                    <img class="img-avatar img-avatar32" src="{{asset('admin/assets/media/avatars/avatar12.jpg')}}" alt="">
+                                    <img class="img-avatar img-avatar32" src="/storage/customer/{{ $cus->photo }}" alt="">
                                 </td>
-                                <td class="fw-semibold">
-                                    David Fuller                </td>
+                                <td class="fw-semibold">{{ $cus->name }}</td>
                                 <td class="d-none d-sm-table-cell text-center">
-                                    <a class="link-fx fw-semibold" href="javascript:void(0)">5</a>
-                                </td>
-                                <td class="text-center">
-                                    <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </a>
+                                @if ($cus->posOrders)
+                                    {{ $cus->posOrders->count() }}
+                                @else
+                                    <p>No Orders</p>
+                                @endif
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <span class="fw-semibold">#01368</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell text-center">
-                                    <img class="img-avatar img-avatar32" src="{{asset('admin/assets/media/avatars/avatar7.jpg')}}" alt="">
-                                </td>
-                                <td class="fw-semibold">
-                                    Susan Day                </td>
-                                <td class="d-none d-sm-table-cell text-center">
-                                    <a class="link-fx fw-semibold" href="javascript:void(0)">14</a>
-                                </td>
-                                <td class="text-center">
-                                    <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="fw-semibold">#01368</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell text-center">
-                                    <img class="img-avatar img-avatar32" src="{{asset('admin/assets/media/avatars/avatar11.jpg')}}" alt="">
-                                </td>
-                                <td class="fw-semibold">
-                                    Scott Young                </td>
-                                <td class="d-none d-sm-table-cell text-center">
-                                    <a class="link-fx fw-semibold" href="javascript:void(0)">15</a>
-                                </td>
-                                <td class="text-center">
-                                    <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="fw-semibold">#01368</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell text-center">
-                                    <img class="img-avatar img-avatar32" src="{{asset('admin/assets/media/avatars/avatar11.jpg')}}" alt="">
-                                </td>
-                                <td class="fw-semibold">
-                                    Sara Fields                </td>
-                                <td class="d-none d-sm-table-cell text-center">
-                                    <a class="link-fx fw-semibold" href="javascript:void(0)">36</a>
-                                </td>
-                                <td class="text-center">
-                                    <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="fw-semibold">#01368</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell text-center">
-                                    <img class="img-avatar img-avatar32" src="{{asset('admin/assets/media/avatars/avatar11.jpg')}}" alt="">
-                                </td>
-                                <td class="fw-semibold">
-                                    Wayne Garcia                </td>
-                                <td class="d-none d-sm-table-cell text-center">
-                                    <a class="link-fx fw-semibold" href="javascript:void(0)">3</a>
-                                </td>
-                                <td class="text-center">
-                                    <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="fw-semibold">#01368</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell text-center">
-                                    <img class="img-avatar img-avatar32" src="{{asset('admin/assets/media/avatars/avatar5.jpg')}}" alt="">
-                                </td>
-                                <td class="fw-semibold">
-                                    Amanda Powell                </td>
-                                <td class="d-none d-sm-table-cell text-center">
-                                    <a class="link-fx fw-semibold" href="javascript:void(0)">1</a>
-                                </td>
-                                <td class="text-center">
-                                    <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="fw-semibold">#01368</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell text-center">
-                                    <img class="img-avatar img-avatar32" src="{{asset('admin/assets/media/avatars/avatar9.jpg')}}" alt="">
-                                </td>
-                                <td class="fw-semibold">
-                                    Ralph Murray                </td>
-                                <td class="d-none d-sm-table-cell text-center">
-                                    <a class="link-fx fw-semibold" href="javascript:void(0)">12</a>
-                                </td>
-                                <td class="text-center">
-                                    <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -271,184 +167,36 @@
                             <thead>
                             <tr class="text-uppercase">
                                 <th class="fw-bold">ID</th>
+                                <th class="fw-bold">Customer</th>
                                 <th class="d-none d-sm-table-cell fw-bold">Date</th>
-                                <th class="fw-bold">State</th>
+                                <th class="fw-bold">Payment</th>
                                 <th class="d-none d-sm-table-cell fw-bold text-end" style="width: 120px;">Price</th>
-                                <th class="fw-bold text-center" style="width: 60px;"></th>
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($orders as $or)
                             <tr>
                                 <td>
-                                    <span class="fw-semibold">#07835</span>
+                                    <span class="fw-semibold">{{$or->id}}</span>
                                 </td>
-                                <td class="d-none d-sm-table-cell">
-                                    <span class="fs-sm text-muted">today</span>
+                                <td class="d-sm-table-cell">
+                                    <span class="fs-sm text-muted">@if ($or->customerId)
+                                        {{ $or->customerId->name ?? 'Walking Customer' }}
+                                    @else
+                                        Walking Customer
+                                    @endif</span>
+                                </td>
+                                <td class="d-sm-table-cell">
+                                    <span class="fs-sm text-muted">{{$or->created_at}}</span>
                                 </td>
                                 <td>
-                                    <span class="fw-semibold text-warning">Pending..</span>
+                                    <span class="fw-semibold text-warning">{{$or->payment}}</span>
                                 </td>
-                                <td class="d-none d-sm-table-cell text-end">
-                                    $999,99
-                                </td>
-                                <td class="text-center">
-                                    <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="left" title="Manage">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </a>
+                                <td class="d-sm-table-cell text-end">
+                                    ${{$or->amount}}
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <span class="fw-semibold">#07834</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell">
-                                    <span class="fs-sm text-muted">today</span>
-                                </td>
-                                <td>
-                                    <span class="fw-semibold text-warning">Pending..</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell text-end">
-                                    $2.299,00
-                                </td>
-                                <td class="text-center">
-                                    <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="left" title="Manage">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="fw-semibold">#07833</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell">
-                                    <span class="fs-sm text-muted">today</span>
-                                </td>
-                                <td>
-                                    <span class="fw-semibold text-success">Completed</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell text-end">
-                                    $1200,00
-                                </td>
-                                <td class="text-center">
-                                    <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="left" title="Manage">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="fw-semibold">#07832</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell">
-                                    <span class="fs-sm text-muted">today</span>
-                                </td>
-                                <td>
-                                    <span class="fw-semibold text-danger">Cancelled</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell text-end">
-                                    $399,00
-                                </td>
-                                <td class="text-center">
-                                    <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="left" title="Manage">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="fw-semibold">#07831</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell">
-                                    <span class="fs-sm text-muted">yesterday</span>
-                                </td>
-                                <td>
-                                    <span class="fw-semibold text-success">Completed</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell text-end">
-                                    $349,00
-                                </td>
-                                <td class="text-center">
-                                    <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="left" title="Manage">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="fw-semibold">#07830</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell">
-                                    <span class="fs-sm text-muted">yesterday</span>
-                                </td>
-                                <td>
-                                    <span class="fw-semibold text-success">Completed</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell text-end">
-                                    $999,00
-                                </td>
-                                <td class="text-center">
-                                    <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="left" title="Manage">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="fw-semibold">#07829</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell">
-                                    <span class="fs-sm text-muted">yesterday</span>
-                                </td>
-                                <td>
-                                    <span class="fw-semibold text-success">Completed</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell text-end">
-                                    $39,99
-                                </td>
-                                <td class="text-center">
-                                    <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="left" title="Manage">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="fw-semibold">#07828</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell">
-                                    <span class="fs-sm text-muted">yesterday</span>
-                                </td>
-                                <td>
-                                    <span class="fw-semibold text-success">Completed</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell text-end">
-                                    $499,00
-                                </td>
-                                <td class="text-center">
-                                    <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="left" title="Manage">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="fw-semibold">#07827</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell">
-                                    <span class="fs-sm text-muted">yesterday</span>
-                                </td>
-                                <td>
-                                    <span class="fw-semibold text-success">Completed</span>
-                                </td>
-                                <td class="d-none d-sm-table-cell text-end">
-                                    $325,00
-                                </td>
-                                <td class="text-center">
-                                    <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="left" title="Manage">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

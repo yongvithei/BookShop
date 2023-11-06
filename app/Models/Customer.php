@@ -9,4 +9,8 @@ class Customer extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded = [];
+
+    public function posOrders(){
+        return $this->hasMany(PosOrder::class, 'customer_id', 'id');
+    }
 }
