@@ -5,9 +5,23 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PosOrder;
+use App\Models\PosOrderItem;
 use App\Http\Requests\OrderStoreRequest;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
 class PosOrderController extends Controller
 {
+    public function index() {
+        if (request()->wantsJson()) {
+            $id = auth()->user()->id; // Get the authenticated user's id
+            $latestOrders = PosOrder::where('user_id', $id) // Assuming user_id is the foreign key for user
+                ->latest()
+                ->limit(6)
+                ->get();
+    
+            return response($latestOrders);
+        }
+    }
     public function store(OrderStoreRequest $request)
     {
         $order = PosOrder::create([
@@ -31,5 +45,28 @@ class PosOrderController extends Controller
         }
         $request->user()->cart()->detach();
         return 'success';
+    }
+    public function OrderInvoice($order_id){
+
+        $order = PosOrder::with('customerId')->where('id',$order_id)->first();
+        $orderItem = PosOrderItem::with('productId')->where('pos_order_id',$order_id)->orderBy('id','DESC')->get();
+
+        $pdf = Pdf::loadView('backend.pos.invoice', compact('order','orderItem'))->setPaper('a4')->setOption([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+        ]);
+        return $pdf->download('invoice.pdf');
+
+    }
+    public function PreviewOrderInvoice($order_id){
+
+        $order = PosOrder::with('customerId','userId')->where('id',$order_id)->first();
+        $orderItem = PosOrderItem::with('productId')->where('pos_order_id',$order_id)->orderBy('id','DESC')->get();
+
+        $pdf = Pdf::loadView('backend.pos.invoice', compact('order','orderItem'))->setPaper('a4')->setOption([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+        ]);
+        return $pdf->stream('invoice.pdf');
     }
 }

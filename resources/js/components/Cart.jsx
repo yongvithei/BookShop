@@ -9,6 +9,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 
 const Cart = () => {
   const [customers, setCustomers] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [carts, setCarts] = useState([]);
   const [products, setProducts] = useState([]);
   const [barcode, setBarcode] = useState('');
@@ -28,6 +29,16 @@ const Cart = () => {
       .then((res) => {
         const customers = res.data;
         setCustomers(customers);
+      })
+      .catch((error) => {
+        console.error('Error loading customers: ', error);
+      });
+  };
+  const loadRecentOrder = () => {
+    axios.get('/pos/recent-order')
+      .then((res) => {
+        const order = res.data;
+        setOrders(order);
       })
       .catch((error) => {
         console.error('Error loading customers: ', error);
@@ -275,15 +286,17 @@ const Cart = () => {
     .catch((err) => {
       // Handle errors (e.g., display an error message)
     });
-
+    loadRecentOrder();
     handleClose(); // Close the modal after submitting
   }
 
   // Load Data
   useEffect(() => {
-    loadCustomers();
-    loadCart();
     loadProducts();
+    loadCart();
+    loadRecentOrder();
+    loadCustomers();
+
   }, []);
 
 
@@ -361,68 +374,45 @@ return (
               <div className="block block-rounded js-ecom-div-nav d-none d-xl-block">
       <div className="block-header block-header-default">
         <h3 className="block-title">
-          <i className="fa fa-fw fa-boxes text-muted me-1"></i>Selling information
+         Invoice
         </h3>
       </div>
       <div className="block-content">
-      <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-              <Modal.Title>Selling Info</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-              <Form>
-                  <Form.Group className="mb-1" controlId="Form.selectPay">
-                      <Form.Label>Total Amount</Form.Label>
-                      <InputGroup className="mb-1">
-                          <InputGroup.Text>$</InputGroup.Text>
-                          <Form.Control aria-label="Amount (to the nearest dollar)" value={getTotal(carts)}
-                          disabled
-                          />
-                      </InputGroup>
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="Form.selectPay">
-                      <Form.Label>Received Amount</Form.Label>
-                      <InputGroup className="mb-3">
-                          <InputGroup.Text>$</InputGroup.Text>
-                          <Form.Control aria-label="Amount (to the nearest dollar)"
-                          placeholder={getTotal(carts)}
-                          className="placeholder-text"
-                          onChange={(e) => handleAmountChange(e.target.value)}
-                          />
-                      </InputGroup>
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="Form.selectPay">
-                      <Form.Label>Payment Type *</Form.Label>
-                      <Form.Select value={payment} onChange={handlePaymentChange}>
-                          <option value="Cash">Cash</option>
-                          <option value="Online Bank">Online Bank</option>
-                      </Form.Select>
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="Form.selectCus">
-                      <Form.Label>Customer *</Form.Label>
-                      <Form.Select value={customerId} onChange={handleCustomerIdChange}>
-                      <option key="0" value="">Walking Customer</option>
-                          {customers.map((cus) => (
-                          <option key={cus.id} value={cus.id}>{`${cus.name}`}</option>
-                          ))}
-                      </Form.Select>
-                  </Form.Group>
-                  <Form.Group className="mb-1" controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Note</Form.Label>
-                    <Form.Control value={note} as="textarea" rows={2} onChange={(e) => setNote(e.target.value)} />
-                  </Form.Group>
-              </Form>
-          </Modal.Body>
-          <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                  Close
-              </Button>
-              <Button variant="primary" onClick={() => handleSubmit()}>
-                  Save Changes
-              </Button>
-          </Modal.Footer>
-      </Modal>
+        <table className="table table-vcenter">
+          <thead>
+            <tr>
+              <th className="text-center" style={{ width: '15px' }}>ID</th>
+              <th>Name</th>
+              <th style={{ width: '35%' }}>Amount</th>
+              <th className="text-center" style={{ width: '10px' }}>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+          {orders.map((o) => (
+            <React.Fragment key={o.id}>
+              <tr>
+                <th className="text-center" scope="row">{o.id}</th>
+                <td className="fw-semibold fs-sm">{o.amount}</td>
+                <td>
+                  <span>$ {o.amount}</span>
+                </td>
+                <td className="text-center">
+                  <div className="btn-group">
+                    <a href={`/pos/invoice_preview/${o.id}`} className="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit Client">
+                      <i className="fa fa-print"></i>
+                    </a>
+                    <a href={`/pos/invoice_download/${o.id}`} className="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove Client">
+                      <i className="fa fa-download"></i>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </React.Fragment>
+          ))}
+          </tbody>
+        </table>
       </div>
+  
     </div>
           </div>
           <div className="col-xl-7 order-xl-0">
@@ -502,12 +492,70 @@ return (
            </div>))}
        </div>
 
+      
        {/* END Products */}
        <div className="text-end">
            <a className="btn btn-alt-secondary" href="">
                Next Page <i className="fa fa-arrow-right ms-1"></i>
            </a>
        </div>
+       <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+              <Modal.Title>Selling Info</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+              <Form>
+                  <Form.Group className="mb-1" controlId="Form.selectPay">
+                      <Form.Label>Total Amount</Form.Label>
+                      <InputGroup className="mb-1">
+                          <InputGroup.Text>$</InputGroup.Text>
+                          <Form.Control aria-label="Amount (to the nearest dollar)" value={getTotal(carts)}
+                          disabled
+                          />
+                      </InputGroup>
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="Form.selectPay">
+                      <Form.Label>Received Amount</Form.Label>
+                      <InputGroup className="mb-3">
+                          <InputGroup.Text>$</InputGroup.Text>
+                          <Form.Control aria-label="Amount (to the nearest dollar)"
+                          placeholder={getTotal(carts)}
+                          className="placeholder-text"
+                          onChange={(e) => handleAmountChange(e.target.value)}
+                          />
+                      </InputGroup>
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="Form.selectPay">
+                      <Form.Label>Payment Type *</Form.Label>
+                      <Form.Select value={payment} onChange={handlePaymentChange}>
+                          <option value="Cash">Cash</option>
+                          <option value="Online Bank">Online Bank</option>
+                      </Form.Select>
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="Form.selectCus">
+                      <Form.Label>Customer *</Form.Label>
+                      <Form.Select value={customerId} onChange={handleCustomerIdChange}>
+                      <option key="0" value="">Walking Customer</option>
+                          {customers.map((cus) => (
+                          <option key={cus.id} value={cus.id}>{`${cus.name}`}</option>
+                          ))}
+                      </Form.Select>
+                  </Form.Group>
+                  <Form.Group className="mb-1" controlId="exampleForm.ControlTextarea1">
+                    <Form.Label>Note</Form.Label>
+                    <Form.Control value={note} as="textarea" rows={2} onChange={(e) => setNote(e.target.value)} />
+                  </Form.Group>
+              </Form>
+          </Modal.Body>
+          <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                  Close
+              </Button>
+              <Button variant="primary" onClick={() => handleSubmit()}>
+                  Save Changes
+              </Button>
+          </Modal.Footer>
+      </Modal>
    </div>
           </div>
       </div>

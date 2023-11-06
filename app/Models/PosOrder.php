@@ -27,6 +27,12 @@ class PosOrder extends Model
         return $this->belongsTo(Customer::class);
     }
 
+    public function customerId(){
+        return $this->belongsTo(Customer::class,'customer_id','id');
+    }
+    public function userId(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
 
     public function total()
     {

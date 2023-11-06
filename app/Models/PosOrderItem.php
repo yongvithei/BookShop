@@ -19,4 +19,7 @@ class PosOrderItem extends Model
     {
         return $this->belongsTo(Product::class);
     }
+    public function productId(){
+        return $this->belongsTo(Product::class,'product_id','id');
+    }
 }
