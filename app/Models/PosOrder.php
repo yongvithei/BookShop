@@ -11,6 +11,9 @@ class PosOrder extends Model
     protected $fillable = [
         'customer_id',
         'amount',
+        'payment',
+        'received',
+        'note',
         'user_id'
     ];
 

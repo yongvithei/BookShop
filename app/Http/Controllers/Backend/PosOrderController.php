@@ -13,6 +13,9 @@ class PosOrderController extends Controller
         $order = PosOrder::create([
             'customer_id' => $request->customer_id,
             'amount' => $request->amount,
+            'received' => $request->received,
+            'payment' => $request->payment,
+            'note' => $request->note,
             'user_id' => $request->user()->id,
         ]);
 

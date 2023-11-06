@@ -3,7 +3,11 @@
 
 <!-- Page JS Plugins CSS -->
 <link rel="stylesheet" href="{{asset('admin/assets/js/plugins/select2/css/select2.min.css')}}">
-
+<style>
+.placeholder-text::placeholder {
+  color: black; 
+}
+</style>
 @vite(['resources/js/components/Cart.jsx'])
 <!-- Main Container -->
 <main id="main-container">

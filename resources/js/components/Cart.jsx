@@ -2,16 +2,26 @@ import ReactDOM from 'react-dom/client';
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 const Cart = () => {
-
   const [customers, setCustomers] = useState([]);
   const [carts, setCarts] = useState([]);
   const [products, setProducts] = useState([]);
   const [barcode, setBarcode] = useState('');
   const [search, setSearch] = useState('');
   const [customerId, setCustomerId] = useState('');
+  const [payment, setPayment] = useState('Cash');
   const [delayTimer, setDelayTimer] = useState(null);
+  const [receivedAmount, setReceivedAmount] = useState(0);
+  const [note, setNote] = useState('');
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const loadCustomers = () => {
     axios.get('/pos/customers')
@@ -102,7 +112,7 @@ const Cart = () => {
               toast.addEventListener('mouseleave', Swal.resumeTimer);
             }
           });
-  
+
           Toast.fire({
             icon: 'error',
             title: err.response.data.message,
@@ -121,8 +131,7 @@ const Cart = () => {
   };
   //getTotal from cart
   const getTotal = (carts) => {
-    const total = carts.reduce((accumulator, c) => accumulator + c.pivot.pro_qty * c.price, 0);
-    return total.toFixed(2);
+    return carts.reduce((accumulator, c) => accumulator + c.pivot.pro_qty * c.price, 0).toFixed(2);
   };
   const handleEmptyCart = () => {
     axios.post('/pos/cart/empty', { _method: 'DELETE' }).then((res) => {
@@ -240,35 +249,34 @@ const Cart = () => {
   const handleCustomerIdChange = (event) => {
     setCustomerId(event.target.value);
   };
-  //handle checkout
-  const handleClickSubmit = () => {
-    Swal.fire({
-        title: "Received Amount",
-        input: "text",
-        inputValue: getTotal(carts),
-        showCancelButton: true,
-        confirmButtonText: "Send",
-        showLoaderOnConfirm: true,
-        preConfirm: (amount) => {
-            return axios
-                .post("/pos/orders", {
-                    customer_id: customerId,
-                    amount,
-                })
-                .then((res) => {
-                    loadCart();
-                    return res.data;
-                })
-                .catch((err) => {
-                    Swal.showValidationMessage(err.response.data.message);
-                });
-        },
-        allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-        if (result.value) {
-            //
-        }
+  //get payment
+  const handlePaymentChange = (event) => {
+    setPayment(event.target.value);
+  };
+  // handleAmountChange function to update the received amount
+   const handleAmountChange = (value) => {
+    setReceivedAmount(value);
+  };
+  //handle Submit
+  const handleSubmit = () => {
+    // You can make an AJAX request here to submit the form data
+    axios.post("/pos/orders", {
+      customer_id: customerId,
+      amount: getTotal(carts),
+      payment: payment,
+      received: receivedAmount === "" || receivedAmount === 0 ? getTotal(carts) : receivedAmount,
+      note: note,
+      // Add other form data fields here
+    })
+    .then((res) => {
+      loadCart();
+      // Handle the success case (e.g., show a success message)
+    })
+    .catch((err) => {
+      // Handle errors (e.g., display an error message)
     });
+
+    handleClose(); // Close the modal after submitting
   }
 
   // Load Data
@@ -343,7 +351,7 @@ return (
           Cancel
         </button>
         <button type="button" disabled={!carts.length}
-                              onClick={handleClickSubmit}
+                              onClick={handleShow}
                               className="btn btn-primary">
           Submit
           <i className="fa fa-arrow-right opacity-50"></i>
@@ -357,29 +365,71 @@ return (
         </h3>
       </div>
       <div className="block-content">
-        <div className="mb-4">
-          <label className="form-label" htmlFor="val-select1">Customer<span className="text-danger"> *</span></label>
-          <select className="form-select" id="val-select1" name="val-select1" style={{ width: '100%' }} value={customerId} onChange={handleCustomerIdChange}>
-            {customers.map((cus) => (
-                <option key={cus.id} value={cus.id}>{`${cus.name}`}</option>
-              ))}
-          </select>
-        </div>
-        <div className="mb-4">
-          <label className="form-label" htmlFor="val-select2">Payment Type<span className="text-danger"> *</span></label>
-          <select className="js-select2 form-select" id="val-select2" name="val-select2" style={{ width: '100%' }}>
-            <option value="cash" defaultValue>Cash</option>
-            <option value="bank">Online Bank</option>
-          </select>
-        </div>
+      <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+              <Modal.Title>Selling Info</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+              <Form>
+                  <Form.Group className="mb-1" controlId="Form.selectPay">
+                      <Form.Label>Total Amount</Form.Label>
+                      <InputGroup className="mb-1">
+                          <InputGroup.Text>$</InputGroup.Text>
+                          <Form.Control aria-label="Amount (to the nearest dollar)" value={getTotal(carts)}
+                          disabled
+                          />
+                      </InputGroup>
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="Form.selectPay">
+                      <Form.Label>Received Amount</Form.Label>
+                      <InputGroup className="mb-3">
+                          <InputGroup.Text>$</InputGroup.Text>
+                          <Form.Control aria-label="Amount (to the nearest dollar)"
+                          placeholder={getTotal(carts)}
+                          className="placeholder-text"
+                          onChange={(e) => handleAmountChange(e.target.value)}
+                          />
+                      </InputGroup>
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="Form.selectPay">
+                      <Form.Label>Payment Type *</Form.Label>
+                      <Form.Select value={payment} onChange={handlePaymentChange}>
+                          <option value="Cash">Cash</option>
+                          <option value="Online Bank">Online Bank</option>
+                      </Form.Select>
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="Form.selectCus">
+                      <Form.Label>Customer *</Form.Label>
+                      <Form.Select value={customerId} onChange={handleCustomerIdChange}>
+                      <option key="0" value="">Walking Customer</option>
+                          {customers.map((cus) => (
+                          <option key={cus.id} value={cus.id}>{`${cus.name}`}</option>
+                          ))}
+                      </Form.Select>
+                  </Form.Group>
+                  <Form.Group className="mb-1" controlId="exampleForm.ControlTextarea1">
+                    <Form.Label>Note</Form.Label>
+                    <Form.Control value={note} as="textarea" rows={2} onChange={(e) => setNote(e.target.value)} />
+                  </Form.Group>
+              </Form>
+          </Modal.Body>
+          <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                  Close
+              </Button>
+              <Button variant="primary" onClick={() => handleSubmit()}>
+                  Save Changes
+              </Button>
+          </Modal.Footer>
+      </Modal>
       </div>
     </div>
           </div>
           <div className="col-xl-7 order-xl-0">
           <div>
-      
+
            <div className="input-group input-group-lg mb-2">
-               <input type="text" className="js-icon-search form-control fs-base" placeholder="Search Product" 
+               <input type="text" className="js-icon-search form-control fs-base" placeholder="Search Product"
                 value={search}
                 onChange={handleChangeSearch}
                 onKeyDown={handleSearch} />
@@ -387,7 +437,7 @@ return (
                    <i className="fa fa-search"></i>
                </span>
            </div>
-   
+
        {/* END Search Section */}
        {/* Sort and Show Filters */}
        <div className="d-flex justify-content-between">
@@ -419,7 +469,6 @@ return (
        {/* Products */}
        <div className="row items-push">
        {products.map((pro) => (
-
            <div className="col-md-6 col-xl-3" key={pro.id}>
                <div className="block block-rounded h-100 mb-0">
                    <div className="block-content p-1">
