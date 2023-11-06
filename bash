@@ -107,3 +107,5 @@ php artisan make:model PosOrder -m
 php artisan make:controller Backend/PosOrderController
 php artisan make:model PosOrderItem -m
 php artisan make:request OrderStoreRequest
+php artisan make:migration create_customer_view
+php artisan make:model CustomerView

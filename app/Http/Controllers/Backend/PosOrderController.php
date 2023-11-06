@@ -9,6 +9,7 @@ use App\Models\PosOrderItem;
 use App\Http\Requests\OrderStoreRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
+use App\Models\CustomerView;
 class PosOrderController extends Controller
 {
     public function index() {
@@ -68,5 +69,15 @@ class PosOrderController extends Controller
                 'chroot' => public_path(),
         ]);
         return $pdf->stream('invoice.pdf');
+    }
+    public function indexOrder(){
+        if (request()->ajax()) {
+            return datatables()->of(CustomerView::select(['*']))
+                ->addColumn('action', 'backend.pos.actiono')
+                ->rawColumns(['action'])
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('backend.order.order');
     }
 }

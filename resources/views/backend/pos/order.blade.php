@@ -174,4 +174,49 @@
 <!-- Page JS Code -->
 <script src="{{ asset('admin/assets/js/pages/be_tables_datatables.min.js')}}"></script>
 
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('#item-table').DataTable({
+            pageLength: 10,
+            lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+            autoWidth: false,
+            serverSide: true,
+            processing: false,
+            ajax: '{{ route('order.index') }}',
+            columns: [
+                { data: 'order_id', name: 'order_id' },
+                { data: 'customer_name', name: 'customer_name' },
+                { data: 'order_date', name: 'order_date' },
+                { data: 'payment', name: 'payment' },
+                { data: 'amount', name: 'amount' },
+                { data: 'received', name: 'received' },
+                { data: 'action', name: 'action', orderable: false },
+            ],
+            order: [[0, 'desc']],
+            columnDefs: [
+        {
+            targets: [0, 1,4,5],
+            className: 'text-center',
+        },
+    ]
+
+
+        });
+    });
+    function previewInvoice(orderId) {
+        // Use JavaScript to navigate to the desired URL
+        window.location.href = `/pos/invoice_preview/${orderId}`;
+    }
+    function downloadInvoice(orderId) {
+        // Use JavaScript to navigate to the desired URL
+        window.location.href = `/pos/invoice_download/${orderId}`;
+    }
+    </script>
+
 @endsection

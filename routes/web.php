@@ -248,12 +248,13 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::post('/pos/cart/change-qty', 'changeQty');
 
     });
-    Route::get('/pos/recent-order', [PosOrderController::class,'index']);
-    Route::post('/pos/orders', [PosOrderController::class,'store']);
-    Route::get('/pos/invoice_download/{order_id}' , [PosOrderController::class,'OrderInvoice']);
-    Route::get('/pos/invoice_preview/{order_id}' , [PosOrderController::class,'PreviewOrderInvoice']);
-    Route::view('/pos/invoice', 'backend.pos.invoice');
-
+    Route::controller(PosOrderController::class)->group(function(){
+        Route::get('/pos/allorder', 'indexOrder')->name('order.index');
+        Route::get('/pos/recent-order', 'index');
+        Route::post('/pos/orders', 'store');
+        Route::get('/pos/invoice_download/{order_id}' , 'OrderInvoice');
+        Route::get('/pos/invoice_preview/{order_id}' ,'PreviewOrderInvoice');
+    });
     
 
 
