@@ -228,9 +228,15 @@ class ProductController extends Controller
         if ($request->search) {
             $products = $products->where('name', 'LIKE', "%{$request->search}%");
         }
-        $products = $products->latest()->paginate(10);
+        $products = $products->latest()->paginate(15);
         if (request()->wantsJson()) {
-            return ProductResource::collection($products);
+            return response()->json([
+                'data' => ProductResource::collection($products),
+                'current_page' => $products->currentPage(),
+                'next_page_url' => $products->nextPageUrl(),
+                'prev_page_url' => $products->previousPageUrl(),
+                'last_page' => $products->lastPage(), 
+            ]);
         }
     }
 

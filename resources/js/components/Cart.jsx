@@ -19,6 +19,13 @@ const Cart = () => {
   const [delayTimer, setDelayTimer] = useState(null);
   const [receivedAmount, setReceivedAmount] = useState(0);
   const [note, setNote] = useState('');
+  const [pagination, setPagination] = useState({
+    current_page: 1,
+    next_page_url: null,
+    prev_page_url: null,
+    last_page: null,
+  });
+  const [currentPage, setCurrentPage] = useState(1);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -56,12 +63,22 @@ const Cart = () => {
       });
   };
 
-  const loadProducts = async (search = "") => {
+  const loadProducts = async (search = "", page = 1) => {
     try {
-      const query = !!search ? `?search=${search}` : "";
-      const res = await axios.get(`/pos/products${query}`);
-      const loadedProducts = res.data.data;
-      setProducts(loadedProducts);
+      const query = search ? `?search=${search}` : "";
+      const res = await axios.get(`/pos/products${query ? query : '?'}&page=${currentPage}`);
+      const { data, current_page, next_page_url, prev_page_url, last_page } = res.data;
+     
+    setProducts(data);
+    setPagination((prevPagination) => ({
+      ...prevPagination,
+      current_page,
+      next_page_url,
+      prev_page_url,
+      last_page,
+
+    }));
+      
     } catch (error) {
       console.error('Error loading products: ', error);
     }
@@ -289,15 +306,21 @@ const Cart = () => {
     loadRecentOrder();
     handleClose(); // Close the modal after submitting
   }
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  }
 
-  // Load Data
   useEffect(() => {
     loadProducts();
+  }, [currentPage]);
+  // Load Data
+  useEffect(() => {
     loadCart();
     loadRecentOrder();
     loadCustomers();
-
   }, []);
+
+
 
 
 return (
@@ -490,14 +513,31 @@ return (
                </div>
 
            </div>))}
+          {/* Pagination links */}
+          {/* Pagination links */}
+         
        </div>
-
+       
       
        {/* END Products */}
-       <div className="text-end">
-           <a className="btn btn-alt-secondary" href="">
-               Next Page <i className="fa fa-arrow-right ms-1"></i>
-           </a>
+       <div className='row m-2'>
+           <div className="pagination">
+               {products?.length > 0 && (
+               <div>
+                   {pagination.prev_page_url !== null && (
+                   <button className="btn btn-alt-secondary" onClick={()=> handlePageChange(currentPage - 1)}>
+                       <i className="fa fa-angle-left ms-1"></i>
+                   </button>
+                   )}
+                   {pagination.current_page} of {pagination.last_page}
+                   {pagination.next_page_url !== null && (
+                   <button className="btn btn-alt-secondary" onClick={()=> handlePageChange(currentPage + 1)}>
+                       <i className="fa fa-angle-right ms-1"></i>
+                   </button>
+                   )}
+               </div>
+               )}
+           </div>
        </div>
        <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
