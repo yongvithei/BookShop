@@ -17,7 +17,7 @@ use App\Http\Resources\ProductResource;
 use Intervention\Image\Exception\ImageException;
 class ProductController extends Controller
 {
-   
+
     public function index()
     {
         if(request()->ajax()) {
@@ -36,11 +36,22 @@ class ProductController extends Controller
         return view('backend.product.add_product',compact('categories','subcategories','partners'));
     }
     public function store(Request $request) {
-        $validator = Validator::make($request->all(),[
-            'name' => 'required',
-            'price' => 'required|numeric',
+        $validator = Validator::make($request->all(), array(
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'price_dis' => 'nullable|numeric|min:0',
+            'cate_Id' => 'nullable|exists:categories,id',
+            'subcate_Id' => 'nullable|exists:subcategories,id',
+            'part_id' => 'nullable|exists:partners,id',
+            'pro_code' => 'nullable|string|max:50|unique:' . Product::class,
+            'pro_qty' => 'nullable|numeric|min:0',
+            'short_desc' => 'nullable|string|max:500',
+            'long_desc' => 'nullable|string',
+            'new' => 'nullable|boolean',
+            'featured' => 'nullable|boolean',
+            'status' => 'nullable|in:1,0',
+        ));
 
-        ]);
         if ($request->hasFile('thumbnail')) {
             $image = $request->file('thumbnail');
             $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
@@ -92,13 +103,13 @@ class ProductController extends Controller
                     $img->save($destPath);
                 }
             }
-            
+
             $request->session()->flash('success','Product add successfully.');
             return response()->json([
                 'status' => true,
                 'message' => 'Product added successfully.'
             ]);
-            
+
         } else {
             return response()->json([
                 'status' => false,
@@ -117,7 +128,7 @@ class ProductController extends Controller
         $partners = Partner::select('id', 'name')->get();
         $productView = ProductView::select('sub_names', 'cate_names', 'partner_name')->where('id', $product->id)->first();
 
-    
+
 
         $data['productView'] = $productView;
         $data['product'] = $product;
@@ -211,7 +222,7 @@ class ProductController extends Controller
         $item  = ProductView::where($id)->first();
         return Response()->json($item);
     }
-    
+
 
     public function destroy(Request $request)
     {
@@ -235,7 +246,7 @@ class ProductController extends Controller
                 'current_page' => $products->currentPage(),
                 'next_page_url' => $products->nextPageUrl(),
                 'prev_page_url' => $products->previousPageUrl(),
-                'last_page' => $products->lastPage(), 
+                'last_page' => $products->lastPage(),
             ]);
         }
     }

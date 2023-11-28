@@ -71,23 +71,26 @@
                                 </div>
                                 <div class="row mb-0">
                                     <div class="col-md-6">
-                                        <label class="form-label" for="price">Price in Riel (៛)</label>
+                                        <label class="form-label" for="price">Price</label>
                                         <input type="text" class="form-control" id="price" name="price">
                                         <p></p>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label" for="price_dis">Discount Price (៛)</label>
+                                        <label class="form-label" for="price_dis">Discount Price</label>
                                         <input type="text" class="form-control" id="price_dis" name="price_dis">
+                                        <p></p>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-6">
                                         <label class="form-label" for="pro_qty">Stock</label>
                                         <input type="text" class="form-control" id="pro_qty" name="pro_qty">
+                                        <p></p>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label" for="pro_code">Product Code</label>
                                         <input type="text" class="form-control" id="pro_code" name="pro_code">
+                                        <p></p>
                                     </div>
                                 </div>
                                 <div class="mb-4">
@@ -124,6 +127,7 @@
                                     <!-- For more info and examples you can check out https://github.com/mimo84/bootstrap-maxlength -->
                                     <label class="form-label" for="short_desc">Short Description</label>
                                     <textarea class="js-maxlength form-control" id="short_desc" name="short_desc" rows="3" maxlength="250" data-always-show="true" data-placement="top"></textarea>
+                                    <p></p>
                                     <div class="form-text">
                                         250 Character Max
                                     </div>
@@ -132,6 +136,7 @@
                                     <!-- CKEditor (js-ckeditor-inline + js-ckeditor ids are initialized in Helpers.jsCkeditor()) -->
                                     <label class="form-label">Description</label>
                                     <textarea id="js-ckeditor" name="long_desc"></textarea>
+                                    <p></p>
                                 </div>
                                 <div class="mb-4">
                                     <label class="mb-2 form-label">Product Status</label>
@@ -315,6 +320,62 @@
                         .removeClass('invalid-feedback')
                         .html("");
                     }
+                    if (errors.pro_code) {
+                        $("#pro_code").addClass('is-invalid')
+                            .siblings("p")
+                            .addClass('invalid-feedback')
+                            .html(errors.pro_code);
+                    } else{
+                        $("#pro_code").removeClass('is-invalid')
+                            .siblings("p")
+                            .removeClass('invalid-feedback')
+                            .html("");
+                    }
+                if (errors.price_dis) {
+                    $("#price_dis").addClass('is-invalid')
+                        .siblings("p")
+                        .addClass('invalid-feedback')
+                        .html(errors.price_dis);
+                } else{
+                    $("#price_dis").removeClass('is-invalid')
+                        .siblings("p")
+                        .removeClass('invalid-feedback')
+                        .html("");
+                }
+
+                if (errors.pro_qty) {
+                    $("#pro_qty").addClass('is-invalid')
+                        .siblings("p")
+                        .addClass('invalid-feedback')
+                        .html(errors.pro_qty);
+                } else{
+                    $("#pro_qty").removeClass('is-invalid')
+                        .siblings("p")
+                        .removeClass('invalid-feedback')
+                        .html("");
+                }
+                if (errors.short_desc) {
+                    $("#short_desc").addClass('is-invalid')
+                        .siblings("p")
+                        .addClass('invalid-feedback')
+                        .html(errors.pro_qty);
+                } else{
+                    $("#short_desc").removeClass('is-invalid')
+                        .siblings("p")
+                        .removeClass('invalid-feedback')
+                        .html("");
+                }
+                if (errors.long_desc) {
+                    $("#long_desc").addClass('is-invalid')
+                        .siblings("p")
+                        .addClass('invalid-feedback')
+                        .html(errors.pro_qty);
+                } else{
+                    $("#long_desc").removeClass('is-invalid')
+                        .siblings("p")
+                        .removeClass('invalid-feedback')
+                        .html("");
+                }
 
                 }
             }

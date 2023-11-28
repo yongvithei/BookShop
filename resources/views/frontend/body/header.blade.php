@@ -23,8 +23,8 @@
 
 				<ul class="navbar-nav">
 					<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">USD</a>
-						<ul class="dropdown-menu dropdown-menu-lg-end">
-							<li><a class="dropdown-item" href="#">{{__('main.usd')}}</a></li>
+							<ul class="dropdown-menu dropdown-menu-lg-end">
+						<li><a class="dropdown-item" href="#">{{__('main.usd')}}</a></li>
 							<li><a class="dropdown-item" href="#">{{__('main.riel')}}</a></li>
 						</ul>
 					</li>
@@ -37,10 +37,10 @@
 								</div>
 							</div>
 						</a>
-						<div class="dropdown-menu dropdown-menu-lg-end">
-							<a class="dropdown-item d-flex allign-items-center" href="javascript:;"><i class="flag-icon flag-icon-um me-2"></i><span>English</span></a>
-							<a class="dropdown-item d-flex allign-items-center" href="javascript:;"><i class="flag-icon flag-icon-kh me-2"></i><span>Khmer</span></a>
-						</div>
+                        <div class="dropdown-menu dropdown-menu-lg-end">
+                            <a class="dropdown-item d-flex allign-items-center" href="/locale/en"><i class="flag-icon flag-icon-um me-2"></i><span>English</span></a>
+                            <a class="dropdown-item d-flex allign-items-center" href="/locale/km"><i class="flag-icon flag-icon-kh me-2"></i><span>Khmer</span></a>
+                        </div>
 					</li>
 				</ul>
 
@@ -242,7 +242,7 @@
 				}
 			}); //End Ajax
 
-		} // end if 
+		} // end if
 
 		if (text.length < 1) $("#searchProducts").html("");
 
