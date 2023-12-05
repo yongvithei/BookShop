@@ -148,13 +148,13 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::get('/admin/profile/password', 'editProfile')->name('admin.profile');
     });
 
-    // Site Info All Route
+   // Site Info All Route
     Route::controller(SiteInfoController::class)->group(function(){
-        Route::view('/info/business', 'backend/system.business')->middleware('can:site.menu');
-        Route::get('/info/web', 'show');
-        Route::post('/sites',  'store');
-        Route::put('/site/{item}','update');
+        Route::get('/info/business', 'show')->middleware('can:site.menu');
+        Route::post('/sitePush','store')->name('sitePush');
+    
     });
+
     // User Info All Route
     Route::controller(UserController::class)->group(function(){
         Route::get('/user/list', 'index')->name('all.user')->middleware('can:user.menu');

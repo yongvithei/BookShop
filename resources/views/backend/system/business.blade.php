@@ -1,10 +1,17 @@
 @extends('admin.index')
 @section('admin')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
 #imageContainer {
-    width: 100px;
+    width: 150px;
     height: 150px;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc; /* Add a border for better visibility */
+    background-color: #f8f8f8; /* Add a background color if needed */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
 }
 
 #imagePreview {
@@ -14,6 +21,7 @@
     background-size: cover;
     background-position: center;
 }
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css" rel="stylesheet">
 
 </style>
     <main id="main-container">
@@ -26,7 +34,7 @@
                     <h3 class="block-title">Company Information</h3>
                 </div>
                 <div class="block-content">
-                    <form action="" method="POST" onsubmit="return false;">
+                    <form id="myForm" action="" method="POST" onsubmit="return false;">
                         <div class="row push">
                             <div class="col-lg-4">
                                 <p class="fs-sm text-muted">
@@ -34,7 +42,8 @@
                                 </p>
                             </div>
                             <div class="col-lg-8 col-xl-5">
-                            <input type="hidden" id="itemId" value="">
+                            <input type="hidden" id="id" name="id" value="{{$item->id}}">
+
                             
                                 <div class="mb-3">
                                 <label class="form-label" for="name">Company Name</label>
@@ -42,7 +51,7 @@
                                                         <span class="input-group-text">
                                                         <i class="fa fa-city"></i>
                                                         </span>
-                                        <input type="text" class="form-control" id="name" name="name">
+                                        <input type="text" class="form-control" id="name" name="name" value="{{$item->name}}" required>
                                     </div>
                                 </div>
                                 <div class="mb-3">
@@ -51,7 +60,7 @@
                                                             <span class="input-group-text">
                                                             <i class="si si-earphones-alt"></i>
                                                             </span>
-                                        <input type="text" class="form-control" id="support_phone" name="support_phone">
+                                        <input type="text" class="form-control" id="support_phone" name="support_phone" value="{{$item->support_phone}}">
                                     </div>
                                 </div>
                                 <div class="mb-3">
@@ -60,16 +69,16 @@
                                                             <span class="input-group-text">
                                                             <i class=" fa fa-inbox"></i>
                                                             </span>
-                                        <input type="text" class="form-control" id="email" name="email">
+                                        <input type="text" class="form-control" id="email" name="email" value="{{$item->email}}">
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="address">Address</label>
-                                    <textarea class="form-control" id="address" name="address" rows="3" placeholder="Address ..."></textarea>
+                                    <textarea class="form-control" id="address" name="address" rows="3" placeholder="Address ...">{{$item->address}}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="information">Store Information</label>
-                                    <textarea class="form-control" id="information" name="information" rows="3" placeholder="Address ..."></textarea>
+                                    <textarea class="form-control" id="information" name="information" rows="3" placeholder="Information ...">{{$item->information}}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="map">Map Link</label>
@@ -77,7 +86,7 @@
                                                             <span class="input-group-text">
                                                             <i class="far fa-map"></i>
                                                             </span>
-                                        <input type="text" class="form-control" id="map" name="map">
+                                        <input type="text" class="form-control" id="map" name="map" value={{$item->map}}>
                                     </div>
                                 </div>
                                 <div class="mb-3">
@@ -86,7 +95,7 @@
                                                             <span class="input-group-text">
                                                             <i class="fab fa-facebook"></i>
                                                             </span>
-                                        <input type="text" class="form-control" id="facebook" name="facebook">
+                                        <input type="text" class="form-control" id="facebook" name="facebook" value={{$item->facebook}}>
                                     </div>
                                 </div>
                                 <div class="mb-3">
@@ -95,24 +104,32 @@
                                                             <span class="input-group-text">
                                                             <i class="fab fa-telegram"></i>
                                                             </span>
-                                        <input type="text" class="form-control" id="telegram" name="telegram">
+                                        <input type="text" class="form-control" id="telegram" name="telegram" value={{$item->telegram}}>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                <label class="form-label" for="exchange">Exchange Rate 1$</label>
+                                        <div class="input-group">
+                                                            <span class="input-group-text">
+                                                            <i class="fa fa-money-bill-transfer"></i>
+                                                            </span>
+                                        <input type="text" class="form-control" id="exchange" name="exchange" value={{$item->exchange}}>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                 <label class="form-label">Logo</label>
                                 <div class="mb-3">
-                                    <div id="imageContainer" style="width: 100px; height: 150px; overflow: hidden;">
-                                        <div id="imagePreview" src="assets/media/avatars/avatar13.jpg" alt=""></div>
-                                    </div>
-                                </div>
-
-                                    <div class="mb-4">
-                                        <label for="imageInput" class="form-label">Choose Image</label>
-                                        <input class="form-control" type="file" id="imageInput" value="">
+                                <div id="imageContainer" style="overflow: hidden;">
+                                    <img id="imagePreview" src="{{ asset('storage/' . $item->image) }}" alt="">
                                     </div>
                                 </div>
                                 <div class="mb-4">
-                                    <button id="saveButton" type="submit" class="btn btn-alt-primary">
+                                    <label for="imageInput" class="form-label">Choose Image</label>
+                                    <input class="form-control" type="file" id="imageInput" name="image" accept="image/">
+                                </div>
+
+                                <div class="mb-4">
+                                    <button id="submitForm" type="button" class="btn btn-alt-primary">
                                         Update
                                     </button>
                                 </div>
@@ -125,174 +142,73 @@
     </main>
     <!-- END Company Information -->
 
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.5.0/dist/axios.min.js"></script>
+        <!-- Page JS Plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+    <script src="{{asset('admin/assets/js/lib/jquery.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
+
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    //text string
-    const nameInput = document.getElementById('name');
-    const support_phoneInput = document.getElementById('support_phone');
-    const emailInput = document.getElementById('email');
-    const addressInput = document.getElementById('address');
-    const facebookInput = document.getElementById('facebook');
-    const telegramInput = document.getElementById('telegram');
-    const informationInput = document.getElementById('information');
-    const mapInput = document.getElementById('map');
-
-    const itemIdInput = document.getElementById('itemId');
-    const saveButton = document.getElementById('saveButton');
-    const imageInput = document.getElementById('imageInput');
-    const imagePreview = document.getElementById('imagePreview');
-
-    // Define formData in a higher scope
-    const formData = new FormData();
-
-    // Fetch data
-    axios.get(`/info/web`)
-        .then(function (response) {
-            const data = response.data;
-            if (data) {
-                // Populate the form fields with the retrieved data
-                nameInput.value = data.name;
-                support_phoneInput.value = data.support_phone;
-                emailInput.value = data.email;
-                addressInput.value = data.address;
-                facebookInput.value = data.facebook;
-                telegramInput.value = data.telegram;
-                informationInput.value = data.information;
-                mapInput.value = data.map;
-
-                // Set the item ID
-                itemIdInput.value = data.id || ''; // Ensure itemIdInput is set even if it's null
-                // Display the image in the preview div if an image URL is provided in the response
-                // Display the image in the preview div if an image URL is provided in the response
-                if (data.image) {
-                    const img = document.createElement('img');
-                    img.src = `/images/${data.image}`; // Use the correct path to the image
-                    img.onload = function () {
-                        const aspectRatio = img.width / img.height;
-                        let newWidth, newHeight;
-
-                        // Calculate the new dimensions to fit the container
-                        if (aspectRatio >= 1) {
-                            // Landscape or square image
-                            newWidth = 150; // Set the desired width
-                            newHeight = 150 / aspectRatio;
-                        } else {
-                            // Portrait image
-                            newHeight = 150; // Set the desired height
-                            newWidth = 150 * aspectRatio;
-                        }
-
-                        // Set the image dimensions
-                        img.width = newWidth;
-                        img.height = newHeight;
-
-                        // Clear and append the resized image to the container
-                        imagePreview.innerHTML = '';
-                        imagePreview.appendChild(img);
-                    };
-                } else {
-                    // Clear the image preview if no image URL is provided
-                    imagePreview.innerHTML = '';
-                }
-            } else {
-                console.error('Company data not found');
-            }
-        })
-        .catch(function (error) {
-            console.error(error);
-        });
-
-    // Function to update the image preview
-    function updateImagePreview() {
-        const file = imageInput.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.onload = function () {
-                    const aspectRatio = img.width / img.height;
-                    let newWidth, newHeight;
-
-                    // Calculate the new dimensions to fit the container
-                    if (aspectRatio >= 1) {
-                        // Landscape or square image
-                        newWidth = 150; // Set the desired width
-                        newHeight = 150 / aspectRatio;
-                    } else {
-                        // Portrait image
-                        newHeight = 150; // Set the desired height
-                        newWidth = 150 * aspectRatio;
-                    }
-
-                    // Set the image dimensions
-                    img.width = newWidth;
-                    img.height = newHeight;
-
-                    // Clear and append the resized image to the container
-                    imagePreview.innerHTML = '';
-                    imagePreview.appendChild(img);
-                };
-            };
-            reader.readAsDataURL(file);
-        } else {
-            imagePreview.innerHTML = '';
-        }
-    }
-
-
-    // Update the image preview when a file is selected
-    imageInput.addEventListener('change', function() {
-        updateImagePreview();
-        const file = imageInput.files[0];
-
-        if (file) {
-            formData.append('image', file);
-        }
-    });
-
-    saveButton.addEventListener('click', function() {
-        const name = nameInput.value;
-        const support_phone = support_phoneInput.value;
-        const email = emailInput.value;
-        const address = addressInput.value;
-        const facebook = facebookInput.value;
-        const telegram = telegramInput.value;
-        const information = informationInput.value;
-        const map = mapInput.value;
-        const itemId = itemIdInput.value;
-
-        // Append data to formData
-        formData.append('name', name);
-        formData.append('support_phone', support_phone);
-        formData.append('email', email);
-        formData.append('address', address);
-        formData.append('facebook', facebook);
-        formData.append('telegram', telegram);
-        formData.append('information', information);
-        formData.append('map', map);
-        formData.append('id', itemId);
-
-        axios.post('/sites', formData, {
+        $.ajaxSetup({
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        })
-        .then(function (response) {
-            const item = response.data.item;
-            const message = response.data.message;
-
-            // Handle the success message, e.g., display it to the user
-            alert(message);
-
-        })
-        .catch(function (error) {
-            // Handle errors (e.g., display validation errors)
-            console.error(error);
         });
-    });
-});
+    $(document).ready(function () {
+        // Image preview before upload
+            $('#imageInput').change(function () {
+                readURL(this);
+            });
+        // Handle form submission
+        $('#submitForm').on('click', function () {
+            var formData = new FormData($('#myForm')[0]);
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('sitePush') }}',
+                data: formData,
+                dataType: 'json',
+                processData: false,  // Important
+                contentType: false, 
+                success: function (response) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 6000
+                    });
 
+                    Toast.fire({
+                        icon: 'success',
+                        title: response.message
+                    });
+                },
+                error: function (error) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 6000
+                    });
+
+                    Toast.fire({
+                        icon: 'error',
+                        title: error.responseJSON.message
+                    });
+                }
+            });
+        });
+        
+    });
+    // Function to read and display image preview
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#imagePreview').attr('src', e.target.result);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+   
 </script>
+
 @endsection

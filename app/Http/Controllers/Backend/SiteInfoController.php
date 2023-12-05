@@ -7,57 +7,50 @@ use Illuminate\Http\Request;
 use App\Models\SiteInfo;
 class SiteInfoController extends Controller
 {
-    public function show()
-    {
+
+    public function show(){
         $item = SiteInfo::latest()->first();
+        return view('backend.system.business',compact('item'));
 
-        if ($item) {
-            return response()->json($item);
-        } else {
-            return response()->json(null);
-        }
     }
+
     public function store(Request $request)
-{
+    {
+        $data = $request->all();
+    
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'support_phone' => 'required|string|max:255',
+            'email' => 'string|max:255',
+            'address' => 'required|string|max:555',
+            'facebook' => 'string|max:255',
+            'telegram' => 'string|max:255',
+            'exchange' => 'required|numeric|between:3835,4270',
+            'information' => 'required|string|max:555',
+            'map' => 'string|max:1000',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        // Process the image upload
+        if ($request->hasFile('image')) {
+            // Delete the old image if it exists
+            if (!empty($validatedData['image'])) {
+                $oldImagePath = storage_path('app/public/' . $validatedData['image']);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
 
-    $itemId = $request->input('id');
+            // Upload the new image
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(storage_path('app/public/images'), $imageName);
 
-    $validatedData = $request->validate([
-        'name' => 'required|string|max:255',
-        'support_phone' => 'required|string|max:255',
-        'email' => 'string|max:255',
-        'address' => 'required|string|max:555',
-        'facebook' => 'string|max:255',
-        'telegram' => 'string|max:255',
-        'information' => 'required|string|max:555',
-        'map' => 'string|max:1000',
-        'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
-
-    if ($itemId) {
-        // Update an existing item
-        $item = SiteInfo::findOrFail($itemId);
-        $item->update($validatedData);
-        $message = 'Item updated successfully.';
-    } else {
-        // Create a new item
-        $item = SiteInfo::create($validatedData);
-        $message = 'Item created successfully.';
+            // Save the image path to the database or perform other actions
+            $validatedData['image'] = 'images/' . $imageName;
+        }
+        $item = SiteInfo::updateOrCreate(['id' => $data['id']], $validatedData);
+        
+        return response()->json(['success' => true, 'message' => 'Record updated successfully']);
     }
-
-    // Handle the image upload or assign default image
-    if ($request->hasFile('image')) {
-        $image = $request->file('image');
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images'), $imageName);
-        $item->image = $imageName;
-        $item->save();
-    } elseif (!$itemId) {
-        // Assign a default image if no image was uploaded and it's a new item
-        $item->image = 'defaultimage.png'; // Replace with the path to your default image
-        $item->save();
-    }
-
-    return response()->json(['item' => $item, 'message' => $message], 200);
-}
+    
 }
