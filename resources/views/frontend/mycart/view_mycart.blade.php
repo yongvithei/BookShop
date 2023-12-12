@@ -101,8 +101,8 @@
                                             </div>
                                             <div class="cart-detail text-center text-lg-start">
                                                 <h6 class="mb-2">${value.name}</h6>
-                                                <h5 class="mb-2"><span>Price: </span>$${value.price}</h5>
-                                                <p class="mb-0">SubTotal: <span>$${value.subtotal}</span>
+                                                <h5 class="mb-2"><span>Price: </span>${value.price} KHR</h5>
+                                                <p class="mb-0">SubTotal: <span>${value.subtotal} KHR</span>
                                                 </p>
                                             </div>
                                         </div>
@@ -242,23 +242,26 @@
             dataType: 'json',
             success:function(data){
                  if (data.total) {
+                 const totalUSD = (data.total / data.rate).toFixed(2);
                  $('#couponCalField').html(
-                        `<p class="mb-2">{{ __('main.subtotal') }}: <span class="float-end">$${data.total}</span></p>
+                        `<p class="mb-2">{{ __('main.subtotal') }}: <span class="float-end">${data.total} KHR</span></p>
                         <p class="mb-0">{{ __('main.discount') }}: <span class="float-end">--</span></p>
-                        <div class="my-3 border-top"></div>
-                        <h5 class="mb-0">{{ __('main.order_total') }}: <span class="float-end">$${data.total}</span></h5>
+                        <div class="my-2 border-top"></div>
+                        <h5 class="mb-2">{{ __('main.order_total') }}: <span class="float-end">${data.total} KHR</span></h5>
+                        <h5 class="mb-2">Total in USD: <span class="float-end">$ ${totalUSD}</span></h5>
                         <div class="my-4"></div>
                         <div class="d-grid">
                             <a href="{{ route('checkout') }}" class="btn btn-dark btn-ecomm">{{ __('main.proceed_to_checkout') }}</a>
                         </div>
                 ` ) } else {
                     $('#couponCalField').html(`
-                        <p class="mb-2">{{ __('main.subtotal') }}: <span class="float-end">$${data.subtotal}</span></p>
-                        <p class="mb-1">{{ __('main.coupon') }}: <span class="float-end">${data.coupon_name}</span></p>
-                        <p class="mb-1">{{ __('main.discount') }}: <span class="float-end">$${data.discount_amount} <a type="submit" onclick="couponRemove()"><i class='bx bx-trash'></i> </a></span></p>
+                        <p class="mb-2">{{ __('main.subtotal') }}: <span class="float-end">${data.subtotal} KHR</span></p>
+                        <p class="mb-2">{{ __('main.coupon') }}: <span class="float-end">${data.coupon_name}</span></p>
+                        <p class="mb-2">{{ __('main.discount') }}: <span class="float-end">${data.discount_amount} KHR<a type="submit" onclick="couponRemove()"><i class='bx bx-trash'></i> </a></span></p>
                         <div class="my-3 border-top"></div>
-                        <h5 class="mb-0">{{ __('main.order_total') }}: <span class="float-end">$${data.total_amount}</span></h5>
-                        <div class="my-4"></div>
+                        <h5 class="mb-0">{{ __('main.order_total') }}: <span class="float-end">${data.total_amount} KHR</span></h5>
+                        <div class="my-2"></div>
+                        <h5 class="mb-2">Total in USD: <span class="float-end">$ ${data.dollar}</span></h5>
                         <div class="d-grid">
                             <a href="{{ route('checkout') }}" class="btn btn-dark btn-ecomm">{{ __('main.proceed_to_checkout') }}</a>
                         </div>

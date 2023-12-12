@@ -21,9 +21,9 @@
 											        class="bx bxs-star text-warning"></i>
 											</div>
 										@if($new->discount_price != NULL)
-											<p class="mb-0"><strong>$ {{$new->discount_price}}</strong></p>
+											<p class="mb-0"><strong>{{$new->discount_price}} KHR</strong></p>
 											@else
-											<p class="mb-0"><strong>$ {{$new->price}}</strong></p>
+											<p class="mb-0"><strong>{{$new->price}} KHR</strong></p>
 											@endif
 										</div>
 									</div>
@@ -51,9 +51,9 @@
 											        class="bx bxs-star text-warning"></i>
 											</div>
 											@if($new->discount_price != NULL)
-											<p class="mb-0"><strong>$ {{$featured->discount_price}}</strong></p>
+											<p class="mb-0"><strong>{{$featured->discount_price}} KHR</strong></p>
 											@else
-											<p class="mb-0"><strong>$ {{$featured->price}}</strong></p>
+											<p class="mb-0"><strong>{{$featured->price}} KHR</strong></p>
 											@endif
 										</div>
 									</div>
@@ -81,9 +81,9 @@
 											        class="bx bxs-star text-warning"></i>
 											</div>
 											@if($new->discount_price != NULL)
-											<p class="mb-0"><strong>$ {{$new->discount_price}}</strong></p>
+											<p class="mb-0"><strong>{{$new->discount_price}} KHR</strong></p>
 											@else
-											<p class="mb-0"><strong>$ {{$new->price}}</strong></p>
+											<p class="mb-0"><strong>{{$new->price}} KHR</strong></p>
 											@endif
 										</div>
 									</div>
@@ -111,9 +111,9 @@
 											        class="bx bxs-star text-warning"></i>
 											</div>
 											@if($new->discount_price != NULL)
-											<p class="mb-0"><strong>$ {{$featured->discount_price}}</strong></p>
+											<p class="mb-0"><strong>{{$featured->discount_price}} KHR</strong></p>
 											@else
-											<p class="mb-0"><strong>$ {{$featured->price}}</strong></p>
+											<p class="mb-0"><strong>{{$featured->price}} KHR</strong></p>
 											@endif
 										</div>
 									</div>

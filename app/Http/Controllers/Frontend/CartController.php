@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Coupon;
 use App\Models\ShipCity;
+use App\Models\SiteInfo;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
@@ -98,7 +99,6 @@ class CartController extends Controller
         return view('frontend.mycart.view_mycart');
     }
     public function GetCartProduct(){
-
         $carts = Cart::content();
         $cartQty = Cart::count();
         $cartTotal = Cart::total();
@@ -106,8 +106,7 @@ class CartController extends Controller
         return response()->json(array(
             'carts' => $carts,
             'cartQty' => $cartQty,
-            'cartTotal' => $cartTotal
-
+            'cartTotal' => $cartTotal,
         ));
     }
     public function CartRemove($rowId){
@@ -116,13 +115,13 @@ class CartController extends Controller
          if(Session::has('coupon')){
             $coupon_name = Session::get('coupon')['coupon_name'];
             $coupon = Coupon::where('name',$coupon_name)->first();
-           
+
            Session::put('coupon',[
-                'coupon_name' => $coupon->name, 
-                'coupon_discount' => $coupon->discount, 
-                'discount_amount' => round(Cart::total() * $coupon->discount/100), 
+                'coupon_name' => $coupon->name,
+                'coupon_discount' => $coupon->discount,
+                'discount_amount' => round(Cart::total() * $coupon->discount/100),
                 'total_amount' => round(Cart::total() - Cart::total() * $coupon->discount/100 )
-            ]); 
+            ]);
         }
         return response()->json(['success' => 'Successfully Remove From Cart']);
 
@@ -192,6 +191,7 @@ class CartController extends Controller
 
     }
     public function CouponCalculation(){
+        $exchangeRate = SiteInfo::latest()->value('exchange');
 
         if (Session::has('coupon')) {
 
@@ -201,10 +201,12 @@ class CartController extends Controller
              'coupon_discount' => session()->get('coupon')['coupon_discount'],
              'discount_amount' => session()->get('coupon')['discount_amount'],
              'total_amount' => session()->get('coupon')['total_amount'],
+             'dollar' => number_format(session()->get('coupon')['total_amount'] / $exchangeRate, 2),
             ));
         }else{
             return response()->json(array(
                 'total' => Cart::total(),
+                'rate' => $exchangeRate,
             ));
         }
     }
@@ -215,28 +217,30 @@ class CartController extends Controller
 
     }
     public function CheckoutCreate(){
-
+        $exchangeRate = SiteInfo::latest()->value('exchange');
         if (Auth::check()) {
-            if (Cart::total() > 0) { 
+            if (Cart::total() > 0) {
             $carts = Cart::content();
             $cartQty = Cart::count();
             $cartTotal = Cart::total();
+            $dollar = number_format(Cart::total() / $exchangeRate, 2, '.', '');
             $cities = ShipCity::orderBy('name','ASC')->get();
-            return view('frontend.checkout.checkout_view',compact('carts','cartQty','cartTotal','cities'));
+            return view('frontend.checkout.checkout_view',compact('carts','cartQty','cartTotal','cities','dollar'));
             }else{
                 $notification = array(
                 'message' => 'Shopping At list One Product',
                 'alert-type' => 'error'
             );
-            return redirect()->to('/')->with($notification); 
+            return redirect()->to('/')->with($notification);
             }
         }else{
              $notification = array(
             'message' => 'You Need to Login First',
             'alert-type' => 'error'
         );
-        return redirect()->route('login')->with($notification); 
+        return redirect()->route('login')->with($notification);
         }
     }
+
 
 }

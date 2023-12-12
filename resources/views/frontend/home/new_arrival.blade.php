@@ -45,10 +45,10 @@
 												<div class="d-flex align-items-center">
 													<div class="mb-1 product-price">
 														@if($product->discount_price != NULL)
-															<span class="me-1 text-decoration-line-through">$ {{$product->discount_price}}</span>
-															<span class="fs-5">$ {{$product->price}}</span>
+															<span class="me-1 text-decoration-line-through">{{$product->discount_price}} KHR</span>
+															<span class="fs-5">{{$product->price}} KHR</span>
 														@else
-															<span class="fs-5">$ {{$product->price}}</span>
+															<span class="fs-5">{{$product->price}} KHR</span>
 														@endif
 													</div>
 													@php

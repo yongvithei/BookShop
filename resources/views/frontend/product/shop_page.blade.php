@@ -49,7 +49,7 @@ Shop Pages
                                             <div class="my-4" id="slider"></div>
                                             <div class="d-flex align-items-center mb-2">
                                                 <div class="ms-auto">
-                                                   <p class="mb-0">Price: $<span id="price-min">0.00</span> - $<span id="price-max">1000.00</span></p>
+                                                   <p class="mb-0">Price:  <span id="price-min">0</span> - <span id="price-max">1000000</span></p>
                                                     <input type="text" name="price_range" id="price-range-input" style="display: none;">
                                                 </div>
                                             </div>
@@ -143,11 +143,11 @@ Shop Pages
                                                         <h6 class="product-name mb-2">{{$product->name}}</h6>
                                                     </a>
                                                     @if($product->discount_price != NULL)
-                                                    <span class="me-1 text-decoration-line-through">$
-                                                        {{$product->discount_price}}</span>
-                                                    <span class="fs-5">$ {{$product->price}}</span>
+                                                    <span class="me-1 text-decoration-line-through">
+                                                        {{$product->discount_price}} KHR</span>
+                                                    <span class="fs-5">{{$product->price}} KHR</span>
                                                     @else
-                                                    <span class="fs-5">$ {{$product->price}}</span>
+                                                    <span class="fs-5">{{$product->price}} KHR</span>
                                                     @endif
                                                     <div class="product-action mt-2">
                                                         <div class="grid grid-cols-2 gap-2">
@@ -226,11 +226,11 @@ Shop Pages
     var slider = document.getElementById('slider');
     var priceRangeInput = document.getElementById('price-range-input');
     noUiSlider.create(slider, {
-        start: [0, 969], // Initial values
+        start: [0, 990000], // Initial values
         connect: true, // Create a range slider
         range: {
             'min': 0,
-            'max': 1000 // Set your desired price range
+            'max': 1000000 // Set your desired price range
         }
     });
 

@@ -160,7 +160,7 @@
                                                     <div class="ps-2">
                                                         <h6 class="mb-1"><a href="javascript:;" class="text-dark">{{ $item->name }}</a></h6>
                                                         <div class="widget-product-meta"><span
-                                                                class="me-2">${{ $item->price }}</span><span
+                                                                class="me-2">{{ $item->price }} KHR</span><span
                                                                 class="">x {{ $item->qty }}</span>
                                                         </div>
                                                     </div>
@@ -173,22 +173,26 @@
                                              @if(Session::has('coupon'))
                                             <div class="card-body">
                                                 <p class="mb-2">{{ __('main.subtotal') }}: <span
-                                                        class="float-end">${{ $cartTotal }}</span></p>
+                                                        class="float-end">{{ $cartTotal }} KHR</span></p>
                                                 <p class="mb-2">{{ __('main.shipping') }}: <span
                                                         class="float-end">Free</span></p>
                                                 <p class="mb-2">{{ __('main.coupon_name') }}: <span
                                                         class="float-end">{{ session()->get('coupon')['coupon_name'] }} ( {{ session()->get('coupon')['coupon_discount'] }}% )</span></p>
                                                 <p class="mb-0">{{ __('main.discount') }}: <span
-                                                        class="float-end">${{ session()->get('coupon')['discount_amount'] }}</span></p>
+                                                        class="float-end">{{ session()->get('coupon')['discount_amount'] }} KHR</span></p>
                                                 <div class="my-3 border-top"></div>
-                                                <h5 class="mb-0">{{ __('main.order_total') }}: <span
-                                                        class="float-end">${{ session()->get('coupon')['total_amount'] }}</span></h5>
+                                                <h5 class="mb-2">{{ __('main.order_total') }}: <span
+                                                        class="float-end">{{ session()->get('coupon')['total_amount'] }} KHR</span></h5>
+                                                <h5 class="mb-0">Total Dollar: <span
+                                                        class="float-end">$ {{$dollar}}</span></h5>
                                             </div>
                                             @else
                                             <div class="card-body">
                                                 <div class="my-3 border-top"></div>
-                                                <h5 class="mb-0">{{ __('main.order_total') }}: <span
+                                                <h5 class="mb-2">{{ __('main.order_total') }}: <span
                                                         class="float-end">${{ $cartTotal }}</span></h5>
+                                                <h5 class="mb-0">Total Dollar: <span
+                                                        class="float-end">$ {{$dollar}}</span></h5>
                                             </div>
                                             @endif
                                         </div>

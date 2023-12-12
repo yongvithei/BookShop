@@ -105,11 +105,11 @@
                                                         <h6 class="product-name mb-2">{{$product->name}}</h6>
                                                     </a>
                                                     @if($product->discount_price != NULL)
-                                                    <span class="me-1 text-decoration-line-through">$
-                                                        {{$product->discount_price}}</span>
-                                                    <span class="fs-5">$ {{$product->price}}</span>
+                                                    <span class="me-1 text-decoration-line-through">
+                                                        {{$product->discount_price}} KHR</span>
+                                                    <span class="fs-5">{{$product->price}} KHR</span>
                                                     @else
-                                                    <span class="fs-5">$ {{$product->price}}</span>
+                                                    <span class="fs-5">{{$product->price}} KHR</span>
                                                     @endif
                                                     <div class="product-action mt-2">
                                                         <div class="grid grid-cols-2 gap-2">

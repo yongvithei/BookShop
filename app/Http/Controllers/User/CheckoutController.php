@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ShipDivision;
 use App\Models\ShipDistrict;
 use App\Models\ShipState;
+use App\Models\SiteInfo;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
@@ -19,10 +20,11 @@ class CheckoutController extends Controller
         return json_encode($ship);
     }
     public function CheckoutStore(Request $request){
+        $exchangeRate = SiteInfo::latest()->value('exchange');
         $carts = Cart::content();
         $cartQty = Cart::count();
         $cartTotal = Cart::total();
-
+        $dollar = number_format(Cart::total() / $exchangeRate, 2, '.', '');
         $data = array();
         $data['ship_name'] = $request->ship_name;
         $data['ship_email'] = $request->ship_email;
@@ -32,6 +34,6 @@ class CheckoutController extends Controller
         $data['district_id'] = $request->district_id;
         $data['notes'] = $request->notes;
 
-        return view('frontend.payment.stripe',compact('data','cartTotal','cartQty','carts'));
+        return view('frontend.payment.stripe',compact('data','cartTotal','cartQty','carts','dollar'));
     }
 }

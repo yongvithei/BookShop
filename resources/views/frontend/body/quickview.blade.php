@@ -108,7 +108,7 @@
                 // Rest of your code for updating other elements
                 $('#pname').text(data.product.name || 'N/A');
                 $('#pcode').text(data.product.id || 'N/A');
-                $('#pprice').text('$' + (data.product.discount_price || data.product.price || 'N/A'));
+                $('#pprice').text((data.product.discount_price || data.product.price || 'N/A')+ ' KHR');
                 $('#pqty').val(data.product.qty || 'N/A');
                 $('#product_id').val(id);
 
@@ -170,7 +170,7 @@
      let product_name = $('#pname').text();
      let id = $('#product_id').val();
      let quantity = $('#quantityInput').val();
-     let price = parseFloat($('#pprice').text().replace('$', '')); // Extract and parse the price
+     let price = parseFloat($('#pprice').text().replace('KHR', '')); // Extract and parse the price
 
      $.ajax({
          type: "POST",
@@ -212,7 +212,7 @@
      let product_name = $('#dname').text();
      let id = $('#dproduct_id').val();
      let quantity = $('#dquantityInput').val();
-     let price = parseFloat($('#dprice').text().replace('$', ''));
+     let price = parseFloat($('#dprice').text().replace('KHR', ''));
      $.ajax({
          type: "POST",
          dataType: 'json',
@@ -270,7 +270,7 @@
                         '<div class="d-flex align-items-center">' +
                         '<div class="flex-grow-1">' +
                         '<h6 class="cart-product-title">' + value.name + '</h6>' +
-                        '<p class="cart-product-price">' + value.qty + ' X $' + value.price + '</p>' +
+                        '<p class="cart-product-price">' + value.qty + ' X ' + value.price + ' KHR</p>' +
                         '</div>' +
                         '<div class="position-relative">' +
                         '<div class="cart-product-cancel position-absolute">' +

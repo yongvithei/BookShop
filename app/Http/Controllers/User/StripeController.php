@@ -30,7 +30,7 @@ class StripeController extends Controller
         $token = $_POST['stripeToken'];
         $charge = \Stripe\Charge::create([
           'amount' => $total_amount*100,
-          'currency' => 'usd',
+          'currency' => 'KHR',
           'description' => 'BookShop',
           'source' => $token,
           'metadata' => ['order_id' => uniqid()],
@@ -70,7 +70,7 @@ class StripeController extends Controller
             'email' => $invoice->email,
         ];
         Mail::to($request->email)->send(new OrderMail($data));
-        // End Send Email 
+        // End Send Email
 
         $carts = Cart::content();
         foreach($carts as $cart){
@@ -118,9 +118,9 @@ class StripeController extends Controller
             'invoice_no' => 'BSK'.mt_rand(10000000,99999999),
             'order_date' => Carbon::now()->format('d F Y'),
             'order_month' => Carbon::now()->format('F'),
-            'order_year' => Carbon::now()->format('Y'), 
+            'order_year' => Carbon::now()->format('Y'),
             'status' => 'pending',
-            'created_at' => Carbon::now(),  
+            'created_at' => Carbon::now(),
 
         ]);
         // Start Send Email
@@ -132,7 +132,7 @@ class StripeController extends Controller
             'email' => $invoice->email,
         ];
         Mail::to($request->email)->send(new OrderMail($data));
-        // End Send Email 
+        // End Send Email
 
         $carts = Cart::content();
         foreach($carts as $cart){
@@ -144,7 +144,7 @@ class StripeController extends Controller
                 'created_at' =>Carbon::now(),
             ]);
         }
-        
+
 
         if (Session::has('coupon')) {
            Session::forget('coupon');

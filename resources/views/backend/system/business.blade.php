@@ -21,9 +21,10 @@
     background-size: cover;
     background-position: center;
 }
-<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css" rel="stylesheet">
 
 </style>
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css" rel="stylesheet">
+
     <main id="main-container">
         <!-- Hero -->
 
@@ -44,7 +45,7 @@
                             <div class="col-lg-8 col-xl-5">
                             <input type="hidden" id="id" name="id" value="{{$item->id}}">
 
-                            
+
                                 <div class="mb-3">
                                 <label class="form-label" for="name">Company Name</label>
                                     <div class="input-group">
@@ -134,6 +135,7 @@
                                     </button>
                                 </div>
                             </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -167,7 +169,7 @@
                 data: formData,
                 dataType: 'json',
                 processData: false,  // Important
-                contentType: false, 
+                contentType: false,
                 success: function (response) {
                     const Toast = Swal.mixin({
                         toast: true,
@@ -196,7 +198,7 @@
                 }
             });
         });
-        
+
     });
     // Function to read and display image preview
             function readURL(input) {
@@ -208,7 +210,7 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             }
-   
+
 </script>
 
 @endsection

@@ -72,11 +72,11 @@
                                     @endphp
                                     <div class="d-flex align-items-center mt-3 gap-2">
                                         @if($product->discount_price == NULL)
-                                        <h4 class="mb-0">${{$product->price}}</h4>
+                                        <h4 class="mb-0">{{$product->price}} KHR</h4>
                                         @else
                                         <h5 class="mb-0 text-decoration-line-through text-light-3">
-                                            ${{$product->discount_price}}</h5>
-                                        <h4 class="mb-0">${{$product->price}}</h4>
+                                            {{$product->discount_price}} KHR</h5>
+                                        <h4 class="mb-0">{{$product->price}} KHR</h4>
                                         @endif
                                     </div>
                                     <div class="row row-cols-auto align-items-center mt-3">
@@ -372,11 +372,11 @@
                                         <div class="d-flex align-items-center">
                                             <div class="mb-1 product-price">
                                                 @if($product->discount_price == NULL)
-                                                <span class="text-dark fs-5">$ {{ $product->price }}</span>
+                                                <span class="text-dark fs-5">{{ $product->price }} KHR</span>
                                                 @else
                                                 <span
-                                                    class="me-1 text-decoration-line-through">${{$product->discount_price}}</span>
-                                                <span class="text-dark fs-5">$ {{ $product->price }}</span>
+                                                    class="me-1 text-decoration-line-through">{{$product->discount_price}} KHR</span>
+                                                <span class="text-dark fs-5">{{ $product->price }} KHR</span>
                                                 @endif
                                             </div>
 
