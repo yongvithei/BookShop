@@ -113,7 +113,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <th>Order Amonut:</th>
-                                                                <th>${{ $order->amount }}</th>
+                                                                <th>{{ $order->amount }} KHR</th>
                                                             </tr>
                                                             <tr>
                                                                 <th>Order Status:</th>
@@ -179,9 +179,9 @@
                                                                                     <label>{{ $item->qty }} </label>
                                                                                 </td>
                                                                                 <td class="col-md-3">
-                                                                                    <label>${{ $item->price }} <br>
+                                                                                    <label>{{ $item->price }} KHR<br>
                                                                                         Total =
-                                                                                        ${{ $item->price * $item->qty }}
+                                                                                        {{ $item->price * $item->qty }} KHR
                                                                                     </label>
                                                                                 </td>
                                                                             </tr>

@@ -9,4 +9,6 @@ return [
     'help_faqs' => '',
     'usd' => '',
     'riel' => '',
+
+    'invoice' => 'វិក្កយបត្រ',
 ];

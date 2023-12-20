@@ -131,5 +131,7 @@ return [
     'email' => 'Email',
     'working_days' => 'WORKING DAYS',
     'working_hours' => 'Mon - FRI / 8:30 AM - 6:30 PM',
+    //invoice
+    'invoice' => 'Invoice',
 
 ];

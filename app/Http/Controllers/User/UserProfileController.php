@@ -14,9 +14,9 @@ use Illuminate\Validation\Rules;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\SiteInfo;
 use Illuminate\Http\RedirectResponse;
-use Barryvdh\DomPDF\Facade\Pdf;
-
+use PDF;
 class UserProfileController extends Controller
 {
     public function editProfile(Request $request): View
@@ -67,14 +67,20 @@ class UserProfileController extends Controller
         return view('frontend.dashboard.order_detail',compact('order','orderItem'));
     }
     public function UserOrderInvoice($order_id){
-
+        $rate = SiteInfo::latest()->value('exchange');
         $order = Order::with('city','district','user')->where('id',$order_id)->where('user_id',Auth::id())->first();
         $orderItem = OrderItem::with('product')->where('order_id',$order_id)->orderBy('id','DESC')->get();
 
-        $pdf = Pdf::loadView('frontend.dashboard.order_invoice', compact('order','orderItem'))->setPaper('a4')->setOption([
-                'tempDir' => public_path(),
-                'chroot' => public_path(),
+        $pdf = PDF::loadView('frontend.dashboard.order_invoice', compact('order','orderItem','rate'),[], [
+            'format' => 'A5',
+            'title' => 'PDF',
+            'default_font' => 'khmeros',
+            'display_mode' => 'fullpage',
+            'margin_bottom' => 10,
+            'auto_language_detection' => true,
+            'temp_dir' => storage_path('app'),
         ]);
+
         return $pdf->download('invoice.pdf');
 
     }
@@ -87,10 +93,10 @@ class UserProfileController extends Controller
         if ($track) {
            return view('frontend.tracking.tracking_order',compact('track'));
         } else{
-            return redirect()->back(); 
+            return redirect()->back();
         }
 
     }
 
-    
+
 }

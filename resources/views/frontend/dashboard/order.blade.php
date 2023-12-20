@@ -56,7 +56,7 @@
 									                            <td> {{ $order->invoice_no }}</td>
 																<td> {{ $order->payment_method }}</td>
 									                            <td> {{ $order->order_date }}</td>
-									                            <td> ${{ $order->amount }}</td>
+									                            <td> {{ $order->amount }} KHR</td>
 									                            <td>
 									                                @if($order->status == 'pending')
 									                                <span class="badge rounded-pill bg-warning">Pending</span>
