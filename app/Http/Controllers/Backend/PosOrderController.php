@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\PosOrder;
 use App\Models\PosOrderItem;
 use App\Http\Requests\OrderStoreRequest;
-use Barryvdh\DomPDF\Facade\Pdf;
+use PDF;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CustomerView;
+use App\Models\SiteInfo;
 class PosOrderController extends Controller
 {
     public function index() {
@@ -19,7 +20,7 @@ class PosOrderController extends Controller
                 ->latest()
                 ->limit(6)
                 ->get();
-    
+
             return response($latestOrders);
         }
     }
@@ -48,25 +49,35 @@ class PosOrderController extends Controller
         return 'success';
     }
     public function OrderInvoice($order_id){
-
+        $info = SiteInfo::latest()->value('exchange');
         $order = PosOrder::with('customerId')->where('id',$order_id)->first();
         $orderItem = PosOrderItem::with('productId')->where('pos_order_id',$order_id)->orderBy('id','DESC')->get();
 
-        $pdf = Pdf::loadView('backend.pos.invoice', compact('order','orderItem'))->setPaper('a4')->setOption([
-                'tempDir' => public_path(),
-                'chroot' => public_path(),
+        $pdf = PDF::loadView('backend.pos.invoice', compact('order','orderItem','info'),[], [
+            'format' => 'A5',
+            'title' => 'PDF',
+            'default_font' => 'khmeros',
+            'display_mode' => 'fullpage',
+            'margin_bottom' => 10,
+            'auto_language_detection' => true,
+            'temp_dir' => storage_path('app'),
         ]);
         return $pdf->download('invoice.pdf');
 
     }
     public function PreviewOrderInvoice($order_id){
-
+        $info = SiteInfo::latest()->first();
         $order = PosOrder::with('customerId','userId')->where('id',$order_id)->first();
         $orderItem = PosOrderItem::with('productId')->where('pos_order_id',$order_id)->orderBy('id','DESC')->get();
 
-        $pdf = Pdf::loadView('backend.pos.invoice', compact('order','orderItem'))->setPaper('a4')->setOption([
-                'tempDir' => public_path(),
-                'chroot' => public_path(),
+        $pdf = PDF::loadView('backend.pos.invoice', compact('order','orderItem','info'),[], [
+            'format' => 'A5',
+            'title' => 'PDF',
+            'default_font' => 'khmeros',
+            'display_mode' => 'fullpage',
+            'margin_bottom' => 10,
+            'auto_language_detection' => true,
+            'temp_dir' => storage_path('app'),
         ]);
         return $pdf->stream('invoice.pdf');
     }

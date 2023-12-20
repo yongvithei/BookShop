@@ -67,11 +67,11 @@ class UserProfileController extends Controller
         return view('frontend.dashboard.order_detail',compact('order','orderItem'));
     }
     public function UserOrderInvoice($order_id){
-        $rate = SiteInfo::latest()->value('exchange');
+        $info = SiteInfo::latest()->first();
         $order = Order::with('city','district','user')->where('id',$order_id)->where('user_id',Auth::id())->first();
         $orderItem = OrderItem::with('product')->where('order_id',$order_id)->orderBy('id','DESC')->get();
 
-        $pdf = PDF::loadView('frontend.dashboard.order_invoice', compact('order','orderItem','rate'),[], [
+        $pdf = PDF::loadView('frontend.dashboard.order_invoice', compact('order','orderItem','info'),[], [
             'format' => 'A5',
             'title' => 'PDF',
             'default_font' => 'khmeros',
