@@ -38,19 +38,17 @@
                     <div class="product-detail-body">
                         <div class="row g-0">
                             <div class="col-12 col-lg-5">
-                                <div class="image-zoom-section">
-
-                                    <div class="product-gallery owl-carousel owl-theme border mb-3 p-3"
+                                <div class="image-zoom-section mb-3">
+                                    <div class="product-gallery owl-carousel owl-theme mb-3 p-3"
                                         data-slider-id="1">
                                         @foreach($multiImage as $img)
                                         <div class="item">
                                             <img src="{{ asset('uploads/products/small/'.$img->name) }}"
-                                                class="w-auto h-auto sm:w-24 sm:h-96 md:w-64 md:h-64 lg:w-96 lg:h-96"
+                                                class="mx-auto w-auto h-auto sm:w-24 sm:h-96 md:w-64 md:h-64 lg:w-96 lg:h-96"
                                                 alt="">
                                         </div>
                                         @endforeach
                                     </div>
-
                                     <div class="owl-thumbs d-flex justify-content-center" data-slider-id="1">
 
                                         @foreach($multiImage as $img)

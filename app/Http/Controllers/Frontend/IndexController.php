@@ -62,16 +62,19 @@ class IndexController extends Controller
         return view('frontend.product.product_detail',compact('product','multiImage','related'));
     }
 
-    public function CatWiseProduct($id){
-      $productc = Product::where('status',1)->where('category_id',$id)->orderBy('id','DESC')->get();
-      $categories = Category::orderBy('name','ASC')->get();
-      $bread = Category::where('id',$id)->first();
+    public function CatWiseProduct($id)
+    {
+        $productc = Product::where('status', 1)->where('category_id', $id)->orderBy('id', 'DESC')->paginate(15);
+        $categories = Category::orderBy('name', 'ASC')->get();
+        $bread = Category::where('id', $id)->first();
 
-      return view('frontend.product.by_cate_view',compact('productc','categories','bread'));
+        return view('frontend.product.by_cate_view', compact('productc', 'categories', 'bread'));
+    }
 
-     }
-     public function SubCatWiseProduct($id){
-      $products = Product::where('status',1)->where('subcategory_id',$id)->orderBy('id','DESC')->get();
+
+
+    public function SubCatWiseProduct($id){
+      $products = Product::where('status',1)->where('subcategory_id',$id)->orderBy('id','DESC')->paginate(15);
       $breadsub = SubCategory::where('id',$id)->first();
 
       return view('frontend.product.by_sub_view',compact('products','breadsub'));
@@ -90,7 +93,7 @@ class IndexController extends Controller
 
         $request->validate(['search' => "required"]);
         $item = $request->search;
-        $products = Product::where('name','LIKE',"%$item%")->get();
+        $products = Product::where('name','LIKE',"%$item%")->paginate(15);;
         return view('frontend.product.search',compact('products','item'));
 
     }

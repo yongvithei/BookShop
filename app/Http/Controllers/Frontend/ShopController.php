@@ -11,25 +11,30 @@ class ShopController extends Controller
     public function ShopPage()
     {
         $products = Product::query();
+
         // Category
         if (!empty($_GET['category'])) {
             $slugs = explode(',', $_GET['category']);
             $catIds = Category::select('id')->whereIn('slug', $slugs)->pluck('id')->toArray();
-            $products = Product::whereIn('category_id', $catIds)->get();
-        } else{
-             $products = Product::where('status',1)->orderBy('id','DESC')->get();
-         }
+            $products = $products->whereIn('category_id', $catIds);
+        } else {
+            $products = $products->where('status', 1)->orderBy('id', 'DESC');
+        }
 
-         // Price Range 
+        // Price Range
+        if (!empty($_GET['price'])) {
+            $price = explode('-', $_GET['price']);
+            $products = $products->whereBetween('price', $price);
+        }
 
-         if(!empty($_GET['price'])){
-            $price = explode('-',$_GET['price']);
-            $products = $products->whereBetween('price',$price);
-         }
+        // Fetch paginated results
+        $products = $products->paginate(15); // Adjust the number as needed
+
         $categories = Category::orderBy('name', 'ASC')->get();
 
         return view('frontend.product.shop_page', compact('products', 'categories'));
     }
+
 
     public function ShopFilter(Request $request)
     {
