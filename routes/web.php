@@ -152,7 +152,7 @@ Route::middleware(['auth','role:admin'])->group(function() {
     Route::controller(SiteInfoController::class)->group(function(){
         Route::get('/info/business', 'show')->middleware('can:site.menu');
         Route::post('/sitePush','store')->name('sitePush');
-    
+
     });
 
     // User Info All Route
@@ -255,7 +255,7 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::get('/pos/invoice_download/{order_id}' , 'OrderInvoice');
         Route::get('/pos/invoice_preview/{order_id}' ,'PreviewOrderInvoice');
     });
-    
+
 
 
 });
@@ -270,10 +270,10 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
     // Product View Modal With Ajax
     Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
-    // Search All Route 
+    // Search All Route
     Route::controller(IndexController::class)->group(function(){
-        Route::post('/search' , 'ProductSearch')->name('product.search'); 
-        Route::post('/search-product' , 'SearchProduct'); 
+        Route::post('/search' , 'ProductSearch')->name('product.search');
+        Route::post('/search-product' , 'SearchProduct');
     });
     Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
     // Get Data from mini Cart
@@ -299,6 +299,7 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
             Route::get('/cart-remove/{rowId}' , 'CartRemove');
             Route::get('/cart-decrement/{rowId}' , 'CartDecrement');
             Route::get('/cart-increment/{rowId}' , 'CartIncrement');
+            Route::post('/update-quantity/{rowId}' , 'updateQuantity')->name('update-quantity');
             /// Frontend Coupon Option
             Route::post('/coupon-apply', 'CouponApply');
             Route::get('/coupon-calculation','CouponCalculation');

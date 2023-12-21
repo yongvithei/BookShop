@@ -125,7 +125,7 @@ Shop Pages
                                     @if(count($products) > 0)
                                     @foreach($products as $product)
                                     <!-- loop	 -->
-                                    <div class="col">
+                                    <div class="col mt-4">
                                         <div class="card rounded-lg product-card shadow-sm">
                                             <a href="{{ url('product/details/'.$product->id.'/'.$product->name) }}">
                                                 <div class="relative">

@@ -40,6 +40,7 @@
 
 
                             </div>
+
                         </div>
                         <div class="col-12 col-xl-4">
                             <div class="checkout-form p-3 bg-light">
@@ -62,6 +63,7 @@
 
                                     </div>
                                 </div>
+                                    Note: Order items more than available items may be failed
                             </div>
                         </div>
                     </div>
@@ -89,7 +91,6 @@
             url: '/get-cart-product',
             dataType: 'json',
             success: function (response) {
-                console.log(response)
                 var rows = ""
                 $.each(response.carts, function (key, value) {
                     rows += `<div class="row align-items-center g-3 pb-4">
@@ -110,14 +111,16 @@
                                     <div class="col-12 col-lg-3">
                                         <div class="cart-action text-center">
                                             <div class="input-group input-group-sm">
-                                        <input class="form-control" min="0" max="999" value="${value.qty}"
-                                            id="quantityInput">
+                                        <input type="number" class="form-control" min="1" max="${value.options.pro_qty}" value="${value.qty}" id="quantityInput" oninput="handleQuantityChange(this.value, '${value.rowId}')">
                                         <button type="submit" id="${value.rowId}" onclick="cartDecrement(this.id)" class="btn btn-outline-secondary" type="button"
                                             id="decrementQuantity">−</button>
                                         <button type="submit" id="${value.rowId}" onclick="cartIncrement(this.id)" class="btn btn-outline-secondary" type="button"
                                             id="incrementQuantity">+</button>
-                                    </div>
+
+                                            </div>
+
                                         </div>
+                                    <p class="mb-0">Available: <span>${value.options.pro_qty}</span></p>
                                     </div>
                                     <div class="col-12 col-lg-3">
                                         <div class="text-center">
@@ -173,19 +176,61 @@
             })
         }
 
-    // Cart Decrement Start
-    function cartDecrement(rowId){
-        $.ajax({
-            type: 'GET',
-            url: "/cart-decrement/"+rowId,
-            dataType: 'json',
-            success:function(data){
-                cart();
-                couponCalculation();
-                miniCart();
-            }
-        });
+    // Handle Quantity Change
+    function handleQuantityChange(newValue, rowId) {
+        // Assuming minQuantity is the minimum allowed quantity (e.g., 1)
+        var minQuantity = 1;
+
+        // Check if the new value is greater than or equal to the minimum
+        if (parseInt(newValue, 10) >= minQuantity) {
+            $.ajax({
+                type: 'POST',
+                url: "/update-quantity/" + rowId,
+                data: {
+                    _token: '{{ csrf_token() }}', // Add CSRF token for Laravel
+                    quantity: newValue
+                },
+                dataType: 'json',
+                success: function (data) {
+                    cart();
+                    couponCalculation();
+                    miniCart();
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        } else {
+            // Reset the input to the minimum value
+            $("#quantityInput").val(minQuantity);
+        }
     }
+
+
+    // Cart Decrement Start
+    function cartDecrement(rowId) {
+        // Assuming minQuantity is the minimum allowed quantity (e.g., 1)
+        var minQuantity = 1;
+
+        // Get the current quantity value
+        var currentQuantity = parseInt($("#quantityInput").val(), 10);
+
+        // Check if the quantity is already at the minimum
+        if (currentQuantity > minQuantity) {
+            // Make the AJAX request only if the quantity is greater than the minimum
+            $.ajax({
+                type: 'GET',
+                url: "/cart-decrement/" + rowId,
+                dataType: 'json',
+                success: function (data) {
+                    cart();
+                    couponCalculation();
+                    miniCart();
+                }
+            });
+        }
+    }
+
     // Cart INCREMENT
     function cartIncrement(rowId){
         $.ajax({

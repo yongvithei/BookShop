@@ -29,6 +29,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => [
                     'image' => $product->thumbnail,
+                    'pro_qty' => $product->pro_qty,
                 ],
             ]);
         return response()->json(['success' => 'Successfully Added on Your Cart' ]);
@@ -41,6 +42,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => [
                     'image' => $product->thumbnail,
+                    'pro_qty' => $product->pro_qty,
                 ],
             ]);
         return response()->json(['success' => 'Successfully Added on Your Cart' ]);
@@ -61,6 +63,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => [
                     'image' => $product->thumbnail,
+                    'pro_qty' => $product->pro_qty,
                 ],
             ]);
         return response()->json(['success' => 'Successfully Added on Your Cart' ]);
@@ -73,6 +76,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => [
                     'image' => $product->thumbnail,
+                    'pro_qty' => $product->pro_qty,
                 ],
             ]);
         return response()->json(['success' => 'Successfully Added on Your Cart' ]);
@@ -125,6 +129,25 @@ class CartController extends Controller
         }
         return response()->json(['success' => 'Successfully Remove From Cart']);
 
+    }
+    public function updateQuantity(Request $request, $rowId)
+    {
+        $newQuantity = $request->input('quantity');
+        Cart::update($rowId, $newQuantity);
+
+        if(Session::has('coupon')){
+            $coupon_name = Session::get('coupon')['coupon_name'];
+            $coupon = Coupon::where('name',$coupon_name)->first();
+
+            Session::put('coupon',[
+                'coupon_name' => $coupon->name,
+                'coupon_discount' => $coupon->discount,
+                'discount_amount' => round(Cart::total() * $coupon->discount/100),
+                'total_amount' => round(Cart::total() - Cart::total() * $coupon->discount/100 )
+            ]);
+        }
+
+        return response()->json('Quantity updated successfully');
     }
     public function CartDecrement($rowId){
 
