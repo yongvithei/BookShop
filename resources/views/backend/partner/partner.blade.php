@@ -14,6 +14,16 @@
             background-color: #eee;
             border-radius: 10px;
         }
+        .img-partner {
+            width: 104px;
+            height: auto;
+
+        }
+        .img-pre {
+            width: 125px;
+            height: 60px;
+
+        }
     </style>
     <!-- Main Container -->
     <main id="main-container">
@@ -198,7 +208,7 @@
                                 </div>
                             </div>
                             <form id="ItemForm" action="javascript:void(0)" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="id" id="id">    
+                                <input type="hidden" name="id" id="id">
                                 <input type="hidden" name="avatar_hidden" id="avatar_hidden">
                                     <div class="block-content row justify-content-center">
 
@@ -231,8 +241,8 @@
                                                 <label for="one-profile-edit-avatar" class="form-label">Choose Image</label>
                                                 <input class="form-control" type="file" name="avatar" id="avatar">
                                             </div>
-                                            <div class="col-lg-4">
-                                                <img class="img-avatar" id="preview-image" src="{{asset('storage/images/default.jpg')}}" alt="">
+                                            <div class="col-lg-4 mt-2">
+                                                <img class="img-pre" id="preview-image" src="{{asset('storage/images/default.jpg')}}" alt="">
                                             </div>
                                         </div>
 
@@ -306,17 +316,17 @@
             var avatarUrl = '/storage/images/' + data;
 
             // Create an img element with the avatar URL as src
-            return '<img src="' + avatarUrl + '" alt="Avatar" class="img-avatar" />';
+            return '<img src="' + avatarUrl + '" alt="Avatar" class="img-partner" />';
         } else {
             // Return the default image URL when data is null
-            var defaultAvatarUrl = '{{ asset('storage/images/avatar3.jpg') }}';
+            var defaultAvatarUrl = '{{ asset('storage/images/default.jpg') }}';
             return '<img src="' + defaultAvatarUrl + '" class="img-avatar img-avatar48"  />';
         }
     }
             },
             { data: 'name', name: 'name' },
-                { 
-                data: 'status', 
+                {
+                data: 'status',
                 name: 'status',
                 render: function (data) {
                     if (data === 'Active') {
@@ -336,9 +346,9 @@
         },
     ]
 
-        
+
         });
-    });   
+    });
     function add() {
         $('#ItemForm')[0].reset();
         $('#preview-image').attr('src', '{{ asset('storage/images/default.jpg') }}');
@@ -353,7 +363,7 @@
             if (nameVal.trim() === '') {
                 $('#name_error').show();
                 return;
-            } 
+            }
             $('#name_error').hide();
             var formData = new FormData(this);
             $.ajax({

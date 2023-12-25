@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->text('address')->nullable();
             $table->text('desc')->nullable();
-            $table->string('avatar');
+            $table->string('avatar')->nullable()->default('default.jpg');
             $table->enum('status', ['Active', 'Inactive'])->default('active');
             $table->timestamps();
             $table->softDeletes();

@@ -331,7 +331,7 @@
                                                 <option value="{{ $city->id }}">{{ $city->name }}</option>
                                                 @endforeach
                                             </select>
-                                            <span id="cat_error" class="text-danger" style="display: none;">Please select.</span>
+                                            <span id="cat_error" class="text-danger" style="display: none;">Please select</span>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Status</label>
@@ -387,6 +387,17 @@
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        // Add change event listener to #cat_id select element
+        $('#city_id').on('change', function() {
+            // Check if an option is selected
+            if ($(this).val() !== '') {
+                // If an option is selected, hide #cat_error
+                $('#cat_error').hide();
+            } else {
+                // If no option is selected, show #cat_error
+                $('#cat_error').show();
             }
         });
         $('#refreshC').on('click', function () {
@@ -499,7 +510,9 @@
             $('#btn-saveC').html("Create");
             $('#modal-dist').modal('show');
             $('#id').val('');
+            $('#city_id').trigger('change');
             $('#name_errorC').hide();
+            $('#cat_error').hide();
         }
         function add_city() {
                     $('#CityForm')[0].reset();
@@ -512,11 +525,17 @@
         $('#DistForm').submit(function (e) {
             e.preventDefault();
             var nameVal = $('#nameD').val();
+            var cityVal = $('#city_id').val();
             if (nameVal.trim() === '') {
                 $('#name_errorC').show();
                 return;
+            }else if(cityVal.trim() === '') {
+                $('#cat_error').show();
+                $('#name_error').hide();
+                return;
             }
             $('#name_errorC').hide();
+            $('#cat_error').hide();
             var formData = new FormData(this);
             $.ajax({
                 type: 'POST',
@@ -609,6 +628,7 @@
         }
         function editFuncD(id) {
         $('#name_errorC').hide();
+        $('#cat_error').hide();
         $('#DistForm')[0].reset();
             $.ajax({
                 type: "POST",

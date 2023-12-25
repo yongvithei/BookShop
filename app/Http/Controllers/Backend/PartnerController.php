@@ -21,6 +21,7 @@ class PartnerController extends Controller
     }
         public function store(Request $request)
     {
+        $fileName = 'default.jpg';
         $itemId = $request->id;
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');

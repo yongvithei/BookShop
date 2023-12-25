@@ -217,7 +217,7 @@
                                             @endforeach
 
                                         </select>
-                                        <span id="cat_error" class="text-danger" style="display: none;">Please select.</span>
+                                        <span id="cat_error" class="text-danger" style="display: none;">Please select</span>
 
                                     </div>
                                     <div class="mb-3">
@@ -277,6 +277,18 @@
                 }
             });
 
+            // Add change event listener to #cat_id select element
+            $('#cat_id').on('change', function() {
+                // Check if an option is selected
+                if ($(this).val() !== '') {
+                    // If an option is selected, hide #cat_error
+                    $('#cat_error').hide();
+                } else {
+                    // If no option is selected, show #cat_error
+                    $('#cat_error').show();
+                }
+            });
+
             $('#item-table').DataTable({
                 pageLength: 10,
                 lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
@@ -327,6 +339,7 @@
             $('#id').val('');
             $('#cat_id').trigger('change');
             $('#name_error').hide();
+            $('#cat_error').hide();
         }
         $('#ItemForm').submit(function (e) {
             e.preventDefault();
@@ -390,6 +403,7 @@
 
         function editFunc(id) {
             $('#name_error').hide();
+            $('#cat_error').hide();
             $.ajax({
                 type: "POST",
                 url: "{{ url('sub/edit') }}",
