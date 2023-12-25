@@ -229,14 +229,14 @@
             <!-- END Dynamic Table with Export Buttons -->
         </div>
 
-    
-        
+
+
          <!-- Tabs in Modal -->
          <div class="modal fade" id="modal-block-tabs" tabindex="-1" role="dialog" aria-labelledby="modal-block-tabs" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="block block-rounded block-transparent mb-0">
-                    
+
                   <ul class="nav nav-tabs nav-tabs-block" role="tablist">
                     <li class="nav-item">
                       <button type="button" class="nav-link active" id="btabs-static-home-tab" data-bs-toggle="tab" data-bs-target="#btabs-static-home" role="tab" aria-controls="btabs-static-home" aria-selected="true">INFO</button>
@@ -250,93 +250,84 @@
                         <span class="visually-hidden">Settings</span>
                       </button>
                     </li>
-  
+
                   </ul>
                   <div class="block-content tab-content">
                     <div class="tab-pane active" id="btabs-static-home" role="tabpanel" aria-labelledby="btabs-static-home-tab" tabindex="0">
-                    <h3 class="text-center"> Product Information </h3>
-                    <div class="m-2">
+                        <h3 class="text-center"> Product Information </h3>
+                        <div class="mb-2">
+                            <div class="input-group">
+                                                    <span class="input-group-text">
+                                                       Name
+                                                    </span>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Name" readonly>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                Price
+                                                </span>
+                                <input type="text" class="form-control" id="pro_price" name="pro_price" readonly>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                 Discount Price
+                                                </span>
+                                <input type="text" class="form-control" id="pro_discount" name="pro_discount" readonly>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    Category
+                                                </span>
+                                <input type="text" class="form-control" id="cate_names" name="cate_names" readonly>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                   Subcategory
+                                                </span>
+                                <input type="text" class="form-control" id="sub_names" name="sub_names" readonly>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    Partner
+                                                </span>
+                                <input type="text" class="form-control" id="partner_name" name="partner_name" readonly>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                   Code
+                                                </span>
+                                <input type="text" class="form-control" id="product_code" name="product_code" readonly>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                   QTY
+                                                </span>
+                                <input type="text" class="form-control" id="pro_qty" name="pro_qty" readonly>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                   Status
+                                                </span>
+                                <input type="text" class="form-control" id="pro_status" name="pro_status" readonly>
+                            </div>
+                        </div>
 
-                    <div class="row">
-                        <div class="col-md-2">
-                            <h6 class="fw-semibold">Name:</h6>
-                        </div>
-                        <div class="col-md-1">
-                            <h6 id="name" class="fw-normal"></h6>
-                        </div>
-                    </div> 
-                    <div class="row">
-                        <div class="col-md-2">
-                            <h6 class="fw-semibold">Price:</h6>
-                        </div>
-                        <div class="col-md-1">
-                            <h6 id="pro_price" class="fw-normal"></h6>
-                        </div>
-                    </div> 
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h6 class="fw-semibold">Discount Price:</h6>
-                        </div>
-                        <div class="col-md-6">
-                            <h6 id="pro_discount" class="fw-normal"></h6>
-                        </div>
-                    </div> 
-                    <div class="row">
-                        <div class="col-md-3">
-                            <h6 class="fw-semibold">Category:</h6>
-                        </div>
-                        <div class="col-md-6">
-                            <h6 id="cate_names" class="fw-normal"></h6>
-                        </div>
-                    </div> 
-                    <div class="row">
-                        <div class="col-md-3">
-                            <h6 class="fw-semibold">Subcategory:</h6>
-                        </div>
-                        <div class="col-md-6">
-                            <h6 id="sub_names" class="fw-normal"></h6>
-                        </div>
-                    </div> 
-                    <div class="row">
-                        <div class="col-md-2">
-                            <h6 class="fw-semibold">Partner:</h6>
-                        </div>
-                        <div class="col-md-6">
-                            <h6 id="partner_name" class="fw-normal"></h6>
-                        </div>
-                    </div> 
-                    <div class="row text-center">
-                        <div class="col-md-1">
-                            <h6 class="fw-semibold">Code:</h6>
-                        </div>
-                        <div class="col-md-4">
-                            <h6 id="product_code" class="fw-normal"></h6>
-                        </div>
-                    </div> 
-                    <div class="row">
-                        <div class="col-md-2">
-                            <h6 class="fw-semibold">QTY:</h6>
-                        </div>
-                        <div class="col-md-6">
-                            <h6 id="pro_qty" class="fw-normal"></h6>
-                        </div>
-                    </div>
-                     <div class="mb-3">
-                                        <label class="form-label fw-semibold">Status</label>
-                                            <div class="space-x-2">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="public" name="status" value="Public" checked="">
-                                                    <label class="form-check-label" for="public">Public</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="private" name="status" value="private">
-                                                    <label class="form-check-label" for="private">Private</label>
-                                                </div>
-                                            </div>
-                                    </div>
-                    <div class="mb-2">
-                        </div>                                    
-                    </div>
                 </div>
                     <div class="tab-pane" id="btabs-static-profile" role="tabpanel" aria-labelledby="btabs-static-profile-tab" tabindex="0">
                       <h4 class="fw-normal">Thumbnail</h4>
@@ -348,11 +339,11 @@
                             </div>
                         </div>
                     </div>
-                    
+
                   </div>
                   <div class="block-content block-content-full text-end bg-body">
                     <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Click <i class="fa fa-fw fa-pencil-alt"></i> For More Details</button>
-                    <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Okay</button>
+                    <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Close</button>
                   </div>
                 </div>
               </div>
@@ -370,10 +361,8 @@
     <script src="{{ asset('admin/assets/js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-      <script src="{{ asset('admin/assets/js/plugins/datatables-buttons/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/plugins/datatables-buttons-bs5/js/buttons.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
+
+
     <!-- Page JS Code -->
     <script src="{{ asset('admin/assets/js/pages/be_tables_datatables.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -488,14 +477,14 @@
                     $('#btn-save').html("Save changes");
                     $('#modal-block-tabs').modal('show');
                     $('#id').val(res.id);
-                    $('#name').text(res.name);
-                    $('#pro_price').text('៛' + res.pro_price );
-                    $('#pro_discount').text('៛' +res.pro_discount);
-                    $('#product_code').text(res.product_code);
-                    $('#pro_qty').text(res.pro_qty);
-                    $('#sub_names').text(res.sub_names);
-                    $('#cate_names').text(res.cate_names);
-                    $('#partner_name').text(res.partner_name);
+                    $('#name').val(res.name);
+                    $('#pro_price').val(res.pro_price );
+                    $('#pro_discount').val(res.pro_discount);
+                    $('#product_code').val(res.product_code);
+                    $('#pro_qty').val(res.pro_qty);
+                    $('#sub_names').val(res.sub_names);
+                    $('#cate_names').val(res.cate_names);
+                    $('#partner_name').val(res.partner_name);
                     $('#_status').val(res._status);
                     $('#thumbnail').val(res.thumbnail);
                     if (res.thumbnail) {
@@ -505,9 +494,9 @@
             // Set a default image URL
             $('#preview-image').attr('src', '{{ asset('/storage/images/default_product_table.webp') }}');
         }                    if (res._status === '1') {
-                        $('#public').prop('checked', true);
-                    } else if (res._status === '0') {
-                        $('#private').prop('checked', true);
+                        $('#pro_status').val("Public");
+                    } else{
+                        $('#pro_status').val("Private");
                     }
                 }
             });

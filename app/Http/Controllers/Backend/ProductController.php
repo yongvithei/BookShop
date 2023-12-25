@@ -30,9 +30,9 @@ class ProductController extends Controller
         return view('backend.product.all_product');
     }
     public function create() {
-        $categories = Category::select('id', 'name')->get();
-        $subcategories = SubCategory::select('id', 'sub_name')->get();
-        $partners = Partner::select('id', 'name')->get();
+        $categories = Category::select('id', 'name')->where('status', 1)->get();
+        $subcategories = SubCategory::select('id', 'sub_name')->where('status','Public')->get();
+        $partners = Partner::select('id', 'name')->where('status','Active')->get();
         return view('backend.product.add_product',compact('categories','subcategories','partners'));
     }
     public function store(Request $request) {
@@ -123,9 +123,9 @@ class ProductController extends Controller
             return redirect()->route('pro.index');
         }
         $productImages = ProductImage::where('product_id',$product->id)->get();
-        $categories = Category::select('id', 'name')->get();
-        $subcategories = SubCategory::select('id', 'sub_name')->get();
-        $partners = Partner::select('id', 'name')->get();
+        $categories = Category::select('id', 'name')->where('status', 1)->get();
+        $subcategories = SubCategory::select('id', 'sub_name')->where('status','Public')->get();
+        $partners = Partner::select('id', 'name')->where('status','Active')->get();
         $productView = ProductView::select('sub_names', 'cate_names', 'partner_name')->where('id', $product->id)->first();
 
 
