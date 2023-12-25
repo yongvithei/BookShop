@@ -49,7 +49,7 @@ class PosOrderController extends Controller
         return 'success';
     }
     public function OrderInvoice($order_id){
-        $info = SiteInfo::latest()->value('exchange');
+        $info = SiteInfo::latest()->first();
         $order = PosOrder::with('customerId')->where('id',$order_id)->first();
         $orderItem = PosOrderItem::with('productId')->where('pos_order_id',$order_id)->orderBy('id','DESC')->get();
 

@@ -68,7 +68,7 @@ const Cart = () => {
       const query = search ? `?search=${search}` : "";
       const res = await axios.get(`/pos/products${query ? query : '?'}&page=${currentPage}`);
       const { data, current_page, next_page_url, prev_page_url, last_page } = res.data;
-     
+
     setProducts(data);
     setPagination((prevPagination) => ({
       ...prevPagination,
@@ -78,7 +78,7 @@ const Cart = () => {
       last_page,
 
     }));
-      
+
     } catch (error) {
       console.error('Error loading products: ', error);
     }
@@ -435,7 +435,7 @@ return (
           </tbody>
         </table>
       </div>
-  
+
     </div>
           </div>
           <div className="col-xl-7 order-xl-0">
@@ -486,8 +486,12 @@ return (
                <div className="block block-rounded h-100 mb-0">
                    <div className="block-content p-1">
                        <div className="options-container">
-                           <img className="img-fluid options-item"
-                               src={pro.thumbnail} alt="" />
+                           <img
+                               className="img-fluid options-item"
+                               src={pro.thumbnail === "/" ? 'http://127.0.0.1:8000/storage/images/default_product_table.webp' : pro.thumbnail}
+                               alt=""
+                           />
+
                            <div className="options-overlay bg-black-75">
                                <div className="options-overlay-content">
                                    <a className="btn btn-sm btn-alt-secondary" href={`/product/${pro.id}/edit`}>
@@ -499,7 +503,7 @@ return (
                    </div>
                    <div className="block-content">
                        <div className="mb-2">
-                           <div className="fw-semibold float-end ms-1">$ {pro.price}</div>
+                           <div className="fw-semibold float-end ms-1">{pro.price} KHR</div>
                            <a className="h6" href="">
                            {pro.name}
                            </a>
@@ -515,10 +519,10 @@ return (
            </div>))}
           {/* Pagination links */}
           {/* Pagination links */}
-         
+
        </div>
-       
-      
+
+
        {/* END Products */}
        <div className='row m-2'>
            <div className="pagination">
