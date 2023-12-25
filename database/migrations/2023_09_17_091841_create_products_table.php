@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug')->nullable();
+            $table->string('part_kh')->nullable();
             $table->double('price',10,2);
             $table->double('discount_price',10,2)->nullable();
             $table->integer('category_id')->nullable();
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('pro_code')->unique()->nullable();
             $table->string('pro_qty')->nullable();
             $table->text('short_desc')->nullable();
-            $table->text('long_desc')->nullable();  
+            $table->text('long_desc')->nullable();
             $table->integer('new')->nullable();
             $table->integer('featured')->nullable();
             $table->tinyInteger('status')->default(1);

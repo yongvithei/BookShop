@@ -160,7 +160,9 @@
 					<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">Categories<i class='bx bx-chevron-down'></i></a>
 						<ul class="dropdown-menu">
 							@foreach($categories as $cate)
-							<li><a class="dropdown-item" href="{{ url('product/category/'.$cate->id.'/'.$cate->slug) }}">{{ $cate->name }}</a>
+							<li><a class="dropdown-item" href="{{ url('product/category/'.$cate->id.'/'.$cate->slug) }}">
+									@if(session()->get('locale') == 'en') {{ $cate->name }} @else {{ $cate->cat_kh }} @endif
+									</a>
 							</li>
 							@endforeach
 						</ul>

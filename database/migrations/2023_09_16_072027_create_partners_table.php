@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('partners', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('part_kh')->nullable();
             $table->string('phone')->nullable();
             $table->text('address')->nullable();
             $table->text('desc')->nullable();
@@ -25,6 +26,7 @@ return new class extends Migration
         DB::table('partners')->insert([
             [
                 'name' => 'Creative Art Supplies Co.',
+                'part_kh' => 'ផ្គត់ផ្គង់សិល្បៈច្នៃប្រឌិត Co.',
                 'phone' => '(885) 123-4567,  jane.smith@creativeartsupplies.com',
                 'address' => '123 Art Street, Artville, AR 12345',
                 'desc' => 'Creative Art Supplies Co. is a well-established supplier of high-quality art materials and supplies. They have been serving artists, art schools, and businesses for over two decades. Their commitment to quality and customer satisfaction makes them a reliable partner for all your art supply needs. Product Offerings:
@@ -38,6 +40,7 @@ return new class extends Migration
             ],
             [
                 'name' => 'GreenEarth Office Solutions',
+                'part_kh' => 'ផដំណោះស្រាយការិយាល័យ GreenEarth',
                 'phone' => '(885) 987-6543,  mark.johnson@greenearthoffice.com',
                 'address' => '456 Eco Lane, Sustainable City, SC 54321',
                 'desc' => 'GreenEarth Office Solutions is a leading supplier of eco-friendly office supplies and sustainable stationery products. With a strong commitment to environmental responsibility, they provide a wide range of environmentally friendly and recycled office materials suitable for home offices, businesses, and educational institutions. Product Offerings:
@@ -51,6 +54,7 @@ return new class extends Migration
                 'updated_at' => now(),
             ],[
                 'name' => 'Book Distributors Inc',
+                'part_kh' => 'អ្នកចែកចាយសៀវភៅ Inc',
                 'phone' => '(885) 789-0123, Contact Person: Sarah Davis, sarah.davis@bookdistributors.com',
                 'address' => '789 Reading Avenue, Booktown, BT 67890',
                 'desc' => 'Book Distributors Inc. is a reputable book wholesaler with a long history of serving bookshops and libraries across the country. They offer an extensive catalog of titles, including new releases, bestsellers, and niche genres. With a focus on quality and reliability, they are dedicated to supporting the success of your bookshop. Product Offerings:

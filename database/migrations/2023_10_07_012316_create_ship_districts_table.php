@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('city_id');
             $table->string('name');
+            $table->string('dis_kh')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
             $table->softDeletes();
@@ -23,6 +24,7 @@ return new class extends Migration
             [
                 'city_id' => '1',
                 'name' => 'Aek Phnum',
+                'dis_kh' => 'ឯកភ្នំ',
                 'status' => '1',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -30,6 +32,7 @@ return new class extends Migration
             [
                 'city_id' => '1',
                 'name' => 'Banan',
+                'dis_kh' => 'បាណន់',
                 'status' => '1',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -37,13 +40,15 @@ return new class extends Migration
              [
                 'city_id' => '1',
                 'name' => 'Battambang Municipality',
-                'status' => '1',
+                 'dis_kh' => 'ក្រុងបាត់ដំបង',
+                 'status' => '1',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
              [
                 'city_id' => '1',
                 'name' => 'Bavel',
+                 'dis_kh' => 'បវេល',
                 'status' => '1',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -51,6 +56,7 @@ return new class extends Migration
             [
                 'city_id' => '1',
                 'name' => 'Kamrieng',
+                'dis_kh' => 'កំរៀង',
                 'status' => '1',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -58,6 +64,7 @@ return new class extends Migration
             [
                 'city_id' => '1',
                 'name' => 'Koas Krala',
+                'dis_kh' => 'កូសក្រឡា',
                 'status' => '1',
                 'created_at' => now(),
                 'updated_at' => now(),

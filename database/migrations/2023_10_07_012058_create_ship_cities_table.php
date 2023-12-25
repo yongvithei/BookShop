@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('ship_cities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('ci_kh')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
             $table->softDeletes();
@@ -21,6 +22,7 @@ return new class extends Migration
         DB::table('ship_cities')->insert([
             [
                 'name' => 'Battambang',
+                'ci_kh' => 'បាត់ដំបង',
                 'status' => '1',
                 'created_at' => now(),
                 'updated_at' => now(),

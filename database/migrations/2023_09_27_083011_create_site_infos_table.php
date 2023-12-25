@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('image')->nullable();
             $table->string('name')->nullable();
+            $table->string('name_kh')->nullable();
             $table->string('support_phone')->nullable();
             $table->string('email')->nullable();
             $table->text('address', 555)->nullable();
@@ -29,6 +30,7 @@ return new class extends Migration
             [
                 'image' => 'null',
                 'name' => 'Ponleu Vichea',
+                'name_kh' => 'ពន្លឺវិជ្ជា',
                 'support_phone' => '012345678',
                 'email' => 'ponleuvichea@support.com',
                 'address' => 'No. 161-162, St. 2, Prek Mohatep Village, Sangkat Svay Por, Battambang City, Battambang, Cambodia',
