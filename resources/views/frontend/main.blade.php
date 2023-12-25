@@ -24,7 +24,6 @@
         @include('frontend.home.brands')
         <!--end brands-->
         <!--start bottom products section-->
-        @include('frontend.home.button_products')
         <!--end bottom products section-->
     </div>
 </div>

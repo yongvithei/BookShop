@@ -191,9 +191,13 @@ class CartController extends Controller
 
     }
    public function CouponApply(Request $request){
-        $coupon = Coupon::where('name',$request->coupon_name)->where('validity','>=',Carbon::now()->format('Y-m-d'))->first();
+       $coupon = Coupon::where('name', $request->coupon_name)
+           ->where('validity', '>=', Carbon::now()->format('Y-m-d'))
+           ->where('status', 'Active')
+           ->first();
 
-        if ($coupon) {
+
+       if ($coupon) {
             Session::put('coupon',[
                 'coupon_name' => $coupon->name,
                 'coupon_discount' => $coupon->discount,
