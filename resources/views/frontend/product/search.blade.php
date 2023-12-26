@@ -56,7 +56,7 @@ Product Searcing
 													</a>
 												</div>
 											</div>
-											<img src="{{ asset($item->thumbnail) }}" class="card-img-top" alt="...">
+											<img src="{{ $item->thumbnail ? asset($item->thumbnail) : asset('/storage/images/pro_img.jpg') }}" class="card-img-top" alt="Product Image">
 											<div class="card-body">
 												<div class="product-info">
 													<a href="javascript:;">

@@ -29,7 +29,7 @@
 
     @vite(['resources/css/app.css'])
     <!-- stylesheet -->
-    
+
 </head>
 
 <body>
@@ -59,6 +59,7 @@
     <!--app JS-->
     <script src="{{asset('/frontend/assets/js/app.js')}}"></script>
     <script src="{{asset('/frontend/assets/js/index.js')}}"></script>
+    <script src="{{asset('/frontend/assets/js/quickmini.js')}}"></script>
 </body>
 
 </html>

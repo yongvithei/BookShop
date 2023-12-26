@@ -31,7 +31,7 @@
 											</div>
 										</div>
 										<a href="">
-											<img src="{{ asset($product->thumbnail) }}" class="card-img-top" alt="...">
+											<img src="{{ $product->thumbnail ? asset($product->thumbnail) : asset('/storage/images/pro_img.jpg') }}" class="card-img-top" alt="Product Image">
 										</a>
 									</div>
 										<div class="card-body">

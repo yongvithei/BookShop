@@ -56,12 +56,13 @@
 						</div>
 						<div class="logo d-none d-lg-flex">
 							@php
-							$siteinfo = Cache::remember('sitefooter', now()->addMinutes(30), function () {
-							return App\Models\SiteInfo::find(1);
-							});
+								$siteinfo = Cache::remember('sitefooter', now()->addMinutes(30), function () {
+                                    return App\Models\SiteInfo::latest()->first();
+                                });
 							@endphp
+
 							<a href="/">
-								<img src="{{ asset('images/' . $siteinfo->image) }}" class="logo-icon" alt="" />
+								<img src="{{ asset('storage/' . $siteinfo->image) }}" class="logo-icon" alt="" />
 							</a>
 						</div>
 					</div>

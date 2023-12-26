@@ -14,7 +14,7 @@
         </div>
         <div class="row g-0">
             <div class="col-md-2">
-                <img src="{{ asset($item->thumbnail) }}" class="img-fluid" alt="...">
+                <img src="{{ $item->thumbnail ? asset($item->thumbnail) : asset('/storage/images/pro_img.jpg') }}" class="img-fluid" alt="Product Image">
             </div>
             <div class="col-md-4">
                 <div class="card-body">

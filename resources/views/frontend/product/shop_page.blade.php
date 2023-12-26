@@ -129,7 +129,7 @@ Shop Pages
                                         <div class="card rounded-lg product-card shadow-sm">
                                             <a href="{{ url('product/details/'.$product->id.'/'.$product->name) }}">
                                                 <div class="relative">
-                                                    <img src="{{ asset($product->thumbnail) }}" class="card-img-top" alt="...">
+                                                    <img src="{{ $product->thumbnail ? asset($product->thumbnail) : asset('/storage/images/pro_img.jpg') }}" class="card-img-top" alt="Product Image">
                                                     <div class="absolute top-2 right-2">
                                                         <a href="javascript:;" class="product-wishlist product-action">
                                                             <i class="bx bx-heart text-red-500 text-2xl"></i>

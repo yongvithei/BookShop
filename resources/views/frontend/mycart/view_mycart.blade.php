@@ -93,12 +93,12 @@
             success: function (response) {
                 var rows = ""
                 $.each(response.carts, function (key, value) {
+                    var imageUrl = value.options.image ? '/' + value.options.image : '/storage/images/pro_img.jpg';
                     rows += `<div class="row align-items-center g-3 pb-4">
                                     <div class="col-12 col-lg-6">
                                         <div class="d-lg-flex align-items-center gap-2">
                                             <div class="cart-img text-center text-lg-start">
-                                                <img src="/${value.options.image} "
-                                                    width="130" alt="">
+                                                <img src="${imageUrl}" width="130" alt="">
                                             </div>
                                             <div class="cart-detail text-center text-lg-start">
                                                 <h6 class="mb-2">${value.name}</h6>

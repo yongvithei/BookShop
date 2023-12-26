@@ -237,8 +237,8 @@
                                                 <div class="my-3 border-top"></div>
                                                 <div class="d-flex align-items-center">
                                                     <a class="d-block flex-shrink-0" href="javascript:;">
-                                                        <img src="{{ asset($item->options->image) }}"
-                                                            width="75" alt="Product">
+                                                        <img src="{{ $item->options->image ? asset($item->options->image) : asset('/storage/images/pro_img.jpg') }}"
+                                                             width="75" alt="Product">
                                                     </a>
                                                     <div class="ps-2">
                                                         <h6 class="mb-1"><a href="javascript:;" class="text-dark">{{ $item->name }}</a></h6>

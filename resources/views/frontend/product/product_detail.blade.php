@@ -41,13 +41,20 @@
                                 <div class="image-zoom-section mb-3">
                                     <div class="product-gallery owl-carousel owl-theme mb-3 p-3"
                                         data-slider-id="1">
-                                        @foreach($multiImage as $img)
-                                        <div class="item">
-                                            <img src="{{ asset('uploads/products/small/'.$img->name) }}"
-                                                class="mx-auto w-auto h-auto sm:w-24 sm:h-96 md:w-64 md:h-64 lg:w-96 lg:h-96"
-                                                alt="">
-                                        </div>
-                                        @endforeach
+                                        @forelse($multiImage as $img)
+                                            <div class="item">
+                                                <img src="{{ asset('uploads/products/small/'. ($img->name ?? '/storage/images/pro_img.jpg')) }}"
+                                                     class="mx-auto w-auto h-auto sm:w-24 sm:h-96 md:w-64 md:h-64 lg:w-96 lg:h-96"
+                                                     alt="{{ $img->name ?? 'Default Image' }}">
+                                            </div>
+                                        @empty
+                                            <!-- Display default image when $multiImage is empty -->
+                                            <div class="item">
+                                                <img src="{{ asset('/storage/images/pro_img.jpg') }}"
+                                                     class="mx-auto w-auto h-auto sm:w-24 sm:h-96 md:w-64 md:h-64 lg:w-96 lg:h-96"
+                                                     alt="Default Image">
+                                            </div>
+                                        @endforelse
                                     </div>
                                     <div class="owl-thumbs d-flex justify-content-center" data-slider-id="1">
 

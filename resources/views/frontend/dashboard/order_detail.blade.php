@@ -47,7 +47,7 @@
                                                     <hr>
                                                     <div class="card-body">
                                                         <table class="table"
-                                                            style="background:#F4F6FA;font-weight: 600;">
+                                                            style="background:#ffffff;font-weight: 600;">
                                                             <tr>
                                                                 <th>Shipping Name:</th>
                                                                 <th>{{ $order->name }}</th>
@@ -90,7 +90,7 @@
                                                     <hr>
                                                     <div class="card-body">
                                                         <table class="table"
-                                                            style="background:#F4F6FA;font-weight: 600;">
+                                                            style="background:#ffffff;font-weight: 600;">
                                                             <tr>
                                                                 <th> Name :</th>
                                                                 <th>{{ $order->user->name }}</th>
@@ -164,7 +164,7 @@
                                                                             <tr>
                                                                                 <td class="col-md-1">
                                                                                     <label><img
-                                                                                            src="{{ asset($item->product->thumbnail) }}"
+                                                                                                src="{{ $item->product->thumbnail ? asset($item->product->thumbnail) : asset('/storage/images/pro_img.jpg') }}"
                                                                                             style="width:50px; height:50px;">
                                                                                     </label>
                                                                                 </td>
@@ -198,9 +198,9 @@
                                     </div>
                                     <!-- all products -->
                                 </div>
-                                
+
                             </div>
-                            
+
                             <!--end row-->
                         </div>
                     </div>
@@ -212,6 +212,6 @@
 </div>
 <!--end page wrapper -->
 
- 
+
 
 @endsection
