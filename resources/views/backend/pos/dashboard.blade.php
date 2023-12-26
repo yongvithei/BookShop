@@ -5,12 +5,19 @@
     @php
         $date = date('Y-m-d');
         $todayAmount = App\Models\PosOrder::whereDate('created_at',$date)->sum('amount');
+        $rate = App\Models\SiteInfo::select('exchange')->first();
         $todayReceived = App\Models\PosOrder::whereDate('created_at',$date)->sum('received');
         $todayCount = App\Models\PosOrder::whereDate('created_at',$date)->count('id');
         $cusCount = App\Models\Customer::where('status',"Active")->count('id');
-        
+
+
         $customers = App\Models\Customer::with('posOrders')->where('status','Active')->take(9)->get();
         $orders = App\Models\PosOrder::with('customerId')->latest()->take(9)->get();
+
+        $amountSell = $todayAmount / $rate->exchange;
+        $amountReceived = $todayReceived / $rate->exchange;
+        $seAmount = number_format($amountSell, 2);
+        $reAmount = number_format($amountReceived, 2);
     @endphp
     <!-- Navigation -->
     @include('backend.pos.body.nav')
@@ -23,7 +30,8 @@
                 <a class="block block-rounded block-link-pop" href="javascript:void(0)">
                     <div class="block-content block-content-full">
                         <div class="fs-sm fw-semibold text-uppercase text-muted">Today Total Sell</div>
-                        <div class="fs-2 fw-normal text-dark">$ {{ $todayAmount }}</div>
+                        <div class="fs-2 fw-normal text-dark"> {{ $todayAmount }}</div>
+                        <span>$ {{ $seAmount }}</span>
                     </div>
                 </a>
             </div>
@@ -31,7 +39,8 @@
                 <a class="block block-rounded block-link-pop" href="javascript:void(0)">
                     <div class="block-content block-content-full">
                         <div class="fs-sm fw-semibold text-uppercase text-muted">Today Received payment</div>
-                        <div class="fs-2 fw-normal text-dark">$ {{ $todayReceived }}</div>
+                        <div class="fs-2 fw-normal text-dark">{{ $todayReceived }}</div>
+                        <span>$ {{ $reAmount }}</span>
                     </div>
                 </a>
             </div>
@@ -192,8 +201,8 @@
                                 <td>
                                     <span class="fw-semibold text-warning">{{$or->payment}}</span>
                                 </td>
-                                <td class="d-sm-table-cell text-end">
-                                    ${{$or->amount}}
+                                <td class="d-sm-table-cell text-center">
+                                    {{$or->amount}}KHR
                                 </td>
                             </tr>
                             @endforeach

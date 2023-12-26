@@ -17,7 +17,7 @@ class SiteInfoController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-    
+
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'support_phone' => 'required|string|max:255',
@@ -49,8 +49,15 @@ class SiteInfoController extends Controller
             $validatedData['image'] = 'images/' . $imageName;
         }
         $item = SiteInfo::updateOrCreate(['id' => $data['id']], $validatedData);
-        
+
         return response()->json(['success' => true, 'message' => 'Record updated successfully']);
     }
-    
+    public function rate()
+    {
+        if (request()->wantsJson()) {
+            $siteInfo = SiteInfo::select('exchange')->first();
+            return response()->json(['exchange' => $siteInfo->exchange]);
+        }
+    }
+
 }

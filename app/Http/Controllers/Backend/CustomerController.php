@@ -72,7 +72,7 @@ class CustomerController extends Controller
     {
         if (request()->wantsJson()) {
             return response(
-                Customer::all()
+                Customer::where('status', 'Active')->get()
             );
         }
     }

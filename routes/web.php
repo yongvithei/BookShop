@@ -152,6 +152,7 @@ Route::middleware(['auth','role:admin'])->group(function() {
     Route::controller(SiteInfoController::class)->group(function(){
         Route::get('/info/business', 'show')->middleware('can:site.menu');
         Route::post('/sitePush','store')->name('sitePush');
+        Route::get('/site/rates', 'rate');
 
     });
 

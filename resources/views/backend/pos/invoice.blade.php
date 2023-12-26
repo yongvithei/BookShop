@@ -38,8 +38,10 @@
                 <td>
                   <div class="invoice-head-middle-left text-start">
                     <ul>
-                      <strong class = 'text-bold'>Cashier: </strong>{{ $order->userId->name }}<br> {{ $order->created_at}}
-                  </ul>
+                        <strong class='text-bold'>Cashier: </strong>{{ $order->userId->username }}<br>
+                        <strong class='text-bold'>Customer: </strong><br> {{ $order->customerId->name ?? 'Walker Customer' }}<br>
+                        {{ $order->created_at }}
+                    </ul>
                   </div>
                 </td>
                 <td class="text-end">

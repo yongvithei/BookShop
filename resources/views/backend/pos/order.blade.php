@@ -194,8 +194,20 @@
                 { data: 'customer_name', name: 'customer_name' },
                 { data: 'order_date', name: 'order_date' },
                 { data: 'payment', name: 'payment' },
-                { data: 'amount', name: 'amount' },
-                { data: 'received', name: 'received' },
+                {
+                    data: 'amount',
+                    name: 'amount',
+                    render: function (data, type, full, meta) {
+                        return data + ' KHR';
+                    }
+                },
+                {
+                    data: 'received',
+                    name: 'received',
+                    render: function (data, type, full, meta) {
+                        return data + ' KHR';
+                    }
+                },
                 { data: 'action', name: 'action', orderable: false },
             ],
             order: [[0, 'desc']],

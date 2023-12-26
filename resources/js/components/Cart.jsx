@@ -12,6 +12,7 @@ const Cart = () => {
   const [orders, setOrders] = useState([]);
   const [carts, setCarts] = useState([]);
   const [products, setProducts] = useState([]);
+  const [exchangeRate, setExchangeRate] = useState(null);
   const [barcode, setBarcode] = useState('');
   const [search, setSearch] = useState('');
   const [customerId, setCustomerId] = useState('');
@@ -31,16 +32,26 @@ const Cart = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const loadCustomers = () => {
-    axios.get('/pos/customers')
-      .then((res) => {
-        const customers = res.data;
-        setCustomers(customers);
-      })
-      .catch((error) => {
-        console.error('Error loading customers: ', error);
-      });
-  };
+    const loadRate = async () => {
+        try {
+            const response = await axios.get('/site/rates');
+            const { exchange } = response.data;
+            setExchangeRate(exchange);
+            console.log(exchangeRate);
+        } catch (error) {
+            console.error('Error loading exchange rate: ', error);
+        }
+    };
+    const loadCustomers = () => {
+        axios.get('/pos/customers')
+            .then((res) => {
+                const customers = res.data;
+                setCustomers(customers);
+            })
+            .catch((error) => {
+                console.error('Error loading customers: ', error);
+            });
+    };
   const loadRecentOrder = () => {
     axios.get('/pos/recent-order')
       .then((res) => {
@@ -161,7 +172,12 @@ const Cart = () => {
   const getTotal = (carts) => {
     return carts.reduce((accumulator, c) => accumulator + c.pivot.pro_qty * c.price, 0).toFixed(2);
   };
-  const handleEmptyCart = () => {
+    const getTotalDollar = (carts) => {
+        return (carts.reduce((accumulator, c) => accumulator + c.pivot.pro_qty * c.price, 0) / exchangeRate).toFixed(2);
+    };
+
+
+    const handleEmptyCart = () => {
     axios.post('/pos/cart/empty', { _method: 'DELETE' }).then((res) => {
       setCarts([]);
     });
@@ -316,6 +332,7 @@ const Cart = () => {
   // Load Data
   useEffect(() => {
     loadCart();
+    loadRate();
     loadRecentOrder();
     loadCustomers();
   }, []);
@@ -365,7 +382,7 @@ return (
             </div>
           </td>
           <td className="d-sm-table-cell text-center">
-            <a href="">{(c.price * c.pivot.pro_qty).toFixed(2)}$</a>
+            <a href="">{(c.price * c.pivot.pro_qty).toFixed(2)} KHR</a>
           </td>
         </tr>
       </React.Fragment>
@@ -375,7 +392,7 @@ return (
         <span className="h4 fw-medium">Total</span>
       </td>
       <td className="text-end">
-        <span className="h4 fw-semibold">$ {getTotal(carts)}</span>
+        <span className="h4 fw-semibold">{getTotal(carts)}</span>
       </td>
     </tr>
   </tbody>
@@ -417,7 +434,7 @@ return (
                 <th className="text-center" scope="row">{o.id}</th>
                 <td className="fw-semibold fs-sm">{o.amount}</td>
                 <td>
-                  <span>$ {o.amount}</span>
+                  <span>{o.amount} KHR</span>
                 </td>
                 <td className="text-center">
                   <div className="btn-group">
@@ -552,16 +569,18 @@ return (
                   <Form.Group className="mb-1" controlId="Form.selectPay">
                       <Form.Label>Total Amount</Form.Label>
                       <InputGroup className="mb-1">
-                          <InputGroup.Text>$</InputGroup.Text>
+                          <InputGroup.Text>KHR</InputGroup.Text>
                           <Form.Control aria-label="Amount (to the nearest dollar)" value={getTotal(carts)}
                           disabled
-                          />
+                          /><Form.Control className="text-end" aria-label="Amount (to the nearest dollar)" value={getTotalDollar(carts)}
+                                          disabled
+                      /><InputGroup.Text>$</InputGroup.Text>
                       </InputGroup>
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="Form.selectPay">
                       <Form.Label>Received Amount</Form.Label>
                       <InputGroup className="mb-3">
-                          <InputGroup.Text>$</InputGroup.Text>
+                          <InputGroup.Text>KHR</InputGroup.Text>
                           <Form.Control aria-label="Amount (to the nearest dollar)"
                           placeholder={getTotal(carts)}
                           className="placeholder-text"
