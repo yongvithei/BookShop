@@ -190,7 +190,7 @@
                                             <div class="card-body">
                                                 <div class="my-3 border-top"></div>
                                                 <h5 class="mb-2">{{ __('main.order_total') }}: <span
-                                                        class="float-end">${{ $cartTotal }}</span></h5>
+                                                        class="float-end">{{ $cartTotal }} KHR</span></h5>
                                                 <h5 class="mb-0">Total Dollar: <span
                                                         class="float-end">$ {{$dollar}}</span></h5>
                                             </div>

@@ -29,7 +29,7 @@ class StripeController extends Controller
 
         $token = $_POST['stripeToken'];
         $charge = \Stripe\Charge::create([
-          'amount' => $total_amount*100,
+          'amount' => $total_amount,
           'currency' => 'KHR',
           'description' => 'BookShop',
           'source' => $token,
