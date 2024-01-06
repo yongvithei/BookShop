@@ -15,10 +15,13 @@ use App\Mail\OrderMail;
 use App\Models\User;
 use App\Notifications\OrderComplete;
 use Illuminate\Support\Facades\Notification;
+use App\Notifications\TelegramNotification;
 
 class StripeController extends Controller
 {
     public function StripeOrder(Request $request){
+        $user = User::where('role', 'admin')->get();
+        $adminUser = User::where('role', 'admin')->first();
         if(Session::has('coupon')){
             $total_amount = Session::get('coupon')['total_amount'];
         }else{
@@ -86,11 +89,16 @@ class StripeController extends Controller
            Session::forget('coupon');
         }
         Cart::destroy();
+
+        Notification::send($adminUser, new TelegramNotification($data));
+        Notification::send($user, new OrderComplete($request->name,$data));
+
         return redirect()->route('order.complete');
     }
 
     public function CashOrder(Request $request){
         $user = User::where('role', 'admin')->get();
+        $adminUser = User::where('role', 'admin')->first();
 
         if(Session::has('coupon')){
             $total_amount = Session::get('coupon')['total_amount'];
@@ -151,7 +159,8 @@ class StripeController extends Controller
         }
         Cart::destroy();
 
-        Notification::send($user, new OrderComplete($request->name));
+        Notification::send($user, new OrderComplete($request->name,$data));
+        Notification::send($adminUser, new TelegramNotification($data));
         return redirect()->route('order.complete');
     }
 }

@@ -84,6 +84,35 @@ class UserProfileController extends Controller
         return $pdf->download('invoice.pdf');
 
     }
+    public function PreviewUserInvoice($invoice_no)
+    {
+        $info = SiteInfo::latest()->first();
+        $order = Order::with('city', 'district', 'user')->where('invoice_no', $invoice_no)->first();
+
+        // Check if the order exists
+        if ($order) {
+            $order_id = $order->id;
+
+            // Retrieve order items based on the order ID
+            $orderItem = OrderItem::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
+
+            $pdf = PDF::loadView('frontend.dashboard.order_invoice', compact('order', 'orderItem', 'info'), [], [
+                'format' => 'A5',
+                'title' => 'PDF',
+                'default_font' => 'khmeros',
+                'display_mode' => 'fullpage',
+                'margin_bottom' => 10,
+                'auto_language_detection' => true,
+                'temp_dir' => storage_path('app'),
+            ]);
+
+            return $pdf->stream('invoice.pdf');
+        } else {
+            // Handle the case where the order with the provided invoice number is not found
+            return abort(404);
+        }
+    }
+
     public function OrderTracking(Request $request){
 
         $invoice = $request->code;

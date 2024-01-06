@@ -35,6 +35,9 @@ return [
         'client_secret' => env('GOOGLE_SECRET'),
         'redirect' => '/auth/google/callback',
     ],
+    'telegram-bot-api' => [
+        'token' => env('TELEGRAM_BOT_TOKEN',),
+    ],
 
 
 ];

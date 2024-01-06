@@ -284,6 +284,7 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
     /// Add to Wishlist
     Route::post('/addWishlist/{product_id}', [WishlistController::class, 'AddToWishList']);
+    Route::get('/user/invoice_stream/{invoice_no}',[UserProfileController::class , 'PreviewUserInvoice']);
 
     /// User All Route
     Route::middleware(['auth','role:user'])->group(function() {
