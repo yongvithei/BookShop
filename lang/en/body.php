@@ -32,7 +32,7 @@ return [
     'title' => 'Ponleu Vichea',
 
     //footer
-    'alpha_version' => 'Alpha Version',
+    'alpha_version' => 'Beta Version',
     'dev' => 'Vithei',
     'crafted_with' => 'Crafted with',
     'by' => 'By',

@@ -88,12 +88,9 @@
                                         <div class="col">
                                             <label class="form-label">Quantity</label>
                                             <div class="input-group input-group-sm">
-                                                <input type="number" class="form-control" min="0" max="999" value="1"
-                                                    id="dquantityInput">
-                                                <button class="btn btn-outline-secondary" type="button"
-                                                    id="incrementQuantity">+</button>
-                                                <button class="btn btn-outline-secondary" type="button"
-                                                    id="decrementQuantity">-</button>
+                                                <input type="number" class="form-control" min="0" max="{{ $product->pro_qty ?? 0 }}" value="{{ $product->pro_qty ?? 0 ? 1 : 0 }}" id="dquantityInput" oninput="handleQuantityChange()">
+                                                <button class="btn btn-outline-secondary" type="button" id="incrementQuantity">+</button>
+                                                <button class="btn btn-outline-secondary" type="button" id="decrementQuantity" onclick="handleDecrement()">-</button>
                                             </div>
                                         </div>
 
@@ -104,7 +101,7 @@
                                         </label>
 
                                         <div class="product-rating d-flex align-items-center mt-1">
-                                             @if($avarage == 0)
+                                            @if($avarage == 0)
 
                                             @elseif($avarage == 1 || $avarage < 2)
                                             <div class="rates cursor-pointer font-13">
@@ -168,12 +165,10 @@
 
                                     <!--end row-->
                                     <div class="d-flex gap-2 mt-3">
-                                         <input type="hidden" id="dproduct_id" value="{{ $product->id }}">
-                                        <button type="submit" onclick="addToCartDetails()" class="btn btn-white btn-ecomm"> <i
-                                                class="bx bxs-cart-add"></i>Add to Cart</button>
-                                        <a href="javascript:;"
-                                            class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to
-                                            Wishlist</a>
+                                        <input type="hidden" id="dproduct_id" value="{{ $product->id }}">
+                                        <button type="submit" onclick="addToCartDetails()" class="btn btn-white btn-ecomm" id="addToCartButton"> <i class="bx bxs-cart-add"></i>Add to Cart</button>
+                                        <a href="javascript:;" class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to Wishlist</a>
+                                        <p id="warningMessage" class="text-danger mt-2"></p>
                                     </div>
                                     <hr />
 
@@ -434,7 +429,7 @@
         const dquantityInput = document.getElementById('dquantityInput');
         const incrementButton = document.getElementById('incrementQuantity');
         const decrementButton = document.getElementById('decrementQuantity');
-
+        handleQuantityChange();
         incrementButton.addEventListener('click', function () {
             const currentValue = parseInt(dquantityInput.value);
             if (currentValue < 999) {
@@ -449,6 +444,82 @@
             }
         });
     });
+
+    function addToCartDetails(){
+        let product_name = $('#dname').text();
+        let id = $('#dproduct_id').val();
+        let quantity = $('#dquantityInput').val();
+        let price = parseFloat($('#dprice').text().replace('KHR', ''));
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            data: {
+                quantity: quantity,
+                product_name: product_name,
+                price: price // Include the product price
+            },
+            url: "/dcart/data/store/"+id,
+            success: function (data) {
+                // console.log(data);
+                miniCart();
+                $('#closeModal').click();
+                // Start Message
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        icon: 'success',
+                        title: data.success
+                    });
+                } else {
+                    Toast.fire({
+                        icon: 'error',
+                        title: data.error
+                    });
+                }
+            }
+        });
+    }
+
+    function handleQuantityChange() {
+        var quantityInput = document.getElementById('dquantityInput');
+        var addToCartButton = document.getElementById('addToCartButton');
+        var incrementQuantity = document.getElementById('incrementQuantity');
+        var warningMessage = document.getElementById('warningMessage');
+        var maxQuantity = parseInt(quantityInput.getAttribute('max'));
+        var currentQuantity = parseInt(quantityInput.value);
+
+        if (currentQuantity === 0) {
+            addToCartButton.disabled = true;
+            incrementQuantity.disabled = true;
+            warningMessage.innerText = 'This item is out of stock.';
+        } else {
+            addToCartButton.disabled = false;
+            incrementQuantity.disabled = false;
+            warningMessage.innerText = '';
+        }
+    }
+
+    function handleDecrement() {
+        var quantityInput = document.getElementById('incrementQuantity');
+        var currentQuantity = parseInt(quantityInput.value);
+
+        // Disable decrement button if the quantity is already 0
+        if (currentQuantity === 0) {
+            return;
+        }
+
+        // Handle decrement logic here
+
+        // Call handleQuantityChange after decrement
+        handleQuantityChange();
+    }
 </script>
 
 @endsection

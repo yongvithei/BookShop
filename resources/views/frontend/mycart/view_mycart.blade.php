@@ -63,7 +63,7 @@
 
                                     </div>
                                 </div>
-                                    Note: Order items more than available items may be failed
+                                    Note: Order less than 5000 Riel can't be process.
                             </div>
                         </div>
                     </div>
@@ -91,52 +91,49 @@
             url: '/get-cart-product',
             dataType: 'json',
             success: function (response) {
-                var rows = ""
+                var rows = "";
                 $.each(response.carts, function (key, value) {
                     var imageUrl = value.options.image ? '/' + value.options.image : '/storage/images/pro_img.jpg';
                     rows += `<div class="row align-items-center g-3 pb-4">
-                                    <div class="col-12 col-lg-6">
-                                        <div class="d-lg-flex align-items-center gap-2">
-                                            <div class="cart-img text-center text-lg-start">
-                                                <img src="${imageUrl}" width="130" alt="">
-                                            </div>
-                                            <div class="cart-detail text-center text-lg-start">
-                                                <h6 class="mb-2">${value.name}</h6>
-                                                <h5 class="mb-2"><span>Price: </span>${value.price} KHR</h5>
-                                                <p class="mb-0">SubTotal: <span>${value.subtotal} KHR</span>
-                                                </p>
-                                            </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="d-lg-flex align-items-center gap-2">
+                                        <div class="cart-img text-center text-lg-start">
+                                            <img src="${imageUrl}" width="130" alt="">
                                         </div>
-                                    </div>
-                                    <div class="col-12 col-lg-3">
-                                        <div class="cart-action text-center">
-                                            <div class="input-group input-group-sm">
-                                        <input type="number" class="form-control" min="1" max="${value.options.pro_qty}" value="${value.qty}" id="quantityInput" oninput="handleQuantityChange(this.value, '${value.rowId}')">
-                                        <button type="submit" id="${value.rowId}" onclick="cartDecrement(this.id)" class="btn btn-outline-secondary" type="button"
-                                            id="decrementQuantity">−</button>
-                                        <button type="submit" id="${value.rowId}" onclick="cartIncrement(this.id)" class="btn btn-outline-secondary" type="button"
-                                            id="incrementQuantity">+</button>
-
-                                            </div>
-
-                                        </div>
-                                    <p class="mb-0">Available: <span>${value.options.pro_qty}</span></p>
-                                    </div>
-                                    <div class="col-12 col-lg-3">
-                                        <div class="text-center">
-                                            <div class="d-flex gap-2 justify-content-center justify-content-lg-end"> <a
-                                                    href="javascript:;" class="bg-dark text-white rounded-2 btn-ecomm" type="submit" id="${value.rowId}" onclick="cartRemove(this.id)"> Remove</a>
-                                                <a href="javascript:;" class="btn btn-light rounded-0 btn-ecomm"><i
-                                                        class='bx bx-heart me-0'></i></a>
-                                            </div>
+                                        <div class="cart-detail text-center text-lg-start">
+                                            <h6 class="mb-2">${value.name}</h6>
+                                            <h5 class="mb-2"><span>Price: </span>${value.price} KHR</h5>
+                                            <p class="mb-0">SubTotal: <span>${value.subtotal} KHR</span>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="my-4 border-top"></div>`
+                                <div class="col-12 col-lg-3">
+                                   <div class="cart-action text-center">
+                                        <div class="input-group input-group-sm">
+                                           <input type="number" class="form-control" min="1" max="${value.options.pro_qty}" value="${Math.min(value.qty, value.options.pro_qty)}" id="quantityInput_${value.rowId}" oninput="handleQuantityChange('input', '${value.rowId}')">
+
+                                            <button type="button" id="${value.rowId}" class="btn btn-outline-secondary" onclick="handleQuantityChange('decrement', '${value.rowId}')">−</button>
+                                            <button type="button" id="${value.rowId}" class="btn btn-outline-secondary" onclick="handleQuantityChange('increment', '${value.rowId}')">+</button>
+                                        </div>
+                                    </div>
+                                <p class="mb-0">Available: <span>${value.options.pro_qty}</span></p>
+                                </div>
+                                <div class="col-12 col-lg-3">
+                                    <div class="text-center">
+                                        <div class="d-flex gap-2 justify-content-center justify-content-lg-end"> <a
+                                                href="javascript:;" class="bg-dark text-white rounded-2 btn-ecomm" type="submit" id="${value.rowId}" onclick="cartRemove(this.id)"> Remove</a>
+                                            <a href="javascript:;" class="btn btn-light rounded-0 btn-ecomm"><i
+                                                    class='bx bx-heart me-0'></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-4 border-top"></div>`;
                 });
                 $('#cartPage').html(rows);
             }
-        })
+        });
     }
     cart();
 
@@ -154,18 +151,15 @@
             const Toast = Swal.mixin({
                   toast: true,
                   position: 'top-end',
-
                   showConfirmButton: false,
                   timer: 3000
             })
             if ($.isEmptyObject(data.error)) {
-
                     Toast.fire({
                     icon: 'success',
                     title: data.success,
                     })
             }else{
-
            Toast.fire({
                     icon: 'error',
                     title: data.error,
@@ -177,12 +171,30 @@
         }
 
     // Handle Quantity Change
-    function handleQuantityChange(newValue, rowId) {
+    function handleQuantityChange(action, rowId) {
         // Assuming minQuantity is the minimum allowed quantity (e.g., 1)
         var minQuantity = 1;
-
-        // Check if the new value is greater than or equal to the minimum
-        if (parseInt(newValue, 10) >= minQuantity) {
+        var inputField = $(`#quantityInput_${rowId}`);
+        // Check if the input field is empty
+        if (!inputField.val()) {
+            return; // Stop further processing
+        }
+        var currentValue = parseInt(inputField.val(), 10);
+        var maxPrice = parseInt(inputField.attr('max'));
+        // Check if the new value is greater than the available quantity
+        if (currentValue > maxPrice) {
+            return; // Stop further processing
+        }
+        // Increment or decrement based on the action
+        if (action === 'increment' && currentValue < maxPrice) {
+            inputField.val(currentValue + 1);
+        } else if (action === 'decrement' && currentValue > minQuantity) {
+            inputField.val(currentValue - 1);
+        }
+        // Update the quantity with the new value
+        var newValue = inputField.val();
+        // Perform the AJAX call only if the value has changed
+        if (newValue !== currentValue) {
             $.ajax({
                 type: 'POST',
                 url: "/update-quantity/" + rowId,
@@ -201,49 +213,13 @@
                 }
             });
         } else {
-            // Reset the input to the minimum value
-            $("#quantityInput").val(minQuantity);
-        }
-    }
-
-
-    // Cart Decrement Start
-    function cartDecrement(rowId) {
-        // Assuming minQuantity is the minimum allowed quantity (e.g., 1)
-        var minQuantity = 1;
-
-        // Get the current quantity value
-        var currentQuantity = parseInt($("#quantityInput").val(), 10);
-
-        // Check if the quantity is already at the minimum
-        if (currentQuantity > minQuantity) {
-            // Make the AJAX request only if the quantity is greater than the minimum
-            $.ajax({
-                type: 'GET',
-                url: "/cart-decrement/" + rowId,
-                dataType: 'json',
-                success: function (data) {
-                    cart();
-                    couponCalculation();
-                    miniCart();
-                }
-            });
-        }
-    }
-
-    // Cart INCREMENT
-    function cartIncrement(rowId){
-        $.ajax({
-            type: 'GET',
-            url: "/cart-increment/"+rowId,
-            dataType: 'json',
-            success:function(data){
-                cart();
-                couponCalculation();
-                miniCart();
+            // Reset the input to the minimum value if outside the allowed range
+            if (parseInt(newValue, 10) < minQuantity || parseInt(newValue, 10) > maxPrice) {
+                inputField.val(minQuantity);
             }
-        });
+        }
     }
+
     function applyCoupon(){
         var coupon_name = $('#coupon_name').val();
         $.ajax({
@@ -287,7 +263,12 @@
             dataType: 'json',
             success:function(data){
                  if (data.total) {
+                     let disableCheckout = false;
                  const totalUSD = (data.total / data.rate).toFixed(2);
+                     // Check if total_amount is less than 5000 KHR
+                     if (data.total < 5000) {
+                         disableCheckout = true;
+                     }
                  $('#couponCalField').html(
                         `<p class="mb-2">{{ __('main.subtotal') }}: <span class="float-end">${data.total} KHR</span></p>
                         <p class="mb-0">{{ __('main.discount') }}: <span class="float-end">--</span></p>
@@ -296,9 +277,18 @@
                         <h5 class="mb-2">Total in USD: <span class="float-end">$ ${totalUSD}</span></h5>
                         <div class="my-4"></div>
                         <div class="d-grid">
-                            <a href="{{ route('checkout') }}" class="btn btn-dark btn-ecomm">{{ __('main.proceed_to_checkout') }}</a>
+                            <button id="checkoutButton" class="btn btn-dark btn-ecomm">{{ __('main.proceed_to_checkout') }}</button>
                         </div>
-                ` ) } else {
+                ` )
+                     $('#checkoutButton').on('click', function() {
+                             window.location.href = "{{ route('checkout') }}";
+                     });
+                     $('#checkoutButton').prop('disabled', disableCheckout);
+                 } else {
+                     let disable = false;
+                     if (data.total_amount < 5000) {
+                         disable = true;
+                     }
                     $('#couponCalField').html(`
                         <p class="mb-2">{{ __('main.subtotal') }}: <span class="float-end">${data.subtotal} KHR</span></p>
                         <p class="mb-2">{{ __('main.coupon') }}: <span class="float-end">${data.coupon_name}</span></p>
@@ -308,11 +298,18 @@
                         <div class="my-2"></div>
                         <h5 class="mb-2">Total in USD: <span class="float-end">$ ${data.dollar}</span></h5>
                         <div class="d-grid">
-                            <a href="{{ route('checkout') }}" class="btn btn-dark btn-ecomm">{{ __('main.proceed_to_checkout') }}</a>
+                                <button id="checkout" class="btn btn-dark btn-ecomm">{{ __('main.proceed_to_checkout') }}</button>
                         </div>
                     ` )
+                     $('#checkout').on('click', function() {
+                             window.location.href = "{{ route('checkout') }}";
+                     });
+
+                     $('#checkout').prop('disabled', disable);
                     }
+
                 }
+
 
         })
     }

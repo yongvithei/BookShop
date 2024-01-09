@@ -37,22 +37,22 @@
                                 <div class="card bg-transparent rounded-0 shadow-none">
                                     <div class="card-body">
                                         <div class="steps steps-light">
-                                            <a class="step-item active" href="shop-cart.html">
+                                            <a class="step-item active" href="/">
                                                 <div class="step-progress"><span class="step-count">1</span>
                                                 </div>
                                                 <div class="step-label"><i class='bx bx-cart'></i>Cart</div>
                                             </a>
-                                            <a class="step-item active" href="checkout-details.html">
+                                            <a class="step-item active" href="/">
                                                 <div class="step-progress"><span class="step-count">2</span>
                                                 </div>
                                                 <div class="step-label"><i class='bx bx-cube'></i>Shipping</div>
                                             </a>
-                                            <a class="step-item active" href="checkout-shipping.html">
+                                            <a class="step-item active" href="/">
                                                 <div class="step-progress"><span class="step-count">3</span>
                                                 </div>
                                                 <div class="step-label"><i class='bx bx-credit-card'></i>Payment</div>
                                             </a>
-                                            <a class="step-item active current" href="checkout-payment.html">
+                                            <a class="step-item active current" href="/">
                                                 <div class="step-progress"><span class="step-count">4</span>
                                                 </div>
                                                 <div class="step-label"><i class='bx bx-check-circle'></i>Tracking</div>
@@ -72,16 +72,10 @@
                                                             <h2 class="h4 pb-3">Thank you for your order!</h2>
                                                             <p class="fs-sm mb-2">Your order has been placed and will be
                                                                 processed as soon as possible.</p>
-                                                            <p class="fs-sm mb-2">Make sure you make note of your order
-                                                                number, which is <span
-                                                                    class="fw-medium">34VB5540K83.</span>
-                                                            </p>
-                                                            <p class="fs-sm">You will be receiving an email shortly with
-                                                                confirmation of your order. <u>You can now:</u>
-                                                            </p><a class="btn btn-light rounded-0 mt-3 me-3"
-                                                                href="index.html">Go back shopping</a><a
+                                                            <a class="btn btn-light rounded-0 mt-3 me-3"
+                                                                href="/">Go back shopping</a><a
                                                                 class="btn btn-white rounded-0 mt-3"
-                                                                href="/order/tracking"><i
+                                                                href="/user/track-order"><i
                                                                     class='bx bx-map'></i>Track order</a>
                                                         </div>
                                                     </div>

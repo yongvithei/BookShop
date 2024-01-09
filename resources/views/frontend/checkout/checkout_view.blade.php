@@ -85,7 +85,7 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">{{ __('main.phone_number') }}</label>
-                                                        <input type="text" name="ship_phone" class="form-control rounded-0" placeholder="Required" required>
+                                                        <input type="number" name="ship_phone" class="form-control rounded-0" placeholder="Required" required>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">{{ __('main.zip_postal_code') }}</label>

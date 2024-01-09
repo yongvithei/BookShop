@@ -20,7 +20,19 @@ class CartController extends Controller
             Session::forget('coupon');
         }
         $product = Product::findOrFail($id);
-        if ($product->discount_price == NULL) {
+
+        // Check if the product is already in the cart
+        $cartItem = Cart::search(function ($cartItem, $rowId) use ($id) {
+            return $cartItem->id === $id;
+        })->first();
+
+        if ($cartItem) {
+            // Product is already in the cart, return an error response
+            return response()->json(['error' => 'Product is already in the cart']);
+        }
+
+        // Product is not in the cart, proceed with adding it
+        if ($product->discount_price == null) {
             Cart::add([
                 'id' => $id,
                 'name' => $request->product_name,
@@ -32,8 +44,7 @@ class CartController extends Controller
                     'pro_qty' => $product->pro_qty,
                 ],
             ]);
-        return response()->json(['success' => 'Successfully Added on Your Cart' ]);
-        }else{
+        } else {
             Cart::add([
                 'id' => $id,
                 'name' => $request->product_name,
@@ -45,16 +56,28 @@ class CartController extends Controller
                     'pro_qty' => $product->pro_qty,
                 ],
             ]);
-        return response()->json(['success' => 'Successfully Added on Your Cart' ]);
         }
 
+        return response()->json(['success' => 'Successfully Added on Your Cart']);
     }
     public function AddToCartDetails(Request $request, $id){
         if(Session::has('coupon')){
             Session::forget('coupon');
         }
         $product = Product::findOrFail($id);
-        if ($product->discount_price == NULL) {
+
+        // Check if the product is already in the cart
+        $cartItem = Cart::search(function ($cartItem, $rowId) use ($id) {
+            return $cartItem->id === $id;
+        })->first();
+
+        if ($cartItem) {
+            // Product is already in the cart, return an error response
+            return response()->json(['error' => 'Product is already in the cart']);
+        }
+
+        // Product is not in the cart, proceed with adding it
+        if ($product->discount_price == null) {
             Cart::add([
                 'id' => $id,
                 'name' => $request->product_name,
@@ -66,8 +89,7 @@ class CartController extends Controller
                     'pro_qty' => $product->pro_qty,
                 ],
             ]);
-        return response()->json(['success' => 'Successfully Added on Your Cart' ]);
-        }else{
+        } else {
             Cart::add([
                 'id' => $id,
                 'name' => $request->product_name,
@@ -79,13 +101,13 @@ class CartController extends Controller
                     'pro_qty' => $product->pro_qty,
                 ],
             ]);
-        return response()->json(['success' => 'Successfully Added on Your Cart' ]);
         }
 
+        return response()->json(['success' => 'Successfully Added on Your Cart']);
     }
     public function AddMiniCart(){
         $carts = Cart::content();
-        $cartQty = Cart::count();
+        $cartQty = Cart::content()->count();
         $cartTotal = Cart::total();
 
         return response()->json(array(

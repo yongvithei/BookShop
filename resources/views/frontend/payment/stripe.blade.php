@@ -88,16 +88,6 @@
                                                     </div>
                                                 </a>
                                             </li>
-                                            <li class="nav-item" role="presentation">
-                                                <a class="nav-link rounded-0" data-bs-toggle="pill" href="#net-banking"
-                                                    role="tab" aria-selected="false">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="tab-icon"><i class='bx bx-mobile font-18 me-1'></i>
-                                                        </div>
-                                                        <div class="tab-title">Net Banking</div>
-                                                    </div>
-                                                </a>
-                                            </li>
                                         </ul>
                                         <div class="tab-content" id="pills-tabContent">
                                             <div class="tab-pane fade show active" id="credit-card" role="tabpanel">
@@ -111,9 +101,15 @@
                                                                         <label for="card-element">
                                                                         Credit or debit card
                                                                         </label>
-                                                                        <div id="card-element">
-                                                                        <!-- A Stripe Element will be inserted here. -->
-                                                                        </div>
+                                                                        @if($cartTotal > 99999000 || (session()->has('coupon') && session()->get('coupon')['total_amount'] > 99999000))
+                                                                            <br><label for="card-element">
+                                                                                Price higher than 99000000 Riel, We recommend making your purchase at the store.
+                                                                            </label>
+                                                                        @else
+                                                                            <div id="card-element">
+                                                                                <!-- A Stripe Element will be inserted here. -->
+                                                                            </div>
+                                                                        @endif
                                                                             <input type="hidden" name="name" value="{{ $data['ship_name'] }}">
                                                                             <input type="hidden" name="email" value="{{ $data['ship_email'] }}">
                                                                             <input type="hidden" name="phone" value="{{ $data['ship_phone'] }}">
@@ -130,9 +126,16 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="d-grid">
-                                                                    <button class="btn btn-dark btn-ecomm rounded-0">{{ __('main.confirm_payment') }}</button>
+                                                                    @if($cartTotal > 99999000 || (session()->has('coupon') && session()->get('coupon')['total_amount'] > 99999000))
+                                                                        <button type="submit" class="btn btn-dark bg-gray-900" disabled>
+                                                                           Only Cash on Delivery
+                                                                        </button>
+                                                                    @else
+                                                                        <button type="submit" class="btn btn-dark bg-gray-900">
+                                                                            {{ __('main.confirm_payment') }}
+                                                                        </button>
+                                                                    @endif
                                                                 </div>
-
                                                             </div>
                                                         </div>
                                                     </form>
@@ -140,7 +143,6 @@
                                             </div>
                                             <div class="tab-pane fade" id="delivery-payment" role="tabpanel">
                                                 <div class="p-3 border">
-
                                                     <div class="mb-3">
                                                         <p class="mb-0">What Is the Meaning of Cash on Delivery? Cash on
                                                             delivery is when a buyer pays for goods or services once
@@ -171,34 +173,17 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="d-grid">
-                                                                    <button class="btn btn-dark btn-ecomm rounded-0">{{ __('main.confirm') }}</button>
+                                                                    @if($cartTotal > 999999999999 || (session()->has('coupon') && session()->get('coupon')['total_amount'] > 999999999999))
+                                                                        <button type="submit" class="btn btn-dark bg-gray-900" disabled> Abnormal Amount </button>
+                                                                    @else
+                                                                        <button type="submit" class="btn btn-dark bg-gray-900">
+                                                                            {{ __('main.confirm') }}
+                                                                        </button>
+                                                                    @endif
                                                                 </div>
-
                                                             </div>
                                                         </div>
                                                     </form>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="net-banking" role="tabpanel">
-                                                <div class="p-3 border">
-                                                    <div class="mb-3">
-                                                        <p>{{ __('main.select_your_bank') }}</p>
-                                                        <select class="form-select rounded-0"
-                                                            aria-label="Default select example">
-                                                            <option selected>{{ __('main.please_select_bank') }}
-                                                            </option>
-                                                            <option value="1">Bank Name 1</option>
-                                                            <option value="2">Bank Name 2</option>
-                                                            <option value="3">Bank Name 3</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="mb-3">
-                                                        <p class="mb-0">Note: After clicking on the button, you will be
-                                                            directed to a secure gateway for payment. After completing
-                                                            the payment process, you will be redirected back to the
-                                                            website to view details of your order.</p>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -208,13 +193,13 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="d-grid"> <a href="javascript:;"
+                                                <div class="d-grid"> <a href="/shop"
                                                         class="btn btn-light btn-ecomm"><i
                                                             class="bx bx-chevron-left"></i>{{ __('main.back_to_shipping') }}</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="d-grid"> <a href="javascript:;"
+                                                <div class="d-grid"> <a href="/mycart"
                                                         class="btn btn-white btn-ecomm">{{ __('main.review_your_order') }}<i
                                                             class="bx bx-chevron-right"></i></a></div>
                                             </div>
@@ -243,7 +228,7 @@
                                                     <div class="ps-2">
                                                         <h6 class="mb-1"><a href="javascript:;" class="text-dark">{{ $item->name }}</a></h6>
                                                         <div class="widget-product-meta"><span
-                                                                class="me-2">${{ $item->price }}</span><span
+                                                                class="me-2">{{ $item->price }} KHR</span><span
                                                                 class="">x {{ $item->qty }}</span>
                                                         </div>
                                                     </div>

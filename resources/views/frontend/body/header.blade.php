@@ -123,7 +123,7 @@
 										<a href="javascript:;">
 											<div class="text-center cart-footer d-flex align-items-center">
 												<h5 class="mb-0">{{__('main.total')}}</h5>
-												<h5 class="mb-0 ms-auto">Total <span id="cartSubTotal"> </span></h5>
+												<h5 class="mb-0 ms-auto">Total: <span id="cartSubTotal"> </span> KHR</h5>
 											</div>
 										</a>
 										<div class="d-grid p-3 border-top">

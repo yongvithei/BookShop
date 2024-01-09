@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('payment_method')->nullable();
             $table->string('transaction_id')->nullable();
             $table->string('currency');
-            $table->float('amount',8,2);
+            $table->decimal('amount', 14, 2);
             $table->string('order_number')->nullable();
             $table->string('invoice_no');
             $table->string('order_date');
@@ -37,7 +37,7 @@ return new class extends Migration
             $table->string('shipped_date')->nullable();
             $table->string('delivered_date')->nullable();
             $table->string('cancel_date')->nullable();
-            $table->string('status'); 
+            $table->string('status');
             $table->timestamps();
         });
     }
