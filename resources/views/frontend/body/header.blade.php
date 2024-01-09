@@ -11,7 +11,7 @@
 				<ul class="navbar-nav ms-auto d-none d-lg-flex">
 					<li class="nav-item"> <a class="nav-link" href="">{{__('main.track_order')}}</a>
 					</li>
-					<li class="nav-item"> <a class="nav-link" href="//about">{{__('main.about')}}</a>
+					<li class="nav-item"> <a class="nav-link" href="/about">{{__('main.about')}}</a>
 					</li>
 					<li class="nav-item"> <a class="nav-link" href="">{{__('main.our_stores')}}</a>
 					</li>
@@ -79,7 +79,9 @@
 									<option value="2">Two</option>
 									<option value="3">Three</option>
 								</select>	 -->
-							<span class="input-group-text cursor-pointer bg-transparent"><a href="/search"><i class='bx bx-search'></i></a></span>
+                            <button type="submit" class="input-group-text cursor-pointer bg-transparent" onclick="submitSearchForm()">
+                                <i class='bx bx-search'></i>
+                            </button>
 							<div id="searchProducts"></div>
 
 						</div>

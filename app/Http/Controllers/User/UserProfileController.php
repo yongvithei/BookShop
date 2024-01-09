@@ -57,7 +57,7 @@ class UserProfileController extends Controller
     }
     public function UserOrderPage(){
         $id = Auth::user()->id;
-        $orders = Order::where('user_id',$id)->orderBy('id','DESC')->get();
+        $orders = Order::where('user_id', $id)->orderBy('id', 'DESC')->paginate(10);
         return view('frontend.dashboard.order',compact('orders'));
     }
     public function UserOrderDetails($order_id){

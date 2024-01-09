@@ -8,8 +8,9 @@ use DateTime;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\RedirectResponse;
-use Barryvdh\DomPDF\Facade\Pdf;
+use PDF;
 use App\Models\OrderView;
+use App\Models\SiteInfo;
 class ReportController extends Controller
 {
     public function SearchByDate(Request $request)
@@ -70,15 +71,23 @@ class ReportController extends Controller
         }
     }
     public function OrderInvoice($order_id){
-
+        $info = SiteInfo::latest()->first();
         $order = Order::with('city','district','user')->where('id',$order_id)->first();
         $orderItem = OrderItem::with('product')->where('order_id',$order_id)->orderBy('id','DESC')->get();
 
-        $pdf = Pdf::loadView('backend.report.invoice', compact('order','orderItem'))->setPaper('a4')->setOption([
-                'tempDir' => public_path(),
-                'chroot' => public_path(),
+
+        $pdf = PDF::loadView('frontend.dashboard.order_invoice', compact('order','orderItem','info'),[], [
+            'format' => 'A5',
+            'title' => 'PDF',
+            'default_font' => 'khmeros',
+            'display_mode' => 'fullpage',
+            'margin_bottom' => 10,
+            'auto_language_detection' => true,
+            'temp_dir' => storage_path('app'),
         ]);
-        return $pdf->download('invoice.pdf');
+
+        return $pdf->stream('invoice.pdf');
+
     }
 
 }

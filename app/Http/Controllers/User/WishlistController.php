@@ -26,20 +26,19 @@ class WishlistController extends Controller
             } else{
                 return response()->json(['error' => 'This Product Has Already on Your Wishlist' ]);
 
-            } 
+            }
 
         }else{
             return response()->json(['error' => 'Login Your Account First' ]);
         }
 
     }
-    public function GetWishlistProduct(){
-
-        $wishlist = Wishlist::with('product')->where('user_id',Auth::id())->latest()->get();
-        $wishQty = wishlist::count();
-       return response()->json(['wishlist'=> $wishlist, 'wishQty' => $wishQty]);
-
+    public function GetWishlistProduct() {
+        $wishlist = Wishlist::with('product')->where('user_id', Auth::id())->latest()->get();
+        $wishQty = Wishlist::where('user_id', Auth::id())->count();
+        return response()->json(['wishlist' => $wishlist, 'wishQty' => $wishQty]);
     }
+
     public function WishlistRemove($id){
 
         Wishlist::where('user_id',Auth::id())->where('id',$id)->delete();

@@ -63,14 +63,13 @@ function wishlist() {
         dataType: 'json',
         url: "/get-wishlist-product/",
         success: function (response) {
-        console.log(response.wishlist);
         $('#wishQty').text(response.wishQty);
         $('#wishlist').html('');
         if (response.wishQty > 0) {
         // Loop through the wishlist items and create product cards
         $.each(response.wishlist, function (key, value) {
 
-        let imageUrl = '/' + value.product.thumbnail;
+        let imageUrl = value.product.thumbnail ? '/' + value.product.thumbnail : '{{ asset("/storage/images/pro_img.jpg") }}';
         let url = "{{ url('product/details/') }}" + '/' + value.product.id + '/' + value.product.name;
         let productCard = `
         <div class="col">

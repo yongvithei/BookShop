@@ -89,32 +89,45 @@
                     </div>
                     <ul class="nav-items mb-0">
                         @php
-                        $user = Auth::user();
+                            $user = Auth::user();
+                            $notifications = $user->notifications()->paginate(5); // Set the number of notifications per page (e.g., 5)
                         @endphp
-                        @forelse($user->notifications as $notification)
-                        <li>
-                            <a class="text-dark d-flex py-2" href="javascript:void(0)">
-                                <div class="flex-shrink-0 me-2 ms-3">
-                                    <i class="fa fa-fw fa-check-circle text-success"></i>
-                                </div>
-                                <div class="flex-grow-1 pe-2">
-                                    <div class="fw-semibold">{{ $notification->data['message'] }}</div>
-                                    <span class="fw-medium text-muted">{{ Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
-                                </div>
-                            </a>
-                        </li>
-                        @empty
 
+                        @forelse($notifications as $notification)
+                            <li>
+                                <a class="text-dark d-flex py-2" href="javascript:void(0)">
+                                    <div class="flex-shrink-0 me-2 ms-3">
+                                        <i class="fa fa-fw fa-check-circle text-success"></i>
+                                    </div>
+                                    <div class="flex-grow-1 pe-2">
+                                        <div class="fw-semibold">{{ $notification->data['message'] }}</div>
+                                        <span class="fw-medium text-muted">{{ Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                        @empty
+                            <li>No notifications found.</li>
                         @endforelse
                     </ul>
                     <div class="p-2 border-top text-center">
-                        <a class="d-inline-block fw-medium" href="javascript:void(0)">
-                            <i class="fa fa-fw fa-arrow-down me-1 opacity-50"></i> Load More..
-                        </a>
+                        @if ($notifications->previousPageUrl())
+                            <a href="{{ $notifications->previousPageUrl() }}" class="mr-2 inline-block">Previous</a>
+                        @endif
+
+                        @if ($notifications->nextPageUrl())
+                            <a href="{{ $notifications->nextPageUrl() }}" class="inline-block">Next</a>
+                        @endif
                     </div>
+
+
+
                 </div>
+
             </div>
-            <!-- END Notifications Dropdown -->
+
+
+
+                    <!-- END Notifications Dropdown -->
         </div>
         <!-- END Right Section -->
     </div>
