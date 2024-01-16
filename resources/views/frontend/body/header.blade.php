@@ -60,7 +60,6 @@
                                     return App\Models\SiteInfo::latest()->first();
                                 });
 							@endphp
-
 							<a href="/">
 								<img src="{{ asset('storage/' . $siteinfo->image) }}" class="logo-icon" alt="" />
 							</a>

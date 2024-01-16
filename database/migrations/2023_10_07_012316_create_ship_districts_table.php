@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ship_districts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('city_id');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('dis_kh')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();

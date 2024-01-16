@@ -17,7 +17,7 @@ class DistController extends Controller
     {
         if (request()->ajax()) {
             try {
-                return datatables()->of(DistrictView::select(['id', 'name', 'city_name', 'status']))
+                return datatables()->of(DistrictView::select(['id', 'name', 'dis_kh', 'city_name', 'ci_kh', 'status']))
                     ->addColumn('action', 'backend.area.dist_action')
                     ->rawColumns(['action'])
                     ->addIndexColumn()
@@ -38,11 +38,11 @@ class DistController extends Controller
                     ],
                     [
                     'name' => $request->nameD,
+                    'dis_kh' => $request->nameDKH,
                     'city_id' => $request->city_id,
                     'status' => $request->statusD,
                     ]);
-
-        return Response()->json($item);
+        return response()->json(['success' => true, 'message' => __('crud.record_saved')]);
     }
 
     public function edit(Request $request)

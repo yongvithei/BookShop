@@ -31,7 +31,7 @@
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">Sipping Area</a>
+                            <a class="link-fx" href="javascript:void(0)">{{__('crud.sipping_area')}}</a>
                         </li>
 
                     </ol>
@@ -50,10 +50,10 @@
                     <div class="block block-rounded">
                         <ul class="nav nav-tabs nav-tabs-block align-items-center" role="tablist">
                             <li class="nav-item">
-                                <button class="nav-link active" id="btabswo-static-home-tab" data-bs-toggle="tab" data-bs-target="#btabswo-static-home" role="tab" aria-controls="btabswo-static-home" aria-selected="true">City</button>
+                                <button class="nav-link active" id="btabswo-static-home-tab" data-bs-toggle="tab" data-bs-target="#btabswo-static-home" role="tab" aria-controls="btabswo-static-home" aria-selected="true">{{__('crud.city')}}</button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link" id="btabswo-static-profile-tab" data-bs-toggle="tab" data-bs-target="#btabswo-static-profile" role="tab" aria-controls="btabswo-static-profile" aria-selected="false">District / Commune / Khan</button>
+                                <button class="nav-link" id="btabswo-static-profile-tab" data-bs-toggle="tab" data-bs-target="#btabswo-static-profile" role="tab" aria-controls="btabswo-static-profile" aria-selected="false">{{__('crud.place')}}</button>
                             </li>
                             <li class="nav-item ms-auto">
                                 <div class="block-options ps-3 pe-2">
@@ -80,118 +80,19 @@
                                         <table id="city-table" class="table table-bordered table-vcenter">
                                             <thead>
                                             <tr>
-                                                <th class="text-center" style="width: 80px;">ID</th>
-                                                <th>City</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 15%;">Status</th>
-                                                <th style="width: 15%;">Action</th>
+                                                <th class="text-center" style="width: 80px;">{{__('crud.id')}}</th>
+                                                <th>{{__('crud.city')}}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 15%;">{{__('crud.status')}}</th>
+                                                <th style="width: 15%;">{{__('crud.action')}}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td class="fs-sm">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="fw-semibold fs-sm">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="d-sm-table-cell">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                            </tr>
-                                              <tr>
-                                                <td class="fs-sm">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="fw-semibold fs-sm">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="d-sm-table-cell">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                            </tr>
-                                              <tr>
-                                                <td class="fs-sm">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="fw-semibold fs-sm">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="d-sm-table-cell">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                            </tr>
-                                              <tr>
-                                                <td class="fs-sm">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="fw-semibold fs-sm">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="d-sm-table-cell">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                            </tr>
-                                              <tr>
-                                                <td class="fs-sm">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="fw-semibold fs-sm">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="d-sm-table-cell">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                            </tr>
-                                              <tr>
-                                                <td class="fs-sm">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="fw-semibold fs-sm">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="d-sm-table-cell">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                            </tr>
-                                              <tr>
-                                                <td class="fs-sm">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="fw-semibold fs-sm">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="d-sm-table-cell">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="pl-loading"></div>
-                                                </td>
-                                            </tr>
-
-
+                                            <tr><td class="fs-sm"><div class="pl-loading"></div></td><td class="fw-semibold fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell"><div class="pl-loading"></div></td><td class="text-center"><div class="pl-loading"></div></td></tr><tr><td class="fs-sm"><div class="pl-loading"></div></td><td class="fw-semibold fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell"><div class="pl-loading"></div></td><td class="text-center"><div class="pl-loading"></div></td></tr><tr><td class="fs-sm"><div class="pl-loading"></div></td><td class="fw-semibold fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell"><div class="pl-loading"></div></td><td class="text-center"><div class="pl-loading"></div></td></tr><tr><td class="fs-sm"><div class="pl-loading"></div></td><td class="fw-semibold fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell"><div class="pl-loading"></div></td><td class="text-center"><div class="pl-loading"></div></td></tr><tr><td class="fs-sm"><div class="pl-loading"></div></td><td class="fw-semibold fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell"><div class="pl-loading"></div></td><td class="text-center"><div class="pl-loading"></div></td></tr><tr><td class="fs-sm"><div class="pl-loading"></div></td><td class="fw-semibold fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell"><div class="pl-loading"></div></td><td class="text-center"><div class="pl-loading"></div></td></tr><tr><td class="fs-sm"><div class="pl-loading"></div></td><td class="fw-semibold fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell"><div class="pl-loading"></div></td><td class="text-center"><div class="pl-loading"></div></td></tr>
                                             </tbody>
                                         </table>
                                         <div class="py-4 mb-0 justify-content-end">
                                             <div class="col-md-1 col-xl-2">
-                                                <a onClick="add_city()" type="button" class="btn w-100 btn-alt-primary" data-bs-toggle="modal" data-bs-target="#item-modal">ADD</a>
+                                                <a onClick="add_city()" type="button" class="btn w-100 btn-alt-primary" data-bs-toggle="modal" data-bs-target="#item-modal">{{ __('crud.add') }}</a>
                                             </div>
                                         </div>
 
@@ -205,47 +106,27 @@
                                 <table id="dist-table" class="table table-bordered table-vcenter">
                                     <thead>
                                     <tr>
-                                        <th class="text-center" style="width: 80px;">ID</th>
-                                        <th>Name</th>
-                                        <th class="d-none d-sm-table-cell" style="width: 20%;">City</th>
-                                        <th class="d-none d-sm-table-cell" style="width: 15%;">status</th>
-                                        <th style="width: 15%;">Action</th>
+                                        <th class="text-center" style="width: 80px;">{{__('crud.id')}}</th>
+                                        <th>{{__('crud.name')}}</th>
+                                        <th class="d-none d-sm-table-cell" style="width: 20%;">{{__('crud.city')}}</th>
+                                        <th class="d-none d-sm-table-cell" style="width: 15%;">{{__('crud.status')}}</th>
+                                        <th style="width: 15%;">{{__('crud.action')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td class="fs-sm">
-                                            <div class="pl-loading"></div>
-                                        </td>
-                                        <td class="fw-semibold fs-sm">
-                                            <div class="pl-loading"></div>
-                                        </td>
-                                        <td class="d-sm-table-cell fs-sm">
-                                            <div class="pl-loading"></div>
-                                        </td>
-                                        <td class="d-sm-table-cell">
-                                            <div class="pl-loading"></div>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="pl-loading"></div>
-                                        </td>
-                                    </tr>
-
+                                    <tr><td class="fs-sm"><div class="pl-loading"></div></td><td class="fw-semibold fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell"><div class="pl-loading"></div></td><td class="text-center"><div class="pl-loading"></div></td></tr>
                                     </tbody>
                                 </table>
                                 <div class="py-4 mb-0 justify-content-end">
                                     <div class="col-md-1 col-xl-2">
-                                        <a onClick="add_dist()" type="button" class="btn w-100 btn-alt-primary" data-bs-toggle="modal" data-bs-target="#modal-dist">ADD</a>
-
+                                        <a onClick="add_dist()" type="button" class="btn w-100 btn-alt-primary" data-bs-toggle="modal" data-bs-target="#modal-dist">{{ __('crud.add') }}</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- END Block Tabs With Options Default Style -->
-
                 </div>
-
             </div>
 
             <!-- City Modal -->
@@ -254,7 +135,7 @@
                     <div class="modal-content">
                         <div class="block block-rounded block-transparent mb-0">
                             <div class="block-header block-header-default">
-                                <h3 class="block-title">City Info</h3>
+                                <h3 class="block-title">{{ __('crud.city_info') }}</h3>
                                 <div class="block-options">
                                     <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                                         <i class="fa fa-fw fa-times"></i>
@@ -267,34 +148,33 @@
                                     <input type="hidden" name="id" id="id">
                                     <div class="col-lg-12 col-xl-12">
                                         <div class="mb-2">
-                                            <label class="form-label" for="name">City</label>
-                                            <input type="text" class="form-control" id="name" name="name"
-                                                placeholder="City Name">
-                                            <span id="name_error" class="text-danger" style="display: none;">Name is
-                                                required.</span>
+                                            <label class="form-label" for="name">{{ __('crud.name') }}</label>
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('crud.name') }}">
                                         </div>
                                         <div class="mb-2">
-                                            <label class="form-label">Status</label>
+                                            <label class="form-label" for="name_kh">{{ __('crud.khmer_placeholder') }}</label>
+                                            <input type="text" class="form-control" id="name_kh" name="name_kh" placeholder="{{ __('crud.khmer_placeholder') }}">
+                                            <span id="name_kh_error" class="text-danger" style="display: none;">{{ __('crud.name_required') }}</span>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">{{ __('crud.status') }}</label>
                                             <div class="space-x-2">
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="statusActive"
-                                                        name="status" value="1" checked="">
-                                                    <label class="form-check-label" for="statusActive">Active</label>
+                                                    <input class="form-check-input" type="radio" id="statusActive" name="status" value="1" checked="">
+                                                    <label class="form-check-label" for="statusActive">{{ __('crud.status_active') }}</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="statusInactive"
-                                                        name="status" value="0">
-                                                    <label class="form-check-label"
-                                                        for="statusInactive">Inactive</label>
+                                                    <input class="form-check-input" type="radio" id="statusInactive" name="status" value="0">
+                                                    <label class="form-check-label" for="statusInactive">{{ __('crud.status_inactive') }}</label>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            <div class="block-content block-content-full text-end bg-body">
-                                <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" id="btn-saveS" class="btn btn-sm btn-primary">Save changes</button>
-                            </div>
+                                <div class="block-content block-content-full text-end bg-body">
+                                    <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">{{ __('crud.close') }}</button>
+                                    <button type="submit" id="btn-saveS" class="btn btn-sm btn-primary">{{ __('crud.save_changes') }}</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -307,7 +187,7 @@
                     <div class="modal-content">
                         <div class="block block-rounded block-transparent mb-0">
                             <div class="block-header block-header-default">
-                                <h3 class="block-title">Info</h3>
+                                <h3 class="block-title">{{ __('crud.info') }}</h3>
                                 <div class="block-options">
                                     <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                                         <i class="fa fa-fw fa-times"></i>
@@ -316,42 +196,46 @@
                             </div>
                             <form id="DistForm" action="" method="POST" enctype="multipart/form-data" onsubmit="return false;">
                                 <div class="block-content row justify-content-center">
-                                <input type="hidden" name="idC" id="idC">
+                                    <input type="hidden" name="idC" id="idC">
                                     <div class="col-lg-12 col-xl-12">
                                         <div class="mb-3">
-                                            <label class="form-label" for="nameD">Name</label>
-                                            <input type="text" class="form-control" id="nameD" name="nameD" placeholder="Name required">
-                                            <span id="name_errorC" class="text-danger" style="display: none;">Name is required.</span>
+                                            <label class="form-label" for="nameD">{{ __('crud.name') }}</label>
+                                            <input type="text" class="form-control" id="nameD" name="nameD" placeholder="{{ __('crud.name_placeholder') }}">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="city_id">City</label>
-                                            <select class="js-select2 form-select" id="city_id" name="city_id" style="width: 100%;" data-container="#modal-dist" data-placeholder="Choose one..">
+                                            <label class="form-label" for="nameDKH">{{ __('crud.name_placeholder') }}</label>
+                                            <input type="text" class="form-control" id="nameDKH" name="nameDKH" placeholder="{{ __('crud.name_placeholder') }}">
+                                            <span id="name_errorCKH" class="text-danger" style="display: none;">{{ __('crud.name_required') }}</span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="city_id">{{ __('crud.city') }}</label>
+                                            <select class="js-select2 form-select" id="city_id" name="city_id" style="width: 100%;" data-container="#modal-dist" data-placeholder="{{ __('crud.select_city') }}">
                                                 <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                                 @foreach($cities as $city)
-                                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                                    <option value="{{ $city->id }}">{{ $city->name }} {{ $city->ci_kh }}</option>
                                                 @endforeach
                                             </select>
-                                            <span id="cat_error" class="text-danger" style="display: none;">Please select</span>
+                                            <span id="cat_error" class="text-danger" style="display: none;">{{ __('crud.select_city') }}</span>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Status</label>
+                                            <label class="form-label">{{ __('crud.status') }}</label>
                                             <div class="space-x-2">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" id="staCActive" name="statusD" value="1" checked="">
-                                                    <label class="form-check-label" for="staCActive">Active</label>
+                                                    <label class="form-check-label" for="staCActive">{{ __('crud.active') }}</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" id="statCInactive" name="statusD" value="0">
-                                                    <label class="form-check-label" for="statCInactive">Inactive</label>
+                                                    <label class="form-check-label" for="statCInactive">{{ __('crud.inactive') }}</label>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            <div class="block-content block-content-full text-end bg-body">
-                                <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" id="btn-saveC" class="btn btn-sm btn-primary">Save changes</button>
-                            </div>
+                                <div class="block-content block-content-full text-end bg-body">
+                                    <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">{{ __('crud.close') }}</button>
+                                    <button type="submit" id="btn-saveC" class="btn btn-sm btn-primary">{{ __('crud.save_changes') }}</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -412,15 +296,32 @@
             ajax: '{{ route('all.city') }}',
             columns: [
                 {data: 'id', name: 'id'},
-                {data: 'name', name: 'name'},
+                {
+                    data: null,
+                    name: 'ci_kh',
+                    render: function (data, type, full, meta) {
+                        // Check for null values and concatenate if both are non-null
+                        let result = '';
+                        if (full.name !== null) {
+                            result += full.name;
+                        }
+                        if (full.name !== null && full.ci_kh !== null) {
+                            result += '<br>';
+                        }
+                        if (full.ci_kh !== null) {
+                            result += full.ci_kh;
+                        }
+                        return result;
+                    }
+                },
                 {
                     data: 'status',
                     name: 'status',
                     render: function (data) {
                         if (data === 1) {
-                            return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Active</span>';
+                            return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">{{ __('crud.active') }}</span>';
                         } else {
-                            return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Inactive</span>';
+                            return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">{{ __('crud.inactive') }}</span>';
                         }
                     }
                 }, {
@@ -441,12 +342,13 @@
 
         $('#CityForm').submit(function (e) {
             e.preventDefault();
-            var nameVal = $('#name').val();
-            if (nameVal.trim() === '') {
-                $('#name_error').show();
+            var nameVal = $('#name').val().trim();
+            var nameKhVal = $('#name_kh').val().trim();
+            if (nameVal === '' && nameKhVal === '') {
+                $('#name_kh_error').show();
                 return;
             }
-            $('#name_error').hide();
+            $('#name_kh_error').hide();
             var formData = new FormData(this);
             $.ajax({
                 type: 'POST',
@@ -455,19 +357,37 @@
                 cache: false,
                 contentType: false,
                 processData: false,
-                success: function (data) {
+                success: function (response) {
                     $("#item-modal").modal('hide');
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 6000
+                    });
+                    Toast.fire({
+                        icon: 'success',
+                        title: response.message
+                    });
                     var oTable = $('#city-table').dataTable();
                     oTable.fnDraw(false);
                     $("#btn-saveS").html('Submit');
                     $("#btn-saveS").attr("disabled", false);
                 },
-                error: function (data) {
-                    console.log(data);
+                error: function (error) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 6000
+                    });
+                    Toast.fire({
+                        icon: 'error',
+                        title: error.responseJSON.message
+                    });
                 }
             });
         });
-
     //dist
         $('#dist-table').DataTable({
             pageLength: 10,
@@ -478,16 +398,50 @@
             ajax: '{{ route('all.dist') }}',
             columns: [
                 { data: 'id', name: 'id' },
-                { data: 'name', name: 'name' },
-                { data: 'city_name', name: 'city_name' },
+                {
+                    data: null,
+                    name: 'name',
+                    render: function (data, type, full, meta) {
+                        // Check for null values and concatenate if both are non-null
+                        let result = '';
+                        if (full.name !== null) {
+                            result += full.name;
+                        }
+                        if (full.name !== null && full.dis_kh !== null) {
+                            result += '<br>';
+                        }
+                        if (full.dis_kh !== null) {
+                            result += full.dis_kh;
+                        }
+                        return result;
+                    }
+                },
+                {
+                    data: null,
+                    name: 'city_name',
+                    render: function (data, type, full, meta) {
+                        // Check for null values and concatenate if both are non-null
+                        let result = '';
+                        if (full.city_name !== null) {
+                            result += full.city_name;
+                        }
+                        if (full.city_name !== null && full.ci_kh !== null) {
+                            result += '<br> ';
+                        }
+                        if (full.ci_kh !== null) {
+                            result += full.ci_kh;
+                        }
+                        return result;
+                    }
+                },
                 {
                     data: 'status',
                     name: 'status',
                     render: function (data) {
                         if (data === 1) {
-                            return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Active</span>';
+                            return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">{{ __('crud.active') }}</span>';
                         } else {
-                            return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Inactive</span>';
+                            return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">{{ __('crud.inactive') }}</span>';
                         }
                     }
                 }, {
@@ -507,7 +461,7 @@
         });
         function add_dist() {
             $('#DistForm')[0].reset();
-            $('#btn-saveC').html("Create");
+            $('#btn-saveC').html("{{ __('crud.create') }}");
             $('#modal-dist').modal('show');
             $('#id').val('');
             $('#city_id').trigger('change');
@@ -516,7 +470,7 @@
         }
         function add_city() {
                     $('#CityForm')[0].reset();
-                    $('#btn-saveS').html("Create");
+                    $('#btn-saveS').html("{{ __('crud.create') }}");
                     $('#item-modal').modal('show');
                     $('#id').val('');
                     $('#name_error').hide();
@@ -524,17 +478,20 @@
 
         $('#DistForm').submit(function (e) {
             e.preventDefault();
-            var nameVal = $('#nameD').val();
-            var cityVal = $('#city_id').val();
-            if (nameVal.trim() === '') {
-                $('#name_errorC').show();
-                return;
-            }else if(cityVal.trim() === '') {
-                $('#cat_error').show();
-                $('#name_error').hide();
+            var nameVal = $('#nameD').val().trim();
+            var nameKhVal = $('#nameDKH').val().trim();
+            var cityVal = $('#city_id').val().trim();
+            if (nameVal === '' && nameKhVal === '') {
+                $('#name_errorCKH').show();
                 return;
             }
-            $('#name_errorC').hide();
+            if (cityVal === '') {
+                $('#cat_error').show();
+                $('#name_errorCKH').hide();
+                return;
+            }
+
+            $('#name_errorCKH').hide();
             $('#cat_error').hide();
             var formData = new FormData(this);
             $.ajax({
@@ -544,28 +501,48 @@
                 cache: false,
                 contentType: false,
                 processData: false,
-                success: function (data) {
+                success: function (response) {
                     $("#modal-dist").modal('hide');
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 6000
+                    });
+                    Toast.fire({
+                        icon: 'success',
+                        title: response.message
+                    });
                     var oTable = $('#dist-table').dataTable();
                     oTable.fnDraw(false);
                     $("#btn-saveC").html('Submit');
                     $("#btn-saveC").attr("disabled", false);
                 },
-                error: function (data) {
-                    console.log(data);
+                error: function (error) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 6000
+                    });
+                    Toast.fire({
+                        icon: 'error',
+                        title: error.responseJSON.message
+                    });
                 }
             });
         });
 
         function deleteFuncD(id) {
             Swal.fire({
-                title: 'Delete Record?',
-                text: "You won't be able to revert this!",
+                title: '{{ __('crud.delete_record') }}',
+                text: "{{ __('crud.wont_revoke') }}",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: '{{ __('crud.yes_delete') }}',
+                cancelButtonText: '{{ __('crud.cancel') }}'
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
@@ -583,13 +560,14 @@
         }
         function deleteFuncC(id) {
             Swal.fire({
-                title: 'Delete Record?',
-                text: "You won't be able to revert this!",
+                title: '{{ __('crud.delete_record') }}',
+                text: "{{ __('crud.wont_revoke') }}",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: '{{ __('crud.yes_delete') }}',
+                cancelButtonText: '{{ __('crud.cancel') }}'
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
@@ -614,10 +592,11 @@
                 data: { id: id },
                 dataType: 'json',
                 success: function (res) {
-                    $('#btn-saveS').html("Save changes");
+                    $('#btn-saveS').html("{{ __('crud.save_changes') }}");
                     $('#item-modal').modal('show');
                     $('#id').val(res.id);
                     $('#name').val(res.name);
+                    $('#name_kh').val(res.ci_kh);
                     if (res.status === 1) {
                         $('#statusActive').prop('checked', true);
                     } else if (res.status === 0) {
@@ -636,10 +615,11 @@
                 data: { id: id },
                 dataType: 'json',
                 success: function (res) {
-                    $('#btn-saveS').html("Save changes");
+                    $('#btn-saveS').html("{{ __('crud.save_changes') }}");
                     $('#modal-dist').modal('show');
                     $('#idC').val(res.id);
                     $('#nameD').val(res.name);
+                    $('#nameDKH').val(res.dis_kh);
                     $('#city_id').val(res.city_id);
                     $('#city_id').trigger('change');
                     if (res.status === 1) {

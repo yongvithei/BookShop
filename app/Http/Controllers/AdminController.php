@@ -52,7 +52,7 @@ class AdminController extends Controller
         return Redirect::route('admin.profile.sp')->with('status', 'saved');
     }
 
-    //crud function
+    //crud.php function
     public function index()
     {
 

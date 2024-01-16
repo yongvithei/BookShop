@@ -10,13 +10,13 @@ class CityController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            return datatables()->of(ShipCity::select(['id', 'name','status']))
+            return datatables()->of(ShipCity::select(['id', 'name','ci_kh','status']))
                 ->addColumn('action', 'backend.area.city_action')
                 ->rawColumns(['action'])
                 ->addIndexColumn()
                 ->make(true);
         }
-        $cities = ShipCity::select('id', 'name')->where('status', 1)->get();
+        $cities = ShipCity::select('id', 'name', 'ci_kh')->where('status', 1)->get();
         return view('backend.area.shiparea',compact('cities'));
     }
     public function store(Request $request)
@@ -28,9 +28,10 @@ class CityController extends Controller
                     ],
                     [
                     'name' => $request->name,
+                    'ci_kh' => $request->name_kh,
                     'status' => $request->status,
                     ]);
-        return Response()->json($item);
+        return response()->json(['success' => true, 'message' => __('crud.record_saved')]);
     }
     public function edit(Request $request)
     {

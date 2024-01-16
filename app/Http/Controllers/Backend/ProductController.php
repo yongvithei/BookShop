@@ -41,7 +41,7 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'price_dis' => 'nullable|numeric|min:0',
             'cate_Id' => 'nullable|exists:categories,id',
-            'subcate_Id' => 'nullable|exists:subcategories,id',
+            'subcate_Id' => 'nullable|exists:sub_categories,id',
             'part_id' => 'nullable|exists:partners,id',
             'pro_code' => 'nullable|string|max:50|unique:' . Product::class,
             'pro_qty' => 'nullable|numeric|min:0',

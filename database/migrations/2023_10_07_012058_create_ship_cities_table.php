@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ship_cities', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('ci_kh')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();

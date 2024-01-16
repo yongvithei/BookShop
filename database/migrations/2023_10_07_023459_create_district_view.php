@@ -13,7 +13,7 @@ return new class extends Migration
     {
        DB::statement('
             CREATE OR REPLACE VIEW district_view AS
-            SELECT d.id, d.name, c.name AS city_name, d.status
+            SELECT d.id, d.name, d.dis_kh, c.name AS city_name, c.ci_kh , d.status
             FROM ship_districts d
             JOIN ship_cities c ON d.city_id = c.id
             WHERE d.deleted_at IS NULL;

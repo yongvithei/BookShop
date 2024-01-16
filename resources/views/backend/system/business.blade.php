@@ -170,7 +170,7 @@
                 dataType: 'json',
                 processData: false,  // Important
                 contentType: false,
-                success: function (response) {
+                    success: function (response) {
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',

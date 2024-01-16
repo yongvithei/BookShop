@@ -275,7 +275,7 @@
         });
         $("#productForm").submit(function(event){
             event.preventDefault();
-    $("button[type=submit]").prop('disabled', true);
+    $("button[type=submit]");
     CKEDITOR.instances['js-ckeditor'].updateElement();
 
     var formData = new FormData(this); // Create a FormData object from the form
@@ -297,86 +297,7 @@
                 window.location.href = "{{ route('pro.index') }}";
             } else {
                     var errors = response.errors;
-                    if (errors.name) {
-                        $("#name").addClass('is-invalid')
-                        .siblings("p")
-                        .addClass('invalid-feedback')
-                        .html(errors.name);
-                    } else{
-                        $("#name").removeClass('is-invalid')
-                        .siblings("p")
-                        .removeClass('invalid-feedback')
-                        .html("");
-                    }
-
-                    if (errors.price) {
-                        $("#price").addClass('is-invalid')
-                        .siblings("p")
-                        .addClass('invalid-feedback')
-                        .html(errors.price);
-                    } else{
-                        $("#price").removeClass('is-invalid')
-                        .siblings("p")
-                        .removeClass('invalid-feedback')
-                        .html("");
-                    }
-                    if (errors.pro_code) {
-                        $("#pro_code").addClass('is-invalid')
-                            .siblings("p")
-                            .addClass('invalid-feedback')
-                            .html(errors.pro_code);
-                    } else{
-                        $("#pro_code").removeClass('is-invalid')
-                            .siblings("p")
-                            .removeClass('invalid-feedback')
-                            .html("");
-                    }
-                if (errors.price_dis) {
-                    $("#price_dis").addClass('is-invalid')
-                        .siblings("p")
-                        .addClass('invalid-feedback')
-                        .html(errors.price_dis);
-                } else{
-                    $("#price_dis").removeClass('is-invalid')
-                        .siblings("p")
-                        .removeClass('invalid-feedback')
-                        .html("");
-                }
-
-                if (errors.pro_qty) {
-                    $("#pro_qty").addClass('is-invalid')
-                        .siblings("p")
-                        .addClass('invalid-feedback')
-                        .html(errors.pro_qty);
-                } else{
-                    $("#pro_qty").removeClass('is-invalid')
-                        .siblings("p")
-                        .removeClass('invalid-feedback')
-                        .html("");
-                }
-                if (errors.short_desc) {
-                    $("#short_desc").addClass('is-invalid')
-                        .siblings("p")
-                        .addClass('invalid-feedback')
-                        .html(errors.pro_qty);
-                } else{
-                    $("#short_desc").removeClass('is-invalid')
-                        .siblings("p")
-                        .removeClass('invalid-feedback')
-                        .html("");
-                }
-                if (errors.long_desc) {
-                    $("#long_desc").addClass('is-invalid')
-                        .siblings("p")
-                        .addClass('invalid-feedback')
-                        .html(errors.pro_qty);
-                } else{
-                    $("#long_desc").removeClass('is-invalid')
-                        .siblings("p")
-                        .removeClass('invalid-feedback')
-                        .html("");
-                }
-
+                    errors.name?$("#name").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.name):$("#name").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""),errors.price?$("#price").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.price):$("#price").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""),errors.pro_code?$("#pro_code").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.pro_code):$("#pro_code").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""),errors.price_dis?$("#price_dis").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.price_dis):$("#price_dis").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""),errors.pro_qty?$("#pro_qty").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.pro_qty):$("#pro_qty").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""),errors.short_desc?$("#short_desc").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.pro_qty):$("#short_desc").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""),errors.long_desc?$("#long_desc").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.pro_qty):$("#long_desc").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html("");
                 }
             }
         });
@@ -406,13 +327,10 @@
     }
     preview();
 
-
-
-
         function deleteImage(id){
-        if (confirm("Are you sure you want to delete?")) {
-            $("#product-image-row-"+id).remove();
-        }
+            if (confirm("Are you sure you want to delete?")) {
+                $("#product-image-row-"+id).remove();
+            }
         }
 </script>
 
