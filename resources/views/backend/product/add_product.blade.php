@@ -42,10 +42,10 @@
                     <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item">
-                                <a class="link-fx" href="javascript:void(0)">Products</a>
+                                <a class="link-fx" href="javascript:void(0)">{{ __('crud_p.products') }}</a>
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
-                                Add Product
+                                {{ __('crud_p.add_product') }}
                             </li>
                         </ol>
                     </nav>
@@ -59,108 +59,113 @@
             <!-- Info -->
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">Info</h3>
+                    <h3 class="block-title">{{ __('crud_p.info') }}</h3>
                 </div>
                 <div class="block-content">
                     <div class="row justify-content-center">
                         <div class="col-md-10 col-lg-8">
                                 <div class="mb-2">
-                                    <label class="form-label" for="name">Name</label>
+                                    <label class="form-label" for="name">{{ __('crud_p.name') }}</label>
                                     <input type="text" class="form-control" id="name" name="name">
                                     <p></p>
                                 </div>
-                                <div class="row mb-0">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="price">Price</label>
-                                        <input type="text" class="form-control" id="price" name="price">
-                                        <p></p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="price_dis">Discount Price</label>
-                                        <input type="text" class="form-control" id="price_dis" name="price_dis">
-                                        <p></p>
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="pro_qty">Stock</label>
-                                        <input type="text" class="form-control" id="pro_qty" name="pro_qty">
-                                        <p></p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="pro_code">Product Code</label>
-                                        <input type="text" class="form-control" id="pro_code" name="pro_code">
-                                        <p></p>
-                                    </div>
-                                </div>
-                                <div class="mb-4">
-                                    <!-- Select2 (.js-select2 class is initialized in Helpers.jqSelect2()) -->
-                                    <!-- For more info and examples you can check out https://github.com/select2/select2 -->
-                                    <label class="form-label" for="cate_Id">Category</label>
-                                    <select class="js-select2 form-select" id="cate_Id" name="cate_Id" style="width: 100%;" data-placeholder="Choose one..">
-                                        <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                        @foreach($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label" for="subcate_Id">Subcategory</label>
-                                    <select class="js-select2 form-select" id="subcate_Id" name="subcate_Id" style="width: 100%;" data-placeholder="Choose one..">
-                                        <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                        @foreach($subcategories as $subcategory)
-                                            <option value="{{ $subcategory->id }}">{{ $subcategory->sub_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label" for="part_id">Partner Or Supplier</label>
-                                    <select class="js-select2 form-select" id="part_id" name="part_id" style="width: 100%;" data-placeholder="Choose one..">
-                                        <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                        @foreach($partners as $partner)
-                                            <option value="{{ $partner->id }}">{{ $partner->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="mb-4">
-                                    <!-- Bootstrap Maxlength (.js-maxlength class is initialized in Helpers.jqMaxlength()) -->
-                                    <!-- For more info and examples you can check out https://github.com/mimo84/bootstrap-maxlength -->
-                                    <label class="form-label" for="short_desc">Short Description</label>
-                                    <textarea class="js-maxlength form-control" id="short_desc" name="short_desc" rows="3" maxlength="250" data-always-show="true" data-placement="top"></textarea>
-                                    <p></p>
-                                    <div class="form-text">
-                                        250 Character Max
-                                    </div>
-                                </div>
-                                <div class="mb-4">
-                                    <!-- CKEditor (js-ckeditor-inline + js-ckeditor ids are initialized in Helpers.jsCkeditor()) -->
-                                    <label class="form-label">Description</label>
-                                    <textarea id="js-ckeditor" name="long_desc"></textarea>
+                            <div class="row mb-0">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="price">{{ __('crud_p.price') }}</label>
+                                    <input type="text" class="form-control" id="price" name="price">
                                     <p></p>
                                 </div>
-                                <div class="mb-4">
-                                    <label class="mb-2 form-label">Product Status</label>
-                                    <div class="space-x-2">
-                                        <div class="form-check form-check-inline">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="price_dis">{{ __('crud_p.discount_price') }}</label>
+                                    <input type="text" class="form-control" id="price_dis" name="price_dis">
+                                    <p></p>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="pro_qty">{{ __('crud_p.stock') }}</label>
+                                    <input type="text" class="form-control" id="pro_qty" name="pro_qty">
+                                    <p></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="pro_code">{{ __('crud_p.product_code') }}</label>
+                                    <input type="text" class="form-control" id="pro_code" name="pro_code">
+                                    <p></p>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label" for="cate_Id">{{ __('crud_p.category') }}</label>
+                                <select class="js-select2 form-select" id="cate_Id" name="cate_Id" style="width: 100%;" data-placeholder="{{ __('crud_p.choose_one') }}">
+                                    <option></option>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label" for="subcate_Id">{{ __('crud_p.subcategory') }}</label>
+                                <select class="js-select2 form-select" id="subcate_Id" name="subcate_Id" style="width: 100%;" data-placeholder="{{ __('crud_p.choose_one') }}">
+                                    <option></option>
+                                    @foreach($subcategories as $subcategory)
+                                        <option value="{{ $subcategory->id }}">{{ $subcategory->sub_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label" for="part_id">{{ __('crud_p.partner_supplier') }}</label>
+                                <select class="js-select2 form-select" id="part_id" name="part_id" style="width: 100%;" data-placeholder="{{ __('crud_p.choose_one') }}">
+                                    <option></option>
+                                    @foreach($partners as $partner)
+                                        <option value="{{ $partner->id }}">{{ $partner->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label" for="short_desc">{{ __('crud_p.short_description') }}</label>
+                                <textarea class="js-maxlength form-control" id="short_desc" name="short_desc" rows="3" maxlength="250" data-always-show="true" data-placement="top"></textarea>
+                                <p></p>
+                                <div class="form-text">
+                                    250 {{ __('crud_p.character_max') }}
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label">{{ __('crud_p.description') }}</label>
+                                <textarea id="js-ckeditor" name="long_desc"></textarea>
+                                <p></p>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="mb-2 form-label">{{ __('crud_p.product_status') }}</label>
+                                <div class="space-x-2">
+                                    <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="checkbox" value="1" id="new" name="new">
-                                        <label class="form-check-label" for="new">New Arrivals</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="new">{{ __('crud_p.new_arrivals') }}</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="checkbox" value="1" id="featured" name="featured">
-                                        <label class="form-check-label" for="featured">Featured</label>
-                                        </div>
+                                        <label class="form-check-label" for="featured">{{ __('crud_p.featured') }}</label>
                                     </div>
                                 </div>
-                                <div class="mb-4">
-                                    <label class="form-label">Published?</label>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" value="1" id="status" name="status" checked>
-                                        <label class="form-check-label" for="status"></label>
-                                    </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label">{{ __('crud_p.published') }}</label>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" value="1" id="status" name="status" checked>
+                                    <label class="form-check-label" for="status"></label>
                                 </div>
-                                <div class="mb-4">
-                                    <button type="submit" class="btn btn-alt-primary">Create</button>
-                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <button type="submit" class="btn btn-alt-primary">{{ __('crud_p.create') }}</button>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -169,12 +174,12 @@
             <!-- Media -->
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">Media</h3>
+                    <h3 class="block-title">{{ __('crud_p.media') }}</h3>
                 </div>
                 <div class="block-content block-content-full">
                     <div class="row justify-content-center">
                         <div class="col-md-10 col-lg-8">
-                            <label for="thumbnail" class="form-label">Thumbnail</label>
+                            <label for="thumbnail" class="form-label">{{ __('crud_p.thumbnail_label') }}</label>
                             <input type="file" name="thumbnail" id="thumbnail" class="form-control">
                             <div class="row justify-content-center mt-4">
                                 <img id="preview-image" style="width: 206px;" alt="">
@@ -185,10 +190,10 @@
                 <div class="block-content block-content-full">
                     <div class="row justify-content-center">
                         <div class="col-md-10 col-lg-8">
-                            <label for="multi" class="form-label">Multi Image</label>
+                            <label for="multi" class="form-label">{{ __('crud_p.multi_image_label') }}</label>
                             <div id="image" class="dropzone dz-clickable">
                                 <div class="dz-message needsclick">
-                                    <br>Drop files here or click to upload.<br><br>
+                                    <br>{{ __('crud_p.multi_image_upload') }}<br><br>
                                 </div>
                             </div>
                         </div>
@@ -198,6 +203,7 @@
                     </div>
                 </div>
             </div>
+
 
         </form>
             </div>

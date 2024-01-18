@@ -33,13 +33,14 @@
                     <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item">
-                                <a class="link-fx" href="javascript:void(0)">Tables</a>
+                                <a class="link-fx" href="javascript:void(0)">{{ __('crud_p.tables') }}</a>
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
-                                DataTables
+                                {{ __('crud_p.datatables') }}
                             </li>
                         </ol>
                     </nav>
+
                 </div>
 
         </div>
@@ -57,29 +58,27 @@
             <div class="alert alert-danger">{{ Session::get('error') }}</div>
             @endif
             <!-- Dynamic Table with Export Buttons -->
-            <div class="block block-rounded">
-                <div class="block-header block-header-default">
-                    <h3 class="block-title">All Product</h3>
-                    <div class="block-options">
-                        <a type="button" class="btn btn-sm btn-alt-primary">Refresh</a>
-                        <a href="{{ route('pro.create') }}" type="button" class="btn btn-sm btn-alt-primary">ADD</a>
-
-
+                <div class="block block-rounded">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">{{ __('crud_p.all_products') }}</h3>
+                        <div class="block-options">
+                            <a type="button" class="btn btn-sm btn-alt-primary">{{ __('crud_p.refresh') }}</a>
+                            <a href="{{ route('pro.create') }}" type="button" class="btn btn-sm btn-alt-primary">{{ __('crud_p.add') }}</a>
+                        </div>
                     </div>
-                </div>
-                <div class="block-content block-content-full">
-                    <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-                    <table id="item-table" class="table table-bordered table-vcenter">
-                    <thead>
-                        <tr>
-                            <th class="text-center" style="width: 30px;">ID</th>
-                            <th class="text-center" style="width: 100px;">Thumbnail</th>
-                            <th>Product Name</th>
-                            <th style="width: 19%;" >Selling Price</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Status</th>
-                            <th style="width: 15%;">Action</th>
-                        </tr>
-                        </thead>
+                    <div class="block-content block-content-full">
+                        <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
+                        <table id="item-table" class="table table-bordered table-vcenter">
+                            <thead>
+                            <tr>
+                                <th class="text-center" style="width: 30px;">{{ __('crud_p.id') }}</th>
+                                <th class="text-center" style="width: 100px;">{{ __('crud_p.thumbnail') }}</th>
+                                <th>{{ __('crud_p.product_name') }}</th>
+                                <th style="width: 19%;">{{ __('crud_p.selling_price') }}</th>
+                                <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('crud_p.status') }}</th>
+                                <th style="width: 15%;">{{ __('crud_p.action') }}</th>
+                            </tr>
+                            </thead>
                         <tbody>
                         <tr>
                             <td class="fs-sm">
@@ -238,13 +237,18 @@
                 <div class="block block-rounded block-transparent mb-0">
 
                   <ul class="nav nav-tabs nav-tabs-block" role="tablist">
-                    <li class="nav-item">
-                      <button type="button" class="nav-link active" id="btabs-static-home-tab" data-bs-toggle="tab" data-bs-target="#btabs-static-home" role="tab" aria-controls="btabs-static-home" aria-selected="true">INFO</button>
-                    </li>
-                    <li class="nav-item">
-                      <button type="button" class="nav-link" id="btabs-static-profile-tab" data-bs-toggle="tab" data-bs-target="#btabs-static-profile" role="tab" aria-controls="btabs-static-profile" aria-selected="false">Media</button>
-                    </li>
-                    <li class="nav-item ms-auto">
+                      <li class="nav-item">
+                          <button type="button" class="nav-link active" id="btabs-static-home-tab" data-bs-toggle="tab" data-bs-target="#btabs-static-home" role="tab" aria-controls="btabs-static-home" aria-selected="true">
+                              {{ __('crud_p.info') }}
+                          </button>
+                      </li>
+                      <li class="nav-item">
+                          <button type="button" class="nav-link" id="btabs-static-profile-tab" data-bs-toggle="tab" data-bs-target="#btabs-static-profile" role="tab" aria-controls="btabs-static-profile" aria-selected="false">
+                              {{ __('crud_p.media') }}
+                          </button>
+                      </li>
+
+                      <li class="nav-item ms-auto">
                       <button type="button" class="nav-link" data-bs-dismiss="modal" aria-label="Close">
                         <i class="fa fa-fw fa-times"></i>
                         <span class="visually-hidden">Settings</span>
@@ -252,99 +256,100 @@
                     </li>
 
                   </ul>
-                  <div class="block-content tab-content">
-                    <div class="tab-pane active" id="btabs-static-home" role="tabpanel" aria-labelledby="btabs-static-home-tab" tabindex="0">
-                        <h3 class="text-center"> Product Information </h3>
-                        <div class="mb-2">
-                            <div class="input-group">
-                                                    <span class="input-group-text">
-                                                       Name
-                                                    </span>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Name" readonly>
+                    <div class="block-content tab-content">
+                        <div class="tab-pane active" id="btabs-static-home" role="tabpanel" aria-labelledby="btabs-static-home-tab" tabindex="0">
+                            <h3 class="text-center">{{ __('crud_p.product_information') }}</h3>
+                            <div class="mb-2">
+                                <div class="input-group">
+                <span class="input-group-text">
+                    {{ __('crud_p.name') }}
+                </span>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('crud_p.name') }}" readonly>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-2">
-                            <div class="input-group">
-                                                <span class="input-group-text">
-                                                Price
-                                                </span>
-                                <input type="text" class="form-control" id="pro_price" name="pro_price" readonly>
+                            <div class="mb-2">
+                                <div class="input-group">
+                <span class="input-group-text">
+                    {{ __('crud_p.price') }}
+                </span>
+                                    <input type="text" class="form-control" id="pro_price" name="pro_price" readonly>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-2">
-                            <div class="input-group">
-                                                <span class="input-group-text">
-                                                 Discount Price
-                                                </span>
-                                <input type="text" class="form-control" id="pro_discount" name="pro_discount" readonly>
+                            <div class="mb-2">
+                                <div class="input-group">
+                <span class="input-group-text">
+                    {{ __('crud_p.discount_price') }}
+                </span>
+                                    <input type="text" class="form-control" id="pro_discount" name="pro_discount" readonly>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-2">
-                            <div class="input-group">
-                                                <span class="input-group-text">
-                                                    Category
-                                                </span>
-                                <input type="text" class="form-control" id="cate_names" name="cate_names" readonly>
+                            <div class="mb-2">
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        {{ __('crud_p.category') }}
+                                    </span>
+                                    <input type="text" class="form-control" id="cate_names" name="cate_names" readonly>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-2">
-                            <div class="input-group">
-                                                <span class="input-group-text">
-                                                   Subcategory
-                                                </span>
-                                <input type="text" class="form-control" id="sub_names" name="sub_names" readonly>
+                            <div class="mb-2">
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        {{ __('crud_p.subcategory') }}
+                                    </span>
+                                    <input type="text" class="form-control" id="sub_names" name="sub_names" readonly>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-2">
-                            <div class="input-group">
-                                                <span class="input-group-text">
-                                                    Partner
-                                                </span>
-                                <input type="text" class="form-control" id="partner_name" name="partner_name" readonly>
+                            <div class="mb-2">
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        {{ __('crud_p.partner') }}
+                                    </span>
+                                    <input type="text" class="form-control" id="partner_name" name="partner_name" readonly>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-2">
-                            <div class="input-group">
-                                                <span class="input-group-text">
-                                                   Code
-                                                </span>
-                                <input type="text" class="form-control" id="product_code" name="product_code" readonly>
+                            <div class="mb-2">
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        {{ __('crud_p.code') }}
+                                    </span>
+                                    <input type="text" class="form-control" id="product_code" name="product_code" readonly>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-2">
-                            <div class="input-group">
-                                                <span class="input-group-text">
-                                                   QTY
-                                                </span>
-                                <input type="text" class="form-control" id="pro_qty" name="pro_qty" readonly>
+                            <div class="mb-2">
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        {{ __('crud_p.quantity') }}
+                                    </span>
+                                    <input type="text" class="form-control" id="pro_qty" name="pro_qty" readonly>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-2">
-                            <div class="input-group">
-                                                <span class="input-group-text">
-                                                   Status
-                                                </span>
-                                <input type="text" class="form-control" id="pro_status" name="pro_status" readonly>
+                            <div class="mb-2">
+                                <div class="input-group">
+                                <span class="input-group-text">
+                                    {{ __('crud_p.status') }}
+                                </span>
+                                    <input type="text" class="form-control" id="pro_status" name="pro_status" readonly>
+                                </div>
                             </div>
-                        </div>
 
                 </div>
-                    <div class="tab-pane" id="btabs-static-profile" role="tabpanel" aria-labelledby="btabs-static-profile-tab" tabindex="0">
-                      <h4 class="fw-normal">Thumbnail</h4>
-                      <div class="col-md-10 col-lg-8">
-                            <div class="row justify-content-center mt-4 mb-4">
-                                <div class="col-lg-4">
-                                    <img class="img-view" id="preview-image" src="{{asset('storage/images/default.jpg')}}" alt="">
+                        <div class="tab-pane" id="btabs-static-profile" role="tabpanel" aria-labelledby="btabs-static-profile-tab" tabindex="0">
+                            <h4 class="fw-normal">{{ __('crud_p.thumbnail') }}</h4>
+                            <div class="col-md-10 col-lg-8">
+                                <div class="row justify-content-center mt-4 mb-4">
+                                    <div class="col-lg-4">
+                                        <img class="img-view" id="preview-image" src="{{ asset('storage/images/default.jpg') }}" alt="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
                   </div>
-                  <div class="block-content block-content-full text-end bg-body">
-                    <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Click <i class="fa fa-fw fa-pencil-alt"></i> For More Details</button>
-                    <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Close</button>
-                  </div>
+                    <div class="block-content block-content-full text-end bg-body">
+                        <button type="button" class="btn btn-sm btn-alt-secondary me-1"
+                                data-bs-dismiss="modal">{{ __('crud_p.view_details') }}</button>
+                        <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">{{ __('crud_p.close') }}</button>
+                    </div>
                 </div>
               </div>
             </div>
@@ -441,13 +446,14 @@
 
     function deleteFunc(id) {
         Swal.fire({
-            title: 'Delete Record?',
-            text: 'Record ID: ' + id + '\nYou won\'t be able to revert this!',
+            title: '{{ __('crud_p.delete_record') }}',
+            text: '{{ __('crud_p.record_id') }}: ' + id + '{{ __('crud_p.wont_revoke') }}',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: '{{ __('crud_p.yes_delete') }}',
+            cancelButtonText: '{{ __('crud_p.cancel') }}'
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -493,10 +499,11 @@
         } else {
             // Set a default image URL
             $('#preview-image').attr('src', '{{ asset('/storage/images/default_product_table.webp') }}');
-        }                    if (res._status === '1') {
-                        $('#pro_status').val("Public");
-                    } else{
-                        $('#pro_status').val("Private");
+        }
+                    if (res._status === 1) {
+                        $('#pro_status').val('{{ __('crud_p.public') }}');
+                    } else {
+                        $('#pro_status').val('{{ __('crud_p.private') }}');
                     }
                 }
             });

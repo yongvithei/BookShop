@@ -56,24 +56,24 @@
             <!-- Info -->
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">Info</h3>
+                    <h3 class="block-title">{{ __('crud_p.info') }}</h3>
                 </div>
                 <div class="block-content">
                     <div class="row justify-content-center">
                         <div class="col-md-10 col-lg-8">
                                 <div class="mb-2">
-                                    <label class="form-label" for="name">Name</label>
+                                    <label class="form-label" for="name">{{ __('crud_p.name') }}</label>
                                     <input value="{{ $product->name }}" type="text" class="form-control" id="name" name="name">
                                     <p></p>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label class="form-label" for="price">Price in Riel (៛)</label>
+                                        <label class="form-label" for="price">{{ __('crud_p.price') }}</label>
                                         <input value="{{ $product->price }}" type="text" class="form-control" id="price" name="price">
                                         <p></p>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label" for="price_dis">Discount Price (៛)</label>
+                                        <label class="form-label" for="price_dis">{{ __('crud_p.discount_price') }}</label>
                                         <input value="{{ $product->discount_price }}" type="text" class="form-control" id="price_dis" name="price_dis">
                                         <p></p>
                                     </div>
@@ -81,12 +81,12 @@
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label class="form-label" for="pro_qty">Stock</label>
+                                        <label class="form-label" for="pro_qty">{{ __('crud_p.stock') }}</label>
                                         <input value="{{ $product->pro_qty }}" type="text" class="form-control" id="pro_qty" name="pro_qty">
                                         <p></p>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label" for="pro_code">Product Code</label>
+                                        <label class="form-label" for="pro_code">{{ __('crud_p.product_code') }}</label>
                                         <input value="{{ $product->pro_code }}" type="text" class="form-control" id="pro_code" name="pro_code">
                                         <p></p>
                                     </div>
@@ -96,7 +96,7 @@
                                 <div class="mb-4">
                                     <!-- Select2 (.js-select2 class is initialized in Helpers.jqSelect2()) -->
                                     <!-- For more info and examples you can check out https://github.com/select2/select2 -->
-                                    <label class="form-label" for="cate_Id">Category</label>
+                                    <label class="form-label" for="cate_Id">{{ __('crud_p.category') }}</label>
                                    <select class="js-select2 form-select" id="cate_Id" name="cate_Id" style="width: 100%;" data-placeholder="{{ $productView->cate_names }}">
                                         <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                         @foreach($categories as $category)
@@ -110,7 +110,7 @@
                                     <p></p>
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label" for="subcate_Id">Subcategory</label>
+                                    <label class="form-label" for="subcate_Id">{{ __('crud_p.subcategory') }}</label>
                                     <select class="js-select2 form-select" id="subcate_Id" name="subcate_Id" style="width: 100%;" data-placeholder="{{ $productView->sub_names }} ">
                                         <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                         @foreach($subcategories as $subcategory)
@@ -121,7 +121,7 @@
                                 </div>
                             <div class="mb-4">
                                     <!-- Select2 (.js-select2 class is initialized in Helpers.jqSelect2()) -->
-                                    <label class="form-label" for="part_id">Partner Or Supplier</label>
+                                    <label class="form-label" for="part_id">{{ __('crud_p.partner_supplier') }}</label>
                                     <select class="js-select2 form-select" id="part_id" name="part_id" style="width: 100%;" data-placeholder="{{ $productView->partner_name }}">
                                         <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                         @foreach($partners as $partner)
@@ -132,41 +132,41 @@
                                 <div class="mb-4">
                                     <!-- Bootstrap Maxlength (.js-maxlength class is initialized in Helpers.jqMaxlength()) -->
                                     <!-- For more info and examples you can check out https://github.com/mimo84/bootstrap-maxlength -->
-                                    <label class="form-label" for="short_desc">Short Description</label>
+                                    <label class="form-label" for="short_desc">{{ __('crud_p.short_description') }}</label>
                                     <textarea class="js-maxlength form-control" id="short_desc" name="short_desc" rows="3" maxlength="250" data-always-show="true" data-placement="top">{{ $product->short_desc }}</textarea>
                                     <div class="form-text">
-                                        250 Character Max
+                                        250 {{ __('crud_p.character_max') }}
                                     </div>
                                     <p></p>
                                 </div>
                                 <div class="mb-4">
                                     <!-- CKEditor (js-ckeditor-inline + js-ckeditor ids are initialized in Helpers.jsCkeditor()) -->
-                                    <label class="form-label">Description</label>
+                                    <label class="form-label">{{ __('crud_p.description') }}</label>
                                     <textarea value="{{ $product->long_desc }}" id="js-ckeditor" name="long_desc">{{ $product->long_desc }}</textarea>
                                     <p></p>
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label">Product Status</label>
+                                    <label class="form-label">{{ __('crud_p.product_status') }}</label>
                                     <div class="space-x-2">
                                         <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="checkbox" value="1" id="new" name="new" {{ $product->new == 1 ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="new">New Arrivals</label>
+                                        <label class="form-check-label" for="new">{{ __('crud_p.new_arrivals') }}</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="checkbox" value="1" id="featured" name="featured" {{ $product->featured == 1 ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="featured">Featured</label>
+                                        <label class="form-check-label" for="featured">{{ __('crud_p.featured') }}</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label">Published?</label>
+                                    <label class="form-label">{{ __('crud_p.published') }}?</label>
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" value="1" id="status" name="status" {{ $product->status == 1 ? 'checked' : '' }}>
                                         <label class="form-check-label" for="status"></label>
                                     </div>
                                 </div>
                                 <div class="mb-4">
-                                    <button type="submit" class="btn btn-alt-primary btn-lg">Update</button>
+                                    <button type="submit" class="btn btn-alt-primary btn-lg">{{ __('crud_p.create') }}</button>
                                 </div>
                         </div>
                     </div>
@@ -177,12 +177,12 @@
             <!-- Media -->
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">Media</h3>
+                    <h3 class="block-title">{{ __('crud_p.media') }}</h3>
                 </div>
                 <div class="block-content block-content-full">
                     <div class="row justify-content-center">
                         <div class="col-md-10 col-lg-8">
-                            <label for="thumbnail" class="form-label">Thumbnail</label>
+                            <label for="thumbnail" class="form-label">{{ __('crud_p.thumbnail_label') }}</label>
                             <input type="file" name="thumbnail" id="thumbnail" class="form-control">
                             <input type="hidden" name="old_img" value="{{ $product->thumbnail }}">
                             <div class="row justify-content-center mt-4">
@@ -199,10 +199,10 @@
                 <div class="block-content block-content-full">
                     <div class="row justify-content-center">
                         <div class="col-md-10 col-lg-8">
-                                <h3 class="mt-2">Multi Image</h3>
-                                <div id="image" class="dropzone dz-clickable">
+                            <label for="multi" class="form-label">{{ __('crud_p.multi_image_label') }}</label>
+                            <div id="image" class="dropzone dz-clickable">
                                     <div class="dz-message needsclick">
-                                        <br>Drop files here or click to upload.<br><br>
+                                        <br>{{ __('crud_p.multi_image_upload') }}<br><br>
                                         </div>
                                     </div>
 
@@ -213,7 +213,7 @@
                             @foreach ($productImages as $productImage)
                                 <div class="col-md-4 mb-3" id="product-image-row-{{ $productImage->id }}">
                                     <div class="card image-card">
-                                        <a href="#" onclick="deleteImage({{ $productImage->id }});" class="btn btn-danger">Delete</a>
+                                        <a href="#" onclick="deleteImage({{ $productImage->id }});" class="btn btn-danger">{{ __('crud_p.delete_button') }}</a>
                                         <img src="{{ asset('uploads/products/small/'.$productImage->name) }}" alt="" class="card-img-top">
                                         <div class="card-body">
                                             <input type="text" name="caption[]"  value="{{ $productImage->caption }}" class="form-control"/>
@@ -290,12 +290,12 @@
         }, success: function(file, response){
             var html = `<div class="col-md-4 mb-3" id="product-image-row-${response.image_id}">
                             <div class="card image-card">
-                                <a href="#" onclick="deleteImage(${response.image_id});" class="btn btn-danger">Delete</a>
+                                <a href="#" onclick="deleteImage(${response.image_id});" class="btn btn-danger">{{ __('crud_p.delete_button') }}</a>
                                 <div class="image-container">
                                     <img src="${response.imagePath}" alt="Book Cover" class="card-img-top">
                                 </div>
                                 <div class="card-body">
-                                    <input type="text" name="caption[]"  value="" class="form-control" placeholder="Caption">
+                                    <input type="text" name="caption[]"  value="" class="form-control" placeholder="{{ __('crud_p.caption_placeholder') }}">
                                     <input type="hidden" name="image_id[]" value="${response.image_id}">
                                 </div>
                             </div>

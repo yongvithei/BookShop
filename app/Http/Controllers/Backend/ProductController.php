@@ -104,10 +104,10 @@ class ProductController extends Controller
                 }
             }
 
-            $request->session()->flash('success','Product add successfully.');
+            $request->session()->flash('success',__('crud_p.product_add_successfully'));
             return response()->json([
                 'status' => true,
-                'message' => 'Product added successfully.'
+                'message' => __('crud_p.product_add_successfully')
             ]);
 
         } else {
@@ -203,10 +203,10 @@ class ProductController extends Controller
                         $productImage->save();
                     }
                 }
-                $request->session()->flash('success','Product updated successfully.');
+                $request->session()->flash('success', __('crud_p.product_updated_success'));
                 return response()->json([
                     'status' => true,
-                    'message' => 'Product updated successfully.'
+                    'message' => __('crud_p.product_updated_success'),
                 ]);
             } else {
                 return response()->json([
