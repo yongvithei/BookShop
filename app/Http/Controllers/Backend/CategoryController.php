@@ -11,7 +11,7 @@ class CategoryController extends Controller
     public function index()
     {
         if(request()->ajax()) {
-            return datatables()->of(Category::select(['id', 'name', 'desc','status']))
+            return datatables()->of(Category::select(['id', 'name','cat_kh', 'desc','status']))
                 ->addColumn('action', 'backend.category.cat-action')
                 ->rawColumns(['action'])
                 ->addIndexColumn()
@@ -30,12 +30,13 @@ class CategoryController extends Controller
                     ],
                     [
                     'name' => $request->name,
-                    'desc' => $request->desc,
+                    'cat_kh' => $request->cat_kh,
                     'slug' => strtolower(str_replace(' ', '-',$request->name)),
+                    'desc' => $request->desc,
                     'status' => $request->status,
                     ]);
 
-        return Response()->json($item);
+        return response()->json(['success' => true, 'message' => __('crud.record_saved')]);
     }
 
     public function edit(Request $request)

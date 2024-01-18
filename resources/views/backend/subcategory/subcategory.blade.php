@@ -20,14 +20,13 @@
         <div class="bg-body-light">
 
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
-
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">Category Setup</a>
+                            <a class="link-fx" href="javascript:void(0)">{{ __('crud_c.category_setup') }}</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            Subcategories
+                            {{ __('crud_c.subcategories') }}
                         </li>
                     </ol>
                 </nav>
@@ -41,11 +40,10 @@
             <!-- Dynamic Table Full -->
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">SubCategories</h3>
+                    <h3 class="block-title">{{ __('crud_c.subcategories') }}</h3>
                     <div class="block-options">
-                        <a type="button" class="btn btn-sm btn-alt-primary">Refresh</a>
-                        <a onClick="add()" type="button" class="btn btn-sm btn-alt-primary" data-bs-toggle="modal" data-bs-target="#modal3">ADD</a>
-
+                        <a type="button" class="btn btn-sm btn-alt-primary">{{ __('crud_c.refresh') }}</a>
+                        <a onClick="add()" type="button" class="btn btn-sm btn-alt-primary" data-bs-toggle="modal" data-bs-target="#modal3">{{ __('crud_c.add') }}</a>
                     </div>
                 </div>
                 <div class="block-content block-content-full">
@@ -53,134 +51,15 @@
                     <table id="item-table" class="table table-bordered table-vcenter">
                         <thead>
                         <tr>
-                            <th class="text-center" style="width: 80px;">ID</th>
-                            <th>SubCategory Name</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Category Name</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Status</th>
-                            <th style="width: 15%;">Action</th>
+                            <th class="text-center" style="width: 80px;">{{ __('crud_c.id') }}</th>
+                            <th>{{ __('crud_c.subcategory_name') }}</th>
+                            <th class="d-none d-sm-table-cell" style="width: 30%;">{{ __('crud_c.category_name') }}</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('crud_c.status') }}</th>
+                            <th style="width: 15%;">{{ __('crud_c.action') }}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td class="fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="fw-semibold fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="d-sm-table-cell fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="d-sm-table-cell">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="text-center">
-                                <div class="pl-loading"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="fw-semibold fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="d-sm-table-cell fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="d-sm-table-cell">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="text-center">
-                                <div class="pl-loading"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="fw-semibold fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="d-sm-table-cell fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="d-sm-table-cell">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="text-center">
-                                <div class="pl-loading"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="fw-semibold fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="d-sm-table-cell fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="d-sm-table-cell">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="text-center">
-                                <div class="pl-loading"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="fw-semibold fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="d-sm-table-cell fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="d-sm-table-cell">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="text-center">
-                                <div class="pl-loading"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="fw-semibold fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="d-sm-table-cell fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="d-sm-table-cell">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="text-center">
-                                <div class="pl-loading"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="fw-semibold fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="d-sm-table-cell fs-sm">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="d-sm-table-cell">
-                                <div class="pl-loading"></div>
-                            </td>
-                            <td class="text-center">
-                                <div class="pl-loading"></div>
-                            </td>
-                        </tr>
-
+                        <tr><td class="fs-sm"><div class="pl-loading"></div></td><td class="fw-semibold fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell"><div class="pl-loading"></div></td><td class="text-center"><div class="pl-loading"></div></td></tr><tr><td class="text-center fs-sm"><div class="pl-loading"></div></td><td class="fw-semibold fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell"><div class="pl-loading"></div></td><td class="text-center"><div class="pl-loading"></div></td></tr><tr><td class="text-center fs-sm"><div class="pl-loading"></div></td><td class="fw-semibold fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell"><div class="pl-loading"></div></td><td class="text-center"><div class="pl-loading"></div></td></tr><tr><td class="text-center fs-sm"><div class="pl-loading"></div></td><td class="fw-semibold fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell"><div class="pl-loading"></div></td><td class="text-center"><div class="pl-loading"></div></td></tr><tr><td class="text-center fs-sm"><div class="pl-loading"></div></td><td class="fw-semibold fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell"><div class="pl-loading"></div></td><td class="text-center"><div class="pl-loading"></div></td></tr><tr><td class="text-center fs-sm"><div class="pl-loading"></div></td><td class="fw-semibold fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell"><div class="pl-loading"></div></td><td class="text-center"><div class="pl-loading"></div></td></tr><tr><td class="text-center fs-sm"><div class="pl-loading"></div></td><td class="fw-semibold fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell fs-sm"><div class="pl-loading"></div></td><td class="d-sm-table-cell"><div class="pl-loading"></div></td><td class="text-center"><div class="pl-loading"></div></td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -192,7 +71,7 @@
                     <div class="modal-content">
                         <div class="block block-rounded block-transparent mb-0">
                             <div class="block-header block-header-default">
-                                <h3 class="block-title">Create Subcategory</h3>
+                                <h3 class="block-title">{{ __('crud_c.create_subcategory') }}</h3>
                                 <div class="block-options">
                                     <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                                         <i class="fa fa-fw fa-times"></i>
@@ -202,49 +81,51 @@
                             <div class="block-content">
                                 <!-- Select2 is initialized at the bottom of the page -->
                                 <form id="ItemForm" action="javascript:void(0)" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="id" id="id">
+                                    <input type="hidden" name="id" id="id">
                                     <div class="mb-3">
-                                        <label class="form-label" for="example-text-input">Name</label>
-                                        <input type="text" class="form-control" id="sub_name" name="sub_name" placeholder="SubCategory Name">
-                                        <span id="name_error" class="text-danger" style="display: none;">Field is required.</span>
+                                        <label class="form-label" for="example-text-input">{{ __('crud_c.subcategory_name') }}</label>
+                                        <input type="text" class="form-control" id="sub_name" name="sub_name" placeholder="{{ __('crud_c.subcategory_name_placeholder') }}">
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label" for="one-ecom-product-category">Category</label>
-                                        <label for="example-select2-modal"></label><select class="js-select2 form-select" id="cat_id" name="cat_id" style="width: 100%;" data-container="#item-modal" data-placeholder="Choose one..">
-                                            <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                        <label class="form-label" for="example-text-input">{{ __('crud_c.nameKH') }}</label>
+                                        <input type="text" class="form-control" id="sub_kh" name="sub_kh" placeholder="{{ __('crud_c.nameKH_placeholder') }}">
+                                        <span id="name_error" class="text-danger" style="display: none;">{{ __('crud_c.field_required') }}</span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="one-ecom-product-category">{{ __('crud_c.category') }}</label>
+                                        <select class="js-select2 form-select" id="cat_id" name="cat_id" style="width: 100%;" data-container="#item-modal" data-placeholder="{{ __('crud_c.choose_one') }}">
+                                            <option></option>
                                             @foreach($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                <option value="{{ $category->id }}">{{ $category->name }} {{ $category->cat_kh }}</option>
                                             @endforeach
-
                                         </select>
-                                        <span id="cat_error" class="text-danger" style="display: none;">Please select</span>
-
+                                        <span id="cat_error" class="text-danger" style="display: none;">{{ __('crud_c.select_category') }}</span>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Status</label>
-                                            <div class="space-x-2">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="statusPublic" name="status" value="Public" checked="">
-                                                    <label class="form-check-label" for="statusPublic">Public</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="statusPrivate" name="status" value="Private">
-                                                    <label class="form-check-label" for="statusPrivate">Private</label>
-                                                </div>
+                                        <label class="form-label">{{ __('crud_c.status') }}</label>
+                                        <div class="space-x-2">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" id="statusPublic" name="status" value="Public" checked="">
+                                                <label class="form-check-label" for="statusPublic">{{ __('crud_c.public') }}</label>
                                             </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" id="statusPrivate" name="status" value="Private">
+                                                <label class="form-check-label" for="statusPrivate">{{ __('crud_c.private') }}</label>
+                                            </div>
+                                        </div>
                                     </div>
-
                                 </div>
                                 <div class="block-content block-content-full text-end bg-body">
-                                <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" id="btn-save" class="btn btn-sm btn-primary">Save changes</button>
-                            </div>
-                            </form>
+                                        <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">{{ __('crud_c.close') }}</button>
+                                        <button type="submit" id="btn-save" class="btn btn-sm btn-primary">{{ __('crud_c.save_changes') }}</button>
+                                    </div>
+                                </form>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- END Select2 in a modal -->
+            </div>
         </div>
         <!-- END Page Content -->
     </main>
@@ -298,16 +179,50 @@
                 ajax: '{{ route('all.sub') }}',
                 columns: [
                     { data: 'id', name: 'id' },
-                    { data: 'sub_name', name: 'sub_name' },
-                    { data: 'cat_name', name: 'cat_name' },
+                    {
+                        data: null,
+                        name: 'sub_name',
+                        render: function (data, type, full, meta) {
+                            // Check for null values and concatenate if both are non-null
+                            let result = '';
+                            if (full.sub_name !== null) {
+                                result += full.sub_name;
+                            }
+                            if (full.sub_name !== null && full.sub_kh !== null) {
+                                result += '<br>';
+                            }
+                            if (full.sub_kh !== null) {
+                                result += full.sub_kh;
+                            }
+                            return result;
+                        }
+                    },
+                    {
+                        data: null,
+                        name: 'cat_name',
+                        render: function (data, type, full, meta) {
+                            // Check for null values and concatenate if both are non-null
+                            let result = '';
+                            if (full.cat_name !== null) {
+                                result += full.cat_name;
+                            }
+                            if (full.cat_name !== null && full.cat_kh !== null) {
+                                result += '<br>';
+                            }
+                            if (full.cat_kh !== null) {
+                                result += full.cat_kh;
+                            }
+                            return result;
+                        }
+                    },
                     {
                         data: 'status',
                         name: 'status',
                         render: function (data) {
                             if (data === 'Public') {
-                                return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Public</span>';
+                                return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">{{ __('crud_c.private') }}</span>';
                             } else {
-                                return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Private</span>';
+                                return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">{{ __('crud_c.public') }}</span>';
                             }
                         }
                     },
@@ -334,7 +249,7 @@
         });
         function add(){
             $('#ItemForm').trigger("reset");
-            $('#btn-save').html("Create");
+            $('#btn-save').html('{{ __("crud_c.create") }}');
             $('#item-modal').modal('show');
             $('#id').val('');
             $('#cat_id').trigger('change');
@@ -343,9 +258,10 @@
         }
         $('#ItemForm').submit(function (e) {
             e.preventDefault();
-            var nameVal = $('#sub_name').val();
+            var sub_khVal = $('#sub_kh').val().trim();
+            var nameVal = $('#sub_name').val().trim();
             var catVal = $('#cat_id').val();
-            if (nameVal.trim() === '') {
+            if (nameVal === '' && sub_khVal === '') {
                 $('#name_error').show();
                 return;
             } else if(catVal.trim() === '') {
@@ -363,27 +279,46 @@
                 cache: false,
                 contentType: false,
                 processData: false,
-                success: function (data) {
+                success: function (response) {
                     $("#item-modal").modal('hide');
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 6000
+                    });
+                    Toast.fire({
+                        icon: 'success',
+                        title: response.message
+                    });
                     var oTable = $('#item-table').dataTable();
                     oTable.fnDraw(false);
                     $("#btn-save").html('Submit');
                     $("#btn-save").attr("disabled", false);
                 },
-                error: function (data) {
-                    console.log(data);
+                error: function (error) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 6000
+                    });
+                    Toast.fire({
+                        icon: 'error',
+                        title: error.responseJSON.message
+                    });
                 }
             });
         });
         function deleteFunc(id) {
             Swal.fire({
-                title: 'Delete Record?',
-                text: "You won't be able to revert this!",
+                title: '{{ __("crud_c.delete_record") }}',
+                text: '{{ __("crud_c.wont_revoke") }}',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: '{{ __("crud_c.yes_delete") }}'
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
@@ -410,10 +345,11 @@
                 data: { id: id },
                 dataType: 'json',
                 success: function (res) {
-                    $('#btn-save').html("Save changes");
+                    $('#btn-save').html('{{ __("crud_c.save_changes") }}');
                     $('#item-modal').modal('show');
                     $('#id').val(res.id);
                     $('#sub_name').val(res.sub_name);
+                    $('#sub_kh').val(res.sub_kh);
                     $('#cat_id').val(res.cat_id);
                     $('#cat_id').trigger('change');
                     if (res.status === 'Public') {

@@ -12,7 +12,7 @@ return new class extends Migration
     {
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('sub_name');
+            $table->string('sub_name')->nullable();
             $table->string('sub_kh')->nullable();
             $table->integer('cat_id');
             $table->string('sub_slug');

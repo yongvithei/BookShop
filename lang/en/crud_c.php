@@ -1,0 +1,38 @@
+<?php
+return [
+    'categories' => 'Categories',
+    'refresh' => 'Refresh',
+    'add' => 'Add',
+    'id' => 'ID',
+    'description' => 'Description',
+    'status' => 'Status',
+    'action' => 'Action',
+    'name' => 'Name',
+    'category_name' => 'Category Name',
+    'description_or_note' => 'Description or Note',
+    'field_required' => 'Field is required.',
+    'close' => 'Close',
+    'save_changes' => 'Save changes',
+    'active' => 'Active',
+    'inactive' => 'Inactive',
+    'create' => 'Create',
+    'delete_record' => 'Delete Record?',
+    'wont_revoke' => 'You wont be able to revert this!',
+    'yes_delete' => 'Yes, delete it!',
+    'record_saved' => 'Record saved',
+
+    //subcategory
+    'category_setup' => 'Category Setup',
+    'subcategories' => 'SubCategories',
+    'subcategory_name' => 'SubCategory Name',
+    'create_subcategory' => 'Create Subcategory',
+    'subcategory_name_placeholder' => 'Subcategory Name',
+    'category' => 'Category',
+    'choose_one' => 'Choose one..',
+    'select_category' => 'Please select a category.',
+    'public' => 'Public',
+    'private' => 'Private',
+    'nameKH' => 'Khmer',
+    'nameKH_placeholder' => 'Khmer',
+
+];

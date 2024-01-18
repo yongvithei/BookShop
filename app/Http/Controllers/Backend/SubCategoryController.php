@@ -19,7 +19,7 @@ class SubCategoryController extends Controller
             ->addIndexColumn()
             ->make(true);
     }
-        $categories = Category::select('id', 'name')->get();
+        $categories = Category::select('id', 'name','cat_kh')->get();
 
         return view('backend.subcategory.subcategory',compact('categories'));
 
@@ -34,12 +34,13 @@ class SubCategoryController extends Controller
                     ],
                     [
                     'sub_name' => $request->sub_name,
+                    'sub_kh' => $request->sub_kh,
                     'cat_id' => $request->cat_id,
                     'sub_slug' => strtolower(str_replace(' ', '-',$request->sub_name)),
                     'status' => $request->status,
                     ]);
 
-        return Response()->json($item);
+        return response()->json(['success' => true, 'message' => __('crud.record_saved')]);
     }
 
     public function edit(Request $request)

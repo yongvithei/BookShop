@@ -13,7 +13,7 @@ return new class extends Migration
     {
         DB::statement('
             CREATE OR REPLACE VIEW subcategory_view AS
-            SELECT s.id, s.sub_name, s.cat_id, c.name AS cat_name, s.status
+            SELECT s.id, s.sub_name, s.sub_kh, s.cat_id, c.name AS cat_name, c.cat_kh , s.status
             FROM sub_categories s
             JOIN categories c ON s.cat_id = c.id
             WHERE s.deleted_at IS NULL;
