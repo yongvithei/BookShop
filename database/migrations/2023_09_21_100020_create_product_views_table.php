@@ -15,6 +15,7 @@ return new class extends Migration
             SELECT
                 p.id AS id,
                 p.name AS name,
+                p.pro_kh AS pro_kh,
                 CASE
                     WHEN p.discount_price IS NULL OR p.discount_price = \'\' THEN p.price
                     ELSE p.discount_price
@@ -39,8 +40,8 @@ return new class extends Migration
             WHERE p.deleted_at IS NULL;
         ');
     }
-    
-    
+
+
 
     /**
      * Reverse the migrations.

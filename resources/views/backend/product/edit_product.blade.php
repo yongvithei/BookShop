@@ -66,6 +66,12 @@
                                     <input value="{{ $product->name }}" type="text" class="form-control" id="name" name="name">
                                     <p></p>
                                 </div>
+                                <div class="mb-2">
+                                    <label class="form-label" for="pro_kh">{{ __('crud_p.nameKH') }}</label>
+                                    <input value="{{ $product->pro_kh }}" type="text" class="form-control" id="pro_kh" name="pro_kh">
+                                    <span id="name_error" class="text-danger" style="display: none;">{{ __('crud_p.field_required_each') }}</span>
+                                    <p></p>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label class="form-label" for="price">{{ __('crud_p.price') }}</label>
@@ -309,6 +315,13 @@
 
     $("#productForm").submit(function(event){
         event.preventDefault();
+        var nameVal = $('#name').val().trim();
+        var nameKhVal = $('#pro_kh').val().trim();
+        if (nameVal === '' && nameKhVal === '') {
+            $('#name_error').show();
+            return;
+        }
+        $('#name_error').hide();
         $("button[type=submit]").prop('disabled',true);
         CKEDITOR.instances['js-ckeditor'].updateElement();
         var formData = new FormData(this);
@@ -328,29 +341,10 @@
                     window.location.href="{{ route('pro.index') }}";
                 } else {
                     var errors = response.errors;
-                    if (errors.name) {
-                        $("#name").addClass('is-invalid')
-                        .siblings("p")
-                        .addClass('invalid-feedback')
-                        .html(errors.name);
-                    } else{
-                        $("#name").removeClass('is-invalid')
-                        .siblings("p")
-                        .removeClass('invalid-feedback')
-                        .html("");
-                    }
-                    if (errors.price) {
-                        $("#price").addClass('is-invalid')
-                        .siblings("p")
-                        .addClass('invalid-feedback')
-                        .html(errors.price);
-                    } else{
-                        $("#price").removeClass('is-invalid')
-                        .siblings("p")
-                        .removeClass('invalid-feedback')
-                        .html("");
-                    }
-                }
+                    var errors = response.errors;
+                    errors.name ? $("#name").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.name) : $("#name").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""), errors.price ? $("#price").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.price) : $("#price").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""), errors.pro_kh ?
+                        $("#pro_kh").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.pro_kh) : $("#pro_kh").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""), errors.pro_code ? $("#pro_code").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.pro_code) : $("#pro_code").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""), errors.price_dis ? $("#price_dis").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.price_dis) : $("#price_dis").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""), errors.pro_qty ? $("#pro_qty").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.pro_qty) : $("#pro_qty").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""), errors.short_desc ? $("#short_desc").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.pro_qty) : $("#short_desc").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""), errors.long_desc ? $("#long_desc").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.pro_qty) : $("#long_desc").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html("");                }
+
             }
         });
     });

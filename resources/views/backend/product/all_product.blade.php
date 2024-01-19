@@ -389,18 +389,35 @@
             columns: [
                 { data: 'id', name: 'id' },
                 {
-        data: 'thumbnail',
-        name: 'thumbnail',
-        render: function (data, type, full, meta) {
-                if (type === 'display' && data) {
-                    return '<img src="'+"/"+ data + '" alt="" class="img-product" />';
-                } else {
-                    var defaultAvatarUrl = '{{ asset('/storage/images/default_product_table.webp') }}';
-                    return '<img src="' + defaultAvatarUrl + '" class="img-product" alt=""/>';
-                }
-            }
+                data: 'thumbnail',
+                name: 'thumbnail',
+                render: function (data, type, full, meta) {
+                        if (type === 'display' && data) {
+                            return '<img src="'+"/"+ data + '" alt="" class="img-product" />';
+                        } else {
+                            var defaultAvatarUrl = '{{ asset('/storage/images/default_product_table.webp') }}';
+                            return '<img src="' + defaultAvatarUrl + '" class="img-product" alt=""/>';
+                        }
+                    }
             },
-            { data: 'name', name: 'name' },
+                {
+                    data: null,
+                    name: 'name',
+                    render: function (data, type, full, meta) {
+                        // Check for null values and concatenate if both are non-null
+                        let result = '';
+                        if (full.name !== null) {
+                            result += full.name;
+                        }
+                        if (full.name !== null && full.pro_kh !== null) {
+                            result += '<br>';
+                        }
+                        if (full.pro_kh !== null) {
+                            result += full.pro_kh;
+                        }
+                        return result;
+                    }
+                },
             {
                 data: 'selling_price',
                 name: 'selling_price',

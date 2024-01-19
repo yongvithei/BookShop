@@ -70,6 +70,10 @@ return [
     'public' => 'Public',
     'private' => 'Private',
 
+    'nameKH' => 'Khmer',
+    'field_required_each' => 'Please Field Khmer Or English',
+
+
 
 
 

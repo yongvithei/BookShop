@@ -21,7 +21,7 @@ class ProductController extends Controller
     public function index()
     {
         if(request()->ajax()) {
-            return datatables()->of(ProductView::select(['id', 'name', 'selling_price','thumbnail','_status']))
+            return datatables()->of(ProductView::select(['id', 'name', 'pro_kh', 'selling_price','thumbnail','_status']))
                 ->addColumn('action', 'backend.product.pro_action')
                 ->rawColumns(['action'])
                 ->addIndexColumn()
@@ -30,14 +30,15 @@ class ProductController extends Controller
         return view('backend.product.all_product');
     }
     public function create() {
-        $categories = Category::select('id', 'name')->where('status', 1)->get();
-        $subcategories = SubCategory::select('id', 'sub_name')->where('status','Public')->get();
+        $categories = Category::select('id', 'name', 'cat_kh')->where('status', 1)->get();
+        $subcategories = SubCategory::select('id', 'sub_name','sub_kh')->where('status','Public')->get();
         $partners = Partner::select('id', 'name')->where('status','Active')->get();
         return view('backend.product.add_product',compact('categories','subcategories','partners'));
     }
     public function store(Request $request) {
         $validator = Validator::make($request->all(), array(
-            'name' => 'required|string|max:255',
+            'name' => 'nullable|string|max:255',
+            'name_kh' => 'nullable|string|max:255',
             'price' => 'required|numeric|min:0',
             'price_dis' => 'nullable|numeric|min:0',
             'cate_Id' => 'nullable|exists:categories,id',
@@ -66,6 +67,7 @@ class ProductController extends Controller
         if ($validator->passes()) {
             $product = new Product;
             $product->name = $request->name;
+            $product->pro_kh = $request->pro_kh;
             $product->slug = strtolower(str_replace(' ', '-',$request->name));
             $product->price = $request->price;
             $product->discount_price = $request->price_dis;
@@ -148,10 +150,20 @@ class ProductController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'price' => 'required|numeric',
-            // 'cate_Id' => 'required|exists:categories,id',
-            // 'pro_code' => 'nullable|string|max:50',
+            'name' => 'nullable|string|max:255',
+            'name_kh' => 'nullable|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'price_dis' => 'nullable|numeric|min:0',
+            'cate_Id' => 'nullable|exists:categories,id',
+            'subcate_Id' => 'nullable|exists:sub_categories,id',
+            'part_id' => 'nullable|exists:partners,id',
+            'pro_code' => 'nullable|string|max:50|unique:' . Product::class . ',pro_code,' . $product_id,
+            'pro_qty' => 'nullable|numeric|min:0',
+            'short_desc' => 'nullable|string|max:500',
+            'long_desc' => 'nullable|string',
+            'new' => 'nullable|boolean',
+            'featured' => 'nullable|boolean',
+            'status' => 'nullable|in:1,0',
         ]);
 
         if ($validator->fails()) {
@@ -180,6 +192,7 @@ class ProductController extends Controller
              $status = $request->has('status') ? 1 : 0;
             if ($validator->passes()) {
                 $product->name = $request->name;
+                $product->pro_kh = $request->pro_kh;
                 $product->slug = strtolower(str_replace(' ', '-',$request->name));
                 $product->price = $request->price;
                 $product->discount_price = $request->price_dis;

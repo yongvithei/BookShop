@@ -69,6 +69,12 @@
                                     <input type="text" class="form-control" id="name" name="name">
                                     <p></p>
                                 </div>
+                            <div class="mb-0">
+                                <label class="form-label" for="pro_kh">{{ __('crud_p.nameKH') }}</label>
+                                <input type="text" class="form-control" id="pro_kh" name="pro_kh">
+                                <span id="name_error" class="text-danger" style="display: none;">{{ __('crud_p.field_required_each') }}</span>
+                                <p></p>
+                            </div>
                             <div class="row mb-0">
                                 <div class="col-md-6">
                                     <label class="form-label" for="price">{{ __('crud_p.price') }}</label>
@@ -100,7 +106,12 @@
                                 <select class="js-select2 form-select" id="cate_Id" name="cate_Id" style="width: 100%;" data-placeholder="{{ __('crud_p.choose_one') }}">
                                     <option></option>
                                     @foreach($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}">
+                                            @if(session()->get('locale') == 'en')
+                                                {{ $category->name ?: $category->cat_kh }}
+                                            @else
+                                                {{ $category->cat_kh ?: $category->name }}
+                                            @endif</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -110,7 +121,7 @@
                                 <select class="js-select2 form-select" id="subcate_Id" name="subcate_Id" style="width: 100%;" data-placeholder="{{ __('crud_p.choose_one') }}">
                                     <option></option>
                                     @foreach($subcategories as $subcategory)
-                                        <option value="{{ $subcategory->id }}">{{ $subcategory->sub_name }}</option>
+                                        <option value="{{ $subcategory->id }}">@if(session()->get('locale') == 'en') {{ $subcategory->sub_name }} @else {{ $subcategory->sub_kh }} @endif</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -235,13 +246,14 @@
                                 url: "{{ url('/subcategory/ajax') }}/"+cate_Id,
                                 type: "GET",
                                 dataType:"json",
-                                success:function(data){
+                                success: function (data) {
                                     $('select[name="subcate_Id"]').html('');
-                                    var d =$('select[name="subcate_Id"]').empty();
-                                    $.each(data, function(key, value){
-                                        $('select[name="subcate_Id"]').append('<option value="'+ value.id + '">' + value.sub_name + '</option>');
+                                    $.each(data, function (key, value) {
+                                        var subcategoryName = '{{ session()->get('locale') == 'en' ? 'sub_name' : 'sub_kh' }}';
+                                        var displayValue = value[subcategoryName] || (subcategoryName === 'sub_name' ? value.sub_kh : value.sub_name);
+                                        $('select[name="subcate_Id"]').append('<option value="' + value.id + '">' + displayValue + '</option>');
                                     });
-                                },
+                                }
 
                             });
                         } else {
@@ -281,6 +293,13 @@
         });
         $("#productForm").submit(function(event){
             event.preventDefault();
+            var nameVal = $('#name').val().trim();
+            var nameKhVal = $('#pro_kh').val().trim();
+            if (nameVal === '' && nameKhVal === '') {
+                $('#name_error').show();
+                return;
+            }
+            $('#name_error').hide();
     $("button[type=submit]");
     CKEDITOR.instances['js-ckeditor'].updateElement();
 
@@ -303,8 +322,8 @@
                 window.location.href = "{{ route('pro.index') }}";
             } else {
                     var errors = response.errors;
-                    errors.name?$("#name").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.name):$("#name").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""),errors.price?$("#price").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.price):$("#price").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""),errors.pro_code?$("#pro_code").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.pro_code):$("#pro_code").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""),errors.price_dis?$("#price_dis").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.price_dis):$("#price_dis").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""),errors.pro_qty?$("#pro_qty").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.pro_qty):$("#pro_qty").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""),errors.short_desc?$("#short_desc").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.pro_qty):$("#short_desc").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""),errors.long_desc?$("#long_desc").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.pro_qty):$("#long_desc").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html("");
-                }
+                errors.name ? $("#name").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.name) : $("#name").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""), errors.price ? $("#price").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.price) : $("#price").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""), errors.pro_kh ?
+                    $("#pro_kh").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.pro_kh) : $("#pro_kh").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""), errors.pro_code ? $("#pro_code").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.pro_code) : $("#pro_code").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""), errors.price_dis ? $("#price_dis").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.price_dis) : $("#price_dis").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""), errors.pro_qty ? $("#pro_qty").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.pro_qty) : $("#pro_qty").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""), errors.short_desc ? $("#short_desc").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.pro_qty) : $("#short_desc").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html(""), errors.long_desc ? $("#long_desc").addClass("is-invalid").siblings("p").addClass("invalid-feedback").html(errors.pro_qty) : $("#long_desc").removeClass("is-invalid").siblings("p").removeClass("invalid-feedback").html("");                }
             }
         });
         })
