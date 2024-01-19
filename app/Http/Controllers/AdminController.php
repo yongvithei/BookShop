@@ -132,7 +132,10 @@ class AdminController extends Controller
             }
         }
 
-            return response()->json(['message' => 'User saved successfully', 'user' => $item]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            $errors = $e->validator->getMessageBag()->toArray();
+
+            return response()->json(['error' => $errors], 422);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to save user. Please try again.'], 500);
         }

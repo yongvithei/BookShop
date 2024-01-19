@@ -26,7 +26,7 @@
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">Role And Permission</a>
+                            <a class="link-fx" href="javascript:void(0)">{{ __('per.role&permission') }}</a>
                         </li>
 
                     </ol>
@@ -45,10 +45,10 @@
                     <div class="block block-rounded">
                         <ul class="nav nav-tabs nav-tabs-block align-items-center" role="tablist">
                             <li class="nav-item">
-                                <button class="nav-link active" id="btabswo-static-home-tab" data-bs-toggle="tab" data-bs-target="#btabswo-static-home" role="tab" aria-controls="btabswo-static-home" aria-selected="true">Role</button>
+                                <button class="nav-link active" id="btabswo-static-home-tab" data-bs-toggle="tab" data-bs-target="#btabswo-static-home" role="tab" aria-controls="btabswo-static-home" aria-selected="true">{{ __('per.role') }}</button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link" id="btabswo-static-profile-tab" data-bs-toggle="tab" data-bs-target="#btabswo-static-profile" role="tab" aria-controls="btabswo-static-profile" aria-selected="false">Assign Permission to Role</button>
+                                <button class="nav-link" id="btabswo-static-profile-tab" data-bs-toggle="tab" data-bs-target="#btabswo-static-profile" role="tab" aria-controls="btabswo-static-profile" aria-selected="false">{{ __('per.assign_permission_to_role') }}</button>
                             </li>
                             <li class="nav-item ms-auto">
                                 <div class="block-options ps-3 pe-2">
@@ -73,10 +73,10 @@
                                 <table id="role-table" class="table table-bordered table-vcenter">
                                     <thead>
                                     <tr>
-                                        <th class="text-center" style="width: 80px;">ID</th>
-                                        <th>Name</th>
-                                        <th class="d-none d-sm-table-cell" style="width: 15%;">Status</th>
-                                        <th style="width: 15%;">Action</th>
+                                        <th class="text-center" style="width: 80px;">{{ __('per.id') }}</th>
+                                        <th>{{ __('per.name') }}</th>
+                                        <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('per.status') }}</th>
+                                        <th style="width: 15%;">{{ __('per.action') }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -183,7 +183,7 @@
                                 </table>
                                 <div class="py-4 mb-0 justify-content-end">
                                     <div class="col-md-1 col-xl-2">
-                                        <button onClick="addR()" type="button" class="btn w-100 btn-alt-primary" data-bs-toggle="modal" data-bs-target="#role-modal">ADD</button>
+                                        <button onClick="addR()" type="button" class="btn w-100 btn-alt-primary" data-bs-toggle="modal" data-bs-target="#role-modal">{{ __('per.add') }}</button>
 
                                     </div>
                                 </div>
@@ -197,10 +197,10 @@
                                 <table id="per-table" class="table table-bordered table-vcenter">
                                     <thead>
                                     <tr>
-                                        <th class="text-center" style="width: 80px;">ID</th>
-                                        <th>Name</th>
-                                        <th style="width: 50%;">Permission</th>
-                                        <th style="width: 15%;">Action</th>
+                                        <th class="text-center" style="width: 80px;">{{ __('per.id') }}</th>
+                                        <th>{{ __('per.name') }}</th>
+                                        <th style="width: 50%;">{{ __('per.permission') }}</th>
+                                        <th style="width: 15%;">{{ __('per.action') }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -308,7 +308,7 @@
                                 </div>
                                 <div class="py-4 mb-0 justify-content-end">
                                     <div class="col-md-1 col-xl-2">
-                                        <button onClick="addP()" type="button" class="btn w-100 btn-alt-primary" data-bs-toggle="modal" data-bs-target="#per-modal">ADD</button>
+                                        <button onClick="addP()" type="button" class="btn w-100 btn-alt-primary" data-bs-toggle="modal" data-bs-target="#per-modal">{{ __('per.add') }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -326,7 +326,7 @@
                     <div class="modal-content">
                         <div class="block block-rounded block-transparent mb-0">
                             <div class="block-header block-header-default">
-                                <h3 class="block-title">Add Role</h3>
+                                <h3 class="block-title">{{ __('per.add_role') }}</h3>
                                 <div class="block-options">
                                     <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                                         <i class="fa fa-fw fa-times"></i>
@@ -339,30 +339,31 @@
                                 <input type="hidden" name="idR" id="idR">
                                     <div class="col-lg-12 col-xl-12">
                                         <div class="mb-3">
-                                            <label class="form-label" for="name">Role Name</label>
+                                            <label class="form-label" for="name">{{ __('per.role_name') }}</label>
                                             <input type="text" class="form-control" id="name" name="name">
-                                            <span id="name_errorR" class="text-danger" style="display: none;">Name is required.</span>
+                                            <span id="name_errorR" class="text-danger" style="display: none;">{{ __('per.name_required') }}</span>
                                             <span class="text-danger" id="error-message" style="display: none;"></span>
                                         </div>
                                     </div>
                                     <div class="mb-2">
-                                        <label class="form-label">Status</label>
-                                            <div class="space-x-2">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="statusActive" name="status" value="Active" checked="">
-                                                    <label class="form-check-label" for="statusActive">Active</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="statusInactive" name="status" value="Inactive">
-                                                    <label class="form-check-label" for="statusInactive">Inactive</label>
-                                                </div>
+                                        <label class="form-label">{{ __('per.status') }}</label>
+                                        <div class="space-x-2">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" id="statusActive" name="status" value="Active" checked="">
+                                                <label class="form-check-label" for="statusActive">{{ __('per.active') }}</label>
                                             </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" id="statusInactive" name="status" value="Inactive">
+                                                <label class="form-check-label" for="statusInactive">{{ __('per.inactive') }}</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            <div class="block-content block-content-full text-end bg-body">
-                                <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" id="btn-saveR" class="btn btn-sm btn-primary">Save changes</button>
-                            </div>
+                                <div class="block-content block-content-full text-end bg-body">
+                                    <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">{{ __('per.close') }}</button>
+                                    <button type="submit" id="btn-saveR" class="btn btn-sm btn-primary">{{ __('per.save_changes') }}</button>
+                                </div>
+
                             </form>
                         </div>
                     </div>
@@ -375,7 +376,7 @@
                     <div class="modal-content">
                         <div class="block block-rounded block-transparent mb-0">
                             <div class="block-header block-header-default">
-                                <h3 onClick="" class="block-title">Assign Permission to Role</h3>
+                                <h3 onClick="" class="block-title">{{ __('per.assign_permission') }}</h3>
                                 <div class="block-options">
                                     <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                                         <i class="fa fa-fw fa-times"></i>
@@ -387,7 +388,7 @@
                                 <input type="hidden" name="r_id" id="r_id">
                                     <div class="col-lg-12 col-xl-12">
                                         <div class="mb-4">
-                                            <label class="form-label" for="role_id">Subcategory</label>
+                                            <label class="form-label" for="role_id">{{ __('per.role') }}</label>
                                             <select class="js-select2 form-select" id="role_id" name="role_id" style="width: 100%;" data-placeholder="Choose one..">
                                                 <option>Choose one..</option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                                 @foreach($roles as $role)
@@ -399,7 +400,7 @@
                                             <div class="space-x-2">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultAll" name="flexCheckDefaultAll">
-                                                    <label class="form-check-label" for="flexCheckDefaultAll">Permission All</label>
+                                                    <label class="form-label" for="role_id">{{ __('per.permission_all') }}</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -431,10 +432,10 @@
                                     </div>
                                 </div>
 
-                            <div class="block-content block-content-full text-end bg-body">
-                                <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" id="btn-saveP" class="btn btn-sm btn-primary">Save changes</button>
-                            </div>
+                                <div class="block-content block-content-full text-end bg-body">
+                                    <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">{{ __('per.close') }}</button>
+                                    <button type="submit" id="btn-saveP" class="btn btn-sm btn-primary">{{ __('per.save_changes') }}</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -511,9 +512,9 @@
                 name: 'status',
                 render: function (data) {
                     if (data === 'Active') {
-                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Active</span>';
+                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">{{ __('per.active') }}</span>';
                     } else {
-                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Inactive</span>';
+                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">{{ __('per.inactive') }}</span>';
                     }
                 }
             },
@@ -536,7 +537,7 @@
     });
     function addR(){
         $('#roleForm').trigger("reset");
-        $('#btn-saveR').html("Create");
+        $('#btn-saveR').html("{{ __('per.create') }}");
         $('#role-modal').modal('show');
         $('#idR').val('');
         $('#name_errorR').hide();
@@ -559,8 +560,18 @@
         cache: false,
         contentType: false,
         processData: false,
-        success: function (data) {
+        success: function (response) {
             $("#role-modal").modal('hide');
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 6000
+            });
+            Toast.fire({
+                icon: 'success',
+                title: response.message
+            });
             var oTable = $('#role-table').dataTable();
             oTable.fnDraw(false);
             $("#btn-saveR").html('Submit');
@@ -580,13 +591,14 @@
     });
    function deleteFunc(id) {
     Swal.fire({
-        title: 'Delete Record?',
-        text: "You won't be able to revert this!",
+        title: '{{ __('crud.delete_record') }}',
+        text: "{{ __('crud.wont_revoke') }}",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: '{{ __('crud.yes_delete') }}',
+        cancelButtonText: '{{ __('crud.cancel') }}'
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
@@ -615,7 +627,7 @@
             data: { id: id },
             dataType: 'json',
             success: function(res){
-                $('#btn-saveR').html("Save changes");
+                $('#btn-saveR').html("{{ __('per.save_changes') }}");
                 $('#role-modal').modal('show');
                 $('#idR').val(res.id);
                 $('#name').val(res.name);
@@ -647,8 +659,18 @@
         cache: false,
         contentType: false,
         processData: false,
-        success: function (data) {
+        success: function (response) {
             $("#per-modal").modal('hide');
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 6000
+            });
+            Toast.fire({
+                icon: 'success',
+                title: response.message
+            });
             var oTable = $('#per-table').dataTable();
             oTable.fnDraw(false);
             $("#btn-saveP").html('Submit');
@@ -668,7 +690,7 @@
 
 function addP(){
         $('#perForm').trigger("reset");
-        $('#btn-saveP').html("Create");
+        $('#btn-saveP').html("{{ __('per.create') }}");
     }
 function editFuncP(id){
     $('#perForm').trigger("reset");
@@ -678,7 +700,7 @@ function editFuncP(id){
             data: { id: id },
             dataType: 'json',
             success: function(res){
-                $('#btn-saveP').html("Save changes");
+                $('#btn-saveP').html("{{ __('per.save_changes') }}");
                 $('#per-modal').modal('show');
                 $('#role_id').val(res.role.id);
             }

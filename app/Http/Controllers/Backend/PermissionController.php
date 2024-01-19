@@ -28,7 +28,8 @@ class PermissionController extends Controller
         if (!empty($permissions)) {
             $role->syncPermissions($permissions);
          }
-        return redirect()->route('all.role');
+        return response()->json(['success' => true, 'message' => __('crud.record_saved')]);
+
     }
 
     public function edit(Request $request)
@@ -36,7 +37,7 @@ class PermissionController extends Controller
         $roles = Role::select('id', 'name')->get();
         $id = $request->id;
         $role = Role::find($id);
-       
+
         return response()->json(['role' => $role, ' $roles' => $roles]);
     }
 

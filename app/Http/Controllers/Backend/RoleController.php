@@ -37,7 +37,7 @@ class RoleController extends Controller
                     'status' => $request->status,
                 ]);
 
-            return response()->json($item);
+            return response()->json(['success' => true, 'message' => __('crud.record_saved')]);
         } catch (QueryException $e) {
             return response()->json(['error' => 'Duplicate role name. Please choose a different name.'], 422);
         }
