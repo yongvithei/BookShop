@@ -35,8 +35,11 @@
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">Business Partners</a>
+                            <a class="link-fx" href="javascript:void(0)">
+                                {{ __('part_s.business_partners') }}
+                            </a>
                         </li>
+
 
                     </ol>
                 </nav>
@@ -50,10 +53,9 @@
             <!-- Dynamic Table Full -->
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">Partner</h3>
+                    <h3 class="block-title">{{ __('part_s.partner') }}</h3>
                     <div class="block-options">
-                        <a type="button" class="btn btn-sm btn-alt-primary">Refresh</a>
-                        <a onClick="add()" type="button" class="btn btn-sm btn-alt-primary" data-bs-toggle="modal" data-bs-target="#item-modal">ADD</a>
+                        <a onClick="add()" type="button" class="btn btn-sm btn-alt-primary" data-bs-toggle="modal" data-bs-target="#item-modal">{{ __('part_s.add') }}</a>
                     </div>
                 </div>
                 <div class="block-content block-content-full">
@@ -61,11 +63,11 @@
                     <table id="item-table" class="table table-bordered table-vcenter">
                         <thead>
                         <tr>
-                            <th class="text-center" style="width: 80px;">ID</th>
-                            <th class="text-center" style="width: 100px;">Image</th>
-                            <th>Partner Name</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Status</th>
-                            <th style="width: 15%;">Action</th>
+                            <th class="text-center" style="width: 80px;">{{ __('part_s.id') }}</th>
+                            <th class="text-center" style="width: 100px;">{{ __('part_s.image') }}</th>
+                            <th>{{ __('part_s.partner_name') }}</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('part_s.status') }}</th>
+                            <th style="width: 15%;">{{ __('part_s.action') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -200,7 +202,7 @@
                     <div class="modal-content">
                         <div class="block block-rounded block-transparent mb-0">
                             <div class="block-header block-header-default">
-                                <h3 class="block-title">Partner Information</h3>
+                                <h3 class="block-title">{{ __('part_s.partner_information') }}</h3>
                                 <div class="block-options">
                                     <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                                         <i class="fa fa-fw fa-times"></i>
@@ -212,64 +214,67 @@
                                 <input type="hidden" name="avatar_hidden" id="avatar_hidden">
                                     <div class="block-content row justify-content-center">
 
-                                    <div class="col-lg-12 col-xl-12">
-                                        <div class="mb-2">
-                                            <label class="form-label" for="name">Name</label>
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Category Name">
-                                            <span id="name_error" class="text-danger" style="display: none;">Field is required.</span>
-                                        </div>
-                                        <div class="mb-2">
-                                            <label class="form-label" for="phone">Contact</label>
-                                            <div class="input-group">
-                                                    <span class="input-group-text">
-                                                      <i class="far fa-address-book"></i>
-                                                    </span>
-                                                <input type="text" class="form-control" id="phone" name="phone">
+                                        <div class="col-lg-12 col-xl-12">
+                                            <div class="mb-2">
+                                                <label class="form-label" for="name">{{ __('part_s.name') }}</label>
+                                                <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('part_s.category_name') }}">
+                                                <span id="name_error" class="text-danger" style="display: none;">{{ __('part_s.field_required') }}</span>
                                             </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="address">Address</label>
-                                            <div class="input-group">
-                                                    <span class="input-group-text">
-                                                      <i class="far fa-map"></i>
-                                                    </span>
-                                                <input type="text" class="form-control" id="address" name="address">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-2">
-                                            <div class="col-lg">
-                                                <label for="one-profile-edit-avatar" class="form-label">Choose Image</label>
-                                                <input class="form-control" type="file" name="avatar" id="avatar">
-                                            </div>
-                                            <div class="col-lg-4 mt-2">
-                                                <img class="img-pre" id="preview-image" src="{{asset('storage/images/default.jpg')}}" alt="">
-                                            </div>
-                                        </div>
 
-
-                                        <div class="mb-2">
-                                            <label class="form-label" for="desc">Description</label>
-                                            <textarea class="form-control" id="desc" name="desc" rows="2" placeholder="Description or Note"></textarea>
-                                        </div>
-                                        <div class="mb-2">
-                                            <label class="form-label">Status</label>
-                                            <div class="space-x-2">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="statusActive" name="status" value="Active" checked="">
-                                                    <label class="form-check-label" for="statusActive">Active</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="statusInactive" name="status" value="Inactive">
-                                                    <label class="form-check-label" for="statusInactive">Inactive</label>
+                                            <div class="mb-2">
+                                                <label class="form-label" for="phone">{{ __('part_s.contact') }}</label>
+                                                <div class="input-group">
+                                            <span class="input-group-text">
+                                                <i class="far fa-address-book"></i>
+                                            </span>
+                                                    <input type="text" class="form-control" id="phone" name="phone">
                                                 </div>
                                             </div>
-                                        </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="address">{{ __('part_s.address') }}</label>
+                                                <div class="input-group">
+                                            <span class="input-group-text">
+                                                <i class="far fa-map"></i>
+                                            </span>
+                                                    <input type="text" class="form-control" id="address" name="address">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-2">
+                                                <div class="col-lg">
+                                                    <label for="one-profile-edit-avatar" class="form-label">{{ __('part_s.choose_image') }}</label>
+                                                    <input class="form-control" type="file" name="avatar" id="avatar">
+                                                </div>
+                                                <div class="col-lg-4 mt-2">
+                                                    <img class="img-pre" id="preview-image" src="{{ asset('storage/images/default.jpg') }}" alt="">
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-2">
+                                                <label class="form-label" for="desc">{{ __('part_s.description') }}</label>
+                                                <textarea class="form-control" id="desc" name="desc" rows="2" placeholder="{{ __('part_s.description_placeholder') }}"></textarea>
+                                            </div>
+
+                                            <div class="mb-2">
+                                                <label class="form-label">{{ __('part_s.status') }}</label>
+                                                <div class="space-x-2">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="statusActive" name="status" value="Active" checked="">
+                                                        <label class="form-check-label" for="statusActive">{{ __('part_s.active') }}</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" id="statusInactive" name="status" value="Inactive">
+                                                        <label class="form-check-label" for="statusInactive">{{ __('part_s.inactive') }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                     </div>
 
                                 </div>
                                 <div class="block-content block-content-full text-end bg-body">
-                                <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" id="btn-save" class="btn btn-sm btn-primary">Save changes</button>
+                                    <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">{{ __('part_s.close') }}</button>
+                                    <button type="submit" id="btn-save" class="btn btn-sm btn-primary">{{ __('part_s.save_changes') }}</button>
                             </div>
                             </form>
                         </div>
@@ -330,9 +335,9 @@
                 name: 'status',
                 render: function (data) {
                     if (data === 'Active') {
-                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Active</span>';
+                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">{{ __('crud.active') }}</span>';
                     } else {
-                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Inactive</span>';
+                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">{{ __('crud.inactive') }}</span>';
                     }
                 }
             },
@@ -352,7 +357,7 @@
     function add() {
         $('#ItemForm')[0].reset();
         $('#preview-image').attr('src', '{{ asset('storage/images/default.jpg') }}');
-        $('#btn-save').html("Create");
+        $('#btn-save').html("{{ __('crud.create') }}");
         $('#item-modal').modal('show');
         $('#id').val('');
         $('#name_error').hide();
@@ -373,27 +378,47 @@
                 cache: false,
                 contentType: false,
                 processData: false,
-                success: function (data) {
+                success: function (response) {
                     $("#item-modal").modal('hide');
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 6000
+                    });
+                    Toast.fire({
+                        icon: 'success',
+                        title: response.message
+                    });
                     var oTable = $('#item-table').dataTable();
                     oTable.fnDraw(false);
                     $("#btn-save").html('Submit');
                     $("#btn-save").attr("disabled", false);
                 },
-                error: function (data) {
-                    console.log(data);
+                error: function (error) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 6000
+                    });
+                    Toast.fire({
+                        icon: 'error',
+                        title: error.responseJSON.message
+                    });
                 }
             });
         });
         function deleteFunc(id) {
             Swal.fire({
-                title: 'Delete Record?',
-                text: "You won't be able to revert this!",
+                title: '{{ __('crud.delete_record') }}',
+                text: "{{ __('crud.wont_revoke') }}",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: '{{ __('crud.yes_delete') }}',
+                cancelButtonText: '{{ __('crud.cancel') }}'
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
@@ -420,7 +445,7 @@
                 data: { id: id },
                 dataType: 'json',
                 success: function (res) {
-                    $('#btn-save').html("Save changes");
+                    $('#btn-save').html("{{ __('part_s.save_changes') }}");
                     $('#item-modal').modal('show');
                     $('#id').val(res.id);
                     $('#name').val(res.name);

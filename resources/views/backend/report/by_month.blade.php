@@ -19,10 +19,10 @@
                     <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item">
-                                <a class="link-fx" href="javascript:void(0)">Tables</a>
+                                <a class="link-fx" href="javascript:void(0)">{{ __('part_s.tables') }}</a>
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
-                                DataTables
+                                {{ __('part_s.datatables') }}
                             </li>
                         </ol>
                     </nav>
@@ -35,31 +35,31 @@
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
                     <h3 class="block-title">
-                        Seach By Month : {{ $month }} {{ $year }}
+                        {{ __('part_s.search_by_month') }}: {{ $month }} {{ $year }}
                         <div class="row">
                             <div class="block-content">
                                 <form method="post" action="{{ route('search-by-month')}}">
                                     @csrf
                                     <div class="col-xl-12">
-                                        <label class="form-label">Select Month:</label>
+                                        <label class="form-label">{{ __('part_s.select_month') }}</label>
                                         <select name="month" id="month" class="form-select mb-2"
                                             aria-label="Default select example">
-                                            <option value="January" {{ $month == "January" ? 'selected' : '' }}>January </option>
-                                            <option value="February" {{ $month == "February" ? 'selected' : '' }}> February</option>
-                                            <option value="March" {{ $month == "March" ? 'selected' : '' }}>March </option>
-                                            <option value="April" {{ $month == "April" ? 'selected' : '' }}>April </option>
-                                            <option value="May" {{ $month == "May" ? 'selected' : '' }}>May</option>
-                                            <option value="June" {{ $month == "June" ? 'selected' : '' }}>June</option>
-                                            <option value="July" {{ $month == "July" ? 'selected' : '' }}>July</option>
-                                            <option value="August" {{ $month == "August" ? 'selected' : '' }}>August </option>
-                                            <option value="September" {{ $month == "September" ? 'selected' : '' }}> September</option>
-                                            <option value="October" {{ $month == "October" ? 'selected' : '' }}>October </option>
-                                            <option value="November" {{ $month == "November" ? 'selected' : '' }}> November</option>
-                                            <option value="December" {{ $month == "December" ? 'selected' : '' }}> December</option>
+                                            <option value="January" {{ $month == "January" ? 'selected' : '' }}>{{ __('part_s.january') }} </option>
+                                            <option value="February" {{ $month == "February" ? 'selected' : '' }}> {{ __('part_s.february') }}</option>
+                                            <option value="March" {{ $month == "March" ? 'selected' : '' }}>{{ __('part_s.march') }} </option>
+                                            <option value="April" {{ $month == "April" ? 'selected' : '' }}>{{ __('part_s.april') }} </option>
+                                            <option value="May" {{ $month == "May" ? 'selected' : '' }}>{{ __('part_s.may') }}</option>
+                                            <option value="June" {{ $month == "June" ? 'selected' : '' }}>{{ __('part_s.june') }}</option>
+                                            <option value="July" {{ $month == "July" ? 'selected' : '' }}>{{ __('part_s.july') }}</option>
+                                            <option value="August" {{ $month == "August" ? 'selected' : '' }}>{{ __('part_s.august') }} </option>
+                                            <option value="September" {{ $month == "September" ? 'selected' : '' }}> {{ __('part_s.september') }}</option>
+                                            <option value="October" {{ $month == "October" ? 'selected' : '' }}>{{ __('part_s.october') }} </option>
+                                            <option value="November" {{ $month == "November" ? 'selected' : '' }}> {{ __('part_s.november') }}</option>
+                                            <option value="December" {{ $month == "December" ? 'selected' : '' }}> {{ __('part_s.december') }}</option>
                                         </select>
                                     </div>
                                     <div class="col-xl-12">
-                                        <label class="form-label">Select Year:</label>
+                                        <label class="form-label">{{ __('part_s.select_year') }}</label>
                                         <select name="year" id="year" class="form-select mb-2"
                                             aria-label="Default select example">
                                             <option value="2023" {{ $year == "2023" ? 'selected' : '' }}>2023</option>
@@ -69,7 +69,7 @@
                                         </select>
                                         <div class="mb-1">
                                             <button type="submit" class="btn btn-alt-primary">
-                                                Search
+                                                {{ __('part_s.search_button') }}
                                             </button>
                                         </div>
                                     </div>
@@ -85,13 +85,13 @@
               <table id="order-table" class="table table-bordered table-vcenter">
                 <thead>
                   <tr>
-                    <th>No</th>
-                    <th>Invoice </th>
-                    <th>Date </th>
-                    <th>Amount </th>
-                    <th>Payment </th>
-                    <th>State </th>
-                    <th>Action</th>
+                      <th>{{ __('part_s.no') }}</th>
+                      <th>{{ __('part_s.invoice') }}</th>
+                      <th>{{ __('part_s.date') }}</th>
+                      <th>{{ __('part_s.amount') }}</th>
+                      <th>{{ __('part_s.payment') }}</th>
+                      <th>{{ __('part_s.state') }}</th>
+                      <th>{{ __('part_s.action') }}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -249,7 +249,7 @@
                     <div class="modal-content">
                         <div class="block block-rounded block-transparent mb-0">
                             <div class="block-header block-header-default">
-                                <h3 class="block-title">Order Details</h3>
+                                <h3 class="block-title">{{ __('part_s.order_details') }}</h3>
                                 <div class="block-options">
                                     <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                                         <i class="fa fa-fw fa-times"></i>
@@ -268,17 +268,17 @@
                                                         <!-- Shipping Address -->
                                                         <div class="block block-rounded block-bordered">
                                                             <div class="block-header border-bottom">
-                                                                <h3 class="block-title">Shipping Details</h3>
+                                                                <h3 class="block-title">{{ __('part_s.shipping_details') }}</h3>
                                                             </div>
                                                             <div class="block-content">
-                                                                <div class="fs-4 mb-1">Name: <span id="ship_name"></span></div>
-                                                                <div class="fs-sm">Email: <span id="ship_email"></span></div>
-                                                                <div class="fs-sm">City: <span id="ship_city"></span></div>
-                                                                <div class="fs-sm">District: <span id="ship_district"></span></div>
-                                                                <div class="fs-sm">PostCode: <span id="ship_post"></span></div>
-                                                                <div class="fs-sm">Order Date: <span id="order_date"></span></div>
+                                                                <div class="fs-4 mb-1">{{ __('part_s.name') }}: <span id="ship_name"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.email') }}: <span id="ship_email"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.city') }}: <span id="ship_city"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.district') }}: <span id="ship_district"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.postcode') }}: <span id="ship_post"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.order_date') }}: <span id="order_date"></span></div>
                                                                 <address class="fs-sm">
-                                                                    <i class="fa fa-phone"></i> <span id="ship_phone"></span><br>
+                                                                    <i class="fa fa-phone"></i> {{ __('part_s.phone') }}: <span id="ship_phone"></span><br>
                                                                 </address>
                                                             </div>
                                                         </div>
@@ -288,16 +288,16 @@
                                                         <!-- User Address -->
                                                         <div class="block block-rounded block-bordered">
                                                             <div class="block-header border-bottom">
-                                                                <h3 class="block-title">INVOICE : <span id="invoice_no"></span></h3>
+                                                                <h3 class="block-title">{{ __('part_s.invoice') }} : <span id="invoice_no"></span></h3>
                                                             </div>
                                                             <div class="block-content">
-                                                                <div class="fs-4 mb-1">Name: <span id="name"></span></div>
-                                                                <div class="fs-sm">Email: <span id="email"></span></div>
-                                                                <div class="fs-sm">Payment Method: <span id="payment_method"></span></div>
-                                                                <div class="fs-sm">Transaction_id: <span id="transaction_id"></span></div>
-                                                                <div class="fs-sm">Invoice id: <span id="invoice_no"></span></div>
-                                                                <div class="fs-sm">Amount: <span id="amount"></span></div>
-                                                                <div class="fs-sm mb-3">Status: <span class="badge bg-success" id="status"></span></div>
+                                                                <div class="fs-4 mb-1">{{ __('part_s.name') }}: <span id="name"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.email') }}: <span id="email"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.payment_method') }}: <span id="payment_method"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.transaction_id') }}: <span id="transaction_id"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.invoice_id') }}: <span id="invoice_no"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.amount') }}: <span id="amount"></span></div>
+                                                                <div class="fs-sm mb-3">{{ __('part_s.status') }}: <span class="badge bg-success" id="status"></span></div>
                                                             </div>
 
                                                         </div>
@@ -312,19 +312,20 @@
                                         <!-- Shopping Cart -->
                                         <div class="block block-rounded">
                                             <div class="block-header block-header-default">
-                                                <h3 class="block-title">Product Order</h3>
+                                                <h3 class="block-title">{{ __('part_s.product_order') }}</h3>
                                             </div>
 
                                                 <div class="table-responsive">
                                                     <table id="item-table" class="table table-borderless table-striped table-vcenter">
                                                         <thead>
                                                         <tr>
-                                                            <th>Product name</th>
-                                                            <th>pro_code</th>
-                                                            <th>order qty</th>
-                                                            <th>qty instock</th>
-                                                            <th>price</th>
-                                                            <th>total_price</th>
+                                                            <th>{{ __('part_s.no') }}</th>
+                                                            <th>{{ __('part_s.invoice') }}</th>
+                                                            <th>{{ __('part_s.date') }}</th>
+                                                            <th>{{ __('part_s.amount') }}</th>
+                                                            <th>{{ __('part_s.payment') }}</th>
+                                                            <th>{{ __('part_s.state') }}</th>
+                                                            <th>{{ __('part_s.action') }}</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -423,13 +424,13 @@
                             <div class="block-content block-content-full text-end bg-body">
                            <form id="ItemForm" action="javascript:void(0)" method="POST" enctype="multipart/form-data">
                                  <input type="hidden" name="oid" id="oid">
-                                <button type="submit" id="buttonCancelled" class="btn btn-sm btn-warning mx-3">Cancel order</button>
+                                <button type="submit" id="buttonCancelled" class="btn btn-sm btn-warning mx-3">{{ __('part_s.cancel_order') }}</button>
 
-                            <label class="text-center" for="status">Choose:</label>
+                            <label class="text-center" for="status">{{ __('part_s.choose') }}:</label>
                                <select name="status" id="order-select">
                                 </select>
-                                <button id="buttonConfirm" type="submit" class="btn btn-sm btn-primary mx-3" data-bs-dismiss="modal">Confirm</button>
-                                <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
+                                <button id="buttonConfirm" type="submit" class="btn btn-sm btn-primary mx-3" data-bs-dismiss="modal">{{ __('part_s.confirm') }}</button>
+                                <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">{{ __('part_s.close') }}</button>
 
                             </form>
                             </div>
@@ -488,19 +489,19 @@
                 data: 'status',
                 name: 'status',
                  render: function (data) {
-                    if (data === "pending") {
-                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Pending</span>';
-                    } else if (data === "confirm") {
-                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Confirmed</span>';
-                    } else if (data === "delivering") {
-                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">Delivering</span>';
-                    } else if (data === "delivered") {
-                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Delivered</span>';
-                    }else if (data === "cancelled") {
-                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-secondary-light text-secondary">Cancelled</span>';
-                    }else {
-                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-secondary-light text-secondary">Failed</span>';
-                    }
+                     if (data === "pending") {
+                         return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">' + '{{ __('part_s.status_pending') }}' + '</span>';
+                     } else if (data === "confirm") {
+                         return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">' + '{{ __('part_s.status_confirm') }}' + '</span>';
+                     } else if (data === "delivering") {
+                         return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">' + '{{ __('part_s.status_delivering') }}' + '</span>';
+                     } else if (data === "delivered") {
+                         return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">' + '{{ __('part_s.status_delivered') }}' + '</span>';
+                     } else if (data === "cancelled") {
+                         return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-secondary-light text-secondary">' + '{{ __('part_s.status_cancelled') }}' + '</span>';
+                     } else {
+                         return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-secondary-light text-secondary">' + '{{ __('part_s.status_failed') }}' + '</span>';
+                     }
                 }
             },
             { data: 'action', name: 'action', orderable: false },
@@ -562,7 +563,7 @@
                                             $('#buttonConfirm').text('Low Qty'); // Change the button text to "Low Qty"
                                         } else {
                                             $('#buttonConfirm').prop('disabled', false);
-                                            $('#buttonConfirm').text('Save'); // Change the button text back to "Confirm"
+                                            $('#buttonConfirm').text('{{ __('part_s.save') }}'); // Change the button text back to "Confirm"
                                         }
                         // Populate the user data into the modal table
                         $('#ship_name').text(res.ship_name);
@@ -635,13 +636,14 @@
     }
     function cancelledFunc(id) {
         Swal.fire({
-            title: 'Cancelled this Record?',
-            text: "You won't be able to revert this!",
+            title: '{{ __('part_s.cancelled_record_title') }}',
+            text: '{{ __('part_s.cancelled_record_text') }}',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, Cancelled it!'
+            confirmButtonText: '{{ __('part_s.confirm_cancel') }}',
+            cancelButtonText: '{{ __('crud.cancel') }}'
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -681,12 +683,12 @@
     function addOptionsToSelect() {
         var selectElement = document.getElementById('order-select');
         var optionsArray = [
-            { value: 'cancelled', text: 'Cancelled' },
-            { value: 'failed', text: 'Failed' },
-            { value: 'delivering', text: 'Delivering' },
-            { value: 'delivered', text: 'Delivered' },
-            { value: 'confirm', text: 'Confirm' },
-            { value: 'pending', text: 'Pending' },
+            { value: 'cancelled', text: '{{ __('part_s.status_cancelled') }}' },
+            { value: 'failed', text: '{{ __('part_s.status_failed') }}' },
+            { value: 'delivering', text: '{{ __('part_s.status_delivering') }}' },
+            { value: 'delivered', text: '{{ __('part_s.status_delivered') }}' },
+            { value: 'confirm', text: '{{ __('part_s.status_confirm') }}' },
+            { value: 'pending', text: '{{ __('part_s.status_pending') }}' },
         ];
 
         for (var i = 0; i < optionsArray.length; i++) {

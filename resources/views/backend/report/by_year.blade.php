@@ -20,10 +20,10 @@
                     <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item">
-                                <a class="link-fx" href="javascript:void(0)">Tables</a>
+                                <a class="link-fx" href="javascript:void(0)">{{ __('part_s.tables') }}</a>
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
-                                DataTables
+                                {{ __('part_s.datatables') }}
                             </li>
                         </ol>
                     </nav>
@@ -36,7 +36,7 @@
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
                     <h3 class="block-title">
-                        Seach By Year : {{ $formatYear }}
+                        {{ __('part_s.search_by_year') }} : {{ $formatYear }}
                         <form method="post" action="{{ route('search-by-year')}}">
                             @csrf
                             <div class="row my-1">
@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="col-xl-3">
                                     <button type="submit" class="btn btn-alt-primary">
-                                        Search
+                                        {{ __('part_s.search') }}
                                     </button>
                                 </div>
                             </div>
@@ -62,15 +62,16 @@
               <!-- DataTables init on table by adding .js-dataTable-responsive class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
               <table id="order-table" class="table table-bordered table-vcenter">
                 <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Invoice </th>
-                    <th>Date </th>
-                    <th>Amount </th>
-                    <th>Payment </th>
-                    <th>State </th>
-                    <th>Action</th> 
-                  </tr>
+                <tr>
+                    <th>{{ __('part_s.no') }}</th>
+                    <th>{{ __('part_s.invoice') }}</th>
+                    <th>{{ __('part_s.date') }}</th>
+                    <th>{{ __('part_s.amount') }}</th>
+                    <th>{{ __('part_s.payment') }}</th>
+                    <th>{{ __('part_s.state') }}</th>
+                    <th>{{ __('part_s.action') }}</th>
+                </tr>
+
                 </thead>
                 <tbody>
                     <tr>
@@ -219,15 +220,15 @@
           <!-- Dynamic Table Responsive -->
         </div>
 
-    
-        
+
+
          <!-- Extra Large Block Modal -->
             <div class="modal" id="modal_order" tabindex="-1" role="dialog" aria-labelledby="modal_order" aria-hidden="true">
                 <div class="modal-dialog modal-xl" role="document">
                     <div class="modal-content">
                         <div class="block block-rounded block-transparent mb-0">
                             <div class="block-header block-header-default">
-                                <h3 class="block-title">Order Details</h3>
+                                <h3 class="block-title">{{ __('part_s.order_details') }}</h3>
                                 <div class="block-options">
                                     <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                                         <i class="fa fa-fw fa-times"></i>
@@ -246,19 +247,20 @@
                                                         <!-- Shipping Address -->
                                                         <div class="block block-rounded block-bordered">
                                                             <div class="block-header border-bottom">
-                                                                <h3 class="block-title">Shipping Details</h3>
+                                                                <h3 class="block-title">{{ __('part_s.shipping_details') }}</h3>
                                                             </div>
                                                             <div class="block-content">
-                                                                <div class="fs-4 mb-1">Name: <span id="ship_name"></span></div>
-                                                                <div class="fs-sm">Email: <span id="ship_email"></span></div>
-                                                                <div class="fs-sm">City: <span id="ship_city"></span></div>
-                                                                <div class="fs-sm">District: <span id="ship_district"></span></div>
-                                                                <div class="fs-sm">PostCode: <span id="ship_post"></span></div>
-                                                                <div class="fs-sm">Order Date: <span id="order_date"></span></div>
+                                                                <div class="fs-4 mb-1">{{ __('part_s.name') }}: <span id="ship_name"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.email') }}: <span id="ship_email"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.city') }}: <span id="ship_city"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.district') }}: <span id="ship_district"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.postcode') }}: <span id="ship_post"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.order_date') }}: <span id="order_date"></span></div>
                                                                 <address class="fs-sm">
-                                                                    <i class="fa fa-phone"></i> <span id="ship_phone"></span><br>
+                                                                    <i class="fa fa-phone"></i> {{ __('part_s.phone') }}: <span id="ship_phone"></span><br>
                                                                 </address>
                                                             </div>
+
                                                         </div>
                                                         <!-- END Shipping Address -->
                                                     </div>
@@ -266,18 +268,17 @@
                                                         <!-- User Address -->
                                                         <div class="block block-rounded block-bordered">
                                                             <div class="block-header border-bottom">
-                                                                <h3 class="block-title">INVOICE : <span id="invoice_no"></span></h3>
+                                                                <h3 class="block-title">{{ __('part_s.invoice') }} : <span id="invoice_no"></span></h3>
                                                             </div>
                                                             <div class="block-content">
-                                                                <div class="fs-4 mb-1">Name: <span id="name"></span></div>
-                                                                <div class="fs-sm">Email: <span id="email"></span></div>
-                                                                <div class="fs-sm">Payment Method: <span id="payment_method"></span></div>
-                                                                <div class="fs-sm">Transaction_id: <span id="transaction_id"></span></div>
-                                                                <div class="fs-sm">Invoice id: <span id="invoice_no"></span></div>
-                                                                <div class="fs-sm">Amount: <span id="amount"></span></div>
-                                                                <div class="fs-sm mb-3">Status: <span class="badge bg-success" id="status"></span></div>
+                                                                <div class="fs-4 mb-1">{{ __('part_s.name') }}: <span id="name"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.email') }}: <span id="email"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.payment_method') }}: <span id="payment_method"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.transaction_id') }}: <span id="transaction_id"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.invoice_id') }}: <span id="invoice_no"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.amount') }}: <span id="amount"></span></div>
+                                                                <div class="fs-sm mb-3">{{ __('part_s.status') }}: <span class="badge bg-success" id="status"></span></div>
                                                             </div>
-
                                                         </div>
                                                         <!-- END User Address -->
                                                     </div>
@@ -290,19 +291,19 @@
                                         <!-- Shopping Cart -->
                                         <div class="block block-rounded">
                                             <div class="block-header block-header-default">
-                                                <h3 class="block-title">Product Order</h3>
+                                                <h3 class="block-title">{{ __('part_s.product_order') }}</h3>
                                             </div>
 
                                                 <div class="table-responsive">
                                                     <table id="item-table" class="table table-borderless table-striped table-vcenter">
                                                         <thead>
                                                         <tr>
-                                                            <th>Product name</th>
-                                                            <th>pro_code</th>
-                                                            <th>order qty</th>
-                                                            <th>qty instock</th>
-                                                            <th>price</th>
-                                                            <th>total_price</th>
+                                                            <th>{{ __('part_s.product_name') }}</th>
+                                                            <th>{{ __('part_s.pro_code') }}</th>
+                                                            <th>{{ __('part_s.order_qty') }}</th>
+                                                            <th>{{ __('part_s.qty_instock') }}</th>
+                                                            <th>{{ __('part_s.price') }}</th>
+                                                            <th>{{ __('part_s.total_price') }}</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -401,15 +402,16 @@
                             <div class="block-content block-content-full text-end bg-body">
                            <form id="ItemForm" action="javascript:void(0)" method="POST" enctype="multipart/form-data">
                                  <input type="hidden" name="oid" id="oid">
-                                <button type="submit" id="buttonCancelled" class="btn btn-sm btn-warning mx-3">Cancel order</button>
+                               <button type="submit" id="buttonCancelled" class="btn btn-sm btn-warning mx-3">{{ __('part_s.cancel_order') }}</button>
 
-                            <label class="text-center" for="status">Choose:</label>
+                               <label class="text-center" for="status">{{ __('part_s.choose') }}</label>
                                <select name="status" id="order-select">
-                                </select>
-                                <button id="buttonConfirm" type="submit" class="btn btn-sm btn-primary mx-3" data-bs-dismiss="modal">Confirm</button>
-                                <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
+                                   <!-- Add options dynamically using JavaScript or Blade if needed -->
+                               </select>
+                               <button id="buttonConfirm" type="submit" class="btn btn-sm btn-primary mx-3" data-bs-dismiss="modal">{{ __('part_s.confirm') }}</button>
+                               <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">{{ __('part_s.close') }}</button>
 
-                            </form>
+                           </form>
                             </div>
                         </div>
                     </div>
@@ -447,7 +449,7 @@
         $(".js-flatpickr").flatpickr({
             dateFormat: "j F Y",
         });
-        
+
      // Retrieve the format date from the data attribute
      var filterYear = $('#formatYear').val();
     $('#order-table').DataTable({
@@ -471,20 +473,20 @@
                 data: 'status',
                 name: 'status',
                  render: function (data) {
-                    if (data === "pending") {
-                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Pending</span>';
-                    } else if (data === "confirm") {
-                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Confirmed</span>';
-                    } else if (data === "delivering") {
-                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">Delivering</span>';
-                    } else if (data === "delivered") {
-                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Delivered</span>';
-                    }else if (data === "cancelled") {
-                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-secondary-light text-secondary">Cancelled</span>';
-                    }else {
-                        return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-secondary-light text-secondary">Failed</span>';
-                    }
-                }
+                     if (data === "pending") {
+                         return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">' + '{{ __('part_s.status_pending') }}' + '</span>';
+                     } else if (data === "confirm") {
+                         return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">' + '{{ __('part_s.status_confirm') }}' + '</span>';
+                     } else if (data === "delivering") {
+                         return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">' + '{{ __('part_s.status_delivering') }}' + '</span>';
+                     } else if (data === "delivered") {
+                         return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">' + '{{ __('part_s.status_delivered') }}' + '</span>';
+                     } else if (data === "cancelled") {
+                         return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-secondary-light text-secondary">' + '{{ __('part_s.status_cancelled') }}' + '</span>';
+                     } else {
+                         return '<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-secondary-light text-secondary">' + '{{ __('part_s.status_failed') }}' + '</span>';
+                     }
+                 }
             },
             { data: 'action', name: 'action', orderable: false },
         ],
@@ -546,7 +548,7 @@
                                             $('#buttonConfirm').text('Low Qty'); // Change the button text to "Low Qty"
                                         } else {
                                             $('#buttonConfirm').prop('disabled', false);
-                                            $('#buttonConfirm').text('Save'); // Change the button text back to "Confirm"
+                                            $('#buttonConfirm').text('{{ __('part_s.save') }}');// Change the button text back to "Confirm"
                                         }
                         // Populate the user data into the modal table
                         $('#ship_name').text(res.ship_name);
@@ -619,13 +621,14 @@
     }
     function cancelledFunc(id) {
         Swal.fire({
-            title: 'Cancelled this Record?',
-            text: "You won't be able to revert this!",
+            title: '{{ __('part_s.cancelled_record_title') }}',
+            text: '{{ __('part_s.cancelled_record_text') }}',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, Cancelled it!'
+            confirmButtonText: '{{ __('part_s.confirm_cancel') }}',
+            cancelButtonText: '{{ __('crud.cancel') }}'
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -665,12 +668,12 @@
     function addOptionsToSelect() {
         var selectElement = document.getElementById('order-select');
         var optionsArray = [
-            { value: 'cancelled', text: 'Cancelled' },
-            { value: 'failed', text: 'Failed' },
-            { value: 'delivering', text: 'Delivering' },
-            { value: 'delivered', text: 'Delivered' },
-            { value: 'confirm', text: 'Confirm' },
-            { value: 'pending', text: 'Pending' },
+            { value: 'cancelled', text: '{{ __('part_s.status_cancelled') }}' },
+            { value: 'failed', text: '{{ __('part_s.status_failed') }}' },
+            { value: 'delivering', text: '{{ __('part_s.status_delivering') }}' },
+            { value: 'delivered', text: '{{ __('part_s.status_delivered') }}' },
+            { value: 'confirm', text: '{{ __('part_s.status_confirm') }}' },
+            { value: 'pending', text: '{{ __('part_s.status_pending') }}' },
         ];
 
         for (var i = 0; i < optionsArray.length; i++) {

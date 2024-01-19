@@ -45,7 +45,8 @@ class PartnerController extends Controller
             ]
         );
 
-        return response()->json($item);
+        return response()->json(['success' => true, 'message' => __('crud.record_saved')]);
+
     }
 
 
