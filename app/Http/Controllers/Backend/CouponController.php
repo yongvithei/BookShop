@@ -32,22 +32,22 @@ class CouponController extends Controller
                     'status' => $request->statusC,
                 ]
             );
-    
-            return response()->json($item);
+
+        return response()->json(['success' => true, 'message' => __('crud.record_saved')]);
     }
-    
-    
+
+
     public function edit(Request $request)
     {
         $id = array('id' => $request->id);
         $item  = Coupon::where($id)->first();
         return Response()->json($item);
     }
-    
+
     public function destroy(Request $request)
         {
         $item = Coupon::find($request->id);
-    
+
         if (!$item) {
             return response()->json(['message' => 'Slider not found'], 404);
         }

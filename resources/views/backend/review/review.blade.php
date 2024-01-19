@@ -26,7 +26,7 @@
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">Review</a>
+                            <a class="link-fx" href="javascript:void(0)">{{ __('cou.review') }}</a>
                         </li>
 
                     </ol>
@@ -45,10 +45,10 @@
                     <div class="block block-rounded">
                         <ul class="nav nav-tabs nav-tabs-block align-items-center" role="tablist">
                             <li class="nav-item">
-                                <button class="nav-link active" id="btabswo-static-home-tab" data-bs-toggle="tab" data-bs-target="#btabswo-static-home" role="tab" aria-controls="btabswo-static-home" aria-selected="true">Under Preview</button>
+                                <button class="nav-link active" id="btabswo-static-home-tab" data-bs-toggle="tab" data-bs-target="#btabswo-static-home" role="tab" aria-controls="btabswo-static-home" aria-selected="true">{{ __('cou.under_preview') }}</button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link" id="btabswo-static-profile-tab" data-bs-toggle="tab" data-bs-target="#btabswo-static-profile" role="tab" aria-controls="btabswo-static-profile" aria-selected="false">Approve</button>
+                                <button class="nav-link" id="btabswo-static-profile-tab" data-bs-toggle="tab" data-bs-target="#btabswo-static-profile" role="tab" aria-controls="btabswo-static-profile" aria-selected="false">{{ __('cou.approve') }}</button>
                             </li>
                             <li class="nav-item ms-auto">
                                 <div class="block-options ps-3 pe-2">
@@ -70,15 +70,16 @@
                                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
                                 <table id="item-table" class="table table-bordered table-vcenter">
                                     <thead>
-                                        <tr>
-                                            <th class="text-center" style="width: 80px;">ID</th>
-                                            <th style="width: 30%;">Comment</th>
-                                            <th class="d-none d-sm-table-cell" style="width: 15%;">User</th>
-                                            <th class="d-none d-sm-table-cell" style="width: 15%;">Product</th>
-                                            <th class="d-none d-sm-table-cell" style="width: 20%;">Rating</th>
-                                            <th class="d-none d-sm-table-cell" style="width: 10%;">Status</th>
-                                            <th style="width: 15%;">Action</th>
-                                        </tr>
+                                    <tr>
+                                        <th class="text-center" style="width: 80px;">{{ __('cou.id') }}</th>
+                                        <th style="width: 30%;">{{ __('cou.comment') }}</th>
+                                        <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('cou.user') }}</th>
+                                        <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('cou.product') }}</th>
+                                        <th class="d-none d-sm-table-cell" style="width: 20%;">{{ __('cou.rating') }}</th>
+                                        <th class="d-none d-sm-table-cell" style="width: 10%;">{{ __('cou.status') }}</th>
+                                        <th style="width: 15%;">{{ __('cou.action') }}</th>
+                                    </tr>
+
                                     </thead>
                                     <tbody>
                                         <tr>
@@ -242,7 +243,7 @@
                                             <td class="text-center">
                                                 <div class="pl-loading"></div>
                                             </td>
-                                        </tr>   
+                                        </tr>
                                     </tbody>
                                 </table>
                                 <!-- END Dynamic Table Full -->
@@ -251,15 +252,15 @@
                                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
                                   <table id="item-approve" class="table table-bordered table-vcenter">
                                     <thead>
-                                        <tr>
-                                            <th class="text-center" style="width: 80px;">ID</th>
-                                            <th style="width: 30%;">Comment</th>
-                                            <th class="d-none d-sm-table-cell" style="width: 15%;">User</th>
-                                            <th class="d-none d-sm-table-cell" style="width: 15%;">Product</th>
-                                            <th class="d-none d-sm-table-cell" style="width: 20%;">Rating</th>
-                                            <th class="d-none d-sm-table-cell" style="width: 10%;">Status</th>
-                                            <th style="width: 15%;">Action</th>
-                                        </tr>
+                                    <tr>
+                                        <th class="text-center" style="width: 80px;">{{ __('cou.id') }}</th>
+                                        <th style="width: 30%;">{{ __('cou.comment') }}</th>
+                                        <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('cou.user') }}</th>
+                                        <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('cou.product') }}</th>
+                                        <th class="d-none d-sm-table-cell" style="width: 20%;">{{ __('cou.rating') }}</th>
+                                        <th class="d-none d-sm-table-cell" style="width: 10%;">{{ __('cou.status') }}</th>
+                                        <th style="width: 15%;">{{ __('cou.action') }}</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
@@ -423,7 +424,7 @@
                                             <td class="text-center">
                                                 <div class="pl-loading"></div>
                                             </td>
-                                        </tr>   
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -435,7 +436,7 @@
 
             </div>
 
-         
+
         </div>
         <!-- END Page Content -->
     </main>
@@ -471,7 +472,7 @@
                 { data: 'comment', name: 'comment' },
                 { data: 'user_name', name: 'user_name' },
                 { data: 'pro_name', name: 'pro_name' },
-                { 
+                {
                 data: 'rating',
                 name: 'rating',
                 render: function (data) {
@@ -490,8 +491,8 @@
                     }
                 }
             },
-                { 
-                data: 'status', 
+                {
+                data: 'status',
                 name: 'status',
                 render: function (data) {
                     if (data == 0) {
@@ -521,7 +522,7 @@
                 { data: 'comment', name: 'comment' },
                 { data: 'user_name', name: 'user_name' },
                 { data: 'pro_name', name: 'pro_name' },
-                { 
+                {
                 data: 'rating',
                 name: 'rating',
                 render: function (data) {
@@ -540,8 +541,8 @@
                     }
                 }
             },
-                { 
-                data: 'status', 
+                {
+                data: 'status',
                 name: 'status',
                 render: function (data) {
                     if (data == 0) {
@@ -562,13 +563,14 @@
     });
     function approveFunc(id) {
         Swal.fire({
-            title: 'Approve this Record?',
-            text: "You won't be able to revert this!",
+            title: '{{ __('cou.approve_record_confirmation') }}',
+            text: "{{ __('crud.wont_revoke') }}",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, Approve it!'
+            confirmButtonText: '{{ __('cou.yes_approve') }}',
+            cancelButtonText: '{{ __('crud.cancel') }}'
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -588,13 +590,14 @@
     }
     function revokeFunc(id) {
         Swal.fire({
-            title: 'Revoke this Record?',
-            text: "You won't be able to revert this!",
+            title: '{{ __('cou.revoke_record_confirmation') }}',
+            text: "{{ __('cou.revoke_warning') }}",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, Revoke it!'
+            confirmButtonText: '{{ __('cou.yes_revoke') }}',
+            cancelButtonText: '{{ __('cou.cancel') }}'
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -614,13 +617,14 @@
     }
 function deleteFunc(id) {
     Swal.fire({
-        title: 'Delete Record?',
-        text: "You won't be able to revert this!",
+        title: '{{ __('crud.delete_record') }}',
+        text: "{{ __('crud.wont_revoke') }}",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: '{{ __('crud.yes_delete') }}',
+        cancelButtonText: '{{ __('crud.cancel') }}'
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
