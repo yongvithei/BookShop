@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('support_phone')->nullable();
             $table->string('email')->nullable();
             $table->text('address', 555)->nullable();
+            $table->text('address_kh', 555)->nullable();
             $table->string('information', 555)->nullable();
+            $table->string('information_kh', 555)->nullable();
             $table->string('facebook')->nullable();
             $table->string('telegram')->nullable();
             $table->decimal('exchange');
@@ -34,7 +36,9 @@ return new class extends Migration
                 'support_phone' => '012345678',
                 'email' => 'ponleuvichea@support.com',
                 'address' => 'No. 161-162, St. 2, Prek Mohatep Village, Sangkat Svay Por, Battambang City, Battambang, Cambodia',
+                'address_kh' => 'ភូមិព្រែកមហាទេព, ក្រោយជួបវិបត្តិ, ក្រុងបាត់ដំបង, បាត់ដំបង, កម្ពុជា',
                 'information' => 'Stationery, Educational Stores & Supplies in Battambang - Cambodia',
+                'information_kh' => 'សម្ភារៈការិយាល័យ ហាងលក់សម្ភារៈអប់រំ ក្នុងខេត្តបាត់ដំបង - កម្ពុជា។',
                 'facebook' => 'https://www.facebook.com/vichea.ponleu.1',
                 'telegram' => 'https://t.me/Vithei',
                 'exchange' => '4120',

@@ -20,13 +20,16 @@ class SiteInfoController extends Controller
 
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
+            'name_kh' => 'required|string|max:255',
             'support_phone' => 'required|string|max:255',
             'email' => 'string|max:255',
             'address' => 'required|string|max:555',
+            'address_kh' => 'required|string|max:555',
             'facebook' => 'string|max:255',
             'telegram' => 'string|max:255',
             'exchange' => 'required|numeric|between:3835,4270',
             'information' => 'required|string|max:555',
+            'information_kh' => 'required|string|max:555',
             'map' => 'string|max:1000',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -50,7 +53,7 @@ class SiteInfoController extends Controller
         }
         $item = SiteInfo::updateOrCreate(['id' => $data['id']], $validatedData);
 
-        return response()->json(['success' => true, 'message' => 'Record updated successfully']);
+        return response()->json(['success' => true, 'message' => __('crud.record_saved')]);
     }
     public function rate()
     {

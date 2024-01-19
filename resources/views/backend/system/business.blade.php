@@ -32,14 +32,14 @@
     <!-- Company Information -->
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">Company Information</h3>
+                    <h3 class="block-title">{{ __('backup.company_information') }}</h3>
                 </div>
                 <div class="block-content">
                     <form id="myForm" action="" method="POST" onsubmit="return false;">
                         <div class="row push">
                             <div class="col-lg-4">
                                 <p class="fs-sm text-muted">
-                                    Your Company Information is shown to other users on the internet.
+                                    {{ __('backup.company_information_description') }}
                                 </p>
                             </div>
                             <div class="col-lg-8 col-xl-5">
@@ -47,16 +47,24 @@
 
 
                                 <div class="mb-3">
-                                <label class="form-label" for="name">Company Name</label>
+                                <label class="form-label" for="name">{{ __('backup.company_name') }}</label>
                                     <div class="input-group">
                                                         <span class="input-group-text">
                                                         <i class="fa fa-city"></i>
                                                         </span>
-                                        <input type="text" class="form-control" id="name" name="name" value="{{$item->name}}" required>
+                                        <input type="text" class="form-control" id="name" name="name" value="{{$item->name}}" placeholder="{{ __('backup.company_name_khmer') }}" required>
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="support_phone">Support Phone</label>
+                                    <div class="input-group">
+                                                        <span class="input-group-text">
+                                                        <i class="fa fa-city"></i>
+                                                        </span>
+                                        <input type="text" class="form-control" id="name_kh" name="name_kh" value="{{$item->name_kh}}" placeholder="{{ __('backup.company_name_khmer') }}" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="support_phone">{{ __('backup.support_phone') }}</label>
                                         <div class="input-group">
                                                             <span class="input-group-text">
                                                             <i class="si si-earphones-alt"></i>
@@ -65,7 +73,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="email">Email</label>
+                                    <label class="form-label" for="email">{{ __('backup.email') }}</label>
                                         <div class="input-group">
                                                             <span class="input-group-text">
                                                             <i class=" fa fa-inbox"></i>
@@ -74,15 +82,21 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="address">Address</label>
-                                    <textarea class="form-control" id="address" name="address" rows="3" placeholder="Address ...">{{$item->address}}</textarea>
+                                    <label class="form-label" for="address">{{ __('backup.address') }}</label>
+                                    <textarea class="form-control" id="address" name="address" rows="3" placeholder="{{ __('backup.address_placeholder') }}">{{$item->address}}</textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="information">Store Information</label>
-                                    <textarea class="form-control" id="information" name="information" rows="3" placeholder="Information ...">{{$item->information}}</textarea>
+                                    <textarea class="form-control" id="address_kh" name="address_kh" rows="3" placeholder="{{ __('backup.address_khmer_placeholder') }}">{{$item->address_kh}}</textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="map">Map Link</label>
+                                    <label class="form-label" for="information">{{ __('backup.information') }}</label>
+                                    <textarea class="form-control" id="information" name="information" rows="3" placeholder="{{ __('backup.information_placeholder') }}">{{$item->information}}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <textarea class="form-control" id="information_kh" name="information_kh" rows="3" placeholder="{{ __('backup.information_khmer_placeholder') }}">{{$item->information_kh}}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="map">{{ __('backup.map_link') }}</label>
                                         <div class="input-group">
                                                             <span class="input-group-text">
                                                             <i class="far fa-map"></i>
@@ -91,7 +105,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="facebook">Facebook Link</label>
+                                    <label class="form-label" for="facebook">{{ __('backup.facebook_link') }}</label>
                                         <div class="input-group">
                                                             <span class="input-group-text">
                                                             <i class="fab fa-facebook"></i>
@@ -100,7 +114,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="telegram">Telegram Link</label>
+                                    <label class="form-label" for="telegram">{{ __('backup.telegram_link') }}</label>
                                         <div class="input-group">
                                                             <span class="input-group-text">
                                                             <i class="fab fa-telegram"></i>
@@ -109,7 +123,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                <label class="form-label" for="exchange">Exchange Rate 1$</label>
+                                <label class="form-label" for="exchange">{{ __('backup.exchange_rate') }} 1$</label>
                                         <div class="input-group">
                                                             <span class="input-group-text">
                                                             <i class="fa fa-money-bill-transfer"></i>
@@ -118,20 +132,20 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                <label class="form-label">Logo</label>
+                                <label class="form-label">{{ __('backup.logo') }}</label>
                                 <div class="mb-3">
                                 <div id="imageContainer" style="overflow: hidden;">
                                     <img id="imagePreview" src="{{ asset('storage/' . $item->image) }}" alt="">
                                     </div>
                                 </div>
                                 <div class="mb-4">
-                                    <label for="imageInput" class="form-label">Choose Image</label>
+                                    <label for="imageInput" class="form-label">{{ __('backup.choose_image') }}</label>
                                     <input class="form-control" type="file" id="imageInput" name="image" accept="image/">
                                 </div>
 
                                 <div class="mb-4">
                                     <button id="submitForm" type="button" class="btn btn-alt-primary">
-                                        Update
+                                        {{ __('backup.update') }}
                                     </button>
                                 </div>
                             </div>
