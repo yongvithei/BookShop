@@ -156,4 +156,23 @@ return [
     'not_available' => 'មិនមានទេ',
     'credit' => 'Develop by Yong Vithei',
 
+    'my_cart' => 'កន្ត្រករបស់ខ្ញុំ',
+    'apply_discount' => 'អនុវត្តប័ណ្ណ',
+    'order_processing_note' => 'ចំណាំ: ការកុម្មង់តិចជាង 5000 រៀល មិនអាចរៀបចំបាន។',
+    'total_in_usd' => 'សរុបនៅក្នុង USD',
+    'available' => 'មាន',
+    'discount_code_placeholder' => 'បញ្ចូលលេខកូដបញ្ចុះតម្លៃ',
+    'shipping_address' => 'អាសយដ្ឋាន​ដឹក​ជញ្ជូន',
+    'select_option' => 'ជ្រើសរើស',
+    'select_city_first' => 'ជ្រើសរើសទីក្រុងជាមុន',
+
+    'credit_card_tab' => 'កាតឥណទាន',
+    'credit_debit_card_label' => 'កាតឥណទាន ឬ កាត',
+    'cash_on_delivery_meaning' => 'ចំណុចអ្នកដែលបង់លុយទាមទារនៅពេលកុំទទួលយកទំនិញឬសេវាកម្មប្រចាំពេលដែលវាទទួលយកផងដែរ។',
+    'thank_you_message' => 'អរគុណសម្រាប់ការកុម្មង់របស់អ្នក!',
+    'order_processed' => 'ការកុម្មង់របស់អ្នកបានដាក់ទុកនិងនឹងត្រូវបានដោះស្រាយដោយរហូតដល់ឆ្នួតជូន។',
+    'go_back_shopping' => 'ត្រឡប់ទៅការទិញម្ហូប',
+    'track_order' => 'តាមដានការកុម្មង់',
+
+
 ];

@@ -159,4 +159,22 @@ return [
     'not_available' => 'Not Available',
     'credit' => 'Develop by Yong Vithei',
 
+    'my_cart' => 'My Cart',
+    'apply_discount' => 'Apply Discount',
+    'order_processing_note' => 'Note: Orders less than 5000 Riel can\'t be processed.',
+    'total_in_usd' => 'Total in USD',
+    'available' => 'Available',
+    'discount_code_placeholder' => 'Enter discount code',
+    'shipping_address' => 'Shipping Address',
+    'select_option' => 'Select',
+    'select_city_first' => 'Select City First',
+    'credit_card_tab' => 'Credit Card',
+    'credit_debit_card_label' => 'Credit or debit card',
+    'cash_on_delivery_meaning' => 'What Is the Meaning of Cash on Delivery? Cash on delivery is when a buyer pays for goods or services once they are received.',
+    'thank_you_message' => 'Thank you for your order!',
+    'order_processed' => 'Your order has been placed and will be processed as soon as possible.',
+    'go_back_shopping' => 'Go back shopping',
+    'track_order' => 'Track order',
+
+
 ];

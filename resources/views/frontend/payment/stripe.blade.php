@@ -10,16 +10,13 @@
         <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
             <div class="container">
                 <div class="page-breadcrumb d-flex align-items-center">
-                    <h3 class="breadcrumb-title pe-3">Checkout</h3>
+                    <h3 class="breadcrumb-title pe-3">{{ __('main.checkout') }}</h3>
                     <div class="ms-auto">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 p-0">
-                                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i>
-                                        Home</a>
-                                </li>
-                                <li class="breadcrumb-item"><a href="javascript:;">Shop</a>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i>{{ __('main.home') }}</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:;">{{ __('main.shop') }}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ __('main.checkout') }}</li>
                             </ol>
                         </nav>
                     </div>
@@ -40,22 +37,22 @@
                                             <a class="step-item active" href="{{ route('mycart') }}">
                                                 <div class="step-progress"><span class="step-count">1</span>
                                                 </div>
-                                                <div class="step-label"><i class='bx bx-cart'></i>Cart</div>
+                                                <div class="step-label"><i class='bx bx-cart'></i>{{ __('main.cart') }}</div>
                                             </a>
                                             <a class="step-item active" href="{{ route('checkout') }}">
                                                 <div class="step-progress"><span class="step-count">2</span>
                                                 </div>
-                                                <div class="step-label"><i class='bx bx-cube'></i>Shipping</div>
+                                                <div class="step-label"><i class='bx bx-cube'></i>{{ __('main.shipping') }}</div>
                                             </a>
                                             <a class="step-item current" href="javascript:">
                                                 <div class="step-progress"><span class="step-count">3</span>
                                                 </div>
-                                                <div class="step-label"><i class='bx bx-credit-card'></i>Payment</div>
+                                                <div class="step-label"><i class='bx bx-credit-card'></i>{{ __('main.payment') }}</div>
                                             </a>
                                             <a class="step-item" href="javascript:">
                                                 <div class="step-progress"><span class="step-count">4</span>
                                                 </div>
-                                                <div class="step-label"><i class='bx bx-check-circle'></i>Tracking</div>
+                                                <div class="step-label"><i class='bx bx-check-circle'></i>{{ __('main.tracking') }}</div>
                                             </a>
                                         </div>
                                     </div>
@@ -74,7 +71,7 @@
                                                         <div class="tab-icon"><i
                                                                 class='bx bx-credit-card font-18 me-1'></i>
                                                         </div>
-                                                        <div class="tab-title">Credit Card</div>
+                                                        <div class="tab-title">{{ __('main.credit_card_tab') }}</div>
                                                     </div>
                                                 </a>
                                             </li>
@@ -98,10 +95,8 @@
                                                             <div class="col-12 col-lg-12">
                                                                 <div class="mb-3">
                                                                     <div class="form-row">
-                                                                        <label for="card-element">
-                                                                        Credit or debit card
-                                                                        </label>
-                                                                        @if($cartTotal > 99999000 || (session()->has('coupon') && session()->get('coupon')['total_amount'] > 99999000))
+                                                                        <label for="card-element">{{ __('main.credit_debit_card_label') }}</label>
+                                                                    @if($cartTotal > 99999000 || (session()->has('coupon') && session()->get('coupon')['total_amount'] > 99999000))
                                                                             <br><label for="card-element">
                                                                                 Price higher than 99000000 Riel, We recommend making your purchase at the store.
                                                                             </label>
@@ -144,9 +139,7 @@
                                             <div class="tab-pane fade" id="delivery-payment" role="tabpanel">
                                                 <div class="p-3 border">
                                                     <div class="mb-3">
-                                                        <p class="mb-0">What Is the Meaning of Cash on Delivery? Cash on
-                                                            delivery is when a buyer pays for goods or services once
-                                                            they are received.</p>
+                                                        <p class="mb-0">{{ __('main.cash_on_delivery_meaning') }}</p>
                                                     </div>
                                                     <form action="{{ route('cash.order') }}" method="post">
                                                         @csrf
@@ -228,7 +221,7 @@
                                                     <div class="ps-2">
                                                         <h6 class="mb-1"><a href="javascript:;" class="text-dark">{{ $item->name }}</a></h6>
                                                         <div class="widget-product-meta"><span
-                                                                class="me-2">{{ $item->price }} KHR</span><span
+                                                                class="me-2">{{ $item->price }} {{ __('main.khr') }}</span><span
                                                                 class="">x {{ $item->qty }}</span>
                                                         </div>
                                                     </div>
@@ -242,25 +235,25 @@
                                              @if(Session::has('coupon'))
                                             <div class="card-body">
                                                 <p class="mb-2">{{ __('main.subtotal') }}: <span
-                                                        class="float-end">{{ $cartTotal }} KHR</span></p>
+                                                        class="float-end">{{ $cartTotal }} {{ __('main.khr') }}</span></p>
                                                 <p class="mb-2">{{ __('main.shipping') }}: <span
                                                         class="float-end">Free</span></p>
                                                 <p class="mb-2">{{ __('main.coupon_name') }}: <span
                                                         class="float-end">{{ session()->get('coupon')['coupon_name'] }} ( {{ session()->get('coupon')['coupon_discount'] }}% )</span></p>
                                                 <p class="mb-0">{{ __('main.discount') }}: <span
-                                                        class="float-end">{{ session()->get('coupon')['discount_amount'] }} KHR</span></p>
+                                                        class="float-end">{{ session()->get('coupon')['discount_amount'] }} {{ __('main.khr') }}</span></p>
                                                 <div class="my-3 border-top"></div>
                                                 <h5 class="mb-2">{{ __('main.order_total') }}: <span
-                                                        class="float-end">{{ session()->get('coupon')['total_amount'] }} KHR</span></h5>
-                                                <h5 class="mb-0">Total Dollar: <span
+                                                        class="float-end">{{ session()->get('coupon')['total_amount'] }} {{ __('main.khr') }}</span></h5>
+                                                <h5 class="mb-0">{{ __('main.total_in_usd') }}: <span
                                                         class="float-end">$ {{$dollar}}</span></h5>
                                             </div>
                                             @else
                                             <div class="card-body">
                                                 <div class="my-3 border-top"></div>
                                                 <h5 class="mb-0">{{ __('main.order_total') }}: <span
-                                                        class="float-end">{{ $cartTotal }} KHR</span></h5>
-                                                <h5 class="mb-0">Total Dollar: <span
+                                                        class="float-end">{{ $cartTotal }} {{ __('main.khr') }}</span></h5>
+                                                <h5 class="mb-0">{{ __('main.total_in_usd') }}: <span
                                                         class="float-end">$ {{$dollar}}</span></h5>
                                             </div>
                                             @endif

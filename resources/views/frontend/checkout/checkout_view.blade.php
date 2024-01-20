@@ -14,12 +14,9 @@
                     <div class="ms-auto">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 p-0">
-                                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i>
-                                        Home</a>
-                                </li>
-                                <li class="breadcrumb-item"><a href="javascript:;">Shop</a>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i>{{ __('main.home') }}</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:;">{{ __('main.shop') }}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ __('main.checkout') }}</li>
                             </ol>
                         </nav>
                     </div>
@@ -70,7 +67,7 @@
                                     <div class="card-body">
 
                                         <div class="border p-3">
-                                            <h2 class="h5 mb-0">Shipping Address</h2>
+                                            <h2 class="h5 mb-0">{{ __('main.shipping_address') }}</h2>
                                             <div class="my-3 border-bottom"></div>
                                             <div class="form-body">
                                                 <form method="post" action="{{ route('checkout.store') }}" class="row g-3">
@@ -95,16 +92,16 @@
                                                          <label
                                                             class="form-label">{{ __('main.province') }}</label>
                                                         <select name="city_id" class="form-select rounded-0">
-                                                            <option value="1">Select</option>
-                                                              @foreach($cities as $item)
-                                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                            <option value="1">{{ __('main.select_option') }}</option>
+                                                        @foreach($cities as $item)
+                                                                <option value="{{ $item->id }}"> @if(session()->get('locale') == 'en') {{ $item->name ?? $item->ci_kh ?? '' }} @else {{ $item->ci_kh ?? $item->name ?? '' }} @endif</option>
                                                                 @endforeach
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6">
                                                        <label class="form-label">{{ __('main.district') }}</label>
                                                         <select name="district_id" class="form-select rounded-0">
-                                                           <option value="1">Select City First</option>
+                                                            <option value="1">{{ __('main.select_city_first') }}</option>
                                                         </select>
                                                     </div>
 
@@ -160,7 +157,7 @@
                                                     <div class="ps-2">
                                                         <h6 class="mb-1"><a href="javascript:;" class="text-dark">{{ $item->name }}</a></h6>
                                                         <div class="widget-product-meta"><span
-                                                                class="me-2">{{ $item->price }} KHR</span><span
+                                                                class="me-2">{{ $item->price }} {{ __('main.khr') }}</span><span
                                                                 class="">x {{ $item->qty }}</span>
                                                         </div>
                                                     </div>
@@ -173,25 +170,25 @@
                                              @if(Session::has('coupon'))
                                             <div class="card-body">
                                                 <p class="mb-2">{{ __('main.subtotal') }}: <span
-                                                        class="float-end">{{ $cartTotal }} KHR</span></p>
+                                                        class="float-end">{{ $cartTotal }} {{ __('main.khr') }}</span></p>
                                                 <p class="mb-2">{{ __('main.shipping') }}: <span
                                                         class="float-end">Free</span></p>
                                                 <p class="mb-2">{{ __('main.coupon_name') }}: <span
                                                         class="float-end">{{ session()->get('coupon')['coupon_name'] }} ( {{ session()->get('coupon')['coupon_discount'] }}% )</span></p>
                                                 <p class="mb-0">{{ __('main.discount') }}: <span
-                                                        class="float-end">{{ session()->get('coupon')['discount_amount'] }} KHR</span></p>
+                                                        class="float-end">{{ session()->get('coupon')['discount_amount'] }} {{ __('main.khr') }}</span></p>
                                                 <div class="my-3 border-top"></div>
                                                 <h5 class="mb-2">{{ __('main.order_total') }}: <span
-                                                        class="float-end">{{ session()->get('coupon')['total_amount'] }} KHR</span></h5>
-                                                <h5 class="mb-0">Total Dollar: <span
+                                                        class="float-end">{{ session()->get('coupon')['total_amount'] }} {{ __('main.khr') }}</span></h5>
+                                                <h5 class="mb-0">{{ __('main.total_in_usd') }}: <span
                                                         class="float-end">$ {{$dollar}}</span></h5>
                                             </div>
                                             @else
                                             <div class="card-body">
                                                 <div class="my-3 border-top"></div>
                                                 <h5 class="mb-2">{{ __('main.order_total') }}: <span
-                                                        class="float-end">{{ $cartTotal }} KHR</span></h5>
-                                                <h5 class="mb-0">Total Dollar: <span
+                                                        class="float-end">{{ $cartTotal }} {{ __('main.khr') }}</span></h5>
+                                                <h5 class="mb-0">{{ __('main.total_in_usd') }}: <span
                                                         class="float-end">$ {{$dollar}}</span></h5>
                                             </div>
                                             @endif
@@ -220,12 +217,15 @@
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
-                        // console.log(data);
                         var d = $('select[name="district_id"]').empty();
                         $.each(data, function (key, value) {
-                            $('select[name="district_id"]').append(
-                                '<option value="' + value.id + '">' + value
-                                .name + '</option>');
+                            var optionText = ' ';
+                            if (value.name !== null) {
+                                optionText += ({{ session()->get('locale') == 'en' ? 'value.name' : 'value.dis_kh' }});
+                            } else if (value.dis_kh !== null) {
+                                optionText += value.dis_kh;
+                            }
+                            $('select[name="district_id"]').append('<option value="' + value.id + '">' + optionText + '</option>');
                         });
                     },
                 });
@@ -234,6 +234,7 @@
             }
         });
     });
+
 </script>
 
 @endsection

@@ -1,7 +1,7 @@
 @extends('frontend.index')
 @section('main')
 @section('title')
-    My cart
+    {{ __('main.my_cart') }}
 @endsection
 <!--start page wrapper -->
 <div class="page-wrapper">
@@ -10,16 +10,13 @@
         <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
             <div class="container">
                 <div class="page-breadcrumb d-flex align-items-center">
-                    <h3 class="breadcrumb-title pe-3">My Cart</h3>
+                   <h3 class="breadcrumb-title pe-3">{{ __('main.my_cart') }}</h3>
                     <div class="ms-auto">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 p-0">
-                                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i>
-                                        Home</a>
-                                </li>
-                                <li class="breadcrumb-item"><a href="javascript:;">Shop</a>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">My Cart</li>
+                                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i>{{ __('main.home') }}</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:;">{{ __('main.shop') }}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ __('main.my_cart') }}</li>
                             </ol>
                         </nav>
                     </div>
@@ -50,10 +47,11 @@
                                     <div class="card-body">
                                         <p class="fs-5">{{ __('main.apply_discount_code') }}</p>
                                         <div class="input-group">
-                                            <input id="coupon_name" type="text" class="form-control rounded-0"
-                                                placeholder="Enter discount code">
-                                            <button type="submit" onclick="applyCoupon()" class="btn bg-dark btn-ecomm text-white" type="button">Apply
-                                                Discount</button>
+                                            <input id="coupon_name" type="text" class="form-control rounded-0" placeholder="{{ __('main.discount_code_placeholder') }}">
+                                            <button type="submit" onclick="applyCoupon()" class="btn bg-dark btn-ecomm text-white" type="button">
+                                                {{ __('main.apply_discount') }}
+                                            </button>
+
                                         </div>
                                     </div>
                                 </div>
@@ -63,7 +61,7 @@
 
                                     </div>
                                 </div>
-                                    Note: Order less than 5000 Riel can't be process.
+                                    {{ __('main.order_processing_note') }}
                             </div>
                         </div>
                     </div>
@@ -102,8 +100,8 @@
                                         </div>
                                         <div class="cart-detail text-center text-lg-start">
                                             <h6 class="mb-2">${value.name}</h6>
-                                            <h5 class="mb-2"><span>Price: </span>${value.price} KHR</h5>
-                                            <p class="mb-0">SubTotal: <span>${value.subtotal} KHR</span>
+                                            <h5 class="mb-2"><span>{{ __('main.price') }}: </span>${value.price} {{ __('main.khr') }}</h5>
+                                            <p class="mb-0">{{ __('main.subtotal') }}: <span>${value.subtotal} {{ __('main.khr') }}</span>
                                             </p>
                                         </div>
                                     </div>
@@ -117,12 +115,12 @@
                                             <button type="button" id="${value.rowId}" class="btn btn-outline-secondary" onclick="handleQuantityChange('increment', '${value.rowId}')">+</button>
                                         </div>
                                     </div>
-                                <p class="mb-0">Available: <span>${value.options.pro_qty}</span></p>
+                                <p class="mb-0">{{ __('main.available') }}: <span>${value.options.pro_qty}</span></p>
                                 </div>
                                 <div class="col-12 col-lg-3">
                                     <div class="text-center">
                                         <div class="d-flex gap-2 justify-content-center justify-content-lg-end"> <a
-                                                href="javascript:;" class="bg-dark text-white rounded-2 btn-ecomm" type="submit" id="${value.rowId}" onclick="cartRemove(this.id)"> Remove</a>
+                                                href="javascript:;" class="bg-dark text-white rounded-2 btn-ecomm" type="submit" id="${value.rowId}" onclick="cartRemove(this.id)">{{ __('main.remove') }}</a>
                                             <a href="javascript:;" class="btn btn-light rounded-0 btn-ecomm"><i
                                                     class='bx bx-heart me-0'></i></a>
                                         </div>
@@ -270,11 +268,11 @@
                          disableCheckout = true;
                      }
                  $('#couponCalField').html(
-                        `<p class="mb-2">{{ __('main.subtotal') }}: <span class="float-end">${data.total} KHR</span></p>
+                        `<p class="mb-2">{{ __('main.subtotal') }}: <span class="float-end">${data.total} {{ __('main.khr') }}</span></p>
                         <p class="mb-0">{{ __('main.discount') }}: <span class="float-end">--</span></p>
                         <div class="my-2 border-top"></div>
-                        <h5 class="mb-2">{{ __('main.order_total') }}: <span class="float-end">${data.total} KHR</span></h5>
-                        <h5 class="mb-2">Total in USD: <span class="float-end">$ ${totalUSD}</span></h5>
+                        <h5 class="mb-2">{{ __('main.order_total') }}: <span class="float-end">${data.total} {{ __('main.khr') }}</span></h5>
+                        <h5 class="mb-2">{{ __('main.total_in_usd') }}: <span class="float-end">$ ${totalUSD}</span></h5>
                         <div class="my-4"></div>
                         <div class="d-grid">
                             <button id="checkoutButton" class="btn btn-dark btn-ecomm">{{ __('main.proceed_to_checkout') }}</button>
@@ -290,13 +288,13 @@
                          disable = true;
                      }
                     $('#couponCalField').html(`
-                        <p class="mb-2">{{ __('main.subtotal') }}: <span class="float-end">${data.subtotal} KHR</span></p>
+                        <p class="mb-2">{{ __('main.subtotal') }}: <span class="float-end">${data.subtotal} {{ __('main.khr') }}</span></p>
                         <p class="mb-2">{{ __('main.coupon') }}: <span class="float-end">${data.coupon_name}</span></p>
-                        <p class="mb-2">{{ __('main.discount') }}: <span class="float-end">${data.discount_amount} KHR<a type="submit" onclick="couponRemove()"><i class='bx bx-trash'></i> </a></span></p>
+                        <p class="mb-2">{{ __('main.discount') }}: <span class="float-end">${data.discount_amount} {{ __('main.khr') }}<a type="submit" onclick="couponRemove()"><i class='bx bx-trash'></i> </a></span></p>
                         <div class="my-3 border-top"></div>
-                        <h5 class="mb-0">{{ __('main.order_total') }}: <span class="float-end">${data.total_amount} KHR</span></h5>
+                        <h5 class="mb-0">{{ __('main.order_total') }}: <span class="float-end">${data.total_amount} {{ __('main.khr') }}</span></h5>
                         <div class="my-2"></div>
-                        <h5 class="mb-2">Total in USD: <span class="float-end">$ ${data.dollar}</span></h5>
+                        <h5 class="mb-2">{{ __('main.total_in_usd') }}: <span class="float-end">$ ${data.dollar}</span></h5>
                         <div class="d-grid">
                                 <button id="checkout" class="btn btn-dark btn-ecomm">{{ __('main.proceed_to_checkout') }}</button>
                         </div>
