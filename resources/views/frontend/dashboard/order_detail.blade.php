@@ -8,16 +8,13 @@
         <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
             <div class="container">
                 <div class="page-breadcrumb d-flex align-items-center">
-                    <h3 class="breadcrumb-title pe-3">My Orders</h3>
+                    <h3 class="breadcrumb-title pe-3">{{ __('main.my_orders') }}</h3>
                     <div class="ms-auto">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 p-0">
-                                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i>
-                                        Home</a>
-                                </li>
-                                <li class="breadcrumb-item"><a href="javascript:;">Account</a>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">My Orders</li>
+                                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i>{{ __('main.home') }}</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:;">{{ __('main.account') }}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ __('main.my_orders') }}</li>
                             </ol>
                         </nav>
                     </div>
@@ -42,38 +39,37 @@
                                             <div class="col-md-6">
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <h4>Shipping Details</h4>
+                                                        <h4>{{ __('main.shipping_details') }}</h4>
                                                     </div>
                                                     <hr>
                                                     <div class="card-body">
-                                                        <table class="table"
-                                                            style="background:#ffffff;font-weight: 600;">
+                                                        <table class="table" style="background:#ffffff;font-weight: 600;">
                                                             <tr>
-                                                                <th>Shipping Name:</th>
+                                                                <th>{{ __('main.shipping_name') }}:</th>
                                                                 <th>{{ $order->name }}</th>
                                                             </tr>
                                                             <tr>
-                                                                <th>Shipping Phone:</th>
+                                                                <th>{{ __('main.shipping_phone') }}:</th>
                                                                 <th>{{ $order->phone }}</th>
                                                             </tr>
                                                             <tr>
-                                                                <th>Shipping Email:</th>
+                                                                <th>{{ __('main.shipping_email') }}:</th>
                                                                 <th>{{ $order->email }}</th>
                                                             </tr>
                                                             <tr>
-                                                                <th>City :</th>
+                                                                <th>{{ __('main.city') }} :</th>
                                                                 <th>{{ $order->city->name }}</th>
                                                             </tr>
                                                             <tr>
-                                                                <th>District :</th>
+                                                                <th>{{ __('main.district') }} :</th>
                                                                 <th>{{ $order->district->name }}</th>
                                                             </tr>
                                                             <tr>
-                                                                <th>Post Code :</th>
+                                                                <th>{{ __('main.post_code') }} :</th>
                                                                 <th>{{ $order->post_code }}</th>
                                                             </tr>
                                                             <tr>
-                                                                <th>Order Date :</th>
+                                                                <th>{{ __('main.order_date') }} :</th>
                                                                 <th>{{ $order->order_date }}</th>
                                                             </tr>
                                                         </table>
@@ -83,43 +79,38 @@
                                             <div class="col-md-6">
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <h4>Order Details
-                                                            <span class="text-danger">Invoice : {{ $order->invoice_no }}
-                                                            </span></h4>
+                                                        <h4>{{ __('main.order_details') }} <span class="text-danger">{{ __('main.invoice') }} : {{ $order->invoice_no }}</span></h4>
                                                     </div>
                                                     <hr>
                                                     <div class="card-body">
-                                                        <table class="table"
-                                                            style="background:#ffffff;font-weight: 600;">
+                                                        <table class="table" style="background:#ffffff;font-weight: 600;">
                                                             <tr>
-                                                                <th> Name :</th>
+                                                                <th>{{ __('main.name') }} :</th>
                                                                 <th>{{ $order->user->name }}</th>
                                                             </tr>
                                                             <tr>
-                                                                <th>Phone :</th>
+                                                                <th>{{ __('main.phones') }} :</th>
                                                                 <th>{{ $order->phone }}</th>
                                                             </tr>
                                                             <tr>
-                                                                <th>Payment Type:</th>
+                                                                <th>{{ __('main.payment_type') }}:</th>
                                                                 <th>{{ $order->payment_method }}</th>
                                                             </tr>
                                                             <tr>
-                                                                <th>Transx ID:</th>
+                                                                <th>{{ __('main.transaction_id') }}:</th>
                                                                 <th>{{ $order->transaction_id }}</th>
                                                             </tr>
                                                             <tr>
-                                                                <th>Invoice:</th>
+                                                                <th>{{ __('main.invoice') }}:</th>
                                                                 <th class="text-danger">{{ $order->invoice_no }}</th>
                                                             </tr>
                                                             <tr>
-                                                                <th>Order Amonut:</th>
-                                                                <th>{{ $order->amount }} KHR</th>
+                                                                <th>{{ __('main.amount') }}:</th>
+                                                                <th>{{ $order->amount }} {{ __('main.khr') }}</th>
                                                             </tr>
                                                             <tr>
-                                                                <th>Order Status:</th>
-                                                                <th><span
-                                                                        class="badge rounded-pill bg-warning">{{ $order->status }}</span>
-                                                                </th>
+                                                                <th>{{ __('main.order_status') }}:</th>
+                                                                <th><span class="badge rounded-pill bg-warning">{{ $order->status }}</span></th>
                                                             </tr>
                                                         </table>
                                                     </div>
@@ -133,7 +124,7 @@
                                         <div class="col-md-12">
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <h4>All Products</h4>
+                                                    <h4>{{ __('main.all_products') }}</h4>
                                                 </div>
                                                 <hr>
                                                 <div class="card-body">
@@ -143,24 +134,24 @@
                                                                 <div class="table-responsive">
                                                                     <table class="table" style="font-weight: 600;">
                                                                         <tbody>
-                                                                            <tr>
-                                                                                <td class="col-md-2">
-                                                                                    <label>Image </label>
-                                                                                </td>
-                                                                                <td class="col-md-3">
-                                                                                    <label>Product Name </label>
-                                                                                </td>
-                                                                                <td class="col-md-3">
-                                                                                    <label>Product Code </label>
-                                                                                </td>
-                                                                                <td class="col-md-2">
-                                                                                    <label>Quantity </label>
-                                                                                </td>
-                                                                                <td class="col-md-3">
-                                                                                    <label>Price </label>
-                                                                                </td>
-                                                                            </tr>
-                                                                            @foreach($orderItem as $item)
+                                                                        <tr>
+                                                                            <td class="col-md-2">
+                                                                                <label>{{ __('main.image') }}</label>
+                                                                            </td>
+                                                                            <td class="col-md-3">
+                                                                                <label>{{ __('main.product_name') }}</label>
+                                                                            </td>
+                                                                            <td class="col-md-3">
+                                                                                <label>{{ __('main.product_code') }}</label>
+                                                                            </td>
+                                                                            <td class="col-md-2">
+                                                                                <label>{{ __('main.quantity') }}</label>
+                                                                            </td>
+                                                                            <td class="col-md-3">
+                                                                                <label>{{ __('main.price') }}</label>
+                                                                            </td>
+                                                                        </tr>
+                                                                        @foreach($orderItem as $item)
                                                                             <tr>
                                                                                 <td class="col-md-1">
                                                                                     <label><img
@@ -169,7 +160,7 @@
                                                                                     </label>
                                                                                 </td>
                                                                                 <td class="col-md-3">
-                                                                                    <label>{{ $item->product->name }}</label>
+                                                                                    <label>{{ session()->get('locale') == 'en' ? ($item->product->name ? $item->product->name : $item->product->pro_kh) : ($item->product->pro_kh ? $item->product->pro_kh : $item->product->name) }}</label>
                                                                                 </td>
                                                                                 <td class="col-md-2">
                                                                                     <label>{{ $item->product->pro_code }}
@@ -179,9 +170,9 @@
                                                                                     <label>{{ $item->qty }} </label>
                                                                                 </td>
                                                                                 <td class="col-md-3">
-                                                                                    <label>{{ $item->price }} KHR<br>
+                                                                                    <label>{{ $item->price }} {{ __('main.khr') }}<br>
                                                                                         Total =
-                                                                                        {{ $item->price * $item->qty }} KHR
+                                                                                        {{ $item->price * $item->qty }} {{ __('main.khr') }}
                                                                                     </label>
                                                                                 </td>
                                                                             </tr>

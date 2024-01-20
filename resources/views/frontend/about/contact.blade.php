@@ -10,16 +10,13 @@
         <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
             <div class="container">
                 <div class="page-breadcrumb d-flex align-items-center">
-                    <h3 class="breadcrumb-title pe-3">Contact Us</h3>
+                    <h3 class="breadcrumb-title pe-3">{{ __('main.contact_us') }}</h3>
                     <div class="ms-auto">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 p-0">
-                                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i>
-                                        Home</a>
-                                </li>
-                                <li class="breadcrumb-item"><a href="javascript:;">Pages</a>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+                                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i>{{ __('main.home') }}</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:;">{{ __('main.pages') }}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ __('main.contact_us') }}</li>
                             </ol>
                         </nav>
                     </div>
@@ -80,10 +77,10 @@
                 <div class="p-3 bg-light">
                     <div class="address mb-3">
                         <h6 class="mb-0 text-uppercase">@lang('main.address')</h6>
-                        <p class="mb-0 font-12">{{ $siteinfo->address }}</p>
+                        <p class="mb-0 font-12">{{ session()->get('locale') == 'en' ? ($siteinfo->address ? $siteinfo->address : $siteinfo->address_kh) : ($siteinfo->address_kh ? $siteinfo->address_kh : $siteinfo->address) }}</p>
                     </div>
                     <div class="phone mb-3">
-                        <h6 class="mb-0 text-uppercase">Phone Number</h6>
+                        <h6 class="mb-0 text-uppercase">{{ __('main.phone_number') }}</h6>
                         <p class="mb-0 font-13">{{ $siteinfo->support_phone }}</p>
                     </div>
                     <div class="email mb-3">

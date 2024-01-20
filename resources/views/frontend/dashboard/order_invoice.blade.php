@@ -37,15 +37,15 @@
               <tr>
                 <td>
                   <div class="invoice-head-middle-left text-start">
-                    <p>
-                        <p>Invoice No: #{{ $order->invoice_no }}</p><span class="text-bold">Order Date</span>:{{ $order->order_date }}
-                    </p>
+                      <p>
+                      <p>{{ __('main.invoice_no') }}: #{{ $order->invoice_no }}</p><span class="text-bold">{{ __('main.order_date') }}:</span>{{ $order->order_date }}
+                      </p>
                   </div>
                 </td>
                 <td class="text-end">
                     <ul class = "text-end">
                         <p>{{$info->email}}</p>
-                        <p>{{$info->address}}</p>
+                        <p>{{ session()->get('locale') == 'en' ? ($info->address ? $info->address : $info->address_kh) : ($info->address_kh ? $info->address_kh : $info->address) }}</p>
                         <p>{{$info->support_phone}}</p>
                     </ul>
 
@@ -60,24 +60,27 @@
               <td>
                 <div class="invoice-head-bottom">
                   <div class="invoice-head-bottom-left">
-                    <ul>
-                      <strong class="text-bold" style="color:#000000;font-size:16px">Shipping info:</strong>
-                      <p>Name: {{ $order->name }}</p>
-                      <p>Email: {{ $order->email }}</p>
-                      <p>Phone: {{ $order->phone }}</p>@php $city = $order->city->name; $dis = $order->district->name; @endphp <p>Address: {{ $city }}/ {{ $dis }}, {{ $order->post_code }}
-                      </p>
-                    </ul>
+                      <ul>
+                          <strong class="text-bold" style="color:#000000;font-size:16px">{{ __('main.shipping_info') }}:</strong>
+                          <p>{{ __('main.name') }}: {{ $order->name }}</p>
+                          <p>{{ __('main.email') }}: {{ $order->email }}</p>
+                          <p>{{ __('main.phones') }}: {{ $order->phone }}</p>
+                          @php $city = $order->city->name; $ci_kh = $order->city->ci_kh ;$dis = $order->district->name;$diskh = $order->district->dis_kh; @endphp
+                          <p>{{ __('main.address') }}: @if(session()->get('locale') == 'en') {{ $city ?? $ci_kh ?? '' }} @else {{ $ci_kh ?? $city ?? '' }} @endif/
+                              @if(session()->get('locale') == 'en') {{ $dis ?? $diskh ?? '' }} @else {{ $diskh ?? $dis ?? '' }} @endif,
+                              {{ $order->post_code }}</p>
+                      </ul>
                   </div>
                 </div>
               </td>
               <td class="text-end">
-                <div class="invoice-head-bottom-right">
-                  <ul class="text-end">
-                    <p>Order Date: {{ $order->order_date }}</p>
-                    <p>Payment: {{ $order->payment_method }}</p>
-                    <p>Delivery Date: {{ $order->delivered_date }}</p>
-                  </ul>
-                </div>
+                  <div class="invoice-head-bottom-right">
+                      <ul class="text-end">
+                          <p>{{ __('main.order_date') }}: {{ $order->order_date }}</p>
+                          <p>{{ __('main.payment') }}: {{ $order->payment_method }}</p>
+                          <p>{{ __('main.delivery_date') }}: {{ $order->delivered_date }}</p>
+                      </ul>
+                  </div>
               </td>
             </tr>
           </table>
@@ -87,10 +90,10 @@
             <table style="width: 100%; border-collapse: collapse; border: 1px solid #d3d3d3;">
                 <thead>
                 <tr>
-                    <td class="text-bold" style="border: 1px solid #d3d3d3;">Product Name</td>
-                    <td class="text-bold" style="border: 1px solid #d3d3d3;">Code</td>
-                    <td class="text-bold" style="border: 1px solid #d3d3d3;">Quantity</td>
-                    <td class="text-bold" style="border: 1px solid #d3d3d3;">Amount</td>
+                    <td class="text-bold" style="border: 1px solid #d3d3d3;">{{__('main.product_name')}}</td>
+                    <td class="text-bold" style="border: 1px solid #d3d3d3;">{{ __('main.code') }}</td>
+                    <td class="text-bold" style="border: 1px solid #d3d3d3;">{{__('main.quantity')}}</td>
+                    <td class="text-bold" style="border: 1px solid #d3d3d3;">{{ __('main.amount') }}</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -99,10 +102,10 @@
                 @endphp
                 @foreach($orderItem as $item)
                     <tr class="font">
-                        <td style="border: 1px solid #d3d3d3;">{{ $item->product->name }}</td>
+                        <td style="border: 1px solid #d3d3d3;">{{ session()->get('locale') == 'en' ? ($item->product->name ? $item->product->name : $item->product->pro_kh) : ($item->product->pro_kh ? $item->product->pro_kh : $item->product->name) }}</td>
                         <td style="border: 1px solid #d3d3d3;">{{ $item->product->pro_code }}</td>
                         <td style="border: 1px solid #d3d3d3;">{{ $item->qty }}</td>
-                        <td style="border: 1px solid #d3d3d3;">{{ $item->price }} KHR</td>
+                        <td style="border: 1px solid #d3d3d3;">{{ $item->price }} {{__('main.khr')}}</td>
                         @php
                             $totalPrice += $item->price * $item->qty;
                         @endphp
@@ -112,9 +115,8 @@
             </table>
             <div class="invoice-body-bottom">
                 <div class="invoice-body-info-item border-bottom">
-                    <div class="info-item-td text-end">SubTotal: {{ $totalPrice }} KHR<br>Discount: {{ $totalPrice - $order->amount }} KHR<br></div>
-                    <div class="info-item-td text-bold text-end">Total Amount: {{ $order->amount }} KHR <br>Total Amount in Dollar: $ {{ number_format($order->amount/$info->exchange, 2) }}</div>
-
+                    <div class="info-item-td text-end">{{ __('main.subtotal') }}: {{ $totalPrice }} {{__('main.khr')}}<br>{{ __('main.discount') }}: {{ $totalPrice - $order->amount }} {{__('main.khr')}}<br></div>
+                    <div class="info-item-td text-bold text-end">{{ __('main.total_amount') }}: {{ $order->amount }} {{__('main.khr')}} <br>{{ __('main.total_amount_dollar') }}: $ {{ number_format($order->amount/$info->exchange, 2) }}</div>
                 </div>
             </div>
         </div>

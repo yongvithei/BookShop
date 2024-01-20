@@ -4,29 +4,27 @@
 		<div class="page-wrapper">
 			<div class="page-content">
 				<!--start breadcrumb-->
-				<section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
-					<div class="container">
-						<div class="page-breadcrumb d-flex align-items-center">
-							<h3 class="breadcrumb-title pe-3">My Orders</h3>
-							<div class="ms-auto">
-								<nav aria-label="breadcrumb">
-									<ol class="breadcrumb mb-0 p-0">
-										<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i> Home</a>
-										</li>
-										<li class="breadcrumb-item"><a href="javascript:;">Account</a>
-										</li>
-										<li class="breadcrumb-item active" aria-current="page">My Orders</li>
-									</ol>
-								</nav>
-							</div>
-						</div>
-					</div>
-				</section>
+                <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
+                    <div class="container">
+                        <div class="page-breadcrumb d-flex align-items-center">
+                            <h3 class="breadcrumb-title pe-3">{{ __('main.my_orders') }}</h3>
+                            <div class="ms-auto">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb mb-0 p-0">
+                                        <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i>{{ __('main.home') }}</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:;">{{ __('main.account') }}</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">{{ __('main.my_orders') }}</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 				<!--end breadcrumb-->
 				<!--start shop cart-->
 				<section class="py-4">
 					<div class="container">
-						<h3 class="d-none">Account</h3>
+						<h3 class="d-none">{{ __('main.my_orders') }}</h3>
 						<div class="card">
 							<div class="card-body">
 								<div class="row">
@@ -40,13 +38,13 @@
                                                     <table class="table">
                                                         <thead class="table-light">
                                                         <tr>
-                                                            <th>№</th>
-                                                            <th>Invoice</th>
-                                                            <th>Payment</th>
-                                                            <th>Date</th>
-                                                            <th>Total</th>
-                                                            <th>Status</th>
-                                                            <th>Actions</th>
+                                                            <th>{{ __('main.number') }}</th>
+                                                            <th>{{ __('main.invoice') }}</th>
+                                                            <th>{{ __('main.payment') }}</th>
+                                                            <th>{{ __('main.date') }}</th>
+                                                            <th>{{ __('main.total') }}</th>
+                                                            <th>{{ __('main.status') }}</th>
+                                                            <th>{{ __('main.actions') }}</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -56,24 +54,25 @@
                                                                 <td>{{ $order->invoice_no }}</td>
                                                                 <td>{{ $order->payment_method }}</td>
                                                                 <td>{{ $order->order_date }}</td>
-                                                                <td>{{ $order->amount }} KHR</td>
+                                                                <td>{{ $order->amount }} {{ __('main.khr') }}</td>
                                                                 <td>
                                                                     @if($order->status == 'pending')
-                                                                        <span class="badge rounded-pill bg-warning">Pending</span>
+                                                                        <span class="badge rounded-pill bg-warning">{{ __('main.pending') }}</span>
                                                                     @elseif($order->status == 'confirm')
-                                                                        <span class="badge rounded-pill bg-info">Confirm</span>
+                                                                        <span class="badge rounded-pill bg-info">{{ __('main.confirm') }}</span>
                                                                     @elseif($order->status == 'processing')
-                                                                        <span class="badge rounded-pill bg-danger">Processing</span>
-                                                                    @elseif($order->status == 'deliverd')
-                                                                        <span class="badge rounded-pill bg-success">Delivered</span>
+                                                                        <span class="badge rounded-pill bg-danger">{{ __('main.processing') }}</span>
+                                                                    @elseif($order->status == 'delivered')
+                                                                        <span class="badge rounded-pill bg-success">{{ __('main.delivered') }}</span>
                                                                     @endif
                                                                 </td>
                                                                 <td>
                                                                     <div class="d-flex gap-2">
-                                                                        <a href="{{ url('user/order_details/'.$order->id) }}" class="btn btn-dark btn-sm rounded-0">View</a>
-                                                                        <a href="{{ url('user/invoice_download/'.$order->id) }}" class="btn-sm btn-danger">Invoice</a>
+                                                                        <a href="{{ url('user/order_details/'.$order->id) }}" class="btn btn-dark btn-sm rounded-0">{{ __('main.view') }}</a>
+                                                                        <a href="{{ url('user/invoice_download/'.$order->id) }}" class="btn-sm btn-danger">{{ __('main.invoice') }}</a>
                                                                     </div>
                                                                 </td>
+
                                                             </tr>
                                                         @endforeach
                                                         </tbody>

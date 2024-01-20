@@ -10,16 +10,14 @@
         <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
             <div class="container">
                 <div class="page-breadcrumb d-flex align-items-center">
-                    <h3 class="breadcrumb-title pe-3">Tracking</h3>
+                    <h3 class="breadcrumb-title pe-3">{{ __('main.tracking') }}</h3>
                     <div class="ms-auto">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 p-0">
                                 <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i>
-                                        Home</a>
+                                        {{ __('main.home') }}</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="javascript:;">Shop</a>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">Order Tracking</li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ __('main.tracking') }}</li>
                             </ol>
                         </nav>
                     </div>
@@ -58,124 +56,117 @@
                         <div class="card-body">
                             <div class="steps steps-light">
                                 @if($track->status == 'pending')
-                                <a class="step-item" href="javascript:;">
-                                    <div class="step-progress"><span class="step-count"><i
-                                                class='bx bx-check'></i></span>
-                                    </div>
-                                    <div class="step-label">Order confirmed</div>
-                                </a>
-                                <a class="step-item" href="javascript:;">
-                                    <div class="step-progress"><span class="step-count"><i
-                                                class='bx bx-user-circle'></i></span>
-                                    </div>
-                                    <div class="step-label">Proccssing</div>
-                                </a>
-                                <a class="step-item" href="javascript:;">
-                                    <div class="step-progress"><span class="step-count"><i class='bx bx-car'></i></span>
-                                    </div>
-                                    <div class="step-label">On the way</div>
-                                </a>
-                                <a class="step-item" href="javascript:;">
-                                    <div class="step-progress"><span class="step-count"><i
-                                                class='bx bx-planet'></i></span>
-                                    </div>
-                                    <div class="step-label">Ready for pickup</div>
-                                </a>
+                                    <a class="step-item" href="javascript:;">
+                                        <div class="step-progress"><span class="step-count"><i class='bx bx-check'></i></span></div>
+                                        <div class="step-label">{{ __('main.order_confirmed') }}</div>
+                                    </a>
+                                    <a class="step-item" href="javascript:;">
+                                        <div class="step-progress"><span class="step-count"><i class='bx bx-user-circle'></i></span></div>
+                                        <div class="step-label">{{ __('main.processing') }}</div>
+                                    </a>
+                                    <a class="step-item" href="javascript:;">
+                                        <div class="step-progress"><span class="step-count"><i class='bx bx-car'></i></span></div>
+                                        <div class="step-label">{{ __('main.on_the_way') }}</div>
+                                    </a>
+                                    <a class="step-item" href="javascript:;">
+                                        <div class="step-progress"><span class="step-count"><i class='bx bx-planet'></i></span></div>
+                                        <div class="step-label">{{ __('main.ready_for_pickup') }}</div>
+                                    </a>
                                 @elseif($track->status == 'confirm')
                                 <a class="step-item active" href="javascript:;">
                                     <div class="step-progress"><span class="step-count"><i
                                                 class='bx bx-check'></i></span>
                                     </div>
-                                    <div class="step-label">Order confirmed</div>
+                                    <div class="step-label">{{ __('main.order_confirmed') }}</div>
                                 </a>
                                 <a class="step-item active" href="javascript:;">
                                     <div class="step-progress"><span class="step-count"><i
                                                 class='bx bx-user-circle'></i></span>
                                     </div>
-                                    <div class="step-label">Proccssing</div>
+                                    <div class="step-label">{{ __('main.processing') }}</div>
                                 </a>
                                 <a class="step-item" href="javascript:;">
                                     <div class="step-progress"><span class="step-count"><i class='bx bx-car'></i></span>
                                     </div>
-                                    <div class="step-label">On the way</div>
+                                    <div class="step-label">{{ __('main.on_the_way') }}</div>
                                 </a>
                                 <a class="step-item" href="javascript:;">
                                     <div class="step-progress"><span class="step-count"><i
                                                 class='bx bx-planet'></i></span>
                                     </div>
-                                    <div class="step-label">Ready for pickup</div>
+                                    <div class="step-label">{{ __('main.ready_for_pickup') }}</div>
                                 </a>
                                 @elseif($track->status == 'delivering')
                                 <a class="step-item active" href="javascript:;">
                                     <div class="step-progress"><span class="step-count"><i
                                                 class='bx bx-check'></i></span>
                                     </div>
-                                    <div class="step-label">Order confirmed</div>
+                                    <div class="step-label">{{ __('main.order_confirmed') }}</div>
                                 </a>
                                 <a class="step-item active" href="javascript:;">
                                     <div class="step-progress"><span class="step-count"><i
                                                 class='bx bx-user-circle'></i></span>
                                     </div>
-                                    <div class="step-label">Proccssing And Package</div>
+                                    <div class="step-label">{{ __('main.processing') }} And Package</div>
                                 </a>
                                 <a class="step-item active" href="javascript:;">
                                     <div class="step-progress"><span class="step-count"><i class='bx bx-car'></i></span>
                                     </div>
-                                    <div class="step-label">On the way</div>
+                                    <div class="step-label">{{ __('main.on_the_way') }}</div>
                                 </a>
                                 <a class="step-item" href="javascript:;">
                                     <div class="step-progress"><span class="step-count"><i
                                                 class='bx bx-planet'></i></span>
                                     </div>
-                                    <div class="step-label">Ready for pickup</div>
+                                    <div class="step-label">{{ __('main.ready_for_pickup') }}</div>
                                 </a>
                                 @elseif($track->status == 'delivered')
                                 <a class="step-item active" href="javascript:;">
                                     <div class="step-progress"><span class="step-count"><i
                                                 class='bx bx-check'></i></span>
                                     </div>
-                                    <div class="step-label">Order confirmed</div>
+                                    <div class="step-label">{{ __('main.order_confirmed') }}</div>
                                 </a>
                                 <a class="step-item active" href="javascript:;">
                                     <div class="step-progress"><span class="step-count"><i
                                                 class='bx bx-user-circle'></i></span>
                                     </div>
-                                    <div class="step-label">Proccssing</div>
+                                    <div class="step-label">{{ __('main.processing') }}</div>
                                 </a>
                                 <a class="step-item active" href="javascript:;">
                                     <div class="step-progress"><span class="step-count"><i class='bx bx-car'></i></span>
                                     </div>
-                                    <div class="step-label">On the way</div>
+                                    <div class="step-label">{{ __('main.on_the_way') }}</div>
                                 </a>
                                 <a class="step-item active" href="javascript:;">
                                     <div class="step-progress"><span class="step-count"><i
                                                 class='bx bx-planet'></i></span>
                                     </div>
-                                    <div class="step-label">Ready for pickup</div>
+                                    <div class="step-label">{{ __('main.ready_for_pickup') }}</div>
                                 </a>
                                 @else
                                  <a class="step-item" href="javascript:;">
                                     <div class="step-progress"><span class="step-count"><i
                                                 class='bx bx-check'></i></span>
                                     </div>
-                                    <div class="step-label">Order confirmed</div>
+                                    <div class="step-label">{{  __('main.order_confirmed') }}</div>
                                 </a>
                                 <a class="step-item" href="javascript:;">
                                     <div class="step-progress"><span class="step-count"><i
                                                 class='bx bx-user-circle'></i></span>
                                     </div>
-                                    <div class="step-label">Proccssing</div>
+                                    <div class="step-label">{{ __('main.processing') }}</div>
                                 </a>
                                 <a class="step-item" href="javascript:;">
                                     <div class="step-progress"><span class="step-count"><i class='bx bx-car'></i></span>
                                     </div>
-                                    <div class="step-label">On the way</div>
+                                    <div class="step-label">{{ __('main.on_the_way') }}</div>
                                 </a>
                                 <a class="step-item" href="javascript:;">
                                     <div class="step-progress"><span class="step-count"><i
                                                 class='bx bx-planet'></i></span>
                                     </div>
-                                    <div class="step-label">Ready for pickup</div>
+                                    <div class="step-label">{{ __('main.ready_for_pickup') }}</div>
                                 </a>
                                 @endif
                             </div>

@@ -16,7 +16,7 @@
             </a>
              <a href="/user/track-order"
                 class="list-group-item d-flex justify-content-between align-items-center {{ request()->is('user/track-order') ? ' active' : '' }}">
-                Track Order
+                 {{ __('main.track_order') }}
                 <i class='bx bx-cart-alt fs-5'></i>
             </a>
             <a href="/user/account/details"

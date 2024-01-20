@@ -5,29 +5,27 @@
 <div class="page-wrapper">
 			<div class="page-content">
 				<!--start breadcrumb-->
-				<section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
-					<div class="container">
-						<div class="page-breadcrumb d-flex align-items-center">
-							<h3 class="breadcrumb-title pe-3">My Orders</h3>
-							<div class="ms-auto">
-								<nav aria-label="breadcrumb">
-									<ol class="breadcrumb mb-0 p-0">
-										<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i> Home</a>
-										</li>
-										<li class="breadcrumb-item"><a href="javascript:;">Account</a>
-										</li>
-										<li class="breadcrumb-item active" aria-current="page">My Orders</li>
-									</ol>
-								</nav>
-							</div>
-						</div>
-					</div>
-				</section>
-				<!--end breadcrumb-->
+                <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
+                    <div class="container">
+                        <div class="page-breadcrumb d-flex align-items-center">
+                            <h3 class="breadcrumb-title pe-3">{{ __('main.my_orders') }}</h3>
+                            <div class="ms-auto">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb mb-0 p-0">
+                                        <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i>{{ __('main.home') }}</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:;">{{ __('main.account') }}</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">{{ __('main.my_orders') }}</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--end breadcrumb-->
 				<!--start shop cart-->
 				<section class="py-4">
 					<div class="container">
-						<h3 class="d-none">Account</h3>
+						<h3 class="d-none">{{ __('main.account') }}</h3>
 						<div class="card">
 							<div class="card-body">
 								<div class="row">
@@ -38,7 +36,7 @@
 										<div class="card shadow-none mb-0 border">
                                             @if (session('status') === 'saved')
                                                 <div class="alert alert-success alert-dismissible text-center" role="alert">
-                                                    <p class="mb-0">Update successful</p>
+                                                    <p class="mb-0">{{ __('main.update_successful') }}</p>
                                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                                 </div>
                                             @endif
@@ -46,29 +44,29 @@
                                                 <form method="post" action="{{ route('user.profile.store') }}" class="row g-3" enctype="multipart/form-data">
                                                     @csrf
 													<div class="col-md-6">
-														<label class="form-label">Name</label>
+														<label class="form-label">{{ __('main.name') }}</label>
 														<input id="name" name="name" type="text" value="{{ old('name', $user->name) }}" required autofocus autocomplete="name" class="form-control">
                                                         <span class="text-danger">{{ $errors->first('name') }}</span>
                                                     </div>
 													<div class="col-md-6">
-														<label class="form-label">Username</label>
+														<label class="form-label">{{ __('main.username') }}</label>
 														<input id="username" name="username" type="text" value="{{ old('username', $user->username) }}" required autofocus autocomplete="username" class="form-control" value="">
                                                         <span class="text-danger">{{ $errors->first('username') }}</span>
                                                     </div>
 													<div class="col-12">
-														<label class="form-label">Email address</label>
+														<label class="form-label">{{ __('main.email_address') }}</label>
 														<input id="email" name="email" type="text" value="{{ old('email', $user->email) }}" class="form-control" value="">
                                                         <span class="text-danger">{{ $errors->first('email') }}</span>
                                                     </div>
                                                     <div class="col-12">
-                                                        <label class="form-label">Display Image</label>
+                                                        <label class="form-label">{{ __('main.display_image') }}</label>
                                                         <img id="showImage" src="{{ (!empty($user->photo)) ? url('uploads/user/'.$user->photo):url('uploads/no_image.jpg') }}" alt="Admin" style="width:100px; height: 100px;"  >
-                                                        <label for="photo" class="form-label">Choose a image</label>
+                                                        <label for="photo" class="form-label">{{ __('main.choose_image') }}</label>
                                                         <input type="file" name="photo" class="form-control"  id="image"/>
                                                         <span class="text-danger">{{ $errors->first('photo') }}</span>
                                                     </div>
 													<div class="col-12">
-														<button type="submit" class="bg-dark text-white btn-ecomm">Save Changes</button>
+														<button type="submit" class="bg-dark text-white btn-ecomm">{{ __('main.save_changes') }}</button>
 													</div>
 												</form>
 											</div>

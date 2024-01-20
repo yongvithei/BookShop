@@ -174,7 +174,60 @@ return [
     'thank_you_message' => 'Thank you for your order!',
     'order_processed' => 'Your order has been placed and will be processed as soon as possible.',
     'go_back_shopping' => 'Go back shopping',
-    'track_order' => 'Track order',
 
+    'pages' => 'Pages',
+
+    'my_orders' => 'My Orders',
+    'account' => 'Account',
+
+    'update_successful' => 'Update successful',
+    'username' => 'Username',
+    'email_address' => 'Email address',
+    'display_image' => 'Display Image',
+    'choose_image' => 'Choose an image',
+    'hello_user' => 'Hello :user',
+    'from_account_dashboard' => 'From your account dashboard, you can view your Recent Orders, edit your password, and account details.',
+
+    'number' => '№',
+    'date' => 'Date',
+    'actions' => 'Actions',
+
+    'pending' => 'Pending',
+    'processing' => 'Processing',
+    'delivered' => 'Delivered',
+    'view' => 'View',
+    'order_tracking' => 'Order Tracking',
+    'order_id' => 'Order ID',
+    'placeholder_invoice_number' => 'Invoice Number like BSK...',
+    'submit' => 'Submit',
+
+    'shipping_details' => 'Shipping Details',
+    'shipping_name' => 'Shipping Name',
+    'shipping_phone' => 'Shipping Phone',
+    'shipping_email' => 'Shipping Email',
+    'post_code' => 'Post Code',
+
+    'order_details' => 'Order Details',
+    'payment_type' => 'Payment Type',
+    'transaction_id' => 'Transaction ID',
+    'amount' => 'Order Amount',
+    'order_status' => 'Order Status',
+    'phones' => 'Phone',
+    'image' => 'Image',
+
+    'product_code' => 'Product Code',
+
+    'order_confirmed' => 'Order confirmed',
+    'on_the_way' => 'On the way',
+    'ready_for_pickup' => 'Ready for pickup',
+    'code' => 'Code',
+    'amounts' => 'Amount',
+    'shipping_info' => 'Shipping info:',
+
+    'delivery_date' => 'Delivery Date',
+
+    'total_amount' => 'Total Amount',
+    'total_amount_dollar' => 'Total Amount in Dollar',
+    'invoice_no' => 'Invoice No',
 
 ];
