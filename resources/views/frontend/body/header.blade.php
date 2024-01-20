@@ -3,9 +3,9 @@
 	<div class="top-menu border-bottom">
 		<div class="container">
 			<nav class="navbar navbar-expand">
-				<div class="shiping-title text-uppercase font-13 d-none d-sm-flex">{{ __('main.welcome') }} {{ optional(Auth::user())->name ?? 'To Our Shop' }}
-					@if (Auth::user() && Auth::user()->role === 'admin')
-					<a href="/admin/dashboard">* Go back</a>
+                <div class="shiping-title text-uppercase font-13 d-none d-sm-flex">{{ __('main.welcome') }} {{ optional(Auth::user())->name ?? __('main.to_our_shop') }}
+                @if (Auth::user() && Auth::user()->role === 'admin')
+					<a href="/admin/dashboard">* {{ __('part_s.go_back') }}</a>
 					@endif
 				</div>
 				<ul class="navbar-nav ms-auto d-none d-lg-flex">
@@ -22,7 +22,6 @@
 				</ul>
 
 				<ul class="navbar-nav">
-					<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">USD</a>
 							<ul class="dropdown-menu dropdown-menu-lg-end">
 						<li><a class="dropdown-item" href="#">{{__('main.usd')}}</a></li>
 							<li><a class="dropdown-item" href="#">{{__('main.riel')}}</a></li>
@@ -30,16 +29,26 @@
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">
-							<div class="lang d-flex gap-1">
+                            @if(session()->get('locale') == 'en')
+                            <div class="lang d-flex gap-1">
 								<div><i class="flag-icon flag-icon-um"></i>
 								</div>
 								<div><span>ENG</span>
 								</div>
 							</div>
+                            @else
+                            <div class="lang d-flex gap-1">
+                                <div><i class="flag-icon flag-icon-kh"></i>
+                                </div>
+                                <div><span>KH</span>
+                                </div>
+                            </div>
+                            @endif
+
 						</a>
                         <div class="dropdown-menu dropdown-menu-lg-end">
-                            <a class="dropdown-item d-flex allign-items-center" href="/locale/en"><i class="flag-icon flag-icon-um me-2"></i><span>English</span></a>
-                            <a class="dropdown-item d-flex allign-items-center" href="/locale/km"><i class="flag-icon flag-icon-kh me-2"></i><span>Khmer</span></a>
+                            <a class="dropdown-item d-flex allign-items-center" href="/locale/en"><i class="flag-icon flag-icon-um me-2"></i><span>{{ __('main.english') }}</span></a>
+                            <a class="dropdown-item d-flex allign-items-center" href="/locale/km"><i class="flag-icon flag-icon-kh me-2"></i><span> <span>{{ __('main.khmer') }}</span></span></a>
                         </div>
 					</li>
 				</ul>
@@ -114,8 +123,8 @@
 									<div class="dropdown-menu dropdown-menu-end">
 										<a href="javascript:;">
 											<div class="cart-header">
-												<p class="cart-header-title mb-0"><span id="cartQty2"> </span> Items</p>
-												<p class="cart-header-clear ms-auto mb-0">{{__('main.view_cart')}}</p>
+                                                <p class="cart-header-title mb-0"><span id="cartQty2"> </span> {{ __('main.items') }}</p>
+                                                <p class="cart-header-clear ms-auto mb-0">{{__('main.view_cart')}}</p>
 											</div>
 										</a>
 										<div class="cart-list" id="miniCart">
@@ -124,8 +133,8 @@
 										<a href="javascript:;">
 											<div class="text-center cart-footer d-flex align-items-center">
 												<h5 class="mb-0">{{__('main.total')}}</h5>
-												<h5 class="mb-0 ms-auto">Total: <span id="cartSubTotal"> </span> KHR</h5>
-											</div>
+                                                <h5 class="mb-0 ms-auto">{{ __('main.total') }}: <span id="cartSubTotal"> </span> {{ __('main.khr') }}</h5>
+                                            </div>
 										</a>
 										<div class="d-grid p-3 border-top">
 											<a href="{{ route('mycart') }}" class="btn btn-dark btn-ecomm">{{__('main.checkout')}}</a>
@@ -149,8 +158,8 @@
 					<h5 class="py-2">Navigation</h5>
 				</div>
 				<ul class="navbar-nav">
-					<li class="nav-item"> <a class="nav-link" href="/">Home </a>
-					</li>
+                    <li class="nav-item"> <a class="nav-link" href="/">{{ __('main.home') }}</a></li>
+                    </li>
 					@php
 					$categories = Cache::remember('all_categories', now()->addMinutes(30), function () {
 					return App\Models\Category::where('status', 'Active')
@@ -159,11 +168,11 @@
 					});
 					@endphp
 
-					<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">Categories<i class='bx bx-chevron-down'></i></a>
-						<ul class="dropdown-menu">
+                    <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">{{ __('main.categories') }}<i class='bx bx-chevron-down'></i></a>
+                        <ul class="dropdown-menu">
 							@foreach($categories as $cate)
 							<li><a class="dropdown-item" href="{{ url('product/category/'.$cate->id.'/'.$cate->slug) }}">
-									@if(session()->get('locale') == 'en') {{ $cate->name }} @else {{ $cate->cat_kh }} @endif
+                                        @if(session()->get('locale') == 'en') {{ $cate->name }} @else {{ $cate->cat_kh }} @endif
 									</a>
 							</li>
 							@endforeach
@@ -181,18 +190,18 @@
 					@endphp
 
 					@foreach($cateWithSub as $category)
-					<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">{{ $category->name }}<i class='bx bx-chevron-down'></i></a>
+					<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">@if(session()->get('locale') == 'en') {{ $category->name }} @else {{ $category->cat_kh }} @endif<i class='bx bx-chevron-down'></i></a>
 						<ul class="dropdown-menu">
 							@foreach($category->subcategories as $subcategory)
-							<li><a class="dropdown-item" href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->sub_slug) }}">{{ $subcategory->sub_name }}</a>
+							<li><a class="dropdown-item" href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->sub_slug) }}">@if(session()->get('locale') == 'en') {{ $subcategory->sub_name }} @else {{ $subcategory->sub_kh }} @endif</a>
 							</li>
 							@endforeach
 						</ul>
 					</li>
 					@endforeach
 
-					<li class="nav-item"> <a class="nav-link" href="/shop">Shop</a>
-					</li>
+                    <li class="nav-item"> <a class="nav-link" href="/shop">{{ __('main.shop') }}</a></li>
+                    </li>
 				</ul>
 			</nav>
 		</div>
@@ -222,6 +231,9 @@
 	}
 </script>
 <script>
+    var lang = {
+        khr: '{{ __('main.khr') }}'
+    };
 	const site_url = "http://127.0.0.1:8000/";
 
 	$("body").on("keyup", "#search", function() {

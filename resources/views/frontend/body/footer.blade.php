@@ -17,8 +17,15 @@
 					});
 				@endphp
 				  <p class="mt-2 max-w-xs text-gray-500">
-				  {{ $siteinfo->address }}<br>
-				  Phone: {{ $siteinfo->support_phone }}
+
+
+                      @if(session()->get('locale') == 'en')
+                          {{ $siteinfo->address }}
+                      @else
+                          {{ $siteinfo->address_kh }}
+                      @endif
+                      <br>
+				  {{ $siteinfo->support_phone }}
 				  </p>
 
 				  <ul class="mt-8 flex gap-6">
@@ -103,13 +110,13 @@
 
 					<ul class="mt-6 space-y-4 text-sm">
 					  <li>
-						<a href="#" class="text-gray-700 transition hover:opacity-75">
+						<a href="/" class="text-gray-700 transition hover:opacity-75">
 						{{__('main.home')}}
 						</a>
 					  </li>
 
 					  <li>
-						<a href="#" class="text-gray-700 transition hover:opacity-75">
+						<a href="/shop" class="text-gray-700 transition hover:opacity-75">
 						{{__('main.shop')}}
 						</a>
 					  </li>
@@ -185,7 +192,7 @@
 			  </div>
 
 			  <p class="text-xs text-gray-500">
-				&copy; 2024. Company Name. All rights reserved.
+				&copy; 2024. {{__('main.credit')}}
 			  </p>
 			</div>
 		</footer>

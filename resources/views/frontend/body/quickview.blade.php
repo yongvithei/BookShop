@@ -17,14 +17,14 @@
 
                     <div class="col-12 col-lg-6">
                         <div class="product-info-section p-3">
-                            <h3 class="mt-3 mt-lg-0 mb-0" id="pname">Product Name</h3>
+                            <h3 class="mt-3 mt-lg-0 mb-0" id="pname">{{ __('main.product_name') }}</h3>
                             <div class="d-flex align-items-center mt-3 gap-2">
                                 <h5 class="mb-0 text-decoration-line-through text-light-3" id="dprice"></h5>
                                 <h4 class="mb-0" id="pprice"></h4>
                             </div>
                             <div class="row row-cols-auto align-items-center mt-2" id="qtyPanel">
                                 <div class="col">
-                                    <label class="form-label">Quantity</label>
+                                    <label class="form-label">{{ __('main.quantity') }}</label>
                                     <div class="input-group input-group-sm">
                                         <input type="number" class="form-control" min="0" max="999" value="1"
                                             id="quantityInput">
@@ -38,41 +38,31 @@
 
                             <label class="form-label text-red-600" id="pqty"></label>
 
-                            <div class="product-rating d-flex align-items-center mt-0">
-                                <div class="rates cursor-pointer font-13"> <i class="bx bxs-star text-warning"></i>
-                                    <i class="bx bxs-star text-warning"></i>
-                                    <i class="bx bxs-star text-warning"></i>
-                                    <i class="bx bxs-star text-warning"></i>
-                                    <i class="bx bxs-star text-light-4"></i>
-                                </div>
-                                <div class="ms-1">
-                                    <p class="mb-0">(24 Ratings)</p>
-                                </div>
-                            </div>
+
                             <dl class="row mt-1">
-                                <dt class="col-sm-3">Product id</dt>
+                                <dt class="col-sm-3">{{ __('main.product_id') }}</dt>
                                 <dd class="col-sm-9" id="pcode"></dd>
                             </dl>
                             <div class="row mt-1">
-                                <dt class="col-sm-3">Category</dt>
+                                <dt class="col-sm-3">{{ __('main.category') }}</dt>
                                 <dd class="col-sm-9" id="pcate"></dd>
                             </div>
                             <div class="row mt-1 mb-2">
-                                <dt class="col-sm-3">SubCategory</dt>
+                                <dt class="col-sm-3">{{ __('main.subcategory') }}</dt>
                                 <dd class="col-sm-9" id="psubcate"></dd>
                             </div>
 
 
                             <!--end row-->
                             <div class="d-flex gap-2 mt-3">
-                                 <input type="hidden" id="product_id">
-                                <a onclick="addToCart()" class="rounded-xl btn btn-dark btn-ecomm"> <i
-                                        class="bx bxs-cart-add"></i>Add to Cart</a> <a href="javascript:;"
-                                    class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200"><i
-                                        class="bx bx-heart"></i>Add to Wishlist</a>
+                                <input type="hidden" id="product_id">
+                                <a onclick="addToCart()" class="rounded-xl btn btn-dark btn-ecomm">{{ __('main.add_to_cart') }}</a>
+                                <a href="javascript:;" class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200">
+                                    <i class="bx bx-heart"></i>{{ __('main.add_to_wishlist') }}
+                                </a>
                             </div>
                             <div class="mt-3">
-                                <h6>Discription :</h6>
+                                <h6>{{ __('main.description') }} :</h6>
                                 <p class="mb-0" id="short"></p>
                             </div>
                         </div>
@@ -106,19 +96,32 @@
                 pQty = parseInt(data.product.pro_qty);
                 $('#quantityInput').val(1);
                 // Rest of your code for updating other elements
-                $('#pname').text(data.product.name || 'N/A');
+                @if(session()->get('locale') == 'en')
+                $('#pname').text(data.product.name || (data.product.pro_kh || 'N/A'));
+                @else
+                $('#pname').text(data.product.pro_kh || (data.product.name || 'N/A'));
+                @endif
                 $('#pcode').text(data.product.id || 'N/A');
-                $('#pprice').text((data.product.discount_price || data.product.price || 'N/A')+ ' KHR');
+                $('#pprice').text((data.product.discount_price || data.product.price || 'N/A') + ' ' + '{{ __('main.khr') }}');
                 $('#pqty').val(data.product.qty || 'N/A');
                 $('#product_id').val(id);
 
                 if (data.product.category) {
-                    $('#pcate').text(data.product.category.name || 'N/A');
+                    @if(session()->get('locale') == 'en')
+                    $('#pcate').text(data.product.category.name || (data.product.category.cat_kh || 'N/A'));
+                    @else
+                    $('#pcate').text(data.product.category.cat_kh || (data.product.category.name || 'N/A'));
+                    @endif
                 } else {
                     $('#pcate').text('N/A');
                 }
+
                 if (data.product.subcategory) {
-                    $('#psubcate').text(data.product.subcategory.sub_name || 'N/A');
+                    @if(session()->get('locale') == 'en')
+                    $('#psubcate').text(data.product.subcategory.sub_name || (data.product.subcategory.sub_kh || 'N/A'));
+                    @else
+                    $('#psubcate').text(data.product.subcategory.sub_kh || (data.product.subcategory.sub_name || 'N/A'));
+                    @endif
                 } else {
                     $('#psubcate').text('N/A');
                 }
@@ -126,11 +129,11 @@
                 $('#pimage').attr('src', '/' + (data.product.thumbnail || 'default-image.jpg'));
                 // Stock Availability
                 if (data.product.pro_qty > 0) {
-                    $('#pqty').text(data.product.pro_qty + ' Available');
+                    $('#pqty').text(data.product.pro_qty + ' ' + '{{ __('main.stock_available') }}');
                     $('#pqty').removeClass('text-red-600');
                 } else {
                     $('#quantityInput').val(0);
-                    $('#pqty').text('Stock Out');
+                    $('#pqty').text('{{ __('main.stock_out') }}');
                     $('#pqty').addClass('text-red-600');
                 }
             }

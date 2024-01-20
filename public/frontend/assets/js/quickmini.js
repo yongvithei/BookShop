@@ -69,8 +69,9 @@
                         '<div class="d-flex align-items-center">' +
                         '<div class="flex-grow-1">' +
                         '<h6 class="cart-product-title">' + value.name + '</h6>' +
-                        '<p class="cart-product-price">' + value.qty + ' X ' + value.price + ' KHR</p>' +
-                        '</div>' +
+                        '<p class="cart-product-price">' + value.qty + ' X ' + value.price + ' ' + lang.khr + '</p>'+
+
+                    '</div>' +
                         '<div class="position-relative">' +
                         '<div class="cart-product-cancel position-absolute">' +
                         '<button type="submit" id="' + value.rowId + '" onclick="miniCartRemove(this.id)">' +

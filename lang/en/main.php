@@ -61,7 +61,7 @@ return [
     'found' => 'Found',
     'search_result'=>'Search Result',
     'all_products' => 'All Products',
-    
+
 
     //cart
     'continue_shopping' => 'Continue Shopping',
@@ -133,5 +133,30 @@ return [
     'working_hours' => 'Mon - FRI / 8:30 AM - 6:30 PM',
     //invoice
     'invoice' => 'Invoice',
+
+
+    'to_our_shop' => 'To Our Shop',
+    'go_back' => 'Go back',
+    'english' => 'English',
+    'khmer' => 'Khmer',
+    'items' => 'Items',
+    'total' => 'Total',
+    'khr' => 'KHR',
+
+
+
+    'product_name' => 'Product Name',
+    'quantity' => 'Quantity',
+    'product_id' => 'Product ID',
+
+    'subcategory' => 'Subcategory',
+
+    'add_to_cart' => 'Add to Cart',
+    'add_to_wishlist' => 'Add to Wishlist',
+    'description' => 'Description',
+    'stock_available' => 'Available',
+    'stock_out' => 'Stock Out',
+    'not_available' => 'Not Available',
+    'credit' => 'Develop by Yong Vithei',
 
 ];
