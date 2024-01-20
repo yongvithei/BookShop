@@ -319,13 +319,12 @@
                                                     <table id="item-table" class="table table-borderless table-striped table-vcenter">
                                                         <thead>
                                                         <tr>
-                                                            <th>{{ __('part_s.no') }}</th>
-                                                            <th>{{ __('part_s.invoice') }}</th>
-                                                            <th>{{ __('part_s.date') }}</th>
-                                                            <th>{{ __('part_s.amount') }}</th>
-                                                            <th>{{ __('part_s.payment') }}</th>
-                                                            <th>{{ __('part_s.state') }}</th>
-                                                            <th>{{ __('part_s.action') }}</th>
+                                                            <th>{{ __('part_s.product_name') }}</th>
+                                                            <th>{{ __('part_s.pro_code') }}</th>
+                                                            <th>{{ __('part_s.order_qty') }}</th>
+                                                            <th>{{ __('part_s.qty_instock') }}</th>
+                                                            <th>{{ __('part_s.price') }}</th>
+                                                            <th>{{ __('part_s.total_price') }}</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>

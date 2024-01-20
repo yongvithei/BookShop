@@ -107,4 +107,59 @@ return [
     'search_by_month' => 'Search By Month: ',
     'select_month' => 'Select Month:',
 
+    'user' => 'User',
+    'all' => 'All',
+    'list_user' => 'List User',
+    'id' => 'ID',
+    'name' => 'Name',
+    'email' => 'Email',
+    'last_seen' => 'Last Seen',
+    'action' => 'Action',
+    'user_information' => 'User Information',
+
+    'name' => 'Name',
+    'username' => 'Username',
+    'email' => 'Email',
+    'login_via' => 'Login via',
+    'verified_at' => 'Verified at',
+    'created_at' => 'Create at',
+    'close' => 'Close',
+    'active_now' => 'Active Now',
+
+    'order_management' => 'Order Management',
+    'all_order' => 'All Order',
+    'pending' => 'Pending',
+    'confirmed' => 'Confirmed',
+    'out_for_delivery' => 'Out for Delivery',
+    'delivered' => 'Delivered',
+    'cancelled' => 'Cancelled',
+    'number' => 'Number',
+
+
+    'dashboard' => 'Dashboard',
+    'welcome' => 'Welcome',
+    'everything_looks_great' => 'everything looks great',
+
+    'settings' => 'Settings',
+    'all_time' => 'All time',
+    'last_30_days' => 'Last 30 days',
+    'last_month' => 'Last month',
+    'last_3_months' => 'Last 3 months',
+    'this_year' => 'This year',
+    'last_year' => 'Last Year',
+    'all_time_dropdown' => 'All time',
+
+    'todays_sale' => "Today's Sale",
+    'view_all_orders' => 'View all orders',
+    'monthly_sale' => 'Monthly Sale',
+    'yearly_sale' => 'Yearly Sale',
+    'pending_orders' => 'Pending Orders',
+    'total_user' => 'Total User',
+    'view_users' => 'View users',
+
+    'filters' => 'Filters',
+    'completed' => 'Completed',
+
+    'sl' => 'Sl',
+
 ];

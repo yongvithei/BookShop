@@ -11,7 +11,7 @@
         $year = date('Y');
         $year = App\Models\Order::where('order_year',$year)->sum('amount');
         $pending = App\Models\Order::where('status','pending')->get();
-        
+
         $customer = App\Models\User::where('role','user')->get();
     @endphp
     <!-- Hero -->
@@ -19,33 +19,33 @@
         <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center py-2 text-center text-md-start">
             <div class="flex-grow-1 mb-1 mb-md-0">
                 <h1 class="h3 fw-bold mb-1">
-                    Dashboard
+                    {{ __('part_s.dashboard') }}
                 </h1>
                 <h2 class="h6 fw-medium fw-medium text-muted mb-0">
-                    Welcome <a class="fw-semibold" href="be_pages_generic_profile.html">{{ Auth::user()->name }}</a>, everything looks great.
+                    {{ __('part_s.welcome') }} <a class="fw-semibold" href="">{{ Auth::user()->name }}</a>, {{ __('part_s.everything_looks_great') }}.
                 </h2>
             </div>
             <div class="mt-3 mt-md-0 ms-md-3 space-x-1">
-                <a class="btn btn-sm btn-alt-secondary space-x-1" href="be_pages_generic_profile_edit.html">
+                <a class="btn btn-sm btn-alt-secondary space-x-1" href="">
                     <i class="fa fa-cogs opacity-50"></i>
-                    <span>Settings</span>
+                    <span>{{ __('part_s.settings') }}</span>
                 </a>
                 <div class="dropdown d-inline-block">
                     <button type="button" class="btn btn-sm btn-alt-secondary space-x-1" id="dropdown-analytics-overview" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-fw fa-calendar-alt opacity-50"></i>
-                        <span>All time</span>
+                        <span>{{ __('part_s.all_time') }}</span>
                         <i class="fa fa-fw fa-angle-down"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end fs-sm" aria-labelledby="dropdown-analytics-overview">
-                        <a class="dropdown-item fw-medium" href="javascript:void(0)">Last 30 days</a>
-                        <a class="dropdown-item fw-medium" href="javascript:void(0)">Last month</a>
-                        <a class="dropdown-item fw-medium" href="javascript:void(0)">Last 3 months</a>
+                        <a class="dropdown-item fw-medium" href="javascript:void(0)">{{ __('part_s.last_30_days') }}</a>
+                        <a class="dropdown-item fw-medium" href="javascript:void(0)">{{ __('part_s.last_month') }}</a>
+                        <a class="dropdown-item fw-medium" href="javascript:void(0)">{{ __('part_s.last_3_months') }}</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item fw-medium" href="javascript:void(0)">This year</a>
-                        <a class="dropdown-item fw-medium" href="javascript:void(0)">Last Year</a>
+                        <a class="dropdown-item fw-medium" href="javascript:void(0)">{{ __('part_s.this_year') }}</a>
+                        <a class="dropdown-item fw-medium" href="javascript:void(0)">{{ __('part_s.last_year') }}</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item fw-medium d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                            <span>All time</span>
+                            <span>{{ __('part_s.all_time_dropdown') }}</span>
                             <i class="fa fa-check"></i>
                         </a>
                     </div>
@@ -64,8 +64,8 @@
                 <div class="block block-rounded d-flex flex-column h-100 mb-0">
                     <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                         <dl class="mb-0">
-                            <dt class="fs-3 fw-bold">${{ $today }} USD</dt>
-                            <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">Today's Sale</dd>
+                            <dt class="fs-3 fw-bold">{{ $today }} KHR</dt>
+                            <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">{{ __('part_s.todays_sale') }}</dd>
                         </dl>
                         <div class="item item-rounded-lg bg-body-light">
                             <i class="far fa-gem fs-3 text-primary"></i>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="bg-body-light rounded-bottom">
                         <a class="block-content block-content-full block-content-sm fs-sm fw-medium d-flex align-items-center justify-content-between" href="/order/list">
-                            <span>View all orders</span>
+                            <span>{{ __('part_s.view_all_orders') }}</span>
                             <i class="fa fa-arrow-alt-circle-right ms-1 opacity-25 fs-base"></i>
                         </a>
                     </div>
@@ -85,8 +85,8 @@
                 <div class="block block-rounded d-flex flex-column h-100 mb-0">
                     <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                         <dl class="mb-0">
-                            <dt class="fs-3 fw-bold">${{ $month }} USD</dt>
-                            <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">Monthly Sale</dd>
+                            <dt class="fs-3 fw-bold">{{ $month }} KHR</dt>
+                            <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">{{ __('part_s.monthly_sale') }}</dd>
                         </dl>
                         <div class="item item-rounded-lg bg-body-light">
                             <i class="far fa-user-circle fs-3 text-primary"></i>
@@ -94,7 +94,7 @@
                     </div>
                     <div class="bg-body-light rounded-bottom">
                         <a class="block-content block-content-full block-content-sm fs-sm fw-medium d-flex align-items-center justify-content-between" href="/order/list">
-                           <span>View all orders</span>
+                           <span>{{ __('part_s.view_all_orders') }}</span>
                             <i class="fa fa-arrow-alt-circle-right ms-1 opacity-25 fs-base"></i>
                         </a>
                     </div>
@@ -106,8 +106,8 @@
                 <div class="block block-rounded d-flex flex-column h-100 mb-0">
                     <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                         <dl class="mb-0">
-                            <dt class="fs-3 fw-bold">${{ $year }} USD</dt>
-                            <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">Yearly Sale</dd>
+                            <dt class="fs-3 fw-bold">{{ $year }} KHR</dt>
+                            <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">{{ __('part_s.yearly_sale') }}</dd>
                         </dl>
                         <div class="item item-rounded-lg bg-body-light">
                             <i class="far fa-paper-plane fs-3 text-primary"></i>
@@ -115,7 +115,7 @@
                     </div>
                     <div class="bg-body-light rounded-bottom">
                         <a class="block-content block-content-full block-content-sm fs-sm fw-medium d-flex align-items-center justify-content-between" href="/order/list">
-                            <span>View all orders</span>
+                            <span>{{ __('part_s.view_all_orders') }}</span>
                             <i class="fa fa-arrow-alt-circle-right ms-1 opacity-25 fs-base"></i>
                         </a>
                     </div>
@@ -128,7 +128,7 @@
                     <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                         <dl class="mb-0">
                             <dt class="fs-3 fw-bold">{{ count($pending) }}</dt>
-                            <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">Pending Orders</dd>
+                            <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">{{ __('part_s.pending_orders') }}</dd>
                         </dl>
                         <div class="item item-rounded-lg bg-body-light">
                             <i class="fa fa-chart-bar fs-3 text-primary"></i>
@@ -136,7 +136,7 @@
                     </div>
                     <div class="bg-body-light rounded-bottom">
                         <a class="block-content block-content-full block-content-sm fs-sm fw-medium d-flex align-items-center justify-content-between" href="/order/list">
-                            <span>View all orders</span>
+                            <span>{{ __('part_s.view_all_orders') }}</span>
                             <i class="fa fa-arrow-alt-circle-right ms-1 opacity-25 fs-base"></i>
                         </a>
                     </div>
@@ -149,7 +149,7 @@
                     <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                         <dl class="mb-0">
                             <dt class="fs-3 fw-bold">{{ count($customer) }}</dt>
-                            <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">Total User</dd>
+                            <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">{{ __('part_s.total_user') }}</dd>
                         </dl>
                         <div class="item item-rounded-lg bg-body-light">
                             <i class="fa fa-chart-bar fs-3 text-primary"></i>
@@ -157,7 +157,7 @@
                     </div>
                     <div class="bg-body-light rounded-bottom">
                         <a class="block-content block-content-full block-content-sm fs-sm fw-medium d-flex align-items-center justify-content-between" href="/user/list">
-                            <span>View users</span>
+                            <span>{{ __('part_s.view_users') }}</span>
                             <i class="fa fa-arrow-alt-circle-right ms-1 opacity-25 fs-base"></i>
                         </a>
                     </div>
@@ -308,24 +308,24 @@
                     <div class="dropdown d-inline-block">
                         <button type="button" class="btn btn-sm btn-alt-secondary" id="dropdown-recent-orders-filters" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-fw fa-flask"></i>
-                            Filters
+                            {{ __('part_s.filters') }}
                             <i class="fa fa-angle-down ms-1"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-md dropdown-menu-end fs-sm" aria-labelledby="dropdown-recent-orders-filters">
                             <a class="dropdown-item fw-medium d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                Pending
+                                {{ __('part_s.pending') }}
                                 <span class="badge bg-primary rounded-pill">20</span>
                             </a>
                             <a class="dropdown-item fw-medium d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                Active
+                                {{ __('part_s.active') }}
                                 <span class="badge bg-primary rounded-pill">72</span>
                             </a>
                             <a class="dropdown-item fw-medium d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                Completed
+                                {{ __('part_s.completed') }}
                                 <span class="badge bg-primary rounded-pill">890</span>
                             </a>
                             <a class="dropdown-item fw-medium d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                All
+                                {{ __('part_s.all') }}
                                 <span class="badge bg-primary rounded-pill">997</span>
                             </a>
                         </div>
@@ -334,7 +334,7 @@
             </div>
             <div id="one-dashboard-search-orders" class="block-content border-bottom d-none">
                 <!-- Search Form -->
-                <form action="be_pages_dashboard.html" method="POST" onsubmit="return false;">
+                <form action="" method="POST" onsubmit="return false;">
                     <div class="push">
                         <div class="input-group">
                             <input type="text" class="form-control form-control-alt" id="one-ecom-orders-search" name="one-ecom-orders-search" placeholder="Search all orders..">
@@ -351,14 +351,14 @@
                 <div class="table-responsive">
                     <table class="table table-hover table-vcenter">
                         <thead>
-                            <tr>
-                                <th>Sl</th>
-                                <th>Date</th>
-                                <th>Invoice</th>
-                                <th>Amount</th>
-                                <th>Payment</th>
-                                <th>Status</th>
-                            </tr>
+                        <tr>
+                            <th>{{ __('part_s.sl') }}</th>
+                            <th>{{ __('part_s.date') }}</th>
+                            <th>{{ __('part_s.invoice') }}</th>
+                            <th>{{ __('part_s.amount') }}</th>
+                            <th>{{ __('part_s.payment') }}</th>
+                            <th>{{ __('part_s.status') }}</th>
+                        </tr>
                         </thead>
                         <tbody class="fs-sm">
                             @foreach($orders as $key => $order)
@@ -383,7 +383,7 @@
                 <!-- END Recent Orders Table -->
             </div>
             <div class="block-content block-content-full bg-body-light">
-             
+
             </div>
         </div>
         <!-- END Recent Orders -->

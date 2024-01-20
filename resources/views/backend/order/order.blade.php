@@ -20,7 +20,7 @@
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">Order Management</a>
+                            <a class="link-fx" href="javascript:void(0)">{{ __('part_s.order_management') }}</a>
                         </li>
 
                     </ol>
@@ -38,23 +38,23 @@
                     <div class="block block-rounded">
                         <ul class="nav nav-tabs nav-tabs-block align-items-center" role="tablist">
                             <li class="nav-item">
-                                <button class="nav-link active" id="order-tab" data-bs-toggle="tab" data-bs-target="#order" role="tab" aria-controls="order" aria-selected="true">All Order</button>
+                                <button class="nav-link active" id="order-tab" data-bs-toggle="tab" data-bs-target="#order" role="tab" aria-controls="order" aria-selected="true">{{ __('part_s.all_order') }}</button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" role="tab" aria-controls="pending" aria-selected="false">Pending</button>
+                                <button class="nav-link" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" role="tab" aria-controls="pending" aria-selected="false">{{ __('part_s.pending') }}</button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link" id="conform-order-tab" data-bs-toggle="tab" data-bs-target="#conform-order" role="tab" aria-controls="conform-order" aria-selected="false">Confirmed</button>
+                                <button class="nav-link" id="conform-order-tab" data-bs-toggle="tab" data-bs-target="#conform-order" role="tab" aria-controls="conform-order" aria-selected="false">{{ __('part_s.confirmed') }}</button>
                             </li>
 
                             <li class="nav-item">
-                                <button class="nav-link" id="out-for-delivery-tab" data-bs-toggle="tab" data-bs-target="#out-for-delivery" role="tab" aria-controls="out-for-delivery" aria-selected="false">Out for delivery</button>
+                                <button class="nav-link" id="out-for-delivery-tab" data-bs-toggle="tab" data-bs-target="#out-for-delivery" role="tab" aria-controls="out-for-delivery" aria-selected="false">{{ __('part_s.out_for_delivery') }}</button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link" id="delivered-tab" data-bs-toggle="tab" data-bs-target="#delivered" role="tab" aria-controls="delivered" aria-selected="false">Delivered</button>
+                                <button class="nav-link" id="delivered-tab" data-bs-toggle="tab" data-bs-target="#delivered" role="tab" aria-controls="delivered" aria-selected="false">{{ __('part_s.delivered') }}</button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link" id="cancelled-tab" data-bs-toggle="tab" data-bs-target="#cancelled" role="tab" aria-controls="cancelled" aria-selected="false">Cancelled</button>
+                                <button class="nav-link" id="cancelled-tab" data-bs-toggle="tab" data-bs-target="#cancelled" role="tab" aria-controls="cancelled" aria-selected="false">{{ __('part_s.cancelled') }}</button>
                             </li>
                             <li class="nav-item ms-auto">
                                 <div class="block-options ps-3 pe-2">
@@ -79,13 +79,15 @@
                                         <table id="order-table" class="table table-bordered table-vcenter">
                                             <thead>
                                             <tr>
-                                                <th class="text-center" style="width: 15px;">№</th>
-                                                <th>Invoice</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 20%;">Date</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 15%;">Amount</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 20%;">Payment</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 10%;">State</th>
-                                                <th style="width: 10%;">Action</th>
+                                            <tr>
+                                                <th class="text-center" style="width: 15px;">{{ __('part_s.number') }}</th>
+                                                <th>{{ __('part_s.invoice') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 20%;">{{ __('part_s.date') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('part_s.amount') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 20%;">{{ __('part_s.payment') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 10%;">{{ __('part_s.state') }}</th>
+                                                <th style="width: 10%;">{{ __('part_s.action') }}</th>
+                                            </tr>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -242,13 +244,13 @@
                                         <table id="pending-order" class="table table-bordered table-vcenter">
                                             <thead>
                                             <tr>
-                                                <th class="text-center" style="width: 15px;">№</th>
-                                                <th>Invoice</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 20%;">Date</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 15%;">Amount</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 20%;">Payment</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 10%;">State</th>
-                                                <th style="width: 10%;">Action</th>
+                                                <th class="text-center" style="width: 15px;">{{ __('part_s.number') }}</th>
+                                                <th>{{ __('part_s.invoice') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 20%;">{{ __('part_s.date') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('part_s.amount') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 20%;">{{ __('part_s.payment') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 10%;">{{ __('part_s.state') }}</th>
+                                                <th style="width: 10%;">{{ __('part_s.action') }}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -288,13 +290,13 @@
                                         <table id="confirm-order" class="table table-bordered table-vcenter">
                                             <thead>
                                             <tr>
-                                                <th class="text-center" style="width: 15px;">№</th>
-                                                <th>Invoice</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 20%;">Date</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 15%;">Amount</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 20%;">Payment</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 10%;">State</th>
-                                                <th style="width: 10%;">Action</th>
+                                                <th class="text-center" style="width: 15px;">{{ __('part_s.number') }}</th>
+                                                <th>{{ __('part_s.invoice') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 20%;">{{ __('part_s.date') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('part_s.amount') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 20%;">{{ __('part_s.payment') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 10%;">{{ __('part_s.state') }}</th>
+                                                <th style="width: 10%;">{{ __('part_s.action') }}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -334,13 +336,16 @@
                                         <table id="order-delivery" class="table table-bordered table-vcenter">
                                             <thead>
                                             <tr>
-                                                <th class="text-center" style="width: 15px;">№</th>
-                                                <th>Invoice</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 20%;">Date</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 15%;">Amount</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 20%;">Payment</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 10%;">State</th>
-                                                <th style="width: 10%;">Action</th>
+                                            <tr>
+                                                <th class="text-center" style="width: 15px;">{{ __('part_s.number') }}</th>
+                                                <th>{{ __('part_s.invoice') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 20%;">{{ __('part_s.date') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('part_s.amount') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 20%;">{{ __('part_s.payment') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 10%;">{{ __('part_s.state') }}</th>
+                                                <th style="width: 10%;">{{ __('part_s.action') }}</th>
+                                            </tr>
+
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -380,13 +385,15 @@
                                         <table id="order-delivered" class="table table-bordered table-vcenter">
                                             <thead>
                                             <tr>
-                                                <th class="text-center" style="width: 15px;">№</th>
-                                                <th>Invoice</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 20%;">Date</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 15%;">Amount</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 20%;">Payment</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 10%;">State</th>
-                                                <th style="width: 10%;">Action</th>
+                                            <tr>
+                                                <th class="text-center" style="width: 15px;">{{ __('part_s.number') }}</th>
+                                                <th>{{ __('part_s.invoice') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 20%;">{{ __('part_s.date') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('part_s.amount') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 20%;">{{ __('part_s.payment') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 10%;">{{ __('part_s.state') }}</th>
+                                                <th style="width: 10%;">{{ __('part_s.action') }}</th>
+                                            </tr>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -426,13 +433,13 @@
                                         <table id="order-cancelled" class="table table-bordered table-vcenter">
                                             <thead>
                                             <tr>
-                                                <th class="text-center" style="width: 15px;">№</th>
-                                                <th>Invoice</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 20%;">Date</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 15%;">Amount</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 20%;">Payment</th>
-                                                <th class="d-none d-sm-table-cell" style="width: 10%;">State</th>
-                                                <th style="width: 10%;">Action</th>
+                                                <th class="text-center" style="width: 15px;">{{ __('part_s.number') }}</th>
+                                                <th>{{ __('part_s.invoice') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 20%;">{{ __('part_s.date') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('part_s.amount') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 20%;">{{ __('part_s.payment') }}</th>
+                                                <th class="d-none d-sm-table-cell" style="width: 10%;">{{ __('part_s.state') }}</th>
+                                                <th style="width: 10%;">{{ __('part_s.action') }}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -475,7 +482,7 @@
                     <div class="modal-content">
                         <div class="block block-rounded block-transparent mb-0">
                             <div class="block-header block-header-default">
-                                <h3 class="block-title">Order Details</h3>
+                                <h3 class="block-title">{{ __('part_s.order_details') }}</h3>
                                 <div class="block-options">
                                     <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                                         <i class="fa fa-fw fa-times"></i>
@@ -494,17 +501,17 @@
                                                         <!-- Shipping Address -->
                                                         <div class="block block-rounded block-bordered">
                                                             <div class="block-header border-bottom">
-                                                                <h3 class="block-title">Shipping Details</h3>
+                                                                <h3 class="block-title">{{ __('part_s.shipping_details') }}</h3>
                                                             </div>
                                                             <div class="block-content">
-                                                                <div class="fs-4 mb-1">Name: <span id="ship_name"></span></div>
-                                                                <div class="fs-sm">Email: <span id="ship_email"></span></div>
-                                                                <div class="fs-sm">City: <span id="ship_city"></span></div>
-                                                                <div class="fs-sm">District: <span id="ship_district"></span></div>
-                                                                <div class="fs-sm">PostCode: <span id="ship_post"></span></div>
-                                                                <div class="fs-sm">Order Date: <span id="order_date"></span></div>
+                                                                <div class="fs-4 mb-1">{{ __('part_s.name') }}: <span id="ship_name"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.email') }}: <span id="ship_email"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.city') }}: <span id="ship_city"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.district') }}: <span id="ship_district"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.postcode') }}: <span id="ship_post"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.order_date') }}: <span id="order_date"></span></div>
                                                                 <address class="fs-sm">
-                                                                    <i class="fa fa-phone"></i> <span id="ship_phone"></span><br>
+                                                                    <i class="fa fa-phone"></i> {{ __('part_s.phone') }}: <span id="ship_phone"></span><br>
                                                                 </address>
                                                             </div>
                                                         </div>
@@ -514,18 +521,17 @@
                                                         <!-- User Address -->
                                                         <div class="block block-rounded block-bordered">
                                                             <div class="block-header border-bottom">
-                                                                <h3 class="block-title">INVOICE : <span id="invoice_no"></span></h3>
+                                                                <h3 class="block-title">{{ __('part_s.invoice') }} : <span id="invoice_no"></span></h3>
                                                             </div>
                                                             <div class="block-content">
-                                                                <div class="fs-4 mb-1">Name: <span id="name"></span></div>
-                                                                <div class="fs-sm">Email: <span id="email"></span></div>
-                                                                <div class="fs-sm">Payment Method: <span id="payment_method"></span></div>
-                                                                <div class="fs-sm">Transaction_id: <span id="transaction_id"></span></div>
-                                                                <div class="fs-sm">Invoice id: <span id="invoice_no"></span></div>
-                                                                <div class="fs-sm">Amount: <span id="amount"></span></div>
-                                                                <div class="fs-sm mb-3">Status: <span class="badge bg-success" id="status"></span></div>
+                                                                <div class="fs-4 mb-1">{{ __('part_s.name') }}: <span id="name"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.email') }}: <span id="email"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.payment_method') }}: <span id="payment_method"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.transaction_id') }}: <span id="transaction_id"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.invoice_id') }}: <span id="invoice_no"></span></div>
+                                                                <div class="fs-sm">{{ __('part_s.amount') }}: <span id="amount"></span></div>
+                                                                <div class="fs-sm mb-3">{{ __('part_s.status') }}: <span class="badge bg-success" id="status"></span></div>
                                                             </div>
-
                                                         </div>
                                                         <!-- END User Address -->
                                                     </div>
@@ -538,19 +544,19 @@
                                         <!-- Shopping Cart -->
                                         <div class="block block-rounded">
                                             <div class="block-header block-header-default">
-                                                <h3 class="block-title">Product Order</h3>
+                                                <h3 class="block-title">{{ __('part_s.product_order') }}</h3>
                                             </div>
 
                                                 <div class="table-responsive">
                                                     <table id="item-table" class="table table-borderless table-striped table-vcenter">
                                                         <thead>
                                                         <tr>
-                                                            <th>Product name</th>
-                                                            <th>pro_code</th>
-                                                            <th>order qty</th>
-                                                            <th>qty instock</th>
-                                                            <th>price</th>
-                                                            <th>total_price</th>
+                                                            <th>{{ __('part_s.product_name') }}</th>
+                                                            <th>{{ __('part_s.pro_code') }}</th>
+                                                            <th>{{ __('part_s.order_qty') }}</th>
+                                                            <th>{{ __('part_s.qty_instock') }}</th>
+                                                            <th>{{ __('part_s.price') }}</th>
+                                                            <th>{{ __('part_s.total_price') }}</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -647,17 +653,18 @@
                                     <!-- END Interactive Options -->
                             </div>
                             <div class="block-content block-content-full text-end bg-body">
-                           <form id="ItemForm" action="javascript:void(0)" method="POST" enctype="multipart/form-data">
-                                 <input type="hidden" name="oid" id="oid">
-                                <button type="submit" id="buttonCancelled" class="btn btn-sm btn-warning mx-3">Cancel order</button>
+                                <form id="ItemForm" action="javascript:void(0)" method="POST" enctype="multipart/form-data">
+                                    <input type="hidden" name="oid" id="oid">
+                                    <button type="submit" id="buttonCancelled" class="btn btn-sm btn-warning mx-3">{{ __('part_s.cancel_order') }}</button>
 
-                            <label class="text-center" for="status">Choose:</label>
-                               <select name="status" id="order-select">
-                                </select>
-                                <button id="buttonConfirm" type="submit" class="btn btn-sm btn-primary mx-3" data-bs-dismiss="modal">Confirm</button>
-                                <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
+                                    <label class="text-center" for="status">{{ __('part_s.choose') }}</label>
+                                    <select name="status" id="order-select">
+                                        <!-- Add options dynamically using JavaScript or Blade if needed -->
+                                    </select>
+                                    <button id="buttonConfirm" type="submit" class="btn btn-sm btn-primary mx-3" data-bs-dismiss="modal">{{ __('part_s.confirm') }}</button>
+                                    <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">{{ __('part_s.close') }}</button>
 
-                            </form>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -951,7 +958,7 @@
                                             $('#buttonConfirm').text('Low Qty'); // Change the button text to "Low Qty"
                                         } else {
                                             $('#buttonConfirm').prop('disabled', false);
-                                            $('#buttonConfirm').text('Save'); // Change the button text back to "Confirm"
+                                            $('#buttonConfirm').text('{{ __('part_s.save') }}'); // Change the button text back to "Confirm"
                                         }
                         // Populate the user data into the modal table
                         $('#ship_name').text(res.ship_name);
@@ -982,13 +989,14 @@
 
     function cancelledFunc(id) {
         Swal.fire({
-            title: 'Cancelled this Record?',
-            text: "You won't be able to revert this!",
+            title: '{{ __('part_s.cancelled_record_title') }}',
+            text: '{{ __('part_s.cancelled_record_text') }}',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, Cancelled it!'
+            confirmButtonText: '{{ __('part_s.confirm_cancel') }}',
+            cancelButtonText: '{{ __('crud.cancel') }}'
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -1072,12 +1080,12 @@
     function addOptionsToSelect() {
         var selectElement = document.getElementById('order-select');
         var optionsArray = [
-            { value: 'cancelled', text: 'Cancelled' },
-            { value: 'failed', text: 'Failed' },
-            { value: 'delivering', text: 'Delivering' },
-            { value: 'delivered', text: 'Delivered' },
-            { value: 'confirm', text: 'Confirm' },
-            { value: 'pending', text: 'Pending' },
+            { value: 'cancelled', text: '{{ __('part_s.status_cancelled') }}' },
+            { value: 'failed', text: '{{ __('part_s.status_failed') }}' },
+            { value: 'delivering', text: '{{ __('part_s.status_delivering') }}' },
+            { value: 'delivered', text: '{{ __('part_s.status_delivered') }}' },
+            { value: 'confirm', text: '{{ __('part_s.status_confirm') }}' },
+            { value: 'pending', text: '{{ __('part_s.status_pending') }}' },
         ];
 
         for (var i = 0; i < optionsArray.length; i++) {

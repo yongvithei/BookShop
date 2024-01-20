@@ -24,10 +24,10 @@
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">User</a>
+                            <a class="link-fx" href="javascript:void(0)">{{ __('part_s.user') }}</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            All
+                            {{ __('part_s.all') }}
                         </li>
                     </ol>
                 </nav>
@@ -41,7 +41,7 @@
             <!-- Dynamic Table Full -->
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">List User</h3>
+                    <h3 class="block-title">{{ __('part_s.list_user') }}</h3>
                     <div class="block-options">
                     </div>
                 </div>
@@ -50,11 +50,11 @@
                     <table id="item-table" class="table table-bordered table-vcenter">
                         <thead>
                         <tr>
-                            <th class="text-center" style="width: 80px;">ID</th>
-                            <th>Name</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Email</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Last Seen</th>
-                            <th style="width: 15%;">Action</th>
+                            <th class="text-center" style="width: 80px;">{{ __('part_s.id') }}</th>
+                            <th>{{ __('part_s.name') }}</th>
+                            <th class="d-none d-sm-table-cell" style="width: 30%;">{{ __('part_s.email') }}</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('part_s.last_seen') }}</th>
+                            <th style="width: 15%;">{{ __('part_s.action') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -188,7 +188,7 @@
                     <div class="modal-content">
                         <div class="block block-rounded block-transparent mb-0">
                             <div class="block-header block-header-default">
-                                <h3 class="block-title">User Information</h3>
+                                <h3 class="block-title">{{ __('part_s.user_information') }}</h3>
                                 <div class="block-options">
                                     <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                                         <i class="fa fa-fw fa-times"></i>
@@ -199,63 +199,68 @@
                                 <div class="block-content row justify-content-center">
                                 <input type="hidden" name="id" id="id">
                                     <div class="mb-2">
-                                        <label class="form-label" for="example-text-input">Name</label>
-                                            <div class="input-group">
-                                                    <span class="input-group-text">
-                                                        <i class="fa fa-user"></i>
-                                                    </span>
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
-                                        </div>
-                                    </div>
-                                    <div class="mb-2">
-                                        <label class="form-label" for="username">Username</label>
+                                        <label class="form-label" for="example-text-input">{{ __('part_s.name') }}</label>
                                         <div class="input-group">
-                                                <span class="input-group-text">
-                                                    <i class="far fa-user"></i>
-                                                </span>
-                                            <input type="text" class="form-control" id="username" name="username">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('part_s.name') }}">
                                         </div>
                                     </div>
+
                                     <div class="mb-2">
-                                        <label class="form-label" for="email">Email</label>
+                                        <label class="form-label" for="username">{{ __('part_s.username') }}</label>
                                         <div class="input-group">
-                                                <span class="input-group-text">
-                                                    <i class="far fa-envelope"></i>
-                                                </span>
-                                            <input type="email" class="form-control" id="email" name="email">
+                                        <span class="input-group-text">
+                                            <i class="far fa-user"></i>
+                                        </span>
+                                            <input type="text" class="form-control" id="username" name="username" placeholder="{{ __('part_s.username') }}">
                                         </div>
                                     </div>
+
                                     <div class="mb-2">
-                                        <label class="form-label" for="provider">Login via</label>
+                                        <label class="form-label" for="email">{{ __('part_s.email') }}</label>
                                         <div class="input-group">
-                                                <span class="input-group-text">
-                                                    <i class="fab fa-google"></i>
-                                                </span>
-                                            <input type="text" class="form-control" id="provider" name="provider">
+                                        <span class="input-group-text">
+                                            <i class="far fa-envelope"></i>
+                                        </span>
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="{{ __('part_s.email') }}">
                                         </div>
                                     </div>
+
                                     <div class="mb-2">
-                                        <label class="form-label" for="verified">Verified at</label>
+                                        <label class="form-label" for="provider">{{ __('part_s.login_via') }}</label>
                                         <div class="input-group">
-                                                <span class="input-group-text">
-                                                    <i class="far fa-envelope-open"></i>
-                                                </span>
-                                            <input type="text" class="form-control" id="verified" name="verified">
+                                        <span class="input-group-text">
+                                            <i class="fab fa-google"></i>
+                                        </span>
+                                            <input type="text" class="form-control" id="provider" name="provider" placeholder="{{ __('part_s.login_via') }}">
                                         </div>
                                     </div>
+
+                                    <div class="mb-2">
+                                        <label class="form-label" for="verified">{{ __('part_s.verified_at') }}</label>
+                                        <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="far fa-envelope-open"></i>
+                                        </span>
+                                            <input type="text" class="form-control" id="verified" name="verified" placeholder="{{ __('part_s.verified_at') }}">
+                                        </div>
+                                    </div>
+
                                     <div class="mb-4">
-                                        <label class="form-label" for="create">Create at</label>
+                                        <label class="form-label" for="create">{{ __('part_s.created_at') }}</label>
                                         <div class="input-group">
-                                                <span class="input-group-text">
-                                                    <i class="far fa-clock"></i>
-                                                </span>
-                                            <input type="text" class="form-control" id="create" name="create">
+                                        <span class="input-group-text">
+                                            <i class="far fa-clock"></i>
+                                        </span>
+                                            <input type="text" class="form-control" id="create" name="create" placeholder="{{ __('part_s.created_at') }}">
                                         </div>
                                     </div>
                                 </div>
-                            <div class="block-content block-content-full text-end bg-body">
-                                <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
-                            </div>
+                                <div class="block-content block-content-full text-end bg-body">
+                                    <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">{{ __('part_s.close') }}</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -303,11 +308,12 @@
         var minutesSinceLastSeen = moment().diff(lastSeenTime, 'minutes');
 
         if (minutesSinceLastSeen < 1) {
-            return '<span class="badge badge-pill bg-success">Active Now</span>';
+            return '<span class="badge badge-pill bg-success">' + __('part_s.active_now') + '</span>';
         } else if (data !== null) {
             var diffForHumans = lastSeenTime.fromNow(); // Display time difference
             return '<span class="badge badge-pill bg-danger">' + diffForHumans + '</span>';
         }
+
 
         // Handle the case where neither is true (optional)
         return 'N/A';
@@ -315,7 +321,7 @@
 },
 
         { data: 'action', name: 'action', orderable: false },
-  
+
                 ],
                 order: [[0, 'desc']],
                 columnDefs: [
