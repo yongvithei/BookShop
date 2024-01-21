@@ -45,11 +45,11 @@ Shop Pages
                                         </div>
                                         <hr class="d-flex d-xl-none" />
                                        <div class="price-range">
-                                            <h6 class="text-uppercase mb-3">{{ __('price') }}</h6>
+                                            <h6 class="text-uppercase mb-3">{{ __('main.price') }}</h6>
                                             <div class="my-4" id="slider"></div>
                                             <div class="d-flex align-items-center mb-2">
                                                 <div class="ms-auto">
-                                                   <p class="mb-0">Price:  <span id="price-min">0</span> - <span id="price-max">1000000</span></p>
+                                                   <p class="mb-0">{{ __('main.price') }}:  <span id="price-min">0</span> - <span id="price-max">1000000</span></p>
                                                     <input type="text" name="price_range" id="price-range-input" style="display: none;">
                                                 </div>
                                             </div>
@@ -71,7 +71,7 @@ Shop Pages
                                                 <li>
                                                     <div class="form-check">
                                                         <input class="form-check-input" name="category[]" type="checkbox" value="{{ $category->slug }}" @if(!empty($filterCat) && in_array($category->slug,$filterCat)) checked @endif onchange="this.form.submit()" />
-                                                        <label class="form-check-label" for="book" id="box{{ $category->id }}">{{ $category->name }} </label>
+                                                        <label class="form-check-label" for="book" id="box{{ $category->id }}">@if(session()->get('locale') == 'en') {{ $category->name ?? $category->cat_kh ?? '' }} @else {{ $category->cat_kh ?? $category->name ?? '' }} @endif </label>
                                                     </div>
                                                 </li>
                                                 @endforeach
@@ -93,12 +93,12 @@ Shop Pages
                                     <div class="d-flex align-items-center flex-nowrap">
                                         <p class="mb-0 font-13 text-nowrap">{{ __('main.sort_by') }}</p>
                                         <select class="form-select ms-3 rounded-0">
-                                            <option value="menu_order" selected="selected">Default sorting</option>
-                                            <option value="popularity">Sort by popularity</option>
-                                            <option value="rating">Sort by average rating</option>
-                                            <option value="date">Sort by newness</option>
-                                            <option value="price">Sort by price: low to high</option>
-                                            <option value="price-desc">Sort by price: high to low</option>
+                                            <option value="menu_order" selected="selected">{{ __('main.default_sorting') }}</option>
+                                            <option value="popularity">{{ __('main.sort_by_popularity') }}</option>
+                                            <option value="rating">{{ __('main.sort_by_rating') }}</option>
+                                            <option value="date">{{ __('main.sort_by_newness') }}</option>
+                                            <option value="price">{{ __('main.sort_by_price_low_high') }}</option>
+                                            <option value="price-desc">{{ __('main.sort_by_price_high_low') }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -140,19 +140,24 @@ Shop Pages
                                             <div class="card-body">
                                                 <div class="product-info">
                                                     <a href="{{ url('product/details/'.$product->id.'/'.$product->name) }}">
-                                                        <h6 class="product-name mb-2">{{$product->name}}</h6>
+                                                        <h6 class="product-name mb-2">
+                                                            @if(session()->get('locale') == 'en')
+                                                                {{ $product->name ? $product->name : $product->pro_kh }}
+                                                            @else
+                                                                {{ $product->pro_kh ? $product->pro_kh : $product->name }}
+                                                            @endif</h6>
                                                     </a>
                                                     @if($product->discount_price != NULL)
                                                     <span class="me-1 text-decoration-line-through">
-                                                        {{$product->discount_price}} KHR</span>
-                                                    <span class="fs-5">{{$product->price}} KHR</span>
+                                                        {{$product->discount_price}} {{ __('main.khr') }}</span>
+                                                    <span class="fs-5">{{$product->price}} {{ __('main.khr') }}</span>
                                                     @else
-                                                    <span class="fs-5">{{$product->price}} KHR</span>
+                                                    <span class="fs-5">{{$product->price}} {{ __('main.khr') }}</span>
                                                     @endif
                                                     <div class="product-action mt-2">
                                                         <div class="grid grid-cols-2 gap-2">
-                                                            <a href="javascript:;" class="rounded-xl btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add</a>
-                                                            <a href="javascript:;" class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200" data-bs-toggle="modal" data-bs-target="#QuickViewProduct" id="{{ $product->id }}" onclick="productView(this.id)"><i class='bx bxs-show'></i>View</a>
+                                                            <a href="javascript:;" class="rounded-xl btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>{{ __('main.add') }}</a>
+                                                            <a href="javascript:;" class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200" data-bs-toggle="modal" data-bs-target="#QuickViewProduct" id="{{ $product->id }}" onclick="productView(this.id)"><i class='bx bxs-show'></i>{{ __('main.view') }}</a>
                                                         </div>
                                                     </div>
                                                 </div>

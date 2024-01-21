@@ -1,5 +1,5 @@
 @if($products -> isEmpty())
-<h4 class="text-center text-danger">Product Not Found</h4>
+<h4 class="text-center text-danger">{{ __('main.product_not_found') }}</h4>
 @else
 
 <div class="product-grid">
@@ -20,7 +20,13 @@
                 <div class="card-body">
                     <div class="product-info">
                         <a href="{{ url('product/details/'.$item->id.'/'.$item->name) }}">
-                            <h6 class="product-name mb-2">{{$item->name}}</h6>
+                            <h6 class="product-name mb-2">
+                                @if(session()->get('locale') == 'en')
+                                    {{ $item->name ? $item->name : $item->pro_kh }}
+                                @else
+                                    {{ $item->pro_kh ? $item->pro_kh : $item->name }}
+                                @endif
+                            </h6>
                         </a>
                         <div class="d-flex align-items-center">
                             <div class="mb-1 product-price">

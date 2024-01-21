@@ -10,7 +10,7 @@ Product Searcing
 		<section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
 			<div class="container">
 				<div class="page-breadcrumb d-flex align-items-center">
-					<h3 class="breadcrumb-title pe-3">{{ __('main.search_result_found') }} of {{$item}}</h3>
+					<h3 class="breadcrumb-title pe-3">{{ __('main.search_result_found') }} {{$item}}</h3>
 					<div class="ms-auto">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mb-0 p-0">
@@ -39,8 +39,8 @@ Product Searcing
 									<p class="mb-0 font-13 text-nowrap text-dark text-2xl">{{ __('main.found') }} (0)</p>
 								</div>
 							</div>
-							<h4 class="text-center text-danger">Product Not Found</h4>
-							@else
+                                <h4 class="text-center text-danger">{{ __('main.product_not_found') }}</h4>
+                            @else
 
 							<div class="product-grid">
 								<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
@@ -60,10 +60,22 @@ Product Searcing
 											<div class="card-body">
 												<div class="product-info">
 													<a href="javascript:;">
-														<p class="product-catergory font-13 mb-1">{{ $product->category->name ?? 'N/A' }}</p>
+														<p class="product-catergory font-13 mb-1">
+                                                            @if(session()->get('locale') == 'en')
+                                                                {{ $item->category->name ? $item->category->name : ($item->category->cat_kh ?? 'N/A') }}
+                                                            @else
+                                                                {{ $item->category->cat_kh ? $item->category->cat_kh : ($item->category->name ?? 'N/A') }}
+                                                            @endif
+                                                        </p>
 													</a>
 													<a href="javascript:;">
-														<h6 class="product-name mb-2">{{ $item->name }}</h6>
+														<h6 class="product-name mb-2">
+                                                            @if(session()->get('locale') == 'en')
+                                                                {{ $item->name ? $item->name : $item->pro_kh }}
+                                                            @else
+                                                                {{ $item->pro_kh ? $item->pro_kh : $item->name }}
+                                                            @endif
+                                                        </h6>
 													</a>
 													<div class="d-flex align-items-center">
 														<div class="mb-1 product-price">
@@ -76,17 +88,17 @@ Product Searcing
 															@endif
 
 														</div>
-														<div class="cursor-pointer ms-auto"> <i class="bx bxs-star text-warning"></i>
-															<i class="bx bxs-star text-warning"></i>
-															<i class="bx bxs-star text-warning"></i>
-															<i class="bx bxs-star text-warning"></i>
-															<i class="bx bxs-star text-warning"></i>
-														</div>
+{{--														<div class="cursor-pointer ms-auto"> <i class="bx bxs-star text-warning"></i>--}}
+{{--															<i class="bx bxs-star text-warning"></i>--}}
+{{--															<i class="bx bxs-star text-warning"></i>--}}
+{{--															<i class="bx bxs-star text-warning"></i>--}}
+{{--															<i class="bx bxs-star text-warning"></i>--}}
+{{--														</div>--}}
 													</div>
 													<div class="product-action mt-2">
 														<div class="grid grid-cols-2 gap-2">
-															<a href="javascript:;" class="rounded-xl btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add</a>
-															<a href="javascript:;" class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bxs-show'></i>View</a>
+															<a href="javascript:;" class="rounded-xl btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>{{ __('main.add') }}</a>
+															<a href="javascript:;" class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bxs-show'></i>{{ __('main.view') }}</a>
 														</div>
 													</div>
 												</div>

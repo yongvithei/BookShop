@@ -10,14 +10,12 @@
         <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
             <div class="container">
                 <div class="page-breadcrumb d-flex align-items-center">
-                    <h3 class="breadcrumb-title pe-3"><span id="wishQty"></span> Items in Wishlist </h3>
+                    <h3 class="breadcrumb-title pe-3"><span id="wishQty"></span> {{ __('main.items_in_wishlist') }}</h3>
                     <div class="ms-auto">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 p-0">
-                                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i>
-                                        Home</a>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">Wishlist</li>
+                                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i> {{ __('main.home') }}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ __('main.wishlist') }}</li>
                             </ol>
                         </nav>
                     </div>
@@ -41,6 +39,13 @@
         <!--end Featured product-->
     </div>
 </div>
+{{--<div class="cursor-pointer ms-auto">--}}
+{{--    <i class="bx bxs-star text-dark"></i>--}}
+{{--    <i class="bx bxs-star text-dark"></i>--}}
+{{--    <i class="bx bxs-star text-dark"></i>--}}
+{{--    <i class="bx bxs-star text-dark"></i>--}}
+{{--    <i class="bx bxs-star text-dark"></i>--}}
+{{--</div>--}}
 <!--end page wrapper -->
 
 <!-- Include your CSS styles for the product cards -->
@@ -68,8 +73,7 @@ function wishlist() {
         if (response.wishQty > 0) {
         // Loop through the wishlist items and create product cards
         $.each(response.wishlist, function (key, value) {
-
-        let imageUrl = value.product.thumbnail ? '/' + value.product.thumbnail : '{{ asset("/storage/images/pro_img.jpg") }}';
+            let imageUrl = value.product.thumbnail ? '/' + value.product.thumbnail : '{{ asset("/storage/images/pro_img.jpg") }}';
         let url = "{{ url('product/details/') }}" + '/' + value.product.id + '/' + value.product.name;
         let productCard = `
         <div class="col">
@@ -79,34 +83,28 @@ function wishlist() {
                 </a>
                 <div class="card-body">
                     <div class="product-info">
-
                         <a href="${url}">
                             <h6 class="product-name mb-2">${value.product.name}</h6>
+                            <h6 class="product-name mb-2">${value.product.pro_kh}</h6>
                         </a>
                         ${value.product.discount_price !== null ?
                         `<div class="mb-1 product-price">
-                            <span class="me-1 text-decoration-line-through">$${value.product.discount_price}</span>
-                            <span class="text-dark fs-5">$${value.product.price}</span>
+                            <span class="me-1 text-decoration-line-through">${value.product.discount_price} {{ __('main.khr') }}</span>
+                            <span class="text-dark fs-5">${value.product.price} {{ __('main.khr') }}</span>
                         </div>` :
                         `<div class="d-flex align-items-center">
-                            <span class="text-dark fs-5">$${value.product.price}</span>
+                            <span class="text-dark fs-5">${value.product.price} {{ __('main.khr') }}</span>
                         </div>`
                         }
-                        <div class="cursor-pointer ms-auto">
-                            <i class="bx bxs-star text-dark"></i>
-                            <i class="bx bxs-star text-dark"></i>
-                            <i class="bx bxs-star text-dark"></i>
-                            <i class="bx bxs-star text-dark"></i>
-                            <i class="bx bxs-star text-dark"></i>
-                        </div>
+
                     </div>
                     <div class="product-action mt-2">
                         <div class="d-grid gap-2">
                             <a href="javascript:;" class="btn btn-white btn-ecomm">
-                                <i class="bx bxs-cart-add"></i>Add to Cart
+                                <i class="bx bxs-cart-add"></i>{{ __('main.add') }}
                             </a>
                             <a type="submit" id="${value.id}" onclick="wishlistRemove(this.id)" class="btn btn-light btn-ecomm">
-                              <i class='bx bx-trash'></i>Remove From List
+                              <i class='bx bx-trash'></i>{{ __('main.remove') }}
                             </a>
                         </div>
                     </div>

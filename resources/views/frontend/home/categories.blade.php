@@ -9,7 +9,7 @@
 								$categories = Cache::remember('categories', now()->addMinutes(30), function () {
 									return App\Models\Category::where('status', 'Active')
 									->orderBy('name', 'ASC')
-									->select('id', 'name','slug')
+									->select('id', 'name','cat_kh','slug')
 									->get();
 								});
 							@endphp
@@ -28,13 +28,13 @@
 									<div class="card rounded-0 product-card border">
 										<div class="card-footer text-center">
 											<a href="{{ url('product/category/'.$category->id.'/'.$category->slug) }}">
-											<h6 class="mb-1 text-uppercase">{{ $category->name }}</h6>
-											<p class="mb-0 font-12 text-uppercase">{{ count($products) }} Products</p>
+											<h6 class="mb-1 text-uppercase"> @if(session()->get('locale') == 'en') {{ $category->name ?? $category->cat_kh ?? '' }} @else {{ $category->cat_kh ?? $category->name ?? '' }} @endif</h6>
+											<p class="mb-0 font-12 text-uppercase">{{ count($products) }} {{ __('main.products') }}</p>
 											</a>
 										</div>
 									</div>
 								</div>
-								@endforeach 
+								@endforeach
 							</div>
 						</div>
 					</div>

@@ -10,7 +10,7 @@
         <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
             <div class="container">
                 <div class="page-breadcrumb d-flex align-items-center">
-                    <h3 class="breadcrumb-title pe-3">{{$breadsub->sub_name}}</h3>
+                    <h3 class="breadcrumb-title pe-3">@if(session()->get('locale') == 'en') {{ $breadsub->sub_name ?? $breadsub->sub_kh ?? '' }} @else {{ $breadsub->sub_kh ?? $breadsub->sub_name ?? '' }} @endif</h3>
                     <div class="ms-auto">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 p-0">
@@ -19,7 +19,7 @@
                                 </li>
                                 <li class="breadcrumb-item"><a href="javascript:;">{{ $breadsub->category->name }}</a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">{{ $breadsub->sub_name }}
+                                <li class="breadcrumb-item active" aria-current="page">@if(session()->get('locale') == 'en') {{ $breadsub->sub_name ?? $breadsub->sub_kh ?? '' }} @else {{ $breadsub->sub_kh ?? $breadsub->sub_name ?? '' }} @endif
                                 </li>
                             </ol>
                         </nav>
@@ -36,14 +36,14 @@
                         <div class="card rounded-0 w-100">
                             <div class="card-body">
                                 <div class="product-categories">
-                                    <h6 class="text-uppercase mb-1">Categories </h6>
+                                    <h6 class="text-uppercase mb-1">{{ __('main.categories') }} </h6>
                                     <hr>
                                     <ul class="list-unstyled mt-2 categories-list">
                                         @php
 								$categories = Cache::remember('categories', now()->addMinutes(30), function () {
 									return App\Models\Category::where('status', 'Active')
 									->orderBy('name', 'ASC')
-									->select('id', 'name','slug')
+									->select('id', 'name', 'cat_kh','slug')
 									->get();
 								});
 							@endphp
@@ -59,7 +59,7 @@
                                         });
                                         @endphp
                                         <!-- loop -->
-                                        <li><a href="{{ url('product/category/'.$category->id.'/'.$category->slug) }}">{{ $category->name }}<span
+                                        <li><a href="{{ url('product/category/'.$category->id.'/'.$category->slug) }}">@if(session()->get('locale') == 'en') {{ $category->name ?? $category->cat_kh ?? '' }} @else {{ $category->cat_kh ?? $category->name ?? '' }} @endif<span
                                                     class="float-end badge rounded-pill bg-primary">{{ count($productche) }}</span></a>
                                         </li>
                                         <!-- loop -->
@@ -101,25 +101,30 @@
                                                 <div class="product-info">
                                                     <a
                                                         href="{{ url('product/details/'.$product->id.'/'.$product->name) }}">
-                                                        <h6 class="product-name mb-2">{{$product->name}}</h6>
+                                                        <h6 class="product-name mb-2">
+                                                            @if(session()->get('locale') == 'en')
+                                                                {{ $product->name ? $product->name : $product->pro_kh }}
+                                                            @else
+                                                                {{ $product->pro_kh ? $product->pro_kh : $product->name }}
+                                                            @endif</h6>
                                                     </a>
                                                     @if($product->discount_price != NULL)
                                                     <span class="me-1 text-decoration-line-through">
-                                                        {{$product->discount_price}} KHR</span>
-                                                    <span class="fs-5">{{$product->price}} KHR</span>
+                                                        {{$product->discount_price}} {{ __('main.khr') }}</span>
+                                                    <span class="fs-5">{{$product->price}} {{ __('main.khr') }}</span>
                                                     @else
-                                                    <span class="fs-5">{{$product->price}} KHR</span>
+                                                    <span class="fs-5">{{$product->price}} {{ __('main.khr') }}</span>
                                                     @endif
                                                     <div class="product-action mt-2">
                                                         <div class="grid grid-cols-2 gap-2">
                                                             <a href="javascript:;"
                                                                 class="rounded-xl btn btn-dark btn-ecomm"> <i
-                                                                    class='bx bxs-cart-add'></i>Add</a>
+                                                                    class='bx bxs-cart-add'></i>{{ __('main.add') }}</a>
                                                             <a href="javascript:;"
                                                                 class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#QuickViewProduct" id="{{ $product->id }}" onclick="productView(this.id)"><i
-                                                                    class='bx bxs-show'></i>View</a>
+                                                                        class='bx bxs-show'></i>{{ __('main.view') }}</a>
                                                         </div>
                                                     </div>
                                                 </div>

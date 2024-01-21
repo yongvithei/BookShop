@@ -28,7 +28,7 @@ class CartController extends Controller
 
         if ($cartItem) {
             // Product is already in the cart, return an error response
-            return response()->json(['error' => 'Product is already in the cart']);
+            return response()->json(['error' => __('main.error_product_in_cart')]);
         }
 
         // Product is not in the cart, proceed with adding it
@@ -58,7 +58,8 @@ class CartController extends Controller
             ]);
         }
 
-        return response()->json(['success' => 'Successfully Added on Your Cart']);
+        return response()->json(['success' => __('main.cart_add_success')]);
+
     }
     public function AddToCartDetails(Request $request, $id){
         if(Session::has('coupon')){
@@ -73,7 +74,8 @@ class CartController extends Controller
 
         if ($cartItem) {
             // Product is already in the cart, return an error response
-            return response()->json(['error' => 'Product is already in the cart']);
+            return response()->json(['error' => __('main.cart_product_exists_error')]);
+
         }
 
         // Product is not in the cart, proceed with adding it
@@ -103,7 +105,7 @@ class CartController extends Controller
             ]);
         }
 
-        return response()->json(['success' => 'Successfully Added on Your Cart']);
+        return response()->json(['success' => __('main.cart_add_success')]);
     }
     public function AddMiniCart(){
         $carts = Cart::content();
@@ -118,7 +120,8 @@ class CartController extends Controller
     }
     public function RemoveMiniCart($rowId){
         Cart::remove($rowId);
-        return response()->json(['success' => 'Product Remove From Cart']);
+        return response()->json(['success' => __('main.cart_remove_success')]);
+
 
     }
     public function MyCart(){
@@ -149,7 +152,7 @@ class CartController extends Controller
                 'total_amount' => round(Cart::total() - Cart::total() * $coupon->discount/100 )
             ]);
         }
-        return response()->json(['success' => 'Successfully Remove From Cart']);
+        return response()->json(['success' => __('main.success_remove_from_cart')]);
 
     }
     public function updateQuantity(Request $request, $rowId)
@@ -227,15 +230,14 @@ class CartController extends Controller
                 'total_amount' => round(Cart::total() - Cart::total() * $coupon->discount/100 )
             ]);
 
-            return response()->json(array(
-                'validity' => true,
-                'success' => 'Coupon Applied Successfully'
-
-            ));
+           return response()->json([
+               'validity' => true,
+               'success' => __('main.success_coupon_applied')
+           ]);
 
 
         } else{
-            return response()->json(['error' => 'Invalid Coupon']);
+           return response()->json(['error' => __('main.error_invalid_coupon')]);
         }
 
     }
@@ -262,7 +264,7 @@ class CartController extends Controller
     public function CouponRemove(){
 
         Session::forget('coupon');
-        return response()->json(['success' => 'Coupon Remove Successfully']);
+        return response()->json(['success' => __('main.success_remove_coupon')]);
 
     }
     public function CheckoutCreate(){

@@ -10,7 +10,7 @@
         <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
             <div class="container">
                 <div class="page-breadcrumb d-flex align-items-center">
-                    <h3 class="breadcrumb-title pe-3">{{ $bread->name }}</h3>
+                    <h3 class="breadcrumb-title pe-3">@if(session()->get('locale') == 'en') {{ $bread->name ?? $bread->cat_kh ?? '' }} @else {{ $bread->cat_kh ?? $bread->name ?? '' }} @endif</h3>
                     <div class="ms-auto">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 p-0">
@@ -19,7 +19,7 @@
                                 </li>
                                 <li class="breadcrumb-item"><a href="javascript:;">{{ __('main.shop') }}</a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">{{ $bread->name }}
+                                <li class="breadcrumb-item active" aria-current="page">@if(session()->get('locale') == 'en') {{ $bread->name ?? $bread->cat_kh ?? '' }} @else {{ $bread->cat_kh ?? $bread->name ?? '' }} @endif
                                 </li>
                             </ol>
                         </nav>
@@ -36,7 +36,7 @@
                         <div class="card rounded-0 w-100">
                             <div class="card-body">
                                 <div class="product-categories">
-                                    <h6 class="text-uppercase mb-1">Categories </h6>
+                                    <h6 class="text-uppercase mb-1">{{ __('main.categories') }} </h6>
                                     <hr>
                                     <ul class="list-unstyled mt-2 categories-list">
                                         @foreach($categories as $category)
@@ -50,7 +50,7 @@
                                             });
                                         @endphp
                                         <!-- loop -->
-                                        <li><a href="{{ url('product/category/'.$category->id.'/'.$category->slug) }}">{{ $category->name }}<span
+                                        <li><a href="{{ url('product/category/'.$category->id.'/'.$category->slug) }}">@if(session()->get('locale') == 'en') {{ $category->name ?? $category->cat_kh ?? '' }} @else {{ $category->cat_kh ?? $category->name ?? '' }} @endif<span
                                                     class="float-end badge rounded-pill bg-primary">{{ count($products ?? []) }}</span></a>
                                         </li>
                                         <!-- loop -->
@@ -89,24 +89,28 @@
                                             <div class="card-body">
                                                 <div class="product-info">
                                                     <a href="{{ url('product/details/'.$pro->id.'/'.$pro->name) }}">
-                                                        <h6 class="product-name mb-2">{{$pro->name}}</h6>
+                                                        <h6 class="product-name mb-2">   @if(session()->get('locale') == 'en')
+                                                                {{ $pro->name ? $pro->name : $pro->pro_kh }}
+                                                            @else
+                                                                {{ $pro->pro_kh ? $pro->pro_kh : $pro->name }}
+                                                            @endif</h6>
                                                     </a>
                                             @if($pro->discount_price != NULL)
-                                                <span class="me-1 text-decoration-line-through">{{$pro->discount_price}} KHR</span>
-                                                    <span class="fs-5">{{$pro->price}} KHR</span>
+                                                <span class="me-1 text-decoration-line-through">{{$pro->discount_price}} {{ __('main.khr') }}</span>
+                                                    <span class="fs-5">{{$pro->price}} {{ __('main.khr') }}</span>
                                                 @else
-                                                    <span class="fs-5">{{$pro->price}} KHR</span>
+                                                    <span class="fs-5">{{$pro->price}} {{ __('main.khr') }}</span>
                                                 @endif
                                                     <div class="product-action mt-2">
                                                         <div class="grid grid-cols-2 gap-2">
                                                             <a href="javascript:;"
                                                                 class="rounded-xl btn btn-dark btn-ecomm"> <i
-                                                                    class='bx bxs-cart-add'></i>Add</a>
+                                                                    class='bx bxs-cart-add'></i>{{ __('main.add') }}</a>
                                                             <a href="javascript:;"
                                                                 class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#QuickViewProduct" id="{{ $pro->id }}" onclick="productView(this.id)"><i
-                                                                    class='bx bxs-show'></i>View</a>
+                                                                    class='bx bxs-show'></i>{{ __('main.view') }}</a>
                                                         </div>
                                                     </div>
                                                 </div>

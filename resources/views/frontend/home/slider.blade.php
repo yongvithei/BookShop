@@ -2,7 +2,7 @@
 	@php
 	$sliders = Cache::remember('sliders', now()->addMinutes(30), function () {
 	return App\Models\Slider::where('status', 'Active')
-    ->select('image') 
+    ->select('image')
     ->get();
 	});
 	@endphp
@@ -24,8 +24,7 @@
 	                        <img src="{{ asset('storage/sliders/'.$slider->image) }}"
 	                            class="w-full h-56 lg:h-96 rounded-lg shadow-md" alt="...">
 	                        <a href="/shop"
-	                            class="absolute bottom-24 left-1/4 transform -translate-x-1/2 -translate-y-1/6 bg-gray-100 text-dark px-4 py-2 rounded-md">Shop
-	                            Now</a>
+	                            class="absolute bottom-24 left-1/4 transform -translate-x-1/2 -translate-y-1/6 bg-gray-100 text-dark px-4 py-2 rounded-md">{{ __('main.shop_now') }}</a>
 	                    </div>
 	                </div>
 	                @endforeach

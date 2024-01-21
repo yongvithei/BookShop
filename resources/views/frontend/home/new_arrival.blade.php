@@ -37,18 +37,29 @@
 										<div class="card-body">
 											<div class="product-info">
 												<a href="javascript:;">
-													<p class="product-catergory font-13 mb-1">{{ $product->category->name ?? 'N/A' }}</p>
+													<p class="product-catergory font-13 mb-1">
+                                                        @if(session()->get('locale') == 'en')
+                                                            {{ $product->category->name ? $product->category->name : ($product->category->cat_kh ?? 'N/A') }}
+                                                        @else
+                                                            {{ $product->category->cat_kh ? $product->category->cat_kh : ($product->category->name ?? 'N/A') }}
+                                                        @endif
+                                                    </p>
 												</a>
 												<a href="javascript:;">
-													<h6 class="product-name mb-2">{{$product->name}}</h6>
+													<h6 class="product-name mb-2">
+                                                        @if(session()->get('locale') == 'en')
+                                                            {{ $product->name ? $product->name : $product->pro_kh }}
+                                                        @else
+                                                            {{ $product->pro_kh ? $product->pro_kh : $product->name }}
+                                                        @endif</h6>
 												</a>
 												<div class="d-flex align-items-center">
 													<div class="mb-1 product-price">
 														@if($product->discount_price != NULL)
-															<span class="me-1 text-decoration-line-through">{{$product->discount_price}} KHR</span>
-															<span class="fs-5">{{$product->price}} KHR</span>
+															<span class="me-1 text-decoration-line-through">{{$product->discount_price}} {{ __('main.khr') }}</span>
+															<span class="fs-5">{{$product->price}} {{ __('main.khr') }}</span>
 														@else
-															<span class="fs-5">{{$product->price}} KHR</span>
+															<span class="fs-5">{{$product->price}} {{ __('main.khr') }}</span>
 														@endif
 													</div>
 													@php
@@ -59,8 +70,8 @@
 												</div>
 												<div class="product-action mt-2">
 													<div class="grid grid-cols-2 gap-2">
-														<a href="javascript:;" class="rounded-xl btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add</a>
-														<a href="javascript:;" class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200" data-bs-toggle="modal" data-bs-target="#QuickViewProduct" id="{{ $product->id }}" onclick="productView(this.id)"><i class='bx bxs-show'></i>View</a>
+														<a href="javascript:;" class="rounded-xl btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>{{ __('main.add') }}</a>
+														<a href="javascript:;" class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200" data-bs-toggle="modal" data-bs-target="#QuickViewProduct" id="{{ $product->id }}" onclick="productView(this.id)"><i class='bx bxs-show'></i>{{ __('main.view') }}</a>
 													</div>
 												</div>
 											</div>

@@ -5,7 +5,7 @@
 			<nav class="navbar navbar-expand">
                 <div class="shiping-title text-uppercase font-13 d-none d-sm-flex">{{ __('main.welcome') }} {{ optional(Auth::user())->name ?? __('main.to_our_shop') }}
                 @if (Auth::user() && Auth::user()->role === 'admin')
-					<a href="/admin/dashboard">* {{ __('part_s.go_back') }}</a>
+					<a href="/admin/dashboard">* {{ __('main.go_back') }}</a>
 					@endif
 				</div>
 				<ul class="navbar-nav ms-auto d-none d-lg-flex">
@@ -172,8 +172,12 @@
                         <ul class="dropdown-menu">
 							@foreach($categories as $cate)
 							<li><a class="dropdown-item" href="{{ url('product/category/'.$cate->id.'/'.$cate->slug) }}">
-                                        @if(session()->get('locale') == 'en') {{ $cate->name }} @else {{ $cate->cat_kh }} @endif
-									</a>
+                                    @if(session()->get('locale') == 'en')
+                                        {{ $cate->name ? $cate->name : ($cate->cat_kh ?? 'N/A') }}
+                                    @else
+                                        {{ $cate->cat_kh ? $cate->cat_kh : ($cate->name ?? 'N/A') }}
+                                    @endif
+                                </a>
 							</li>
 							@endforeach
 						</ul>
@@ -190,10 +194,22 @@
 					@endphp
 
 					@foreach($cateWithSub as $category)
-					<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">@if(session()->get('locale') == 'en') {{ $category->name }} @else {{ $category->cat_kh }} @endif<i class='bx bx-chevron-down'></i></a>
+					<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">
+                                    @if(session()->get('locale') == 'en')
+                                        {{ $category->name ? $category->name : ($category->cat_kh ?? 'N/A') }}
+                                    @else
+                                        {{ $category->cat_kh ? $category->cat_kh : ($category->name ?? 'N/A') }}
+                                    @endif
+                                <i class='bx bx-chevron-down'></i></a>
 						<ul class="dropdown-menu">
 							@foreach($category->subcategories as $subcategory)
-							<li><a class="dropdown-item" href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->sub_slug) }}">@if(session()->get('locale') == 'en') {{ $subcategory->sub_name }} @else {{ $subcategory->sub_kh }} @endif</a>
+							<li><a class="dropdown-item" href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->sub_slug) }}">
+                                    @if(session()->get('locale') == 'en')
+                                        {{ $subcategory->sub_name ? $subcategory->sub_name : ($subcategory->sub_kh ?? 'N/A') }}
+                                    @else
+                                        {{$subcategory->sub_kh ? $subcategory->sub_kh : ( $subcategory->sub_name ?? 'N/A') }}
+                                    @endif
+                                </a>
 							</li>
 							@endforeach
 						</ul>
