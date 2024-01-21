@@ -27,6 +27,14 @@
 
     <link rel="stylesheet" id="css-main" href="assets/css/untitleui.min.css">
     @vite(['resources/css/app.css'])
+
+    <link href="https://fonts.googleapis.com/css2?family=Khmer&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Khmer', sans-serif;
+        }
+    </style>
 </head>
 <body>
 
@@ -43,9 +51,9 @@
                             <!-- Sign Up Block -->
                             <div class="block block-rounded mb-0" style="box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);">
                                 <div class="block-header block-header-default">
-                                    <h3 class="block-title">Sign In</h3>
+                                    <h3 class="block-title">{{ __('main.sign_in') }}</h3>
                                     <div class="block-options">
-                                        <a class="btn-block-option fs-sm" href="">Forgot Password?</a>
+                                        <a class="btn-block-option fs-sm" href="">{{ __('main.forgot_password') }}</a>
                                         <a class="btn-block-option" href="" data-bs-toggle="tooltip" data-bs-placement="left" title="New Account">
                                             <i class="fa fa-user-plus"></i>
                                         </a>
@@ -61,7 +69,7 @@
                                         <div class="row mb-1 justify-content-center">
                                             <div class="col-sm-10 col-md-8 col-xl-7">
                                                 <a class="btn w-100 btn-alt-danger text-center" href="/auth/google/redirect/admin" style="box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
-                                                    <i class="fab fa-fw fa-google opacity-50 me-1"></i> Connect to Google
+                                                    <i class="fab fa-fw fa-google opacity-50 me-1"></i> {{ __('main.connect_to_google') }}
                                                 </a>
                                             </div>
                                         </div>
@@ -74,15 +82,12 @@
 
                                             <!-- Email Address or Username -->
                                             <div class="mb-4">
-
-                                                <x-text-input id="login-username" class="form-control form-control-alt form-control-lg" type="text" name="login" :value="old('login')" required autofocus autocomplete="username" placeholder="Username or Email" />
-
+                                                <x-text-input id="login-username" class="form-control form-control-alt form-control-lg" type="text" name="login" :value="old('login')" required autofocus autocomplete="username" placeholder="{{ __('main.placeholders.username_email') }}" />
                                             </div>
 
                                             <!-- Password -->
                                             <div class="mb-1">
-
-                                                <x-text-input id="login-password" class="form-control form-control-alt form-control-lg" type="password" name="password" required autocomplete="current-password" placeholder="Password" />
+                                                <x-text-input id="login-password" class="form-control form-control-alt form-control-lg" type="password" name="password" required autocomplete="current-password" placeholder="{{ __('main.placeholders.password') }}" />
                                                 <x-input-error :messages="$errors->get('password')" class="mt-2 red-text" />
                                                 <x-input-error :messages="$errors->get('login')" class="mt-2 " />
                                             </div>
@@ -91,13 +96,13 @@
                                             <div class="block mt-3">
                                                 <label for="remember_me" class="inline-flex items-center">
                                                     <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                                                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                                                    <span class="ml-2 text-sm text-gray-600">{{ __('main.remember_me') }}</span>
                                                 </label>
                                             </div>
                                             <div class="row justify-content-center">
                                                 <div class="lg:col-lg-6 xxl:col-xxl-3 flex justify-center">
                                                     <button type="submit" class="bg-green-400 text-white px-6 py-2 rounded-lg hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 shadow-md" style="margin-bottom: 20px;">
-                                                        Sign In
+                                                        {{ __('main.sign_in') }}
                                                     </button>
                                                 </div>
                                             </div>

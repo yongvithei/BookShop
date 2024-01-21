@@ -272,4 +272,21 @@ return [
     'success_coupon_applied' => 'Coupon Applied Successfully',
     'error_invalid_coupon' => 'Invalid Coupon',
     'success_remove_coupon' => 'Coupon Remove Successfully',
+
+    'forgot_password' => 'Forgot Password?',
+    'sign_in' => 'Sign In',
+    'connect_to_google' => 'Connect to Google',
+    'remember_me' => 'Remember me',
+    'placeholders' => [
+        'username_email' => 'Username or Email',
+        'password' => 'Password',
+    ],
+
+    'enter_emails' => 'Enter your registered email to reset the password',
+    'email_placeholder' => 'example@user.com',
+    'send_button' => 'Send',
+    'back_to_login' => 'Back to Login',
+    'status_message' => 'Your password reset email has been sent!',
+    'forgot_password?' => 'Forgot Password?',
+
 ];

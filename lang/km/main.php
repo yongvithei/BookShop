@@ -272,4 +272,20 @@ return [
     'success_coupon_applied' => 'កូដបញ្ចុះតម្លៃត្រូវបានដាក់បញ្ចូលដោយជោគជ័យ',
     'error_invalid_coupon' => 'កូដមិនត្រឹមត្រូវ',
     'success_remove_coupon' => 'ដកចេញកូដបញ្ចុះតម្លៃដោយជោគជ័យ',
+
+    'forgot_password' => 'ភ្លេចពាក្យសម្ងាត់?',
+    'sign_in' => 'ចូលប្រើ',
+    'connect_to_google' => 'ភ្ជាប់ទៅ Google',
+    'remember_me' => 'ចងចាំខ្ញុំ',
+    'placeholders' => [
+        'username_email' => 'ឈ្មោះអ្នកប្រើ ឬ អ៊ីមែល',
+        'password' => 'ពាក្យសម្ងាត់',
+    ],
+    'enter_emails' => 'បញ្ចូលអ៊ីមែលដែលអ្នកបានចុះឈ្មោះដើម្បីកំណត់ពាក្យសម្ងាត់ឡើងវិញ',
+    'email_placeholder' => 'example@user.com',
+    'send_button' => 'ផ្ញើ',
+    'back_to_login' => 'ត្រឡប់ទៅកាន់ការចូល',
+    'status_message' => 'អ៊ីមែលកំណត់ពាក្យសម្ងាត់របស់អ្នកត្រូវបានផ្ញើ!',
+    'forgot_password?' => 'ភ្លេចលេខសំងាត់?',
+
 ];
