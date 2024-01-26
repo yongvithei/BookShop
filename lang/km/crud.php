@@ -1,40 +1,29 @@
 <?php
 return [
-    'sipping_area' => 'តំបន់',
+    'sipping_area' => 'ទិតាំង',
     'city' => 'ទីក្រុង',
     'place' => 'ស្រុក / ឃុំ / ខណ្ឌ',
     'status' => 'ស្ថានភាព',
     'action' => 'សកម្មភាព',
     'name' => 'ឈ្មោះ',
     'id' => 'លេខសម្គាល់',
-    'city_info' => 'ព័ត៌មានទីក្រុង',
-    'name' => 'ឈ្មោះទីក្រុង',
-    'name_required' => 'ត្រូវតែមានឈ្មោះ',
+    'city_info' => 'ព័ត៌មានទីខេត្តក្រុង',
+    'name_required' => 'ត្រូវតែមាន',
     'status_active' => 'សកម្ម',
     'status_inactive' => 'មិនសកម្ម',
     'close' => 'បិទ',
-    'save_changes' => 'រក្សាទុកបញ្ចូល',
+    'save_changes' => 'រក្សាទុក',
     'info' => 'ព័ត៌មាន',
-    'name' => 'ឈ្មោះ',
-    'name_placeholder' => 'ត្រូវតែមានឈ្មោះ',
-    'city' => 'ទីក្រុង',
-    'select_city' => 'ជ្រើសរើសមួយ..',
+    'name_placeholder' => 'ត្រូវតែមាន',
+    'select_city' => 'ជ្រើសរើស..',
     'active' => 'សកម្ម',
     'inactive' => 'មិនសកម្ម',
-    'save_changes' => 'រក្សាទុកបញ្ចូល',
     'add' => 'បន្ថែម',
     'create' => 'បង្កើត',
-    'khmer_placeholder' => 'ឈ្មោះទីក្រុងជាភាសាខ្មែរ',
-    'save_changes' => 'រក្សាទុកបញ្ចូល',
-
+    'khmer_placeholder' => 'ឈ្មោះជាភាសាខ្មែរ',
     'record_saved' => 'បានរក្សាទុក',
     'delete_record' => 'លុប?',
-    'wont_revoke' => 'អ្នកនឹងម  ិនអាចដោះបញ្ចូលវិញបានទេ!',
+    'wont_revoke' => 'លោកអ្នកមិនអាចយកទិន្នន័យនេះវិញបានឡើយ!',
     'yes_delete' => 'យល់ព្រម',
     'cancel' => 'បោះបង់',
-
-
-
-
-
 ];
