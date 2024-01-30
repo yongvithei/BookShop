@@ -240,6 +240,7 @@ Route::middleware(['auth','role:admin'])->group(function() {
 
     Route::view('/pos/order', 'backend/pos/order');
     Route::view('/pos/dashboard', 'backend/pos/dashboard');
+    Route::post('/get-sales-data', [PosOrderController::class, 'getSalesData']);
     //POS Cart
     Route::controller(PosCartController::class)->group(function(){
         Route::get('/pos/cart', 'index')->name('cart.index');

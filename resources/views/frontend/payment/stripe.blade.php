@@ -4,7 +4,7 @@
    Payment
 @endsection
 <!--start page wrapper -->
-<div class="page-wrapper">
+<div >
     <div class="page-content">
         <!--start breadcrumb-->
         <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">

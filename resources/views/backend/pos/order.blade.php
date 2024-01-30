@@ -25,20 +25,20 @@
         <!-- Dynamic Table Full -->
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">All Order</h3>
+                <h3 class="block-title">{{ __('pos_p.all_order') }}</h3>
             </div>
             <div class="block-content block-content-full">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
                 <table id="item-table" class="table table-bordered table-vcenter">
                     <thead>
                         <tr>
-                            <th class="text-center" style="width: 5%;">ID</th>
-                            <th style="width: 20%;">Customer Name</th>
-                            <th class="d-none d-sm-table-cell" style="width: 20%;">Order Date</th>
-                            <th class="d-none d-sm-table-cell" style="width: 20%;">Payment type</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Total</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Paid</th>
-                            <th style="width: 15%;">Action</th>
+                            <th class="text-center" style="width: 5%;">{{ __('pos_p.id') }}</th>
+                            <th style="width: 20%;">{{ __('pos_p.customer_name') }}</th>
+                            <th class="d-none d-sm-table-cell" style="width: 20%;">{{ __('pos_p.order_date') }}</th>
+                            <th class="d-none d-sm-table-cell" style="width: 20%;">{{ __('pos_p.payment_type') }}</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('pos_p.total') }}</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('pos_p.paid') }}</th>
+                            <th style="width: 15%;">{{ __('pos_p.action') }}</th>
                         </tr>
                     </thead>
                     <tbody>

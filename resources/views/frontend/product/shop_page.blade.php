@@ -5,7 +5,7 @@ Shop Pages
 @endsection
 <link href="{{asset('/frontend/assets/plugins/nouislider/nouislider.min.css')}}" rel="stylesheet" />
 <!--start page wrapper -->
-<div class="page-wrapper">
+<div >
     <div class="page-content">
         <!--start breadcrumb-->
         <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">

@@ -20,31 +20,31 @@
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ request()->is('pos/dashboard') ? ' active' : '' }}" href="/pos/dashboard">
                             <i class="nav-main-link-icon si si-compass"></i>
-                            <span class="nav-main-link-name">Dashboard</span>
+                            <span class="nav-main-link-name">{{ __('pos_p.dashboard') }}</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ request()->is('admin/pos') ? ' active' : '' }}" href="/admin/pos">
                             <i class="nav-main-link-icon si si-compass"></i>
-                            <span class="nav-main-link-name">POS</span>
+                            <span class="nav-main-link-name">{{ __('pos_p.pos') }}</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ request()->is('pos/customer') ? ' active' : '' }}" href="/pos/customer">
                             <i class="nav-main-link-icon si si-compass"></i>
-                            <span class="nav-main-link-name">Customer</span>
+                            <span class="nav-main-link-name">{{ __('pos_p.customer') }}</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ request()->is('pos/order') ? ' active' : '' }}" href="/pos/order">
                             <i class="nav-main-link-icon si si-compass"></i>
-                            <span class="nav-main-link-name">Order</span>
+                            <span class="nav-main-link-name">{{ __('pos_p.order') }}</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link" href="/admin/dashboard">
                             <i class="nav-main-link-icon si si-action-undo"></i>
-                            <span class="nav-main-link-name">Go Back</span>
+                            <span class="nav-main-link-name">{{ __('pos_p.go_back') }}</span>
                         </a>
                     </li>
                 </ul>

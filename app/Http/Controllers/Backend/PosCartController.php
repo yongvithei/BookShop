@@ -29,7 +29,7 @@ class PosCartController extends Controller
             // check product quantity
             if ($product->pro_qty <= $cart->pivot->pro_qty) {
                 return response([
-                    'message' => 'Product available only: ' . $product->pro_qty,
+                    'message' => __('pos_p.available', ['qty' => $product->pro_qty]),
                 ], 400);
             }
             // update only quantity
@@ -38,7 +38,7 @@ class PosCartController extends Controller
         } else {
             if ($product->pro_qty < 1) {
                 return response([
-                    'message' => 'Product out of stock',
+                    'message' => __('pos_p.out_of_stock'),
                 ], 400);
             }
             $request->user()->cart()->attach($product->id, ['pro_qty' => 1]);
@@ -75,7 +75,7 @@ class PosCartController extends Controller
             // check product quantity
             if ($product->pro_qty < $request->pro_qty) {
                 return response([
-                    'message' => 'Product available only: ' . $product->pro_qty,
+                    'message' => __('pos_p.available', ['qty' => $product->pro_qty]),
                 ], 400);
             }
             $cart->pivot->pro_qty = $request->pro_qty;

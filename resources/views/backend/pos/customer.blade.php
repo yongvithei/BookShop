@@ -25,7 +25,7 @@
      <!-- Dynamic Table Full -->
      <div class="block block-rounded">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">All Customer</h3>
+                    <h3 class="block-title">{{ __('pos_p.all_customers') }}</h3>
                     <div class="block-options">
                         <a type="button" class="btn btn-sm btn-alt-primary">Refresh</a>
                         <a onClick="add()" href="javascript:void(0)" class="btn btn-sm btn-alt-primary" data-bs-toggle="modal" data-bs-target="#item-modal">ADD</a>
@@ -37,12 +37,12 @@
                     <table id="item-table" class="table table-bordered table-vcenter">
                         <thead>
                         <tr>
-                            <th class="text-center" style="width: 80px;">ID</th>
-                            <th style="width: 20%;">Photo</th>
-                            <th style="width: 20%;">Customer Name</th>
-                            <th class="d-none d-sm-table-cell" style="width: 25%;">Contact</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Status</th>
-                            <th class="text-center" style="width: 15%;">Action</th>
+                            <th class="text-center" style="width: 80px;">{{ __('pos_p.id') }}</th>
+                            <th style="width: 20%;">{{ __('pos_p.photo') }}</th>
+                            <th style="width: 20%;">{{ __('pos_p.customer_name') }}</th>
+                            <th class="d-none d-sm-table-cell" style="width: 25%;">{{ __('pos_p.contact') }}</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('pos_p.status') }}</th>
+                            <th class="text-center" style="width: 15%;">{{ __('pos_p.action') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -199,7 +199,7 @@
                     <div class="modal-content">
                         <div class="block block-rounded block-transparent mb-0">
                             <div class="block-header block-header-default">
-                                <h3 class="block-title">Customer Info</h3>
+                                <h3 class="block-title">{{ __('pos_p.title') }}</h3>
                                 <div class="block-options">
                                     <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                                         <i class="fa fa-fw fa-times"></i>
@@ -212,21 +212,21 @@
                                 <div class="block-content row justify-content-center">
                                     <div class="col-lg-12 col-xl-12">
                                         <div class="mb-2">
-                                            <label class="form-label" for="name">Name *</label>
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Customer Name">
-                                            <span id="name_error" class="text-danger" style="display: none;">Field is required.</span>
+                                            <label class="form-label" for="name">{{ __('pos_p.name_label') }}</label>
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('pos_p.name_placeholder') }}">
+                                            <span id="name_error" class="text-danger" style="display: none;">{{ __('pos_p.field_required') }}</span>
                                         </div>
                                         <div class="mb-2">
-                                            <label class="form-label" for="address">Address</label>
-                                            <input type="text" class="form-control" id="address" name="address" placeholder="Customer Address">
+                                            <label class="form-label" for="address">{{ __('pos_p.address_label') }}</label>
+                                            <input type="text" class="form-control" id="address" name="address" placeholder="{{ __('pos_p.address_placeholder') }}">
                                         </div>
                                         <div class="mb-2">
-                                            <label class="form-label" for="contact">Contact Info</label>
-                                            <textarea class="form-control" id="contact" name="contact" rows="1" placeholder="Contact Info"></textarea>
+                                            <label class="form-label" for="contact">{{ __('pos_p.contact_label') }}</label>
+                                            <textarea class="form-control" id="contact" name="contact" rows="1" placeholder="{{ __('pos_p.contact_placeholder') }}"></textarea>
                                         </div>
                                         <div class="row mb-2">
                                             <div class="col-lg">
-                                                <label for="image" class="form-label">Choose Image</label>
+                                                <label for="image" class="form-label">{{ __('pos_p.choose_image_label') }}</label>
                                                 <input class="form-control" type="file" name="image" id="image">
                                             </div>
                                             <div class="col-lg-4">
@@ -234,27 +234,27 @@
                                             </div>
                                         </div>
                                         <div class="mb-2">
-                                            <label class="form-label" for="note">Note</label>
-                                            <textarea class="form-control" id="note" name="note" rows="3" placeholder="Note"></textarea>
+                                            <label class="form-label" for="note">{{ __('pos_p.note_label') }}</label>
+                                            <textarea class="form-control" id="note" name="note" rows="3" placeholder="{{ __('pos_p.note_placeholder') }}"></textarea>
                                         </div>
                                         <div class="mb-2">
-                                            <label class="form-label">Status</label>
+                                            <label class="form-label">{{ __('pos_p.status_label') }}</label>
                                             <div class="space-x-2">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" id="statusActive" name="status" value="Active" checked="">
-                                                    <label class="form-check-label" for="statusActive">Active</label>
+                                                    <label class="form-check-label" for="statusActive">{{ __('pos_p.status_active') }}</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" id="statusInactive" name="status" value="Inactive">
-                                                    <label class="form-check-label" for="statusInactive">Inactive</label>
+                                                    <label class="form-check-label" for="statusInactive">{{ __('pos_p.status_inactive') }}</label>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="block-content block-content-full text-end bg-body">
-                                <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" id="btn-save" class="btn btn-sm btn-primary">Save changes</button>
+                                    <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">{{ __('pos_p.button_close') }}</button>
+                                    <button type="submit" id="btn-save" class="btn btn-sm btn-primary">{{ __('pos_p.button_save_changes') }}</button>
                             </div>
                             </form>
                         </div>
@@ -262,8 +262,6 @@
                 </div>
             </div>
             <!-- END Normal Block Modal -->
-
-
 
      </div>
     <!-- END Page Content -->
@@ -374,13 +372,14 @@
         });
         function deleteFunc(id) {
             Swal.fire({
-                title: 'Delete Record?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
+                title: '{{ __('pos_p.delete') }}',
+                text: '{{ __('pos_p.text') }}',
+                icon: '{{ __('pos_p.icon') }}',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: '{{ __('pos_p.confirm_button_text') }}',
+                cancelButtonText: '{{ __('pos_p.cancel_button_text') }}',
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
