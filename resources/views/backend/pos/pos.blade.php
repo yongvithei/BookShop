@@ -56,5 +56,36 @@
 <script>
     One.helpersOnLoad(['jq-select2']);
 
+    window.tr_p = <?php echo json_encode([
+        'saveChanges' => __('pos_p.save_changes'),
+        'close' => __('pos_p.close'),
+        'note' => __('pos_p.note'),
+        'customer' => __('pos_p.customer'),
+        'online_bank' => __('pos_p.customer'),
+        'cash' => __('pos_p.cash'),
+        'payment_type' => __('pos_p.payment_type'),
+        'KHR' => __('pos_p.khr'),
+        'price' => __('pos_p.price'),
+        'received_amount' => __('pos_p.received_amount'),
+        'total_amount' => __('pos_p.total_amount'),
+        'selling_info' => __('pos_p.selling_info'),
+        'add_to_cart' => __('pos_p.add_to_cart'),
+        'view' => __('pos_p.view'),
+        'actions' => __('pos_p.actions'),
+        'amount' => __('pos_p.amount'),
+        'name' => __('pos_p.name'),
+        'id' => __('pos_p.id'),
+        'invoice' => __('pos_p.invoice'),
+        'submit' => __('pos_p.submit'),
+        'cancel' => __('pos_p.cancel'),
+        'total' => __('pos_p.total'),
+        'name' => __('pos_p.name'),
+        'qty' => __('pos_p.qty'),
+        'barcode' => __('pos_p.barcode'),
+        'success' => __('pos_p.success'),
+        'barcode' => __('pos_p.barcode'),
+        // Add other translations as needed
+    ]); ?>;
+
 </script>
 @endsection

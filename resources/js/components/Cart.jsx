@@ -32,12 +32,13 @@ const Cart = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const tr_p = window.tr_p || {};
+
     const loadRate = async () => {
         try {
             const response = await axios.get('/site/rates');
             const { exchange } = response.data;
             setExchangeRate(exchange);
-            console.log(exchangeRate);
         } catch (error) {
             console.error('Error loading exchange rate: ', error);
         }
@@ -136,7 +137,7 @@ const Cart = () => {
           });
           Toast.fire({
             icon: 'success',
-            title: "Product Added Successfully",
+            title: window.tr_p.success || 'Product Added Successfully',
           });
         })
         .catch((err) => {
@@ -241,7 +242,7 @@ const Cart = () => {
         });
         Toast.fire({
           icon: 'success',
-          title: "Product Added Successfully",
+          title: window.tr_p.success || 'Product Added Successfully',
         });
       })
       .catch((err) => {
@@ -360,9 +361,9 @@ return (
           <table className="table table-striped table-vcenter">
             <thead>
               <tr>
-                <th>Name</th>
-                <th className="text-left" style={{ width: '35%' }}>QTY</th>
-                <th className="text-center" style={{ width: '35%' }}>Price</th>
+                <th>{tr_p.name || 'Name'}</th>
+                <th className="text-left" style={{ width: '35%' }}>{tr_p.qty || 'QTY'}</th>
+                <th className="text-center" style={{ width: '35%' }}>{tr_p.price || 'Price'}</th>
               </tr>
             </thead>
             <tbody>
@@ -382,14 +383,14 @@ return (
             </div>
           </td>
           <td className="d-sm-table-cell text-center">
-            <a href="">{(c.price * c.pivot.pro_qty).toFixed(2)} KHR</a>
+            <a href="">{(c.price * c.pivot.pro_qty).toFixed(2)} {tr_p.khr || 'KHR'}</a>
           </td>
         </tr>
       </React.Fragment>
     ))}
     <tr className="table-active">
       <td className="text-end" colSpan="2">
-        <span className="h4 fw-medium">Total</span>
+        <span className="h4 fw-medium">{tr_p.total || 'Total'}</span>
       </td>
       <td className="text-end">
         <span className="h4 fw-semibold">{getTotal(carts)}</span>
@@ -401,12 +402,12 @@ return (
       </div>
       <div className="block-content block-content-full bg-body-light text-end">
         <button className="btn btn-light mx-2" onClick={handleEmptyCart} disabled={!carts.length}>
-          Cancel
+            {tr_p.cancel || 'Cancel'}
         </button>
         <button type="button" disabled={!carts.length}
                               onClick={handleShow}
                               className="btn btn-primary">
-          Submit
+            {tr_p.submit || 'Submit'}
           <i className="fa fa-arrow-right opacity-50"></i>
         </button>
       </div>
@@ -414,40 +415,40 @@ return (
               <div className="block block-rounded js-ecom-div-nav d-none d-xl-block">
       <div className="block-header block-header-default">
         <h3 className="block-title">
-         Invoice
+            {tr_p.invoice || 'Invoice'}
         </h3>
       </div>
       <div className="block-content">
         <table className="table table-vcenter">
           <thead>
             <tr>
-              <th className="text-center" style={{ width: '15px' }}>ID</th>
-              <th>Name</th>
-              <th style={{ width: '35%' }}>Amount</th>
-              <th className="text-center" style={{ width: '10px' }}>Actions</th>
+              <th className="text-center" style={{ width: '15px' }}>{tr_p.id || 'ID'}</th>
+              <th>{tr_p.name || 'Name'}</th>
+              <th style={{ width: '35%' }}>{tr_p.amount || 'Amount'}</th>
+              <th className="text-center" style={{ width: '10px' }}>{tr_p.actions || 'Actions'}</th>
             </tr>
           </thead>
           <tbody>
           {orders.map((o) => (
-            <React.Fragment key={o.id}>
-              <tr>
-                <th className="text-center" scope="row">{o.id}</th>
-                <td className="fw-semibold fs-sm">{o.amount}</td>
-                <td>
-                  <span>{o.amount} KHR</span>
-                </td>
-                <td className="text-center">
-                  <div className="btn-group">
-                    <a href={`/pos/invoice_preview/${o.id}`} className="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit Client">
-                      <i className="fa fa-print"></i>
-                    </a>
-                    <a href={`/pos/invoice_download/${o.id}`} className="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove Client">
-                      <i className="fa fa-download"></i>
-                    </a>
-                  </div>
-                </td>
-              </tr>
-            </React.Fragment>
+              <React.Fragment key={o.id}>
+                  <tr>
+                      <th className="text-center" scope="row">{o.id}</th>
+                      <td className="fw-semibold fs-sm">{o.customer ? o.customer.name : 'Walking Customer'}</td>
+                      <td>
+                          <span>{o.amount} {tr_p.khr || 'KHR'}</span>
+                      </td>
+                      <td className="text-center">
+                          <div className="btn-group">
+                              <a href={`/pos/invoice_preview/${o.id}`} className="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit Client">
+                                  <i className="fa fa-print"></i>
+                              </a>
+                              <a href={`/pos/invoice_download/${o.id}`} className="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove Client">
+                                  <i className="fa fa-download"></i>
+                              </a>
+                          </div>
+                      </td>
+                  </tr>
+              </React.Fragment>
           ))}
           </tbody>
         </table>
@@ -470,7 +471,7 @@ return (
 
        {/* END Search Section */}
        {/* Sort and Show Filters */}
-       <div className="d-flex justify-content-between">
+              {/* <div className="d-flex justify-content-between">
            <div className="mb-3">
                <select id="ecom-results-show" name="ecom-results-show" className="form-select form-select-sm" size="1">
                    <option value="0" defaultValue>SHOW</option>
@@ -493,7 +494,7 @@ return (
                </select>
            </div>
        </div>
-
+*/}
        {/* END Sort and Show Filters */}
 
        {/* Products */}
@@ -512,7 +513,7 @@ return (
                            <div className="options-overlay bg-black-75">
                                <div className="options-overlay-content">
                                    <a className="btn btn-sm btn-alt-secondary" href={`/product/${pro.id}/edit`}>
-                                   <i className="fa fa-eye me-1"></i> View
+                                   <i className="fa fa-eye me-1"></i> {tr_p.view || 'View'}
                                    </a>
                                </div>
                            </div>
@@ -520,14 +521,14 @@ return (
                    </div>
                    <div className="block-content">
                        <div className="mb-2">
-                           <div className="fw-semibold float-end ms-1">{pro.price} KHR</div>
+                           <div className="fw-semibold float-end ms-1">{pro.price} {tr_p.khr || 'KHR'}</div>
                            <a className="h6" href="">
                            {pro.name}
                            </a>
                        </div>
                        <div className="mb-2">
                        <a className="btn btn-sm btn-alt-secondary" onClick={() => addProductToCart(pro.pro_code)}>
-                           <i className="fa fa-plus text-success me-1"></i> Add to cart
+                           <i className="fa fa-plus text-success me-1"></i> {tr_p.add_to_cart || 'Add to cart'}
                        </a>
                        </div>
                    </div>
@@ -562,14 +563,14 @@ return (
        </div>
        <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-              <Modal.Title>Selling Info</Modal.Title>
+              <Modal.Title>{tr_p.selling_info || 'Selling Info'}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
               <Form>
                   <Form.Group className="mb-1" controlId="Form.selectPay">
-                      <Form.Label>Total Amount</Form.Label>
+                      <Form.Label>{tr_p.total_amount || 'Total Amount'}</Form.Label>
                       <InputGroup className="mb-1">
-                          <InputGroup.Text>KHR</InputGroup.Text>
+                          <InputGroup.Text>{tr_p.khr || 'KHR'}</InputGroup.Text>
                           <Form.Control aria-label="Amount (to the nearest dollar)" value={getTotal(carts)}
                           disabled
                           /><Form.Control className="text-end" aria-label="Amount (to the nearest dollar)" value={getTotalDollar(carts)}
@@ -578,9 +579,9 @@ return (
                       </InputGroup>
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="Form.selectPay">
-                      <Form.Label>Received Amount</Form.Label>
+                      <Form.Label>{tr_p.received_amount || 'Received Amount'}</Form.Label>
                       <InputGroup className="mb-3">
-                          <InputGroup.Text>KHR</InputGroup.Text>
+                          <InputGroup.Text>{tr_p.khr || 'KHR'}</InputGroup.Text>
                           <Form.Control aria-label="Amount (to the nearest dollar)"
                           placeholder={getTotal(carts)}
                           className="placeholder-text"
@@ -589,14 +590,14 @@ return (
                       </InputGroup>
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="Form.selectPay">
-                      <Form.Label>Payment Type *</Form.Label>
+                      <Form.Label> {tr_p.payment_type || 'Payment Type'} *</Form.Label>
                       <Form.Select value={payment} onChange={handlePaymentChange}>
-                          <option value="Cash">Cash</option>
-                          <option value="Online Bank">Online Bank</option>
+                          <option value="Cash"> {tr_p.cash || 'Cash'}</option>
+                          <option value="Online Bank"> {tr_p.online_bank || 'Online Bank'}</option>
                       </Form.Select>
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="Form.selectCus">
-                      <Form.Label>Customer *</Form.Label>
+                      <Form.Label> {tr_p.customer || 'Customer'} *</Form.Label>
                       <Form.Select value={customerId} onChange={handleCustomerIdChange}>
                       <option key="0" value="">Walking Customer</option>
                           {customers.map((cus) => (
@@ -605,17 +606,17 @@ return (
                       </Form.Select>
                   </Form.Group>
                   <Form.Group className="mb-1" controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Note</Form.Label>
+                    <Form.Label> {tr_p.note || 'Note'}</Form.Label>
                     <Form.Control value={note} as="textarea" rows={2} onChange={(e) => setNote(e.target.value)} />
                   </Form.Group>
               </Form>
           </Modal.Body>
           <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
-                  Close
+                  {tr_p.close || 'Close'}
               </Button>
               <Button variant="primary" onClick={() => handleSubmit()}>
-                  Save Changes
+                  {tr_p.saveChanges || 'Save Changes'}
               </Button>
           </Modal.Footer>
       </Modal>

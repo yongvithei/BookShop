@@ -18,7 +18,9 @@ class PosOrderController extends Controller
     public function index() {
         if (request()->wantsJson()) {
             $id = auth()->user()->id; // Get the authenticated user's id
-            $latestOrders = PosOrder::where('user_id', $id) // Assuming user_id is the foreign key for user
+
+            $latestOrders = PosOrder::with('customer') // Eager load the customer relationship
+            ->where('user_id', $id)
                 ->latest()
                 ->limit(6)
                 ->get();
@@ -26,6 +28,7 @@ class PosOrderController extends Controller
             return response($latestOrders);
         }
     }
+
     public function store(OrderStoreRequest $request)
     {
         $order = PosOrder::create([

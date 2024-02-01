@@ -36,7 +36,7 @@ return new class extends Migration
                 'support_phone' => '012345678',
                 'email' => 'ponleuvichea@support.com',
                 'address' => 'No. 161-162, St. 2, Prek Mohatep Village, Sangkat Svay Por, Battambang City, Battambang, Cambodia',
-                'address_kh' => 'ភូមិព្រែកមហាទេព, ក្រោយជួបវិបត្តិ, ក្រុងបាត់ដំបង, បាត់ដំបង, កម្ពុជា',
+                'address_kh' => 'ភូមិព្រែកមហាទេព សង្កាត់ស្វាយប៉ោ ក្រុងបាត់ដំបង បាត់ដំបង',
                 'information' => 'Stationery, Educational Stores & Supplies in Battambang - Cambodia',
                 'information_kh' => 'សម្ភារៈការិយាល័យ ហាងលក់សម្ភារៈអប់រំ ក្នុងខេត្តបាត់ដំបង - កម្ពុជា។',
                 'facebook' => 'https://www.facebook.com/vichea.ponleu.1',

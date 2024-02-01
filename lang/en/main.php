@@ -289,4 +289,9 @@ return [
     'status_message' => 'Your password reset email has been sent!',
     'forgot_password?' => 'Forgot Password?',
 
+
+    'received' => 'Received',
+    'cashier' => 'Cashier',
+    'customer' => 'Customer',
+
 ];

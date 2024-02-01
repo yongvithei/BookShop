@@ -34,24 +34,25 @@
           <div class="hr"></div>
           <div class="invoice-head-middle">
             <table width="100%" style="background:#fff;" class="font">
-              <tr>
-                <td>
-                  <div class="invoice-head-middle-left text-start">
-                    <ul>
-                        <strong class='text-bold'>Cashier: </strong>{{ $order->userId->username }}<br>
-                        <strong class='text-bold'>Customer: </strong><br> {{ $order->customerId->name ?? 'Walker Customer' }}<br>
-                        {{ $order->created_at }}
-                    </ul>
-                  </div>
-                </td>
-                <td class="text-end">
-                    <ul class = "text-end">
-                      <p>{{$info->email}}</p>
-                      <p>{{$info->address}}</p>
-                      <p>{{$info->support_phone	}}</p>
-                    </ul>
-                </td>
-              </tr>
+                <tr>
+                    <td style="width: 50%;">
+                        <div class="invoice-head-middle-left text-start">
+                            <ul>
+                               <strong class='text-bold'>{{__('main.cashier')}}: </strong>{{ $order->userId->username }} <br>
+                               <strong class='text-bold'>{{__('main.customer')}}: </strong>{{ $order->customerId->name ?? 'Walker Customer' }}<br>
+                                {{ $order->created_at }}
+                            </ul>
+                        </div>
+                    </td>
+                    <td style="width: 50%;" class="text-end">
+                        <ul class="text-end">
+                            </strong>{{$info->email}}<br>
+                            </strong>{{ session()->get('locale') == 'en' ? ($info->address ? $info->address : $info->address_kh) : ($info->address_kh ? $info->address_kh : $info->address) }}<br>
+                            </strong>{{$info->support_phone}}
+                        </ul>
+                    </td>
+                </tr>
+
             </table>
           </div>
         </div>
@@ -62,10 +63,10 @@
             <table style="width: 100%; border-collapse: collapse; border: 1px solid #d3d3d3;">
                 <thead>
                 <tr>
-                    <td class="text-bold" style="border: 1px solid #d3d3d3;">Product Name</td>
-                    <td class="text-bold" style="border: 1px solid #d3d3d3;">Price</td>
-                    <td class="text-bold" style="border: 1px solid #d3d3d3;">QTY</td>
-                    <td class="text-bold" style="border: 1px solid #d3d3d3;">Amount</td>
+                    <td class="text-bold" style="border: 1px solid #d3d3d3;">{{__('main.product_name')}}</td>
+                    <td class="text-bold" style="border: 1px solid #d3d3d3;">{{__('main.price')}}</td>
+                    <td class="text-bold" style="border: 1px solid #d3d3d3;">{{__('main.quantity')}}</td>
+                    <td class="text-bold" style="border: 1px solid #d3d3d3;">{{ __('main.amount') }}</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -77,7 +78,7 @@
                         <td style="border: 1px solid #d3d3d3;">{{ $item->product->name }}</td>
                         <td style="border: 1px solid #d3d3d3;">{{ $item->product->price }}</td>
                         <td style="border: 1px solid #d3d3d3;">{{ $item->pro_qty }}</td>
-                        <td style="border: 1px solid #d3d3d3;">{{ $item->productId->price * $item->pro_qty }} KHR</td>
+                        <td style="border: 1px solid #d3d3d3;">{{ $item->productId->price * $item->pro_qty }} {{ __('main.khr') }}</td>
                         @php
                             $totalPrice += $item->price * $item->qty;
                         @endphp
@@ -87,8 +88,8 @@
             </table>
             <div class="invoice-body-bottom">
                 <div class="invoice-body-info-item border-bottom">
-                    <div class="info-item-td text-end">SubTotal: {{ $order->amount }} KHR<br>Received: {{ $order->received }} KHR<br></div>
-                    <div class="info-item-td text-bold text-end">Total Amount: {{ $order->amount }} KHR <br>Total Amount in Dollar: $ {{ number_format($order->amount/$info->exchange, 2) }}</div>
+                    <div class="info-item-td text-end">{{ __('main.subtotal') }}: {{ $order->amount }} {{ __('main.khr') }}<br>{{ __('main.received') }}: {{ $order->received }} {{ __('main.khr') }}<br></div>
+                    <div class="info-item-td text-bold text-end">{{ __('main.total_amount') }}: {{ $order->amount }} {{ __('main.khr') }} <br>{{ __('main.total_amount_dollar') }}: $ {{ number_format($order->amount/$info->exchange, 2) }}</div>
 
                 </div>
             </div>

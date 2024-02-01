@@ -203,7 +203,7 @@
                                 <th class="fw-bold">{{ __('pos_p.customer') }}</th>
                                 <th class="d-none d-sm-table-cell fw-bold">{{ __('pos_p.date') }}</th>
                                 <th class="fw-bold">{{ __('pos_p.payment') }}</th>
-                                <th class="d-none d-sm-table-cell fw-bold text-end" style="width: 120px;">{{ __('os_p.price') }}</th>
+                                <th class="d-none d-sm-table-cell fw-bold text-end" style="width: 120px;">{{ __('pos_p.price') }}</th>
                             </tr>
                             </thead>
                             <tbody>

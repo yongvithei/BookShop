@@ -66,4 +66,25 @@ return [
     'selling_info' => 'Selling info',
     'cart' => 'Cart',
 
+    'close' => 'Close',
+    'save_changes' => 'Save Changes',
+    'note' => 'Note',
+    'cash' => 'Cash',
+    'online_bank' => 'Online Bank',
+    'received_amount' => 'Received Amount',
+    'total_amount' => 'Total Amount',
+    'add_to_cart' => 'Add to cart',
+    'view' => 'View',
+    'actions' => 'Actions',
+    'amount' => 'Amount',
+    'invoice' => 'Invoice',
+    'submit' => 'Submit',
+    'cancel' => 'Cancel',
+    'qty' => 'QTY',
+
+    'barcode' => 'Barcode',
+    'success' => 'Product Added Successfully',
+
+
+
 ];
