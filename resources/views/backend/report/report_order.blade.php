@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <div class="block-content">
-                            <form method="post" action="{{ route('search-by-year')}}">
+                            <form action="{{ route('search-by-year')}}">
 		                    @csrf
                                 <label class="form-label">
                                     {{ __('part_s.select_year') }}
@@ -136,7 +136,7 @@
                             </div>
                         </div>
                         <div class="block-content">
-                            <form method="post" action="{{ route('search-by-date')}}">
+                            <form action="/search/by/date" method="GET">
 		                    @csrf
                             <div class="row mb-4">
                                     <div class="col-xl-12">
@@ -175,7 +175,7 @@
                             </div>
                         </div>
                         <div class="block-content">
-                              <form method="post" action="{{ route('search-by-month')}}">
+                              <form method="GET" action="{{ route('search-by-month')}}">
 		                    @csrf
                                   <label class="form-label">
                                       {{ __('part_s.select_month_label') }}

@@ -37,7 +37,7 @@
                 <div class="block-header block-header-default">
                     <h3 class="block-title">
                         {{ __('part_s.search_by_year') }} : {{ $formatYear }}
-                        <form method="post" action="{{ route('search-by-year')}}">
+                        <form action="{{ route('search-by-year')}}">
                             @csrf
                             <div class="row my-1">
                                 <div class="col-xl-6">

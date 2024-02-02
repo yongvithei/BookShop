@@ -206,16 +206,30 @@ Route::middleware(['auth','role:admin'])->group(function() {
     Route::view('/report/order', 'backend/report.report_order');
     Route::view('/search/by/name', 'backend/report.by_name');
     Route::controller(ReportController::class)->group(function(){
+
+
         Route::get('/report/view' , 'ReportView')->name('report.view');
-        Route::post('/search/by/date' , 'SearchByDate')->name('search-by-date');
-        Route::post('/search/by/year' , 'SearchByYear')->name('search-by-year');
-        Route::post('/search/by/month' , 'SearchByMonth')->name('search-by-month');
-        Route::get('search/by/date' , 'GetSearchByDate')->name('by-date');
+
+        Route::get('/search/by/year' , 'SearchByYear')->name('search-by-year');
+        Route::get('/search/by/month' , 'SearchByMonth')->name('search-by-month');
         Route::get('/admin/invoice_download/{order_id}' , 'OrderInvoice');
-        Route::get('search/name' , 'GetSearchByName')->name('by-name');
+        Route::get('/search/name' , 'GetSearchByName')->name('by-name');
+        Route::get('/search/by/date' , 'SearchByDate')->name('search-by-date');
 
-
+        Route::get('/by/date' , 'GetSearchByDate')->name('by-date');
     });
+
+//    Route::group(function () {
+//        Route::get('/report/view', [ReportController::class, 'ReportView'])->name('report.view');
+//
+//        Route::get('/search/by/year', [ReportController::class, 'SearchByYear'])->name('search-by-year');
+//        Route::post('/search/by/month', [ReportController::class, 'SearchByMonth'])->name('search-by-month');
+//        Route::get('/search/by/date', [ReportController::class, 'GetSearchByDate'])->name('by-date');
+//        Route::get('/admin/invoice_download/{order_id}', [ReportController::class, 'OrderInvoice']);
+//        Route::get('/search/by/name', [ReportController::class, 'GetSearchByName'])->name('by-name');
+//        Route::get('/search/by/date', [ReportController::class, 'SearchByDate'])->name('search-by-date');
+//    });
+
     // Admin Review All Route
     Route::controller(ReviewController::class)->group(function(){
         Route::get('review/list', 'index')->name('all.review');

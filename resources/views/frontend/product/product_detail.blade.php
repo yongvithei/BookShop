@@ -24,19 +24,21 @@
                                 </li>
                                 <li class="breadcrumb-item"><a
                                         href="javascript:;">
-                                        @if(session()->get('locale') == 'en')
-                                            {{ $product->category->name ? $product->category->name : ($product->category->cat_kh ?? 'N/A') }}
+                                        @if ($product->category)
+                                            @if(session()->get('locale') == 'en')
+                                                {{ $product->category->name ? $product->category->name : ($product->category->cat_kh ?? 'N/A') }}
+                                            @else
+                                                {{ $product->category->cat_kh ? $product->category->cat_kh : ($product->category->name ?? 'N/A') }}
+                                            @endif
                                         @else
-                                            {{ $product->category->cat_kh ? $product->category->cat_kh : ($product->category->name ?? 'N/A') }}
-                                        @endif</a>
+                                            N/A
+                                    @endif
+
                                 </li>
                                 <li class="breadcrumb-item"><a
                                         href="javascript:;">
-                                            @if(session()->get('locale') == 'en')
-                                                {{ $product->subcategory->sub_name ? $product->subcategory->sub_name : ($product->subcategory->sub_kh ?? 'N/A') }}
-                                            @else
-                                                {{ $product->subcategory->sub_kh ? $product->subcategory->sub_kh : ($product->subcategory->sub_name ?? 'N/A') }}
-                                            @endif</a></a>
+                                        {{ optional($product->subcategory)->{session()->get('locale') == 'en' ? 'sub_name' : 'sub_kh'} ?: 'N/A' }}
+                                    </a></a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
                                     @if(session()->get('locale') == 'en')
@@ -179,20 +181,22 @@
                                         <div class="row mt-1">
                                             <dt class="col-sm-2">{{ __('main.category') }}</dt>
                                             <dd class="col-sm-9">
-                                                @if(session()->get('locale') == 'en')
-                                                    {{ $product->category->name ? $product->category->name : ($product->category->cat_kh ?? 'N/A') }}
-                                                @else
-                                                    {{ $product->category->cat_kh ? $product->category->cat_kh : ($product->category->name ?? 'N/A') }}
-                                                @endif
+                                                {{ optional($product->category)->{session()->get('locale') == 'en' ? 'name' : 'cat_kh'} ?? 'N/A' }}
+
                                             </dd>
                                         </div>
                                         <div class="row mt-1 mb-2">
                                             <dt class="col-sm-2">{{ __('main.subcategory') }}</dt>
-                                            <dd class="col-sm-9">@if(session()->get('locale') == 'en')
-                                                    {{ $product->subcategory->sub_name ? $product->subcategory->sub_name : ($product->subcategory->sub_kh ?? 'N/A') }}
+                                            <dd class="col-sm-9">@if ($product->category)
+                                                    @if(session()->get('locale') == 'en')
+                                                        {{ $product->category->name ? $product->category->name : ($product->category->cat_kh ?? 'N/A') }}
+                                                    @else
+                                                        {{ $product->category->cat_kh ? $product->category->cat_kh : ($product->category->name ?? 'N/A') }}
+                                                    @endif
                                                 @else
-                                                    {{ $product->subcategory->sub_kh ? $product->subcategory->sub_kh : ($product->subcategory->sub_name ?? 'N/A') }}
-                                                @endif</dd>
+                                                    N/A
+                                                @endif
+                                            </dd>
                                         </div>
 
                                     </div>
@@ -382,7 +386,7 @@
                             <div class="card rounded-0 product-card shadow-sm">
                                 <a href="{{ url('product/details/'.$product->id.'/'.$product->name) }}">
                                     <div class="relative">
-                                        <img src="{{ asset($product->thumbnail) }}" class="card-img-top" alt="...">
+                                        <img src="{{ $product->thumbnail ? asset($product->thumbnail) : asset('/storage/images/pro_img.jpg') }}" class="card-img-top" alt="Product Image">
                                         <div class="absolute top-2 right-2">
                                             <a href="javascript:;" class="product-wishlist product-action">
                                                 <i class="bx bx-heart text-red-500 text-2xl"></i>

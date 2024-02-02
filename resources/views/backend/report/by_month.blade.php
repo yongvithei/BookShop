@@ -38,7 +38,7 @@
                         {{ __('part_s.search_by_month') }}: {{ $month }} {{ $year }}
                         <div class="row">
                             <div class="block-content">
-                                <form method="post" action="{{ route('search-by-month')}}">
+                                <form method="GET" action="{{ route('search-by-month')}}">
                                     @csrf
                                     <div class="col-xl-12">
                                         <label class="form-label">{{ __('part_s.select_month') }}</label>

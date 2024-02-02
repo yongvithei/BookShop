@@ -127,7 +127,7 @@ Shop Pages
                                     <!-- loop	 -->
                                     <div class="col mt-4">
                                         <div class="card rounded-lg product-card shadow-sm">
-                                            <a href="{{ url('product/details/'.$product->id.'/'.$product->name) }}">
+                                            <a href="{{ url('product/details/'.$product->id.'/'.$product->slug) }}">
                                                 <div class="relative">
                                                     <img src="{{ $product->thumbnail ? asset($product->thumbnail) : asset('/storage/images/pro_img.jpg') }}" class="card-img-top" alt="Product Image">
                                                     <div class="absolute top-2 right-2">
@@ -139,7 +139,7 @@ Shop Pages
                                             </a>
                                             <div class="card-body">
                                                 <div class="product-info">
-                                                    <a href="{{ url('product/details/'.$product->id.'/'.$product->name) }}">
+                                                    <a href="{{ url('product/details/'.$product->id.'/'.$product->slug) }}">
                                                         <h6 class="product-name mb-2">
                                                             @if(session()->get('locale') == 'en')
                                                                 {{ $product->name ? $product->name : $product->pro_kh }}

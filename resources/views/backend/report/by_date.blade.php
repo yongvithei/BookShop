@@ -37,7 +37,7 @@
                 <div class="block-header block-header-default">
                     <h3 class="block-title">
                         {{ __('part_s.search_by_date') }} {{ $formatDate }}
-                        <form method="post" action="{{ route('search-by-date')}}">
+                        <form method="GET" action="/search/by/date">
                             @csrf
                             <div class="row my-1">
                                 <div class="col-xl-6">
