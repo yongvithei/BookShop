@@ -7,7 +7,7 @@
                 <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
                     <div class="container">
                         <div class="page-breadcrumb d-flex align-items-center">
-                            <h3 class="breadcrumb-title pe-3">{{ __('main.my_orders') }}</h3>
+                            <p class="breadcrumb-title pe-3">{{ __('main.my_orders') }}</p>
                             <div class="ms-auto">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb mb-0 p-0">
@@ -24,11 +24,11 @@
 				<!--start shop cart-->
 				<section class="py-4">
 					<div class="container">
-						<h3 class="d-none">{{ __('main.my_orders') }}</h3>
-						<div class="card">
+						<h3 class="d-none">{{ __('main.my_ordeers') }}</h3>
+						<div class="card card rounded-xl drop-shadow">
 							<div class="card-body">
 								<div class="row">
-									<div class="col-lg-4">
+									<div class="col-lg-4 drop-shadow">
 										@include('frontend.dashboard.sidebar')
 									</div>
 									<div class="col-lg-8">
@@ -68,8 +68,8 @@
                                                                 </td>
                                                                 <td>
                                                                     <div class="d-flex gap-2">
-                                                                        <a href="{{ url('user/order_details/'.$order->id) }}" class="btn btn-dark btn-sm rounded-0">{{ __('main.view') }}</a>
-                                                                        <a href="{{ url('user/invoice_download/'.$order->id) }}" class="btn-sm btn-danger">{{ __('main.invoice') }}</a>
+                                                                        <a href="{{ url('user/order_details/'.$order->id) }}" class="btn btn-dark btn-sm rounded-lg">{{ __('main.view') }}</a>
+                                                                        <a href="{{ url('user/invoice_download/'.$order->id) }}" class="btn-sm btn-danger rounded-lg">{{ __('main.invoice') }}</a>
                                                                     </div>
                                                                 </td>
 

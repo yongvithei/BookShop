@@ -8,7 +8,7 @@
                 <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
                     <div class="container">
                         <div class="page-breadcrumb d-flex align-items-center">
-                            <h3 class="breadcrumb-title pe-3">{{ __('main.password') }}</h3>
+                            <p class="breadcrumb-title pe-3">{{ __('main.password') }}</p>
                             <div class="ms-auto">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb mb-0 p-0">
@@ -26,10 +26,10 @@
 				<section class="py-4">
 					<div class="container">
 						<h3 class="d-none">Account</h3>
-						<div class="card">
+						<div class="card rounded-xl drop-shadow">
 							<div class="card-body">
 								<div class="row">
-									<div class="col-lg-4">
+									<div class="col-lg-4 drop-shadow">
 										@include('frontend.dashboard.sidebar')
 									</div>
 									<div class="col-lg-8">
@@ -44,26 +44,25 @@
                                                 <form method="post" class="row g-3" action="{{ route('password.update') }}">
                                                     @csrf
                                                     @method('put')
-
-    <div class="col-12">
-        <label for="current_password" class="form-label">@lang('main.current_password')</label>
-        <input type="password" class="form-control" id="current_password" name="current_password">
-        <span class="text-danger">{{ $errors->updatePassword->first('current_password') }}</span>
-    </div>
-    <div class="col-12">
-        <label class="form-label" for="password">@lang('main.new_password')</label>
-        <input type="password" class="form-control" id="password" name="password" autocomplete="new-password">
-        <span class="text-danger">{{ $errors->updatePassword->first('password') }}</span>
-    </div>
-    <div class="col-12">
-        <label class="form-label" for="password_confirmation">@lang('main.confirm_new_password')</label>
-        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
-        <span class="text-danger">{{ $errors->updatePassword->first('password_confirmation') }}</span>
-    </div>
-    <div class="col-12">
-        <button type="submit" class="bg-dark text-white btn-ecomm">@lang('main.save_changes')</button>
-    </div>
-</form>
+                                                    <div class="col-12">
+                                                        <label for="current_password" class="form-label">@lang('main.current_password')</label>
+                                                        <input type="password" class="form-control rounded-xl" id="current_password" name="current_password">
+                                                        <span class="text-danger">{{ $errors->updatePassword->first('current_password') }}</span>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label class="form-label" for="password">@lang('main.new_password')</label>
+                                                        <input type="password" class="form-control rounded-xl" id="password" name="password" autocomplete="new-password">
+                                                        <span class="text-danger">{{ $errors->updatePassword->first('password') }}</span>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label class="form-label" for="password_confirmation">@lang('main.confirm_new_password')</label>
+                                                        <input type="password" class="form-control rounded-xl" id="password_confirmation" name="password_confirmation">
+                                                        <span class="text-danger">{{ $errors->updatePassword->first('password_confirmation') }}</span>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button type="submit" class="bg-dark text-white btn-ecomm rounded-lg">@lang('main.save_changes')</button>
+                                                    </div>
+                                                </form>
 
 											</div>
 										</div>

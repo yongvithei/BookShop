@@ -8,13 +8,13 @@
                 <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
                     <div class="container">
                         <div class="page-breadcrumb d-flex align-items-center">
-                            <h3 class="breadcrumb-title pe-3">{{ __('main.my_orders') }}</h3>
+                            <p class="breadcrumb-title pe-3">{{ __('main.account_details') }}</h3>
                             <div class="ms-auto">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb mb-0 p-0">
                                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i>{{ __('main.home') }}</a></li>
                                         <li class="breadcrumb-item"><a href="javascript:;">{{ __('main.account') }}</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">{{ __('main.my_orders') }}</li>
+                                        <li class="breadcrumb-item active" aria-current="page">{{ __('main.account_details') }}</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -26,10 +26,10 @@
 				<section class="py-4">
 					<div class="container">
 						<h3 class="d-none">{{ __('main.account') }}</h3>
-						<div class="card">
+						<div class="card rounded-xl drop-shadow">
 							<div class="card-body">
 								<div class="row">
-									<div class="col-lg-4">
+									<div class="col-lg-4 drop-shadow">
 										@include('frontend.dashboard.sidebar')
 									</div>
 									<div class="col-lg-8">
@@ -45,17 +45,17 @@
                                                     @csrf
 													<div class="col-md-6">
 														<label class="form-label">{{ __('main.name') }}</label>
-														<input id="name" name="name" type="text" value="{{ old('name', $user->name) }}" required autofocus autocomplete="name" class="form-control">
+														<input id="name" name="name" type="text" value="{{ old('name', $user->name) }}" required autofocus autocomplete="name" class="form-control rounded-lg">
                                                         <span class="text-danger">{{ $errors->first('name') }}</span>
                                                     </div>
 													<div class="col-md-6">
 														<label class="form-label">{{ __('main.username') }}</label>
-														<input id="username" name="username" type="text" value="{{ old('username', $user->username) }}" required autofocus autocomplete="username" class="form-control" value="">
+														<input id="username" name="username" type="text" value="{{ old('username', $user->username) }}" required autofocus autocomplete="username" class="form-control rounded-lg" value="">
                                                         <span class="text-danger">{{ $errors->first('username') }}</span>
                                                     </div>
 													<div class="col-12">
 														<label class="form-label">{{ __('main.email_address') }}</label>
-														<input id="email" name="email" type="text" value="{{ old('email', $user->email) }}" class="form-control" value="">
+														<input id="email" name="email" type="text" value="{{ old('email', $user->email) }}" class="form-control rounded-lg" value="">
                                                         <span class="text-danger">{{ $errors->first('email') }}</span>
                                                     </div>
                                                     <div class="col-12">
@@ -66,7 +66,7 @@
                                                         <span class="text-danger">{{ $errors->first('photo') }}</span>
                                                     </div>
 													<div class="col-12">
-														<button type="submit" class="bg-dark text-white btn-ecomm">{{ __('main.save_changes') }}</button>
+														<button type="submit" class="bg-dark text-white btn-ecomm rounded-lg">{{ __('main.save_changes') }}</button>
 													</div>
 												</form>
 											</div>

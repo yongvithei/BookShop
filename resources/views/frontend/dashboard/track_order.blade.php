@@ -8,7 +8,7 @@
                 <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
                     <div class="container">
                         <div class="page-breadcrumb d-flex align-items-center">
-                            <h3 class="breadcrumb-title pe-3">{{ __('main.track_order') }}</h3>
+                            <p class="breadcrumb-title pe-3">{{ __('main.track_order') }}</p>
                             <div class="ms-auto">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb mb-0 p-0">
@@ -25,10 +25,10 @@
 				<!--start shop cart-->
 				<section class="py-4">
 					<div class="container">
-						<div class="card">
+						<div class="card rounded-xl drop-shadow">
 							<div class="card-body">
 								<div class="row">
-									<div class="col-lg-4">
+									<div class="col-lg-4 drop-shadow">
 										@include('frontend.dashboard.sidebar')
 									</div>
 									<div class="col-lg-8">
@@ -39,11 +39,11 @@
                                                     @csrf
                                                     <div class="col-md-6">
                                                         <label class="form-label">{{ __('main.order_id') }}</label>
-                                                        <input id="code" name="code" type="text" value="" required autofocus autocomplete="name" class="form-control" placeholder="{{ __('main.placeholder_invoice_number') }}">
+                                                        <input id="code" name="code" type="text" value="" required autofocus autocomplete="name" class="form-control rounded-lg" placeholder="{{ __('main.placeholder_invoice_number') }}">
                                                         <span class="text-danger">{{ $errors->first('code') }}</span>
                                                     </div>
                                                     <div class="col-13">
-                                                        <button type="submit" class="bg-dark text-white btn-ecomm">{{ __('main.submit') }}</button>
+                                                        <button type="submit" class="bg-dark text-white btn-ecomm rounded-lg">{{ __('main.submit') }}</button>
                                                     </div>
                                                 </form>
                                             </div>

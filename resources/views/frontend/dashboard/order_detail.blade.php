@@ -26,7 +26,7 @@
         <section class="py-4">
             <div class="container">
                 <h3 class="d-none">Account</h3>
-                <div class="card">
+                <div class="card rounded-xl drop-shadow">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-4">
