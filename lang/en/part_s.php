@@ -114,7 +114,8 @@ return [
     'number' => 'Number',
     'dashboard' => 'Dashboard',
     'welcome' => 'Welcome',
-    'everything_looks_great' => 'everything looks great',
+    'today_sell' => 'Today sale',
+    'total_sale' => 'Total sale',
     'settings' => 'Settings',
     'all_time' => 'All time',
     'last_30_days' => 'Last 30 days',
@@ -123,10 +124,10 @@ return [
     'this_year' => 'This year',
     'last_year' => 'Last Year',
     'all_time_dropdown' => 'All time',
-    'todays_sale' => 'Today\'s Sale',
+
     'view_all_orders' => 'View all orders',
     'monthly_sale' => 'Monthly Sale',
-    'yearly_sale' => 'Yearly Sale',
+    'amount_order' => 'Amount Order',
     'pending_orders' => 'Pending Orders',
     'total_user' => 'Total User',
     'view_users' => 'View users',
@@ -135,4 +136,14 @@ return [
     'sl' => 'Sl',
     'name_label' => 'Name',
     'email_label' => 'Email',
+
+    'todays_sale' => 'Today\'s Sale',
+    'yesterday_sell' => 'Yesterday\'s Sale',
+    'this_year_sale' => 'This Year\' Sale',
+    'last_year_sale' => 'Last year\'s Sale',
+    'all_sale' => 'Total Sale all the time',
+    '3_month_sale' => '3 month\'s Sale',
+
+
+
 ];

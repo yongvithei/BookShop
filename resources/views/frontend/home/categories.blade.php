@@ -2,7 +2,7 @@
 					<div class="container">
 					<h5 class="text-uppercase mb-0 text-center text-3xl">{{ __('main.browse_category') }}</h5>
 						<div class="d-flex align-items-center">
-							<a href="" class="btn btn-dark ms-auto rounded-0">{{ __('main.view_all') }}<i class='bx bx-chevron-right'></i></a>
+							<a href="/shop" class="btn btn-dark ms-auto rounded-0">{{ __('main.view_all') }}<i class='bx bx-chevron-right'></i></a>
 						</div>
 						<hr/>
 							@php
@@ -25,7 +25,7 @@
 										});
 									@endphp
 								<div class="item">
-									<div class="card rounded-0 product-card border">
+									<div class="card rounded-3 border">
 										<div class="card-footer text-center">
 											<a href="{{ url('product/category/'.$category->id.'/'.$category->slug) }}">
 											<h6 class="mb-1 text-uppercase"> @if(session()->get('locale') == 'en') {{ $category->name ?? $category->cat_kh ?? '' }} @else {{ $category->cat_kh ?? $category->name ?? '' }} @endif</h6>

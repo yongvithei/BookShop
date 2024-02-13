@@ -3,7 +3,7 @@
     <div class="container">
         <h5 class="text-uppercase mb-0 text-center text-3xl">{{ __('main.featured_products') }}</h5>
         <div class="d-flex align-items-center">
-            <a href="javascript:;" class="btn btn-dark btn-ecomm ms-auto rounded-0">{{ __('main.more_products') }}<i
+            <a href="/shop/feature" class="btn btn-dark btn-ecomm ms-auto rounded-0">{{ __('main.more_products') }}<i
                     class='bx bx-chevron-right'></i></a>
         </div>
         @php

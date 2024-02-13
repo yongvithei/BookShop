@@ -121,12 +121,12 @@ return [
     'last_month' => 'ខែចុងក្រោយ',
     'last_3_months' => '៣ខែចុងក្រោយ',
     'this_year' => 'ឆ្នាំនេះ',
-    'last_year' => 'ឆ្នាំចុងក្រោយ',
+    'last_year' => 'ឆ្នាំមុន',
     'all_time_dropdown' => 'ពេលវេលាទាំងអស់',
     'todays_sale' => 'ការលក់នៅថ្ងៃនេះ',
     'view_all_orders' => 'មើលបញ្ជាទិញទាំងអស់',
     'monthly_sale' => 'ការលក់ប្រចាំខែ',
-    'yearly_sale' => 'ការលក់ប្រចាំឆ្នាំ',
+    'amount_order' => 'ចំនួនការកុម្មង់',
     'pending_orders' => 'ការបញ្ជាទិញដែលកំពុងរងចាំ',
     'total_user' => 'សរុបអ្នកប្រើប្រាស់',
     'view_users' => 'មើលអ្នកប្រើប្រាស់',
@@ -135,4 +135,16 @@ return [
     'sl' => 'លេខរៀង',
     'name_label' => 'ឈ្មោះ',
     'email_label' => 'អ៊ីមែល',
+
+    'today_sell' => 'ការលក់ថ្ងៃនេះ',
+    'yesterday_sell' => 'ការលក់ម្សិលមិញ',
+    'this_year_sale' => 'ការលក់នៅឆ្នាំនេះ',
+    'last_year_sale' => 'ការលក់ឆ្នាំមុន',
+    'all_sale' => 'ចំណូលសរុបរាល់ពេល',
+    '3_month_sale' => 'ការលក់រយៈពេល 3 ខែ',
+    'total_sale' => 'សរុបការលក់',
+
+
+
+
 ];

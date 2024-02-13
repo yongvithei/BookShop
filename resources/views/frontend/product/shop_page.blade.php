@@ -11,7 +11,7 @@ Shop Pages
         <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
             <div class="container">
                 <div class="page-breadcrumb d-flex align-items-center">
-                    <h3 class="breadcrumb-title pe-3">{{ __('main.all_products') }}</h3>
+                    <p class="breadcrumb-title pe-3">{{ __('main.all_products') }}</p>
                     <div class="ms-auto">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 p-0">
@@ -35,7 +35,7 @@ Shop Pages
                         <div class="btn-mobile-filter d-xl-none"><i class='bx bx-slider-alt'></i>
                         </div>
                         <div class="filter-sidebar d-none d-xl-flex">
-                            <div class="card rounded-0 w-100">
+                            <div class="card rounded-xl w-100">
                                 <div class="card-body">
                                     <form method="post" action="{{ route('shop.filter') }}">
                                         @csrf
@@ -46,7 +46,7 @@ Shop Pages
                                         <hr class="d-flex d-xl-none" />
                                        <div class="price-range">
                                             <h6 class="text-uppercase mb-3">{{ __('main.price') }}</h6>
-                                            <div class="my-4" id="slider"></div>
+                                            <div class="my-3" id="slider"></div>
                                             <div class="d-flex align-items-center mb-2">
                                                 <div class="ms-auto">
                                                    <p class="mb-0">{{ __('main.price') }}:  <span id="price-min">0</span> - <span id="price-max">1000000</span></p>
@@ -88,38 +88,38 @@ Shop Pages
                     </div>
                     <div class="col-12 col-xl-9">
                         <div class="product-wrapper">
-                            <div class="toolbox d-flex align-items-center mb-3 gap-2">
-                                <div class="d-flex flex-wrap flex-grow-1 gap-1">
-                                    <div class="d-flex align-items-center flex-nowrap">
-                                        <p class="mb-0 font-13 text-nowrap">{{ __('main.sort_by') }}</p>
-                                        <select class="form-select ms-3 rounded-0">
-                                            <option value="menu_order" selected="selected">{{ __('main.default_sorting') }}</option>
-                                            <option value="popularity">{{ __('main.sort_by_popularity') }}</option>
-                                            <option value="rating">{{ __('main.sort_by_rating') }}</option>
-                                            <option value="date">{{ __('main.sort_by_newness') }}</option>
-                                            <option value="price">{{ __('main.sort_by_price_low_high') }}</option>
-                                            <option value="price-desc">{{ __('main.sort_by_price_high_low') }}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-wrap">
-                                    <div class="d-flex align-items-center flex-nowrap">
-                                        <p class="mb-0 font-13 text-nowrap">{{ __('main.show') }}</p>
-                                        <select class="form-select ms-3 rounded-0">
-                                            <option>9</option>
-                                            <option>12</option>
-                                            <option>16</option>
-                                            <option>20</option>
-                                            <option>50</option>
-                                            <option>100</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div> <a href="" class="btn btn-white rounded-0"><i class='bx bxs-grid me-0'></i></a>
-                                </div>
-                                <div> <a href="/shoplist" class="btn btn-light rounded-0"><i class='bx bx-list-ul me-0'></i></a>
-                                </div>
-                            </div>
+{{--                            <div class="toolbox d-flex align-items-center mb-3 gap-2">--}}
+{{--                                <div class="d-flex flex-wrap flex-grow-1 gap-1">--}}
+{{--                                    <div class="d-flex align-items-center flex-nowrap">--}}
+{{--                                        <p class="mb-0 font-13 text-nowrap">{{ __('main.sort_by') }}</p>--}}
+{{--                                        <select class="form-select ms-3 rounded-0">--}}
+{{--                                            <option value="menu_order" selected="selected">{{ __('main.default_sorting') }}</option>--}}
+{{--                                            <option value="popularity">{{ __('main.sort_by_popularity') }}</option>--}}
+{{--                                            <option value="rating">{{ __('main.sort_by_rating') }}</option>--}}
+{{--                                            <option value="date">{{ __('main.sort_by_newness') }}</option>--}}
+{{--                                            <option value="price">{{ __('main.sort_by_price_low_high') }}</option>--}}
+{{--                                            <option value="price-desc">{{ __('main.sort_by_price_high_low') }}</option>--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="d-flex flex-wrap">--}}
+{{--                                    <div class="d-flex align-items-center flex-nowrap">--}}
+{{--                                        <p class="mb-0 font-13 text-nowrap">{{ __('main.show') }}</p>--}}
+{{--                                        <select class="form-select ms-3 rounded-0">--}}
+{{--                                            <option>9</option>--}}
+{{--                                            <option>12</option>--}}
+{{--                                            <option>16</option>--}}
+{{--                                            <option>20</option>--}}
+{{--                                            <option>50</option>--}}
+{{--                                            <option>100</option>--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div> <a href="" class="btn btn-white rounded-0"><i class='bx bxs-grid me-0'></i></a>--}}
+{{--                                </div>--}}
+{{--                                <div> <a href="/shoplist" class="btn btn-light rounded-0"><i class='bx bx-list-ul me-0'></i></a>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="product-grid">
                                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3">
                                     @if(count($products) > 0)

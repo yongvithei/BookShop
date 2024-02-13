@@ -40,6 +40,7 @@ return [
     'browse_category' => 'មើលប្រភេទទាំងអស់',
     'view_all' => 'មើលទាំងអស់',
     'featured_products' => 'ផលិតផលពិសេស',
+    'feature_products' => 'ផលិតផលពិសេស',
     'more_products' => 'ផលិតផលច្រើនទៀត',
     'new_arrivals' => 'ផលិតផលថ្មី',
     'free_delivery' => 'សេវាដឹកជញ្ជូនឥតគិតថ្លៃ',

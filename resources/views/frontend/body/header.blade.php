@@ -80,14 +80,14 @@
 						@csrf
 						<div class="input-group flex-nowrap px-xl-4">
 
-							<input onfocus="search_result_show()" onblur="search_result_hide()" type="text" class="form-control w-100" name="search" id="search" placeholder="{{__('main.search_for_products')}}">
+							<input onfocus="search_result_show()" onblur="search_result_hide()" type="text" class="form-control w-100 rounded-lg" name="search" id="search" placeholder="{{__('main.search_for_products')}}">
 							<!-- <select class="form-select flex-shrink-0" aria-label="Default select example" style="width: 10.5rem;">
 									<option selected>All Categories</option>
 									<option value="1">One</option>
 									<option value="2">Two</option>
 									<option value="3">Three</option>
 								</select>	 -->
-                            <button type="submit" class="input-group-text cursor-pointer bg-transparent" onclick="submitSearchForm()">
+                            <button type="submit" class="input-group-text cursor-pointer bg-transparent rounded-xl" onclick="submitSearchForm()">
                                 <i class='bx bx-search'></i>
                             </button>
 							<div id="searchProducts"></div>
@@ -137,7 +137,7 @@
                                             </div>
 										</a>
 										<div class="d-grid p-3 border-top">
-											<a href="{{ route('mycart') }}" class="btn btn-dark btn-ecomm">{{__('main.checkout')}}</a>
+											<a href="{{ route('mycart') }}" class="btn btn-dark btn-ecomm rounded-lg">{{__('main.checkout')}}</a>
 										</div>
 
 									</div>

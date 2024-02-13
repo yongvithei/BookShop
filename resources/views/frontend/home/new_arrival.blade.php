@@ -2,7 +2,7 @@
 					<div class="container">
 					<h5 class="text-uppercase mb-0 text-center text-3xl">{{ __('main.new_arrivals') }}</h5>
 						<div class="d-flex align-items-center">
-							<a href="javascript:;" class="btn btn-dark ms-auto rounded-0">{{ __('main.view_all') }}<i class='bx bx-chevron-right'></i></a>
+							<a href="/shop/new" class="btn btn-dark ms-auto rounded-0">{{ __('main.view_all') }}<i class='bx bx-chevron-right'></i></a>
 						</div>
 					<hr/>
 					@php

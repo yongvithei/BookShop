@@ -3,7 +3,7 @@
 <!-- Modal -->
 <div class="modal fade" id="QuickViewProduct">
     <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-xl-down">
-        <div class="modal-content rounded-0 border-0">
+        <div class="modal-content rounded-xl drop-shadow-lg">
             <div class="modal-body">
                 <button type="button" class="text-2xl btn-close float-end" data-bs-dismiss="modal" id="closeModal"> <i
                         class='bx bx-x'></i></button>

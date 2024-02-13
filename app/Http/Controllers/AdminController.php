@@ -9,10 +9,13 @@ use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\Rules;
 use App\Models\User;
+use App\Models\Order;
+use App\Models\SiteInfo;
 use Spatie\Permission\Models\Role;
 use App\Models\AdminView;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
 class AdminController extends Controller
 {
     public function editProfile(Request $request): View
@@ -171,7 +174,163 @@ class AdminController extends Controller
     //another function
 
     public function AdminDashboard(){
-        return view('admin.dashboard');
+        $date = Carbon::today();
+        $amount = Order::whereDate('created_at', $date)->where('status','delivered')->sum('amount');
+        $pending = Order::where('status','pending')->whereDate('created_at', $date)->count();
+        $order = Order::whereDate('created_at', $date)->count();
+        // Retrieve other data
+        $customer = User::where('role','user')->count();
+        $rate = SiteInfo::select('exchange')->first();
+
+        // Perform calculations
+        $SellKH = $amount / $rate->exchange;
+        $seAmount = number_format($SellKH, 2);
+
+        // Pass data to the view
+        return view('admin.dashboard')->with([
+            'amount' => $amount,
+            'pending' => $pending,
+            'customer' => $customer,
+            'seAmount' => $seAmount,
+            'order' => $order,
+        ]);
+    }
+
+
+
+    public function getSalesECM(Request $request)
+    {
+        // Get the selected time range from the request
+        $timeRange = $request->input('time_range');
+
+        // Initialize variables
+        $amount = 0;
+        $pending = 0;
+        $order = 0;
+        $seAmount = 0;
+        $customer = 0;
+        $rate = SiteInfo::select('exchange')->first();
+
+        // Update your queries based on the selected time range
+        switch ($timeRange) {
+            case 'today':
+                $str = __('part_s.todays_sale');
+                // Get today's date
+                $date = Carbon::today();
+                // Retrieve data for today's sales
+                $amount = Order::whereDate('created_at', $date)->where('status','delivered')->sum('amount');
+                $pending = Order::where('status', 'pending')->whereDate('created_at', $date)->count();
+                $order = Order::whereDate('created_at', $date)->count();
+                // Retrieve other data for today
+                $customer = User::where('role', 'user')->count();
+                // Perform calculations for today
+                $SellKH = $amount / $rate->exchange;
+                $seAmount = number_format($SellKH, 2);
+                break;
+
+            case 'yesterday':
+                $str = __('part_s.yesterday_sell');
+                $yesterday = Carbon::yesterday();
+                $amount = Order::whereDate('created_at', $yesterday)->where('status','delivered')->sum('amount');
+                $pending = Order::where('status', 'pending')->whereDate('created_at', $yesterday)->count();
+                $order = Order::whereDate('created_at', $yesterday)->count();
+                $customer = User::where('role', 'user')->count();
+                $SellKH = $amount / $rate->exchange;
+                $seAmount = number_format($SellKH, 2);
+                break;
+
+            case 'last_month':
+                $str = __('part_s.last_month');
+                // Data for last month
+                $lastMonth = Carbon::now()->subMonth(); // Get the first day of the previous month
+
+                $amount = Order::whereDate('created_at', '>=', $lastMonth->startOfMonth())
+                    ->whereDate('created_at', '<=', $lastMonth->endOfMonth())->sum('amount');
+                $pending = Order::where('status', 'pending')->whereDate('created_at', '>=', $lastMonth->startOfMonth())
+                    ->whereDate('created_at', '<=', $lastMonth->endOfMonth())->count();
+                $order = Order::whereDate('created_at', '>=', $lastMonth->startOfMonth())
+                    ->whereDate('created_at', '<=', $lastMonth->endOfMonth())->count();
+                $customer = User::where('role', 'user')->count();
+                $SellKH = $amount / $rate->exchange;
+                $seAmount = number_format($SellKH, 2);
+                break;
+            case 'last_3_months':
+                $str = __('part_s.3_month_sale');
+                // Data for last 3 months
+                $last3MonthsStart = Carbon::now()->subMonths(2)->startOfMonth(); // Get the first day of the month 3 months ago
+                $last3MonthsEnd = Carbon::now()->endOfMonth(); // Get the last day of the current month
+
+                $amount = Order::whereDate('created_at', '>=', $last3MonthsStart)
+                    ->whereDate('created_at', '<=', $last3MonthsEnd)->where('status','delivered')->sum('amount');
+                $pending = Order::where('status', 'pending')->whereDate('created_at', '>=', $last3MonthsStart)
+                    ->whereDate('created_at', '<=', $last3MonthsEnd)->count();
+                $order = Order::whereDate('created_at', '>=', $last3MonthsStart)
+                    ->whereDate('created_at', '<=', $last3MonthsEnd)->count();
+                $customer = User::where('role', 'user')->count();
+                $SellKH = $amount / $rate->exchange;
+                $seAmount = number_format($SellKH, 2);
+
+                break;
+            case 'this_year':
+                $str = __('part_s.this_year_sale');
+                // Data for this year
+                $thisYearStart = Carbon::now()->startOfYear();
+                $thisYearEnd = Carbon::now()->endOfYear();
+                $amount = Order::whereDate('created_at', '>=', $thisYearStart)
+                    ->whereDate('created_at', '<=', $thisYearEnd)->where('status','delivered')->sum('amount');
+                $pending = Order::where('status', 'pending')->whereDate('created_at', '>=', $thisYearStart)
+                    ->whereDate('created_at', '<=', $thisYearEnd)->count();
+                $order = Order::whereDate('created_at', '>=', $thisYearStart)
+                    ->whereDate('created_at', '<=', $thisYearEnd)->count();
+                $customer = User::where('role', 'user')->count();
+                $SellKH = $amount / $rate->exchange;
+                $seAmount = number_format($SellKH, 2);
+
+
+                break;
+
+            case 'last_year':
+                $str = __('part_s.last_year_sale');
+                // Data for last year
+                $lastYearStart = Carbon::now()->subYear()->startOfYear();
+                $lastYearEnd = Carbon::now()->subYear()->endOfYear();
+                $amount = Order::whereDate('created_at', '>=', $lastYearStart)
+                    ->whereDate('created_at', '<=', $lastYearEnd)->where('status','delivered')->sum('amount');
+                $pending = Order::where('status', 'pending')->whereDate('created_at', '>=', $lastYearStart)
+                    ->whereDate('created_at', '<=', $lastYearEnd)->count();
+                $order = Order::whereDate('created_at', '>=', $lastYearStart)
+                    ->whereDate('created_at', '<=', $lastYearEnd)->count();
+                $customer = User::where('role', 'user')->count();
+                $SellKH = $amount / $rate->exchange;
+                $seAmount = number_format($SellKH, 2);
+
+                break;
+            case 'all_time':
+                $str = __('part_s.all_sale');
+                $amount = Order::where('status','delivered')->sum('amount');
+                $pending = Order::where('status', 'pending')->count();
+                $order = Order::count();
+                $customer = User::where('role', 'user')->count();
+                $SellKH = $amount / $rate->exchange;
+                $seAmount = number_format($SellKH, 2);
+                break;
+            // Add cases for other time ranges as needed
+            default:
+                // Handle the default case or additional time ranges
+                break;
+        }
+
+        // Return the data as a JSON response
+        return response()->json([
+            'Amount' => $amount,
+            'pending' => $pending,
+            'order' => $order,
+            'customer' => $customer,
+            'seAmount' => $seAmount,
+            'str' => $str,
+
+            // Add more data as needed
+        ]);
     }
     public function AdminLogin(){
         return view('admin.admin_login');

@@ -62,16 +62,18 @@
                 var miniCart = "";
 
                 $.each(response.carts, function (key, value) {
+                    // Truncate the product name if it's too long
+                    var truncatedName = value.name.length > 28 ? value.name.substring(0, 28) + '...' : value.name;
+
                     // Construct the full image URL based on your image data
                     var imageUrl = value.options.image ? '/' + value.options.image : '/storage/images/pro_img.jpg';
 
                     miniCart += '<div class="dropdown-item" href="javascript:;">' +
                         '<div class="d-flex align-items-center">' +
                         '<div class="flex-grow-1">' +
-                        '<h6 class="cart-product-title">' + value.name + '</h6>' +
-                        '<p class="cart-product-price">' + value.qty + ' X ' + value.price + ' ' + lang.khr + '</p>'+
-
-                    '</div>' +
+                        '<h6 class="cart-product-title" title="' + value.name + '">' + truncatedName + '</h6>' +
+                        '<p class="cart-product-price">' + value.qty + ' X ' + value.price + ' ' + lang.khr + '</p>' +
+                        '</div>' +
                         '<div class="position-relative">' +
                         '<div class="cart-product-cancel position-absolute">' +
                         '<button type="submit" id="' + value.rowId + '" onclick="miniCartRemove(this.id)">' +

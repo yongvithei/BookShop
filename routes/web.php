@@ -255,6 +255,7 @@ Route::middleware(['auth','role:admin'])->group(function() {
     Route::view('/pos/order', 'backend/pos/order');
     Route::view('/pos/dashboard', 'backend/pos/dashboard');
     Route::post('/get-sales-data', [PosOrderController::class, 'getSalesData']);
+    Route::post('/get-ecm-data', [AdminController::class, 'getSalesECM']);
     //POS Cart
     Route::controller(PosCartController::class)->group(function(){
         Route::get('/pos/cart', 'index')->name('cart.index');
@@ -355,6 +356,8 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
     });
     Route::controller(ShopController::class)->group(function () {
         Route::get('/shop', 'ShopPage')->name('shop.page');
+        Route::get('/shop/feature', 'ShopFeature')->name('shop.feature');
+        Route::get('/shop/new', 'ShopNew')->name('shop.new');
         Route::post('/shop/filter', 'ShopFilter')->name('shop.filter');
     });
 

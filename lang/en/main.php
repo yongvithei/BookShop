@@ -41,6 +41,7 @@ return [
     'browse_category' => 'All Category',
     'view_all' => 'View All',
     'featured_products' => 'FEATURED PRODUCTS',
+    'feature_products' => 'Featured Products',
     'more_products' => 'More Products',
     'new_arrivals' => 'New Arrivals',
     'free_delivery' => 'Free Delivery',

@@ -3,17 +3,7 @@
 
 <!-- Main Container -->
 <main id="main-container">
-    @php
-        $date = date('d-m-y');
-        $today = App\Models\Order::where('order_date',$date)->sum('amount');
-        $month = date('F');
-        $month = App\Models\Order::where('order_month',$month)->sum('amount');
-        $year = date('Y');
-        $year = App\Models\Order::where('order_year',$year)->sum('amount');
-        $pending = App\Models\Order::where('status','pending')->get();
-
-        $customer = App\Models\User::where('role','user')->get();
-    @endphp
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Hero -->
     <div class="content">
         <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center py-2 text-center text-md-start">
@@ -22,32 +12,35 @@
                     {{ __('part_s.dashboard') }}
                 </h1>
                 <h2 class="h6 fw-medium fw-medium text-muted mb-0">
-                    {{ __('part_s.welcome') }} <a class="fw-semibold" href="">{{ Auth::user()->name }}</a>, {{ __('part_s.everything_looks_great') }}.
+                    {{ __('part_s.welcome') }} <a class="fw-semibold" href="">{{ Auth::user()->name }}</a>. <d id="str">{{ __('part_s.today_sell') }}</d>
                 </h2>
             </div>
             <div class="mt-3 mt-md-0 ms-md-3 space-x-1">
-                <a class="btn btn-sm btn-alt-secondary space-x-1" href="">
+                <a class="btn btn-sm btn-alt-secondary space-x-1" href="/info/business">
                     <i class="fa fa-cogs opacity-50"></i>
                     <span>{{ __('part_s.settings') }}</span>
                 </a>
                 <div class="dropdown d-inline-block">
-                    <button type="button" class="btn btn-sm btn-alt-secondary space-x-1" id="dropdown-analytics-overview" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-fw fa-calendar-alt opacity-50"></i>
-                        <span>{{ __('part_s.all_time') }}</span>
-                        <i class="fa fa-fw fa-angle-down"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-end fs-sm" aria-labelledby="dropdown-analytics-overview">
-                        <a class="dropdown-item fw-medium" href="javascript:void(0)">{{ __('part_s.last_30_days') }}</a>
-                        <a class="dropdown-item fw-medium" href="javascript:void(0)">{{ __('part_s.last_month') }}</a>
-                        <a class="dropdown-item fw-medium" href="javascript:void(0)">{{ __('part_s.last_3_months') }}</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item fw-medium" href="javascript:void(0)">{{ __('part_s.this_year') }}</a>
-                        <a class="dropdown-item fw-medium" href="javascript:void(0)">{{ __('part_s.last_year') }}</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item fw-medium d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                            <span>{{ __('part_s.all_time_dropdown') }}</span>
-                            <i class="fa fa-check"></i>
-                        </a>
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn btn-sm btn-alt-secondary space-x-1" id="dropdown-analytics-overview" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-fw fa-calendar-alt opacity-50"></i>
+                            <span>{{ __('part_s.all_time') }}</span>
+                            <i class="fa fa-fw fa-angle-down"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end fs-sm" aria-labelledby="dropdown-analytics-overview">
+                            <a class="dropdown-item fw-medium" href="javascript:void(0)" data-time-range="today">{{ __('pos_p.today') }}</a>
+                            <a class="dropdown-item fw-medium" href="javascript:void(0)" data-time-range="yesterday">{{ __('pos_p.yesterday') }}</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item fw-medium" href="javascript:void(0)" data-time-range="last_month">{{ __('part_s.last_month') }}</a>
+                            <a class="dropdown-item fw-medium" href="javascript:void(0)" data-time-range="last_3_months">{{ __('part_s.last_3_months') }}</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item fw-medium" href="javascript:void(0)" data-time-range="this_year">{{ __('part_s.this_year') }}</a>
+                            <a class="dropdown-item fw-medium" href="javascript:void(0)" data-time-range="last_year">{{ __('part_s.last_year') }}</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item fw-medium d-flex align-items-center justify-content-between" href="javascript:void(0)" data-time-range="all_time">
+                                <span>{{ __('part_s.all_time_dropdown') }}</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -64,11 +57,12 @@
                 <div class="block block-rounded d-flex flex-column h-100 mb-0">
                     <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                         <dl class="mb-0">
-                            <dt class="fs-3 fw-bold">{{ $today }} KHR</dt>
-                            <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">{{ __('part_s.todays_sale') }}</dd>
+                            <dt class="fs-3 fw-bold" id="today">{{ $amount }} KHR</dt>
+                            <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0" id="seAmount">$ {{ $seAmount }}</dd>
+                            <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">{{ __('part_s.total_sale') }}</dd>
                         </dl>
                         <div class="item item-rounded-lg bg-body-light">
-                            <i class="far fa-gem fs-3 text-primary"></i>
+                            <i class="fa fa-money-bills fs-3 text-primary"></i>
                         </div>
                     </div>
                     <div class="bg-body-light rounded-bottom">
@@ -85,16 +79,16 @@
                 <div class="block block-rounded d-flex flex-column h-100 mb-0">
                     <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                         <dl class="mb-0">
-                            <dt class="fs-3 fw-bold">{{ $month }} KHR</dt>
-                            <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">{{ __('part_s.monthly_sale') }}</dd>
+                            <dt class="fs-3 fw-bold" id="pending">{{ $pending }}</dt>
+                            <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">{{ __('part_s.pending_orders') }}</dd>
                         </dl>
                         <div class="item item-rounded-lg bg-body-light">
-                            <i class="far fa-user-circle fs-3 text-primary"></i>
+                            <i class="fa fa-hourglass-start fs-3 text-primary"></i>
                         </div>
                     </div>
                     <div class="bg-body-light rounded-bottom">
                         <a class="block-content block-content-full block-content-sm fs-sm fw-medium d-flex align-items-center justify-content-between" href="/order/list">
-                           <span>{{ __('part_s.view_all_orders') }}</span>
+                            <span>{{ __('part_s.view_all_orders') }}</span>
                             <i class="fa fa-arrow-alt-circle-right ms-1 opacity-25 fs-base"></i>
                         </a>
                     </div>
@@ -106,11 +100,11 @@
                 <div class="block block-rounded d-flex flex-column h-100 mb-0">
                     <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                         <dl class="mb-0">
-                            <dt class="fs-3 fw-bold">{{ $year }} KHR</dt>
-                            <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">{{ __('part_s.yearly_sale') }}</dd>
+                            <dt class="fs-3 fw-bold" id="order">{{ $order }}</dt>
+                            <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">{{ __('part_s.amount_order') }}</dd>
                         </dl>
                         <div class="item item-rounded-lg bg-body-light">
-                            <i class="far fa-paper-plane fs-3 text-primary"></i>
+                            <i class="fa fa-cart-shopping fs-3 text-primary"></i>
                         </div>
                     </div>
                     <div class="bg-body-light rounded-bottom">
@@ -127,28 +121,7 @@
                 <div class="block block-rounded d-flex flex-column h-100 mb-0">
                     <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                         <dl class="mb-0">
-                            <dt class="fs-3 fw-bold">{{ count($pending) }}</dt>
-                            <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">{{ __('part_s.pending_orders') }}</dd>
-                        </dl>
-                        <div class="item item-rounded-lg bg-body-light">
-                            <i class="fa fa-chart-bar fs-3 text-primary"></i>
-                        </div>
-                    </div>
-                    <div class="bg-body-light rounded-bottom">
-                        <a class="block-content block-content-full block-content-sm fs-sm fw-medium d-flex align-items-center justify-content-between" href="/order/list">
-                            <span>{{ __('part_s.view_all_orders') }}</span>
-                            <i class="fa fa-arrow-alt-circle-right ms-1 opacity-25 fs-base"></i>
-                        </a>
-                    </div>
-                </div>
-                <!-- END Conversion Rate-->
-            </div>
-            <div class="col-sm-6 col-xxl-3">
-                <!-- Conversion Rate -->
-                <div class="block block-rounded d-flex flex-column h-100 mb-0">
-                    <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
-                        <dl class="mb-0">
-                            <dt class="fs-3 fw-bold">{{ count($customer) }}</dt>
+                            <dt class="fs-3 fw-bold" id="customer">{{ $customer }}</dt>
                             <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">{{ __('part_s.total_user') }}</dd>
                         </dl>
                         <div class="item item-rounded-lg bg-body-light">
@@ -302,15 +275,15 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Recent Orders</h3>
                 <div class="block-options space-x-1">
-                    <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="class-toggle" data-target="#one-dashboard-search-orders" data-class="d-none">
-                        <i class="fa fa-search"></i>
-                    </button>
+{{--                    <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="class-toggle" data-target="#one-dashboard-search-orders" data-class="d-none">--}}
+{{--                        <i class="fa fa-search"></i>--}}
+{{--                    </button>--}}
                     <div class="dropdown d-inline-block">
-                        <button type="button" class="btn btn-sm btn-alt-secondary" id="dropdown-recent-orders-filters" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-fw fa-flask"></i>
-                            {{ __('part_s.filters') }}
-                            <i class="fa fa-angle-down ms-1"></i>
-                        </button>
+{{--                        <button type="button" class="btn btn-sm btn-alt-secondary" id="dropdown-recent-orders-filters" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+{{--                            <i class="fa fa-fw fa-flask"></i>--}}
+{{--                            {{ __('part_s.filters') }}--}}
+{{--                            <i class="fa fa-angle-down ms-1"></i>--}}
+{{--                        </button>--}}
                         <div class="dropdown-menu dropdown-menu-md dropdown-menu-end fs-sm" aria-labelledby="dropdown-recent-orders-filters">
                             <a class="dropdown-item fw-medium d-flex align-items-center justify-content-between" href="javascript:void(0)">
                                 {{ __('part_s.pending') }}
@@ -396,4 +369,49 @@
 <script src="{{asset('admin/assets/js/plugins/chart.js/chart.umd.js')}}"></script>
 <!-- Page JS Code -->
 <script src="{{asset('admin/assets/js/pages/be_pages_dashboard.min.js')}}"></script>
+<script src="{{asset('admin/assets/js/lib/jquery.min.js')}}"></script>
+
+<script>
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('.dropdown-item').on('click', function () {
+            var timeRange = $(this).data('time-range');
+
+            // Perform an AJAX request to the server
+            $.ajax({
+                url: '/get-ecm-data', // Replace with your actual route
+                method: 'POST',
+                data: {
+                    time_range: timeRange,
+                },
+                success: function (response) {
+                    console.log(response);
+                    // Update the UI with the server response
+                    updateUI(response.Amount, response.seAmount, response.pending, response.order, response.customer, response.str);
+                },
+                error: function (error) {
+                    console.error(error);
+                },
+            });
+        });
+
+        function updateUI(Amount, seAmount, pending, order, customer, str) {
+            // Update your UI elements with the data received from the server
+            $('#today').text(Amount + ' KHR');
+            $('#seAmount').text('$ ' +seAmount);
+            $('#pending').text(pending);
+            $('#order').text(order);
+            $('#customer').text(customer);
+            $('#str').text(str);
+            // Add more updates as needed
+        }
+
+    });
+</script>
+
 @endsection
