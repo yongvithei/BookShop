@@ -56,9 +56,8 @@
                     <div class="p-2">
                         <a class="dropdown-item d-flex align-items-center justify-content-between" href="/admin/profile">
                             <span class="fs-sm fw-medium">{{__('body.profile')}}</span>
-                            <span class="badge rounded-pill bg-primary ms-2">1</span>
                         </a>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="/backup/info">
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="/admin/profile">
                             <span class="fs-sm fw-medium">{{__('body.setting')}}</span>
                         </a>
                         <a class="dropdown-item d-flex align-items-center justify-content-between" href="/">

@@ -59,13 +59,9 @@
                             <li class="nav-item ms-auto">
                                 <div class="block-options ps-3 pe-2">
                                     <button type="button" class="btn-block-option" data-toggle="block-option" data-action="fullscreen_toggle"></button>
-                                    <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
-                                        <i class="si si-refresh"></i>
-                                    </button>
-                                    <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
-                                    <button type="button" class="btn-block-option" data-toggle="block-option" data-action="close">
-                                        <i class="si si-close"></i>
-                                    </button>
+{{--                                    <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">--}}
+{{--                                        <i class="si si-refresh"></i>--}}
+{{--                                    </button>--}}
                                 </div>
                             </li>
                         </ul>

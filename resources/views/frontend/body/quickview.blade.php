@@ -57,7 +57,7 @@
                             <div class="d-flex gap-2 mt-3">
                                 <input type="hidden" id="product_id">
                                 <a onclick="addToCart()" class="rounded-xl btn btn-dark btn-ecomm">{{ __('main.add_to_cart') }}</a>
-                                <a href="javascript:;" class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200">
+                                    <a href="javascript:;" onclick="addToWishListMini()" class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200">
                                     <i class="bx bx-heart"></i>{{ __('main.add_to_wishlist') }}
                                 </a>
                             </div>

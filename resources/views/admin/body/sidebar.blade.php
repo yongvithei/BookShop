@@ -58,7 +58,7 @@
             @if(Auth::user()->can('dashboard.menu'))
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('admin/dashboard') ? ' active' : '' }}" href="{{ route('admin.dashboard') }}">
-                        <i class="nav-main-link-icon si si-cursor"></i>
+                                <i class="nav-main-link-icon si si-grid"></i>
                         <span class="nav-main-link-name">{{__('body.dashboard')}}</span>
                     </a>
                 </li>
@@ -67,16 +67,16 @@
                 <li class="nav-main-heading">{{__('body.order_management')}}</li>
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('order/list') ? ' active' : '' }}" href="/order/list">
-                        <i class="nav-main-link-icon si si-cursor"></i>
+                        <i class="nav-main-link-icon fa fa-cart-shopping"></i>
                         <span class="nav-main-link-name">{{__('body.order')}}</span>
                     </a>
                 </li>
             @endif
-               
+
             @if(Auth::user()->can('user.menu'))
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('user/list') ? ' active' : '' }}" href="/user/list">
-                        <i class="nav-main-link-icon si si-cursor"></i>
+                        <i class="nav-main-link-icon fa fa-users"></i>
                         <span class="nav-main-link-name">{{__('body.user')}}</span>
                     </a>
                 </li>
@@ -84,13 +84,13 @@
             @if(Auth::user()->can('report.menu'))
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('report/order') ? ' active' : '' }}" href="/report/order">
-                        <i class="nav-main-link-icon si si-cursor"></i>
+                        <i class="nav-main-link-icon fa fa-chart-column"></i>
                         <span class="nav-main-link-name">{{__('body.report')}}</span>
                     </a>
                 </li>
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('shipping/area') ? ' active' : '' }}" href="/shipping/area">
-                        <i class="nav-main-link-icon si si-cursor"></i>
+                        <i class="nav-main-link-icon fa fa-map-location-dot"></i>
                         <span class="nav-main-link-name">{{__('body.shippingarea')}}</span>
                     </a>
                 </li>
@@ -101,7 +101,7 @@
 
                 <li class="nav-main-item{{ request()->is('product/*') ? ' open' : '' }}">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                        <i class="nav-main-link-icon si si-wrench"></i>
+                        <i class="nav-main-link-icon fa fa-cubes"></i>
                         <span class="nav-main-link-name">{{__('body.products')}}</span>
                     </a>
                     <ul class="nav-main-submenu">
@@ -121,7 +121,7 @@
             @if(Auth::user()->can('category.menu'))
                 <li class="nav-main-item{{ request()->is('all/*') ? ' open' : '' }}">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                        <i class="nav-main-link-icon si si-wrench"></i>
+                        <i class="nav-main-link-icon fa fa-list"></i>
                         <span class="nav-main-link-name">{{__('body.category_setup')}}</span>
                     </a>
                     <ul class="nav-main-submenu">
@@ -141,7 +141,7 @@
             @if(Auth::user()->can('business.menu'))
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('list/partners') ? ' active' : '' }}" href="/list/partners">
-                        <i class="nav-main-link-icon si si-cursor"></i>
+                        <i class="nav-main-link-icon fa fa-handshake-simple"></i>
                         <span class="nav-main-link-name">{{__('body.business_partners')}}</span>
                     </a>
                 </li>
@@ -149,7 +149,7 @@
             @if(Auth::user()->can('review.menu'))
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('review/all') ? ' active' : '' }}" href="/review/all">
-                        <i class="nav-main-link-icon si si-cursor"></i>
+                        <i class="nav-main-link-icon fa fa-star"></i>
                         <span class="nav-main-link-name">{{__('body.review')}}</span>
                     </a>
                 </li>
@@ -158,7 +158,7 @@
                 <li class="nav-main-heading">{{__('body.promotion_management')}}</li>
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('list/promo') ? ' active' : '' }}" href="/list/promo">
-                        <i class="nav-main-link-icon si si-speedometer"></i>
+                        <i class="nav-main-link-icon fa fa-rectangle-ad"></i>
                         <span class="nav-main-link-name">{{__('body.banners_coupon')}}</span>
                     </a>
                 </li>
@@ -167,7 +167,7 @@
                 <li class="nav-main-heading">{{__('body.roles_and_permission')}}</li>
                     <li class="nav-main-item">
                         <a class="nav-main-link{{ request()->is('role/permission') ? ' active' : '' }}" href="/role/permission">
-                            <i class="nav-main-link-icon si si-speedometer"></i>
+                            <i class="nav-main-link-icon fa fa-user-lock"></i>
                             <span class="nav-main-link-name">{{__('body.roles_and_permission')}}</span>
                         </a>
                     </li>
@@ -175,7 +175,7 @@
             @if(Auth::user()->can('assign.menu'))
                     <li class="nav-main-item">
                         <a class="nav-main-link{{ request()->is('list/admin') ? ' active' : '' }}" href="/list/admin">
-                            <i class="nav-main-link-icon si si-speedometer"></i>
+                            <i class="nav-main-link-icon fa fa-arrow-right-arrow-left"></i>
                             <span class="nav-main-link-name">{{__('body.assign')}}</span>
                         </a>
                     </li>
@@ -184,7 +184,7 @@
                 <li class="nav-main-heading">{{__('body.system_setting')}}</li>
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('info/business') ? ' active' : '' }}" href="/info/business">
-                        <i class="nav-main-link-icon si si-speedometer"></i>
+                        <i class="nav-main-link-icon fa fa-building-flag"></i>
                         <span class="nav-main-link-name">{{__('body.business_setup')}}</span>
                     </a>
                 </li>
@@ -192,7 +192,7 @@
             @if(Auth::user()->can('backup.menu'))
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('backup/info') ? ' active' : '' }}" href="/backup/info">
-                        <i class="nav-main-link-icon si si-speedometer"></i>
+                        <i class="nav-main-link-icon fa fa-cloud-arrow-up"></i>
                         <span class="nav-main-link-name">{{__('body.backup')}}</span>
                     </a>
                 </li>

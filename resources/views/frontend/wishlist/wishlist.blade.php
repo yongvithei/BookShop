@@ -77,9 +77,9 @@ function wishlist() {
         let url = "{{ url('product/details/') }}" + '/' + value.product.id + '/' + value.product.name;
         let productCard = `
         <div class="col">
-            <div class="card rounded-0 product-card">
+            <div class="card rounded-lg product-card">
                 <a href="${url}">
-                    <img src="${imageUrl}" class="card-img-top" alt="...">
+                    <img src="${imageUrl}" class="card-img-top rounded" alt="...">
                 </a>
                 <div class="card-body">
                     <div class="product-info">
@@ -100,10 +100,10 @@ function wishlist() {
                     </div>
                     <div class="product-action mt-2">
                         <div class="d-grid gap-2">
-                            <a href="javascript:;" class="btn btn-white btn-ecomm">
+                            <a href="javascript:;" id="${value.id}" onclick="addToMiniCart('${value.product.id}','${value.product.name}', ${value.product.price},${value.product.pro_qty})" class="btn btn-white btn-ecomm">
                                 <i class="bx bxs-cart-add"></i>{{ __('main.add') }}
-                            </a>
-                            <a type="submit" id="${value.id}" onclick="wishlistRemove(this.id)" class="btn btn-light btn-ecomm">
+                                    </a>
+                                    <a type="submit" id="${value.id}" onclick="wishlistRemove(this.id)" class="btn btn-light btn-ecomm">
                               <i class='bx bx-trash'></i>{{ __('main.remove') }}
                             </a>
                         </div>

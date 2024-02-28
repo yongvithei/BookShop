@@ -19,7 +19,7 @@
                 <ul class="nav-main nav-main-dark nav-main-horizontal nav-main-hover">
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ request()->is('pos/dashboard') ? ' active' : '' }}" href="/pos/dashboard">
-                            <i class="nav-main-link-icon si si-compass"></i>
+                            <i class="nav-main-link-icon si si-grid"></i>
                             <span class="nav-main-link-name">{{ __('pos_p.dashboard') }}</span>
                         </a>
                     </li>
@@ -31,13 +31,13 @@
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ request()->is('pos/customer') ? ' active' : '' }}" href="/pos/customer">
-                            <i class="nav-main-link-icon si si-compass"></i>
+                            <i class="nav-main-link-icon fa fa-users"></i>
                             <span class="nav-main-link-name">{{ __('pos_p.customer') }}</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ request()->is('pos/order') ? ' active' : '' }}" href="/pos/order">
-                            <i class="nav-main-link-icon si si-compass"></i>
+                            <i class="nav-main-link-icon fa fa-cart-shopping"></i>
                             <span class="nav-main-link-name">{{ __('pos_p.order') }}</span>
                         </a>
                     </li>

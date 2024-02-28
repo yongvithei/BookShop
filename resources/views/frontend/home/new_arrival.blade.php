@@ -70,7 +70,7 @@
 												</div>
 												<div class="product-action mt-2">
 													<div class="grid grid-cols-2 gap-2">
-														<a href="javascript:;" class="rounded-xl btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>{{ __('main.add') }}</a>
+														<a href="javascript:;" class="rounded-xl btn btn-dark btn-ecomm" id="{{ $product->id }}" onclick="addToMiniCart('{{ $product->id }}','{{ $product->name }}', {{ $product->price }},{{ $product->pro_qty }})"> <i class='bx bxs-cart-add'></i>{{ __('main.add') }}</a>
 														<a href="javascript:;" class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200" data-bs-toggle="modal" data-bs-target="#QuickViewProduct" id="{{ $product->id }}" onclick="productView(this.id)"><i class='bx bxs-show'></i>{{ __('main.view') }}</a>
 													</div>
 												</div>

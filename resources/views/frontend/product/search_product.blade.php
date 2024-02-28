@@ -7,7 +7,7 @@
     @foreach($products as $item)
     <div class="card rounded-0 product-card">
         <div class="d-flex align-items-center justify-content-end gap-3 position-absolute end-0 top-0 m-3">
-            <a href="javascript:;">
+            <a href="javascript:;" id="{{ $product->id }}" onclick="addToWishList(this.id)">
                 <div class="product-wishlist product-action"> <i class="bx bx-heart"></i>
                 </div>
             </a>

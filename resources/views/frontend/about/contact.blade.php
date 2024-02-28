@@ -67,7 +67,7 @@
                                 <textarea class="form-control" rows="4" cols="4"></textarea>
                             </div>
                             <div class="mb-3">
-                                <button class="btn btn-dark btn-ecomm">@lang('main.send_message')</button>
+                                <button class="btn btn-dark btn-ecomm" disabled>@lang('main.send_message')</button>
                             </div>
                         </div>
                     </form>

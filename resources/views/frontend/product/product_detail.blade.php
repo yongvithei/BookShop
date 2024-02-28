@@ -205,7 +205,7 @@
                                     <div class="d-flex gap-2 mt-3">
                                         <input type="hidden" id="dproduct_id" value="{{ $product->id }}">
                                         <button type="submit" onclick="addToCartDetails()" class="btn btn-white btn-ecomm" id="addToCartButton"> <i class="bx bxs-cart-add"></i>{{ __('main.add') }}</button>
-                                        <a href="javascript:;" class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>{{ __('main.add_to_wishlist') }}</a>
+                                        <a href="javascript:;" class="btn btn-light btn-ecomm" id="{{ $product->id }}" onclick="addToWishList(this.id)"><i class="bx bx-heart"></i>{{ __('main.add_to_wishlist') }}</a>
                                         <p id="warningMessage" class="text-danger mt-2"></p>
                                     </div>
                                     <hr />

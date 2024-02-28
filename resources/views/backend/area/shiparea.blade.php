@@ -62,9 +62,6 @@
                                         <i class="si si-refresh"></i>
                                     </button>
                                     <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
-                                    <button type="button" class="btn-block-option" data-toggle="block-option" data-action="close">
-                                        <i class="si si-close"></i>
-                                    </button>
                                 </div>
                             </li>
                         </ul>

@@ -51,7 +51,7 @@ Product Searcing
 											<div class="card-header bg-transparent border-bottom-0">
 												<div class="d-flex align-items-center justify-content-end gap-3">
 													<a href="javascript:;">
-														<div class="product-action product-wishlist"> <i class="bx bx-heart"></i>
+														<div class="product-action product-wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"> <i class="bx bx-heart"></i>
 														</div>
 													</a>
 												</div>

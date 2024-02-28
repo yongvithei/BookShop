@@ -89,6 +89,7 @@
             url: '/get-cart-product',
             dataType: 'json',
             success: function (response) {
+                console.log(response);
                 var rows = "";
                 $.each(response.carts, function (key, value) {
                     var imageUrl = value.options.image ? '/' + value.options.image : '/storage/images/pro_img.jpg';
@@ -121,7 +122,7 @@
                                     <div class="text-center">
                                         <div class="d-flex gap-2 justify-content-center justify-content-lg-end"> <a
                                                 href="javascript:;" class="bg-dark text-white rounded-2 btn-ecomm" type="submit" id="${value.rowId}" onclick="cartRemove(this.id)">{{ __('main.remove') }}</a>
-                                            <a href="javascript:;" class="btn btn-light rounded-0 btn-ecomm"><i
+                                            <a href="javascript:;" type="submit" id="${value.id}" onclick="addToWishList(this.id)"class="btn btn-light rounded-0 btn-ecomm"><i
                                                     class='bx bx-heart me-0'></i></a>
                                         </div>
                                     </div>

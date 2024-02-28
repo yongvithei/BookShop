@@ -33,7 +33,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-xl-3">
-                        <div class="card rounded-0 w-100">
+                        <div class="card rounded-lg w-100">
                             <div class="card-body">
                                 <div class="product-categories">
                                     <h6 class="text-uppercase mb-1">{{ __('main.categories') }} </h6>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="col-12 col-xl-9">
                         <div class="product-wrapper">
-                            <div class="toolbox d-lg-flex align-items-center mb-3 gap-2 p-3 bg-white border">
+                            <div class="toolbox d-lg-flex align-items-center mb-3 gap-2 p-3 bg-white border rounded-lg">
                                 <div class="d-flex flex-wrap">
                                     <p class="mb-0 font-13 text-nowrap text-dark text-2xl">{{ __('main.found') }} ({{ count($productc ?? []) }})
                                     </p>
@@ -80,7 +80,7 @@
                             <div class="relative">
                                 <img src="{{ $pro->thumbnail ? asset($pro->thumbnail) : asset('/storage/images/pro_img.jpg') }}" class="card-img-top" alt="Product Image">
                                 <div class="absolute top-2 right-2">
-                                    <a href="javascript:;" class="product-wishlist product-action">
+                                    <a href="javascript:;" id="{{ $pro->id }}" onclick="addToWishList(this.id)" class="product-wishlist product-action">
                                         <i class="bx bx-heart text-red-500 text-2xl"></i>
                                     </a>
                                 </div>
@@ -104,7 +104,7 @@
                                                     <div class="product-action mt-2">
                                                         <div class="grid grid-cols-2 gap-2">
                                                             <a href="javascript:;"
-                                                                class="rounded-xl btn btn-dark btn-ecomm"> <i
+                                                                class="rounded-xl btn btn-dark btn-ecomm" id="{{ $pro->id }}" onclick="addToMiniCart('{{ $pro->id }}','{{ $pro->name }}', {{ $pro->price }},{{ $pro->pro_qty }})"> <i
                                                                     class='bx bxs-cart-add'></i>{{ __('main.add') }}</a>
                                                             <a href="javascript:;"
                                                                 class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200"

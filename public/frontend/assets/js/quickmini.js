@@ -7,6 +7,60 @@
     });
 });
 
+
+
+    function addToMiniCart(id, product_name, price, pro_qty) {
+        if (!pro_qty || pro_qty <= 0) {
+            // Product is out of stock, show a message to the user
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            Toast.fire({
+                title: 'This product is out of stock',
+            });
+            return; // Exit function
+        }
+
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            data: {
+                quantity: pro_qty,
+                product_name: product_name,
+                price: price
+            },
+            url: "/cart/data/store/" + id,
+            success: function(data) {
+                // console.log(data);
+                miniCart();
+                $('#closeModal').click();
+                // Start Message
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        icon: 'success',
+                        title: data.success
+                    });
+                } else {
+                    Toast.fire({
+                        icon: 'error',
+                        title: data.error
+                    });
+                }
+            }
+        });
+    }
+
     function addToCart() {
         let product_name = $('#pname').text();
         let id = $('#product_id').val();
@@ -127,6 +181,52 @@
 
 
     <!--  /// Start Wishlist Add -->
+
+    function addToWishListMini() {
+        var productId = $('#product_id').val();
+        // Perform action to add the product to the wishlist using the productId
+        // Example AJAX request to add the product to the wishlist
+        $.ajax({
+            type: 'POST',
+            url: '/addWishlist/' + productId,
+            dataType: 'json',
+            success: function (data) {
+                // Start Message
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+                if ($.isEmptyObject(data.error)) {
+                    // If the request is successful, you can add a link to the message
+                    const messageWithLink = `
+                        <div>
+                            <a href="/wishlist">Go to Wishlist</a>
+                        </div>
+                    `;
+                    Toast.fire({
+                        icon: 'success',
+                        title: data.success,
+                        html: messageWithLink, // Use the html option to include the link
+                    });
+                } else {
+                    const messageWithLink = `
+                        <div>
+                            <a href="/wishlist">Go to Wishlist</a>
+                        </div>
+                    `;
+                    Toast.fire({
+                        icon: 'error',
+                        title: data.error,
+                        html: messageWithLink,
+                    });
+                }
+                //end message
+            }
+        });
+    }
 
     function addToWishList(product_id) {
     $.ajax({

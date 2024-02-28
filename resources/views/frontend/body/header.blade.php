@@ -9,15 +9,9 @@
 					@endif
 				</div>
 				<ul class="navbar-nav ms-auto d-none d-lg-flex">
-					<li class="nav-item"> <a class="nav-link" href="">{{__('main.track_order')}}</a>
-					</li>
-					<li class="nav-item"> <a class="nav-link" href="/about">{{__('main.about')}}</a>
+					<li class="nav-item"> <a class="nav-link" href="/user/track-order">{{__('main.track_order')}}</a>
 					</li>
 					<li class="nav-item"> <a class="nav-link" href="">{{__('main.our_stores')}}</a>
-					</li>
-					<li class="nav-item"> <a class="nav-link" href="">{{__('main.contact')}}</a>
-					</li>
-					<li class="nav-item"> <a class="nav-link" href="javascript:;">{{__('main.help_faqs')}}</a>
 					</li>
 				</ul>
 
