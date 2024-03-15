@@ -111,4 +111,6 @@ php artisan make:migration create_customer_view
 php artisan make:model CustomerView
 composer require carlos-meneses/laravel-mpdf
 php artisan vendor:publish --tag=laravel-pagination
+php artisan make:migration all_slug_triggers
 composer require laravel-notification-channels/telegram
+php artisan make:migration all_triggers

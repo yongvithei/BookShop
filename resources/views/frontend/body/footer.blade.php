@@ -105,53 +105,63 @@
 				<div
 				  class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4"
 				>
+
 				  <div>
-					<p class="font-medium text-gray-900">{{__('main.links')}}</p>
+{{--					<p class="font-medium text-gray-900">{{__('main.links')}}</p>--}}
 
-					<ul class="mt-6 space-y-4 text-sm">
-					  <li>
-						<a href="/" class="text-gray-700 transition hover:opacity-75">
-						{{__('main.home')}}
-						</a>
-					  </li>
+{{--					<ul class="mt-6 space-y-4 text-sm">--}}
+{{--					  <li>--}}
+{{--						<a href="/" class="text-gray-700 transition hover:opacity-75">--}}
+{{--						{{__('main.home')}}--}}
+{{--						</a>--}}
+{{--					  </li>--}}
 
-					  <li>
-						<a href="/shop" class="text-gray-700 transition hover:opacity-75">
-						{{__('main.shop')}}
-						</a>
-					  </li>
+{{--					  <li>--}}
+{{--						<a href="/shop" class="text-gray-700 transition hover:opacity-75">--}}
+{{--						{{__('main.shop')}}--}}
+{{--						</a>--}}
+{{--					  </li>--}}
 
-					  <li>
-						<a href="#" class="text-gray-700 transition hover:opacity-75">
-						{{__('main.products')}}
-						</a>
-					  </li>
+{{--					  <li>--}}
+{{--						<a href="#" class="text-gray-700 transition hover:opacity-75">--}}
+{{--						{{__('main.products')}}--}}
+{{--						</a>--}}
+{{--					  </li>--}}
 
-					  <li>
-						<a href="#" class="text-gray-700 transition hover:opacity-75">
-						{{__('main.categories')}}
-						</a>
-					  </li>
-					</ul>
+{{--					  <li>--}}
+{{--						<a href="#" class="text-gray-700 transition hover:opacity-75">--}}
+{{--						{{__('main.categories')}}--}}
+{{--						</a>--}}
+{{--					  </li>--}}
+{{--					</ul>--}}
 				  </div>
 				  <div>
-					<p class="font-medium text-gray-900">{{__('main.policy_and_privacy')}}</p>
-					<ul class="mt-6 space-y-4 text-sm">
-					  <li>
-						<a href="#" class="text-gray-700 transition hover:opacity-75">
-						</a>
-					  </li>
-					  <li>
-						<a href="#" class="text-gray-700 transition hover:opacity-75">
-						{{__('main.returns_policy')}}
-						</a>
-					  </li>
-					  <li>
-						<a href="#" class="text-gray-700 transition hover:opacity-75">
-						{{__('main.refund_policy')}}
-						</a>
-					  </li>
-					</ul>
+					<p class="font-medium text-gray-900">{{__('main.links')}}</p>
+                      <ul class="mt-6 space-y-4 text-sm">
+                          <li>
+                              <a href="/" class="text-gray-700 transition hover:opacity-75">
+                                  {{__('main.home')}}
+                              </a>
+                          </li>
+
+                          <li>
+                              <a href="/shop" class="text-gray-700 transition hover:opacity-75">
+                                  {{__('main.shop')}}
+                              </a>
+                          </li>
+
+                          <li>
+                              <a href="/shop/feature" class="text-gray-700 transition hover:opacity-75">
+                                  {{__('main.products')}}
+                              </a>
+                          </li>
+
+{{--                          <li>--}}
+{{--                              <a href="#" class="text-gray-700 transition hover:opacity-75">--}}
+{{--                                  {{__('main.categories')}}--}}
+{{--                              </a>--}}
+{{--                          </li>--}}
+                      </ul>
 				  </div>
 				  <div>
 					<p class="font-medium text-gray-900">{{__('main.customer_service')}}</p>
@@ -159,16 +169,6 @@
 					  <li>
 						<a href="/contact" class="text-gray-700 transition hover:opacity-75">
 						{{__('main.contact')}}
-						</a>
-					  </li>
-					  <li>
-						<a href="#" class="text-gray-700 transition hover:opacity-75">
-						  {{__('main.faqs')}}
-						</a>
-					  </li>
-					  <li>
-						<a href="#" class="text-gray-700 transition hover:opacity-75">
-						{{__('main.live_chat')}}
 						</a>
 					  </li>
 					</ul>

@@ -143,6 +143,8 @@ return [
     'last_year_sale' => 'Last year\'s Sale',
     'all_sale' => 'Total Sale all the time',
     '3_month_sale' => '3 month\'s Sale',
+    'reset' => 'Reset',
+    'alertStock' => 'When you change this status, all stock will not be prevented.'
 
 
 

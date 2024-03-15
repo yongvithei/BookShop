@@ -25,11 +25,10 @@ return [
     'shop' => 'Shop',
     'products' => 'Products',
     'policy_and_privacy' => 'Policy And Privacy',
-    'returns_policy' => 'Returns Policy',
-    'refund_policy' => 'Refund Policy',
     'customer_service' => 'Customer Service',
     'company' => 'Company',
     'faqs' => 'FAQs',
+    'call' => 'Phone',
     'live_chat' => 'Live Chat',
     'links' => 'Links',
     'services' => 'Services',
@@ -294,5 +293,7 @@ return [
     'received' => 'Received',
     'cashier' => 'Cashier',
     'customer' => 'Customer',
+    'failed' => 'Failed',
+    'cancelled' => 'Cancelled',
 
 ];

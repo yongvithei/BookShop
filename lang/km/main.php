@@ -24,11 +24,10 @@ return [
     'shop' => 'ហាង',
     'products' => 'ផលិតផល',
     'policy_and_privacy' => 'គោលការណ៍ និងភាពឯកជន',
-    'returns_policy' => 'គោលការណ៍ត្រលប់ទំនិញ',
-    'refund_policy' => 'គោលការណ៍ទូទាត់វិញ',
     'customer_service' => 'សេវាកម្មអតិថិជន',
     'company' => 'ក្រុមហ៊ុន',
     'faqs' => 'FAQs',
+    'call' => 'ទូរស័ព្ទលេខ',
     'live_chat' => 'ទំនាក់់ទំនង់',
     'links' => 'តំណ',
     'services' => 'សេវាកម្ម',
@@ -249,5 +248,8 @@ return [
     'received' => 'បានទទួល',
     'cashier' => 'អ្នកលក់',
     'customer' => 'អតិថិជន',
+
+    'cancelled' => 'បានបោះបង់',
+    'failed' => 'មិនអាចប្រតិបត្តិការ',
 
 ];

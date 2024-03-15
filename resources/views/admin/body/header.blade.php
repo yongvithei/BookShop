@@ -26,9 +26,10 @@
             <!-- END Open Search Section -->
 
             <!-- Search Form (visible on larger screens) -->
-            <form class="d-none d-md-inline-block" action="" method="POST">
+            <form class="d-none d-md-inline-block" action="{{ route('product.search') }}" method="post">
+                @csrf
                 <div class="input-group input-group-sm">
-                    <input type="text" class="form-control form-control-alt" placeholder="{{__('body.search..')}}" id="page-header-search-input2" name="page-header-search-input2">
+                    <input type="text" class="form-control form-control-alt" name="search" id="search" placeholder="{{__('body.search..')}}" id="page-header-search-input2" name="page-header-search-input2">
                     <span class="input-group-text border-0">
                         <i class="fa fa-fw fa-search"></i>
                     </span>

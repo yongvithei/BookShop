@@ -18,25 +18,22 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $partners = Cache::remember('partner', now()->addMinutes(30), function () {
-            return Partner::where('status', 'Active')
-                ->select('avatar')
+        $partners = Partner::where('status', 'Active')
+            ->select('avatar')
             ->get();
-        });
-        $news = Cache::remember('new_arrivals_button', now()->addMinutes(30), function () {
-            return Product::where('status', 1)
-                ->where('new', 1)
-                ->orderBy('id', 'DESC')
-                ->limit(4)
-                ->get();
-        });
-        $featureds = Cache::remember('featureds_button', now()->addMinutes(30), function () {
-            return Product::where('status', 1)
-                ->where('featured', 1)
-                ->orderBy('id', 'DESC')
-                ->limit(4)
-                ->get();
-        });
+
+        $news = Product::where('status', 1)
+            ->where('new', 1)
+            ->orderBy('id', 'DESC')
+            ->limit(4)
+            ->get();
+
+        $featureds = Product::where('status', 1)
+            ->where('featured', 1)
+            ->orderBy('id', 'DESC')
+            ->limit(4)
+            ->get();
+
         if (Auth::check()) {
         $user = Auth::user();
         // Attempt to retrieve the last_seen value from cache

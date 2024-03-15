@@ -64,6 +64,10 @@
                                                                         <span class="badge rounded-pill bg-danger">{{ __('main.processing') }}</span>
                                                                     @elseif($order->status == 'delivered')
                                                                         <span class="badge rounded-pill bg-success">{{ __('main.delivered') }}</span>
+                                                                    @elseif($order->status == 'cancelled')
+                                                                        <span class="badge rounded-pill bg-red-600">{{ __('main.cancelled') }}</span>
+                                                                    @else
+                                                                        <span class="badge rounded-pill bg-red-600">{{ __('main.failed') }}</span>
                                                                     @endif
                                                                 </td>
                                                                 <td>

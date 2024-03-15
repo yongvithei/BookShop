@@ -40,23 +40,18 @@
                                     <hr>
                                     <ul class="list-unstyled mt-2 categories-list">
                                         @php
-								$categories = Cache::remember('categories', now()->addMinutes(30), function () {
-									return App\Models\Category::where('status', 'Active')
-									->orderBy('name', 'ASC')
-									->select('id', 'name', 'cat_kh','slug')
-									->get();
-								});
-							@endphp
+                                            $categories = App\Models\Category::where('status', 'Active')
+                                            ->orderBy('name', 'ASC')
+                                            ->select('id', 'name', 'cat_kh','slug')
+                                            ->get();
+                                        @endphp
                                         @foreach($categories as $category)
                                         @php
-                                            $productche = Cache::remember('products_' . $category->id,
-                                            now()->addMinutes(30),
-                                            function () use ($category) {
-                                            return App\Models\Product::where('category_id', $category->id)
-                                            ->where('status', 1)
-                                            ->select('id')
-                                            ->get();
-                                        });
+                                            $productche = App\Models\Product::where('category_id', $category->id)
+                                             ->where('status', 1)
+                                             ->select('id')
+                                             ->get();
+
                                         @endphp
                                         <!-- loop -->
                                         <li><a href="{{ url('product/category/'.$category->id.'/'.$category->slug) }}">@if(session()->get('locale') == 'en') {{ $category->name ?? $category->cat_kh ?? '' }} @else {{ $category->cat_kh ?? $category->name ?? '' }} @endif<span
@@ -117,7 +112,7 @@
                                                     @endif
                                                     <div class="product-action mt-2">
                                                         <div class="grid grid-cols-2 gap-2">
-                                                            <a href="javascript:;" id="{{ $product->id }}" onclick="addToMiniCart('{{ $product->id }}','{{ $product->name }}', {{ $product->price }},{{ $product->pro_qty }})"
+                                                            <a href="javascript:;" id="{{ $product->id }}" onclick="addToMiniCart('{{ $product->id }}','{{ $product->name }}', {{ $product->price }},1)"
                                                                 class="rounded-xl btn btn-dark btn-ecomm"> <i
                                                                     class='bx bxs-cart-add'></i>{{ __('main.add') }}</a>
                                                             <a href="javascript:;"

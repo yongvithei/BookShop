@@ -1,11 +1,9 @@
 	<!--start slider section-->
 	@php
-	$sliders = Cache::remember('sliders', now()->addMinutes(30), function () {
-	return App\Models\Slider::where('status', 'Active')
-    ->select('image')
-    ->get();
-	});
-	@endphp
+        $sliders = App\Models\Slider::where('status', 'Active')
+        ->select('image')
+        ->get();
+    @endphp
 
 	<section class="slider-section">
 	    <div class="first-slider">

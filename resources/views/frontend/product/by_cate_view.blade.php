@@ -41,13 +41,11 @@
                                     <ul class="list-unstyled mt-2 categories-list">
                                         @foreach($categories as $category)
                                         @php
-                                            $products = Cache::remember('products_' . $category->id, now()->addMinutes(30),
-                                            function () use ($category) {
-                                            return App\Models\Product::where('category_id', $category->id)
+                                            $products = App\Models\Product::where('category_id', $category->id)
                                             ->where('status', 1)
                                             ->select('id')
                                             ->get();
-                                            });
+
                                         @endphp
                                         <!-- loop -->
                                         <li><a href="{{ url('product/category/'.$category->id.'/'.$category->slug) }}">@if(session()->get('locale') == 'en') {{ $category->name ?? $category->cat_kh ?? '' }} @else {{ $category->cat_kh ?? $category->name ?? '' }} @endif<span
@@ -104,7 +102,7 @@
                                                     <div class="product-action mt-2">
                                                         <div class="grid grid-cols-2 gap-2">
                                                             <a href="javascript:;"
-                                                                class="rounded-xl btn btn-dark btn-ecomm" id="{{ $pro->id }}" onclick="addToMiniCart('{{ $pro->id }}','{{ $pro->name }}', {{ $pro->price }},{{ $pro->pro_qty }})"> <i
+                                                                class="rounded-xl btn btn-dark btn-ecomm" id="{{ $pro->id }}" onclick="addToMiniCart('{{ $pro->id }}','{{ $pro->name }}', {{ $pro->price }},1)"> <i
                                                                     class='bx bxs-cart-add'></i>{{ __('main.add') }}</a>
                                                             <a href="javascript:;"
                                                                 class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200"

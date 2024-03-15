@@ -6,24 +6,22 @@
 						</div>
 						<hr/>
 							@php
-								$categories = Cache::remember('categories', now()->addMinutes(30), function () {
-									return App\Models\Category::where('status', 'Active')
-									->orderBy('name', 'ASC')
-									->select('id', 'name','cat_kh','slug')
-									->get();
-								});
-							@endphp
+                                $categories = App\Models\Category::where('status', 'Active')
+                                ->orderBy('name', 'ASC')
+                                ->select('id', 'name','cat_kh','slug')
+                                ->get();
+
+                            @endphp
 						<div class="product-grid py-2">
 							<div class="browse-category owl-carousel owl-theme">
 								@foreach($categories as $category)
 									@php
-										$products = Cache::remember('products_' . $category->id, now()->addMinutes(30), function () use ($category) {
-											return App\Models\Product::where('category_id', $category->id)
-												->where('status', 1)
-												->select('id')
-												->get();
-										});
-									@endphp
+                                        $products = App\Models\Product::where('category_id', $category->id)
+                                        ->where('status', 1)
+                                        ->select('id')
+                                        ->get();
+
+                                    @endphp
 								<div class="item">
 									<div class="card rounded-3 border">
 										<div class="card-footer text-center">

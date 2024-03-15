@@ -11,7 +11,9 @@
             border-radius: 10px;
         }
     </style>
-   <!-- Main Container -->
+    <link rel="stylesheet" href="{{ asset('admin/assets/js/plugins/flatpickr/flatpickr.min.css')}}">
+
+    <!-- Main Container -->
     <main id="main-container">
         <!-- END Block Tabs With Options -->
         <!-- Hero -->
@@ -33,6 +35,7 @@
         <div class="content">
             <!-- Block Tabs With Options -->
             <div class="row">
+
                 <div class="col-lg-12">
                     <!-- Block Tabs With Options Default Style -->
                     <div class="block block-rounded">
@@ -59,15 +62,41 @@
                             <li class="nav-item ms-auto">
                                 <div class="block-options ps-3 pe-2">
                                     <button type="button" class="btn-block-option" data-toggle="block-option" data-action="fullscreen_toggle"></button>
-{{--                                    <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">--}}
-{{--                                        <i class="si si-refresh"></i>--}}
-{{--                                    </button>--}}
+                                    <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="class-toggle" data-target="#one-dashboard-search-orders" data-class="d-none">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                    <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+                                        <i class="si si-refresh"></i>
+                                    </button>
                                 </div>
                             </li>
                         </ul>
                         <div class="block-content tab-content">
                             <div class="tab-pane active" id="order" role="tabpanel" aria-labelledby="order-tab" tabindex="0">
                                 <!-- Dynamic Table Full -->
+                                <div id="one-dashboard-search-orders" class="d-none">
+                                    <!-- Search Form -->
+                                        <div class="row mb-2">
+                                            <div class="col-xl-12">
+{{--                                                <label class="form-label" for="date">{{ __('part_s.search_by_date_label') }}</label>--}}
+                                                <input type="text" class="js-flatpickr form-control" id="date" name="date" placeholder="MM, DD, YYYY" data-alt-input="true" data-date-format="Y-m-d" data-alt-format="F j, Y">
+                                            </div>
+                                            <div class="mt-2">
+                                                <select id="searchD" name="searchD" class="form-select" aria-label="Default select example">
+                                                    <option>{{ __('part_s.all') }}</option>
+                                                    <option value="failed">{{ __('part_s.status_failed') }}</option>
+                                                    <option value="cancelled">{{ __('part_s.status_cancelled') }}</option>
+                                                    <option value="delivered">{{ __('part_s.status_delivered') }}</option>
+                                                    <option value="pending">{{ __('part_s.status_pending') }}</option>
+                                                    <option value="delivering">{{ __('part_s.status_delivering') }}</option>
+                                                    <option value="confirm">{{ __('part_s.status_confirm') }}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    <button id="reset" type="submit" class="btn btn-sm btn-primary mb-2" data-bs-dismiss="modal">{{ __('part_s.reset') }}</button>
+                                    <!-- END Search Form -->
+                                </div>
+
                                 <div class="block block-rounded">
 
                                     <div class="tab-pane">
@@ -682,6 +711,9 @@
     <!-- Page JS Code -->
     <script src="{{ asset('admin/assets/js/pages/be_tables_datatables.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- jQuery (required for DataTables plugin) -->
+    <script src="{{ asset('admin/assets/js/plugins/flatpickr/flatpickr.min.js')}}"></script>
+    <script>One.helpersOnLoad(['js-flatpickr']);</script>
     <script type="text/javascript">
         $(document).ready(function () {
             $.ajaxSetup({
@@ -690,25 +722,42 @@
                 }
             });
         })
-//table
+
         $(document).ready(function() {
-    $('#order-table').DataTable({
-        pageLength: 10,
-        lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
-        autoWidth: false,
-        serverSide: true,
-        processing: false,
-        ajax: '{{ route('all.order') }}',
-        columns: [
-            { data: 'id', name: 'id',
-                render: function (data, type, row, meta) {
-                    return meta.row + 1;
-                }
-            },
-            { data: 'invoice_no', name: 'invoice_no' },
-            { data: 'order_date', name: 'email' },
-            { data: 'amount', name: 'amount' },
-            { data: 'payment_method', name: 'payment_method' },
+            const $flatpickr = $("#date").flatpickr();
+            var orderTable = $('#order-table').DataTable({
+                pageLength: 10,
+                lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+                autoWidth: false,
+                serverSide: true,
+                processing: false,
+                ajax: {
+                    url: '{{ route('all.order') }}',
+                    data: function (d) {
+                        // Retrieve selected date
+                        var date = $('#date').val();
+                        if (date) {
+                            d.date = date;
+                        }
+                        // Retrieve selected status only when it's not the default option
+                        var status = $('#searchD').val();
+                        if (status && status !== '{{ __('part_s.all') }}') {
+                            d.searchD = status;
+                        }
+                    }
+                },
+                columns: [
+                    {
+                        data: 'id',
+                        name: 'id',
+                        render: function (data, type, row, meta) {
+                            return meta.row + 1;
+                        }
+                    },
+                    { data: 'invoice_no', name: 'invoice_no' },
+                    { data: 'order_date', name: 'order_date' }, // Corrected from 'email' to 'order_date'
+                    { data: 'amount', name: 'amount' },
+                    { data: 'payment_method', name: 'payment_method' },
             {
                 data: 'status',
                 name: 'status',
@@ -730,13 +779,34 @@
             },
             { data: 'action', name: 'action', orderable: false },
         ],
-        order: [[0, 'desc']],
-        columnDefs: [{
-            targets: [0, 2, 3, 4, 6],
-            className: 'text-center',
-        }],
-    });
-    $('#pending-order').DataTable({
+                order: [[0, 'desc']],
+                columnDefs: [{
+                    targets: [0, 2, 3, 4, 6],
+                    className: 'text-center',
+                }],
+            });
+
+        // Add event listener to date input and status select
+            $('#date, #searchD').on('change', function() {
+                orderTable.ajax.reload();
+            });
+
+            // Event listener for the reset button
+            $('#reset').on('click', function() {
+                // Clear the selected date and reset the placeholder
+                $('#date').val('').attr('placeholder', 'MM, DD, YYYY');
+                $flatpickr.clear();
+                // Reset the status select to its default option value
+                $('#searchD').val('part_s.all');
+                // Trigger change event to reload the DataTable
+                $('#date, #searchD').trigger('change');
+            });
+
+
+
+
+
+            $('#pending-order').DataTable({
         pageLength: 10,
         lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
         autoWidth: false,
@@ -1057,19 +1127,35 @@
     });
 });
 
-    function editFunc(id){
-        $.ajax({
-            type:"POST",
-            url: "{{ url('order/edit') }}",
-            data: { id: id },
-            dataType: 'json',
-            success: function(res){
-                $('#oid').val(res.id);
-                $('#order-select').val(res.status);
-                $('#order-select').trigger('change');
-            }
-        });
-    }
+        function editFunc(id){
+            $.ajax({
+                type:"POST",
+                url: "{{ url('order/edit') }}",
+                data: { id: id },
+                dataType: 'json',
+                success: function(res){
+                    $('#oid').val(res.id);
+                    $('#order-select').val(res.status);
+                    $('#order-select').trigger('change');
+
+                    // Check if the order status is already 'delivered'
+                    if (res.status === 'delivered') {
+                        // Show a toast message using Swal
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 6000
+                        });
+                        Toast.fire({
+                            icon: 'warning',
+                            title: "{{ __('part_s.alertStock') }}"
+                        });
+                    }
+                }
+            });
+        }
+
     </script>
    <script>
     // Function to create and add options to the select element
@@ -1094,6 +1180,8 @@
 
     // Call the function to add options to the select element
     addOptionsToSelect();
+    
+
     function downloadInvoice(orderId) {
         // Use JavaScript to navigate to the desired URL
         window.location.href = `/admin/invoice_download/${orderId}`;

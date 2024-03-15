@@ -11,8 +11,10 @@
 				<ul class="navbar-nav ms-auto d-none d-lg-flex">
 					<li class="nav-item"> <a class="nav-link" href="/user/track-order">{{__('main.track_order')}}</a>
 					</li>
-					<li class="nav-item"> <a class="nav-link" href="">{{__('main.our_stores')}}</a>
+					<li class="nav-item"> <a class="nav-link" href="/about">{{__('main.our_stores')}}</a>
 					</li>
+                    <li class="nav-item"> <a class="nav-link" href="/contact">{{__('main.contact')}}</a>
+                    </li>
 				</ul>
 
 				<ul class="navbar-nav">
@@ -90,10 +92,10 @@
 					</form>
 				</div>
 				<div class="col-4 col-md-auto order-3 d-none d-xl-flex align-items-center">
-					<div class="fs-1 text-black"><i class='bx bx-headphone'></i>
+					<div class="fs-1 text-black"><i class='bx bx-phone'></i>
 					</div>
 					<div class="ms-2">
-						<p class="mb-0 font-13">{{__('main.contact_us')}}</p>
+						<p class="mb-0 font-13">{{__('main.call')}}</p>
 						<h5 class="mb-0">{{$siteinfo->support_phone}}</h5>
 					</div>
 				</div>
@@ -155,12 +157,11 @@
                     <li class="nav-item"> <a class="nav-link" href="/">{{ __('main.home') }}</a></li>
                     </li>
 					@php
-					$categories = Cache::remember('all_categories', now()->addMinutes(30), function () {
-					return App\Models\Category::where('status', 'Active')
-					->orderBy('name', 'ASC')
-					->get();
-					});
-					@endphp
+                        $categories = App\Models\Category::where('status', 'Active')
+                        ->orderBy('name', 'ASC')
+                        ->get();
+
+                    @endphp
 
                     <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">{{ __('main.categories') }}<i class='bx bx-chevron-down'></i></a>
                         <ul class="dropdown-menu">
@@ -178,14 +179,13 @@
 					</li>
 
 					@php
-					$cateWithSub = Cache::remember('category_with_subcategories', now()->addMinutes(30), function () {
-					return App\Models\Category::with('subcategories')
-					->where('status', 'Active')
-					->orderBy('id')
-					->limit(4)
-					->get();
-					});
-					@endphp
+                        $cateWithSub = App\Models\Category::with('subcategories')
+                        ->where('status', 'Active')
+                        ->orderBy('id')
+                        ->limit(4)
+                        ->get();
+
+                    @endphp
 
 					@foreach($cateWithSub as $category)
 					<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">

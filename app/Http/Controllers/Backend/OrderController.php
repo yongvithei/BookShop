@@ -9,7 +9,7 @@ use Yajra\DataTables\Exceptions\Exception;
 use App\Models\OrderView;
 use App\Models\OrderItem;
 use App\Models\OrderItemView;
-use App\Models\Product; 
+use App\Models\Product;
 use Carbon\Carbon;
 use DB;
 class OrderController extends Controller
@@ -17,16 +17,35 @@ class OrderController extends Controller
     /**
      * @throws Exception
      */
-    public function index(){
-        if (request()->ajax()) {
-            return datatables()->of(Order::select(['id','invoice_no','order_date','amount','payment_method','status']))
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            $query = Order::select(['id', 'invoice_no', 'order_date', 'amount', 'payment_method', 'status', 'created_at']);
+
+            // Check if a date filter is applied
+            if ($request->has('date')) {
+                $date = Carbon::parse($request->date)->toDateString();
+                $query->whereDate('created_at', $date);
+            }
+
+            // Check if a status filter is applied
+            if ($request->has('searchD') && $request->searchD != '') {
+                $searchD = $request->searchD;
+                $query->where('status', $searchD);
+            }
+
+            return datatables()->of($query)
                 ->addColumn('action', 'backend.order.order_action')
                 ->rawColumns(['action'])
                 ->addIndexColumn()
                 ->make(true);
         }
+
         return view('backend.order.order');
     }
+
+
+
     public function indexpending(){
         if (request()->ajax()) {
             return datatables()->of(Order::where('status', 'pending')
@@ -112,7 +131,7 @@ class OrderController extends Controller
             foreach($product as $item){
                 Product::where('id',$item->product_id)
                         ->update(['pro_qty' => DB::raw('pro_qty-'.$item->qty) ]);
-            } 
+            }
         }
         $item = Order::find($id);
         if ($item) {
