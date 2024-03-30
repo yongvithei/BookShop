@@ -20,7 +20,7 @@
                 timer: 3000
             });
             Toast.fire({
-                title: 'This product is out of stock',
+                title: tr.out_of_stock,
             });
             return; // Exit function
         }

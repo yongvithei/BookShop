@@ -241,6 +241,9 @@
 	}
 </script>
 <script>
+    var tr = {
+        out_of_stock: "{{ __('pos_p.out_of_stock') }}"
+    };
     var lang = {
         khr: '{{ __('main.khr') }}'
     };

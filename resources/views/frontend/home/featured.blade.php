@@ -108,7 +108,7 @@
                                 </div>
                                 <div class="product-action mt-2">
                                     <div class="grid grid-cols-2 gap-2">
-                                            <a id="{{ $product->id }}" onclick="addToMiniCart('{{ $product->id }}','{{ $product->name }}', {{ $product->price }},1)" href="javascript:;" class="rounded-xl btn btn-dark btn-ecomm">
+                                            <a id="{{ $product->id }}" onclick="addToMiniCart('{{ $product->id }}', '{{ $product->name }}', {{ $product->price }}, {{ $product->pro_qty > 0 ? '1' : '0' }})" href="javascript:;" class="rounded-xl btn btn-dark btn-ecomm">
                                             <i class='bx bxs-cart-add'></i>{{ __('main.add') }}
                                         </a>
                                         <a href="javascript:;"

@@ -8,7 +8,7 @@
                 <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
                     <div class="container">
                         <div class="page-breadcrumb d-flex align-items-center">
-                            <p class="breadcrumb-title pe-3">{{ __('main.account_details') }}</h3>
+                            <p class="breadcrumb-title pe-3">{{ __('main.account_details') }}</p>
                             <div class="ms-auto">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb mb-0 p-0">

@@ -388,8 +388,9 @@
                                     <div class="relative">
                                         <img src="{{ $product->thumbnail ? asset($product->thumbnail) : asset('/storage/images/pro_img.jpg') }}" class="card-img-top" alt="Product Image">
                                         <div class="absolute top-2 right-2">
-                                            <a href="javascript:;" class="product-wishlist product-action">
-                                                <i class="bx bx-heart text-red-500 text-2xl"></i>
+                                            <a id="{{ $product->id }}" onclick="addToWishList(this.id)" href="javascript:;">
+                                                <div class="product-wishlist product-action"> <i class='bx bx-heart'></i>
+                                                </div>
                                             </a>
                                         </div>
 
@@ -430,12 +431,8 @@
                                         </div>
                                         <div class="product-action mt-2">
                                             <div class="grid grid-cols-2 gap-2">
-                                                <a href="javascript:;" class="rounded-xl btn btn-dark btn-ecomm"> <i
-                                                        class='bx bxs-cart-add'></i>{{ __('main.add') }}</a>
-                                                <a href="javascript:;"
-                                                    class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200"
-                                                    data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i
-                                                        class='bx bxs-show'></i>{{ __('main.view') }}</a>
+                                                <a href="javascript:;" class="rounded-xl btn btn-dark btn-ecomm" id="{{ $product->id }}" onclick="addToMiniCart('{{ $product->id }}','{{ $product->name }}', {{ $product->price }},{{ $product->pro_qty > 0 ? '1' : '0' }})"> <i class='bx bxs-cart-add'></i>{{ __('main.add') }}</a>
+                                                <a href="javascript:;" class="rounded-xl btn bg-slate-100 btn-ecomm hover:bg-slate-200" data-bs-toggle="modal" data-bs-target="#QuickViewProduct" id="{{ $product->id }}" onclick="productView(this.id)"><i class='bx bxs-show'></i>{{ __('main.view') }}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -473,18 +470,32 @@
         const dquantityInput = document.getElementById('dquantityInput');
         const incrementButton = document.getElementById('incrementQuantity');
         const decrementButton = document.getElementById('decrementQuantity');
+
         handleQuantityChange();
+
         incrementButton.addEventListener('click', function () {
             const currentValue = parseInt(dquantityInput.value);
-            if (currentValue < 999) {
+            const maxQuantity = parseInt(dquantityInput.getAttribute('max'));
+
+            if (currentValue < maxQuantity) {
                 dquantityInput.value = currentValue + 1;
             }
         });
 
         decrementButton.addEventListener('click', function () {
             const currentValue = parseInt(dquantityInput.value);
+
             if (currentValue > 0) {
                 dquantityInput.value = currentValue - 1;
+            }
+        });
+
+        $('#dquantityInput').on('input', function() {
+            var maxQuantity = parseInt($(this).attr('max'));
+            var enteredValue = parseInt($(this).val());
+
+            if (enteredValue > maxQuantity) {
+                $(this).val(maxQuantity);
             }
         });
     });
@@ -542,7 +553,7 @@
         if (currentQuantity === 0) {
             addToCartButton.disabled = true;
             incrementQuantity.disabled = true;
-            warningMessage.innerText = 'This item is out of stock.';
+            warningMessage.innerText = '';
         } else {
             addToCartButton.disabled = false;
             incrementQuantity.disabled = false;

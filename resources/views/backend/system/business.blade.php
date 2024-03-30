@@ -17,7 +17,7 @@
 #imagePreview {
     width: 100%;
     height: 100%;
-    background-image: url('{{asset('admin/assets/media/avatars/avatar13.jpg')}}');
+    background-image: url('{{asset('admin/assets/media/avatars/grayBG.jpeg')}}');
     background-size: cover;
     background-position: center;
 }

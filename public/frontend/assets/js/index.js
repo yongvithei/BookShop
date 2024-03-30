@@ -1,36 +1,37 @@
 $(function() {
     "use strict";
 
-	
-	$('.new-arrivals').owlCarousel({
-		loop:true,
-		margin:14,
-		responsiveClass:true,
-		nav:false,
-		dots: false,
-		responsive:{
-			0:{
-				items:1
-			},
-			576:{
-				items:2
-			},
-			768:{
-				items:3
-			},
-			1366:{
-				items:4
-			},
-			1400:{
-				items:5
-			}
-	     },
-    	})
+
+    $('.new-arrivals').owlCarousel({
+        loop:true,
+        margin:14,
+        responsiveClass:true,
+        nav:false,
+        dots: false,
+        responsive:{
+            0:{
+                items:1 // Display 1 item on screens less than 576px wide
+            },
+            576:{
+                items:1 // Display 1 item on screens 576px wide and above
+            },
+            768:{
+                items:2 // Display 2 items on screens 768px wide and above
+            },
+            992:{
+                items:3 // Display 3 items on screens 992px wide and above
+            },
+            1200:{
+                items:4 // Display 4 items on screens 1200px wide and above
+            }
+        }
+    });
 
 
 
 
-		$('.browse-category').owlCarousel({
+
+    $('.browse-category').owlCarousel({
 			loop:true,
 			margin:10,
 			responsiveClass:true,
@@ -127,7 +128,6 @@ $(function() {
 
 
 
-		
-		
-   });	 
-   
+
+
+   });

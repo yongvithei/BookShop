@@ -100,7 +100,7 @@ function wishlist() {
                     </div>
                     <div class="product-action mt-2">
                         <div class="d-grid gap-2">
-                            <a href="javascript:;" id="${value.id}" onclick="addToMiniCart('${value.product.id}','${value.product.name}', ${value.product.price},${value.product.pro_qty})" class="btn btn-white btn-ecomm">
+                            <a href="javascript:;" id="${value.id}" onclick="addToMiniCart('${value.product.id}', '${value.product.name.replace(/'/g, "\\'")}', ${value.product.price}, ${value.product.pro_qty > 0 ? 1 : 0})" class="btn btn-white btn-ecomm">
                                 <i class="bx bxs-cart-add"></i>{{ __('main.add') }}
                                     </a>
                                     <a type="submit" id="${value.id}" onclick="wishlistRemove(this.id)" class="btn btn-light btn-ecomm">
