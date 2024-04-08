@@ -52,7 +52,7 @@ class TelegramNotification extends Notification
 
         return TelegramMessage::create()
             // Optional recipient user id.
-            ->to(1887163690)
+            ->to(802528045)
             // Markdown supported
             ->content("Hello there! New Order \n Name: $name \n Email: $email \n Amount: $amount Riel")
             ->button('View Invoice', $url);

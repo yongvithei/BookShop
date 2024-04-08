@@ -60,12 +60,10 @@
 						<div class="mobile-toggle-menu d-lg-none px-lg-2" data-trigger="#navbar_main"><i class='bx bx-menu'></i>
 						</div>
 						<div class="logo d-none d-lg-flex">
-							@php
-								$siteinfo = Cache::remember('sitefooter', now()->addMinutes(30), function () {
-                                    return App\Models\SiteInfo::latest()->first();
-                                });
-							@endphp
-							<a href="/">
+                            @php
+                                $siteinfo = App\Models\SiteInfo::latest()->first();
+                            @endphp
+                            <a href="/">
 								<img src="{{ asset('storage/' . $siteinfo->image) }}" class="logo-icon" alt="" />
 							</a>
 						</div>

@@ -8,6 +8,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>::after,::before{padding:0;margin:0;box-sizing:border-box}:root{--blue-color:#0c2f54;--dark-color:#535b61;--white-color:#fff}ul{list-style-type:none}ul li{margin:2px 0}.text-end{text-align:right}.text-start{text-align:left}.text-bold{font-weight:700}.hr{height:1px;background-color:rgba(0,0,0,.1)}.border-bottom,.invoice-body table tr{border-bottom:1px solid rgba(0,0,0,.1)}body{font-family:khmeros,sans-serif;color:var(--dark-color);font-size:12px}.invoice-wrapper{min-height:100vh;padding-top:0;padding-bottom:0}.invoice{max-width:850px;margin-right:auto;margin-left:auto;padding:30px;border:1px solid rgba(0,0,0,.2);border-radius:5px;min-height:920px}.invoice-head-top-left img{width:130px}.invoice-head-top-right h3{font-weight:500;font-size:27px;color:var(--blue-color)}.invoice-head-bottom,.invoice-head-middle{padding:6px 0}.invoice-body{border:1px solid rgba(0,0,0,.1);border-radius:4px;overflow:hidden;min-width:600px}.invoice-body table{border-collapse:collapse;border-radius:4px;width:100%}.invoice-body table td,.invoice-body table th{padding:12px}.invoice-body table thead{background-color:rgba(0,0,0,.02)}.invoice-body-info-item{display:grid;grid-template-columns:80% 20%}.invoice-body-info-item .info-item-td{padding:12px;background-color:rgba(0,0,0,.02)}.invoice-foot p{font-size:12px}.invoice-head-bottom,.invoice-head-middle,.invoice-head-top{display:grid;grid-template-columns:repeat(2,1fr);padding-bottom:10px}@media screen and (max-width:992px){.invoice{padding:40px}}@media screen and (max-width:576px){.invoice-head-bottom,.invoice-head-middle,.invoice-head-top{grid-template-columns:repeat(1,1fr)}.invoice-head-bottom-right{margin-top:12px;margin-bottom:12px}.invoice *{text-align:left}.invoice{padding:28px}}@media print{.print-area{visibility:visible;width:100%;position:absolute;left:0;top:0;overflow:hidden}}</style>
     </head>
+    <style>
+        body, h1, h3, p {
+            font-family: 'khmeros';
+            @if(session()->get('locale') == 'en')
+            font-size: 9pt;
+                        @else
+            font-size: 8pt;
+                    @endif
+    }
+    </style>
     <body>
   <div class="invoice-wrapper">
     <div class="invoice">
@@ -33,25 +43,31 @@
           </div>
           <div class="hr"></div>
           <div class="invoice-head-middle">
-            <table width="100%" style="background:#fff;" class="font">
-              <tr>
-                <td>
-                  <div class="invoice-head-middle-left text-start">
-                      <p>
-                      <p>{{ __('main.invoice_no') }}: #{{ $order->invoice_no }}</p><span class="text-bold">{{ __('main.order_date') }}:</span>{{ $order->order_date }}
-                      </p>
-                  </div>
-                </td>
-                <td class="text-end">
-                    <ul class = "text-end">
-                        <p>{{$info->email}}</p>
-                        <p>{{ session()->get('locale') == 'en' ? ($info->address ? $info->address : $info->address_kh) : ($info->address_kh ? $info->address_kh : $info->address) }}</p>
-                        <p>{{$info->support_phone}}</p>
-                    </ul>
+                <table width="100%" style="background:#fff;" class="font">
+                  <tr>
+                    <td>
+                      <div class="invoice-head-middle-left text-start">
+                          <p></p>
+                          <p>{{ __('main.invoice_no') }}: #{{ $order->invoice_no }}</p><span class="text-bold">{{ __('main.order_date') }}:</span>{{ $order->order_date }}
+                          <p></p>
+                      </div>
+                    </td>
+                    <td class="text-end">
+                        <ul class="text-end">
+                            <p>{{$info->email}}</p>
+                            <!-- Splitting address into two lines based on language -->
+                            @php
+                                $address = session()->get('locale') == 'en' ? ($info->address ? $info->address : $info->address_kh) : ($info->address_kh ? $info->address_kh : $info->address);
+                                $addressLines = wordwrap($address, 85, "<br>");
+                            @endphp
+                            <p>{!! $addressLines !!}</p>
+                            <p>{{$info->support_phone}}</p>
+                        </ul>
 
-                </td>
-              </tr>
-            </table>
+
+                    </td>
+                  </tr>
+                </table>
           </div>
 
           <div class="hr"></div>
@@ -61,7 +77,7 @@
                 <div class="invoice-head-bottom">
                   <div class="invoice-head-bottom-left">
                       <ul>
-                          <strong class="text-bold" style="color:#000000;font-size:16px">{{ __('main.shipping_info') }}:</strong>
+                          <strong class="text-bold" style="color:#000000;font-size:16px">{{ __('main.shipping_info') }}</strong>
                           <p>{{ __('main.name') }}: {{ $order->name }}</p>
                           <p>{{ __('main.email') }}: {{ $order->email }}</p>
                           <p>{{ __('main.phones') }}: {{ $order->phone }}</p>
@@ -76,7 +92,7 @@
               <td class="text-end">
                   <div class="invoice-head-bottom-right">
                       <ul class="text-end">
-                          <p>{{ __('main.order_date') }}: {{ $order->order_date }}</p>
+                          <p>{{ __('main.order_date') }} {{ $order->order_date }}</p>
                           <p>{{ __('main.payment') }}: {{ $order->payment_method }}</p>
                           <p>{{ __('main.delivery_date') }}: {{ $order->delivered_date }}</p>
                       </ul>

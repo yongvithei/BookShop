@@ -47,8 +47,13 @@
                     <td style="width: 50%;" class="text-end">
                         <ul class="text-end">
                             </strong>{{$info->email}}<br>
-                            </strong>{{ session()->get('locale') == 'en' ? ($info->address ? $info->address : $info->address_kh) : ($info->address_kh ? $info->address_kh : $info->address) }}<br>
-                            </strong>{{$info->support_phone}}
+                            <!-- Splitting address into two lines based on language -->
+                            @php
+                                $address = session()->get('locale') == 'en' ? ($info->address ? $info->address : $info->address_kh) : ($info->address_kh ? $info->address_kh : $info->address);
+                                $addressLines = wordwrap($address, 85, "<br>");
+                            @endphp
+                            <strong>{!! $addressLines !!}</strong>
+                            </strong>{{$info->support_phone}}</strong>
                         </ul>
                     </td>
                 </tr>
@@ -75,7 +80,7 @@
                 @endphp
                 @foreach($orderItem as $item)
                     <tr class="font">
-                        <td style="border: 1px solid #d3d3d3;">{{ $item->product->name }}</td>
+                        <td style="border: 1px solid #d3d3d3;">{{ session()->get('locale') == 'en' ? ($item->product->name ? $item->product->name : $item->product->pro_kh) : ($item->product->pro_kh ? $item->product->pro_kh : $item->product->name) }}</td>
                         <td style="border: 1px solid #d3d3d3;">{{ $item->product->price }}</td>
                         <td style="border: 1px solid #d3d3d3;">{{ $item->pro_qty }}</td>
                         <td style="border: 1px solid #d3d3d3;">{{ $item->productId->price * $item->pro_qty }} {{ __('main.khr') }}</td>

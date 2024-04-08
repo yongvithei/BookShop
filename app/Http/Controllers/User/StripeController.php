@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\SiteInfo;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -20,6 +21,7 @@ use App\Notifications\TelegramNotification;
 class StripeController extends Controller
 {
     public function StripeOrder(Request $request){
+        $site = SiteInfo::latest()->first();
         $user = User::where('role', 'admin')->get();
         $adminUser = User::where('role', 'admin')->first();
         if(Session::has('coupon')){
@@ -76,6 +78,7 @@ class StripeController extends Controller
             'amount' => $total_amount,
             'name' => $invoice->name,
             'email' => $invoice->email,
+            'site' => $site,
         ];
         Mail::to($request->email)->send(new OrderMail($data));
         // End Send Email
@@ -98,10 +101,11 @@ class StripeController extends Controller
         Notification::send($adminUser, new TelegramNotification($data));
         Notification::send($user, new OrderComplete($request->name,$data));
 
-        return redirect()->route('order.complete');
+        return redirect('/complete');
     }
 
     public function CashOrder(Request $request){
+        $site = SiteInfo::latest()->first();
         $user = User::where('role', 'admin')->get();
         $adminUser = User::where('role', 'admin')->first();
 
@@ -143,6 +147,7 @@ class StripeController extends Controller
             'amount' => $total_amount,
             'name' => $invoice->name,
             'email' => $invoice->email,
+            'site' => $site,
         ];
         Mail::to($request->email)->send(new OrderMail($data));
         // End Send Email
@@ -166,6 +171,7 @@ class StripeController extends Controller
 
         Notification::send($user, new OrderComplete($request->name,$data));
         Notification::send($adminUser, new TelegramNotification($data));
-        return redirect()->route('order.complete');
+        return redirect('/complete');
+
     }
 }
