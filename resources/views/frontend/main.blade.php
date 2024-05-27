@@ -28,9 +28,9 @@
     </div>
 </div>
 <!--end page wrapper -->
-<hr>
+{{--<hr>--}}
 <!--start support info-->
-@include('frontend.home.support')
+{{--@include('frontend.home.support')--}}
 <!--end support info-->
 
 <!--start quick view product-->

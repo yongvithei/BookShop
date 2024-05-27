@@ -45,6 +45,9 @@ return [
     'search..' => 'Search..',
     'preview' => 'Preview',
 
+    //pos
+    'pos' => 'POS',
+
 
 
 

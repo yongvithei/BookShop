@@ -46,7 +46,7 @@ body {
   <body>
 
     <div id="page-container" class="page-header-dark main-content-boxed">
-       
+
     <!-- END Page Container -->
 
     <!-- Header -->
@@ -63,4 +63,7 @@ body {
     </div>
 
   </body>
+  <script>
+      window.locale = "{{ session()->get('locale', 'en') }}";
+  </script>
 </html>

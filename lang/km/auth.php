@@ -11,7 +11,7 @@ return [
     'or' => 'ឬ',
     'sign_in' => 'ចូលប្រើ',
     'sign_in_with_google' => 'ចូលប្រើជាមួយ Google',
-    'dont_have_account' => 'មិនទាន់់មានគណនី?',
+    'dont_have_account' => 'មិនទាន់មានគណនី?',
     'sign_up_for_free' => 'ចុះឈ្មោះឥឡូវ',
     'register_user' => 'ចុះឈ្មោះ',
     'name' => 'ឈ្មោះ',

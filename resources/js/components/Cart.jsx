@@ -20,6 +20,7 @@ const Cart = () => {
   const [delayTimer, setDelayTimer] = useState(null);
   const [receivedAmount, setReceivedAmount] = useState(0);
   const [note, setNote] = useState('');
+  const [locale, setLocale] = useState('en');
   const [pagination, setPagination] = useState({
     current_page: 1,
     next_page_url: null,
@@ -336,6 +337,7 @@ const Cart = () => {
     loadRate();
     loadRecentOrder();
     loadCustomers();
+      setLocale(window.locale);
   }, []);
 
 
@@ -371,7 +373,7 @@ return (
       <React.Fragment key={c.id}>
         <tr>
           <td className="fw-semibold fs-sm">
-            <a href="">{c.name}</a>
+            <a href=""> {locale === 'en' ? (c.name || c.pro_kh) : (c.pro_kh || c.name)}</a>
           </td>
           <td className="d-sm-table-cell">
             <div className="d-flex align-items-center">
@@ -460,7 +462,7 @@ return (
           <div>
 
            <div className="input-group input-group-lg mb-2">
-               <input type="text" className="js-icon-search form-control fs-base" placeholder="Search Product"
+               <input type="text" className="js-icon-search form-control fs-base" placeholder={locale === 'en' ? 'Search Product' : 'ស្វែងរកផលិតផល'}
                 value={search}
                 onChange={handleChangeSearch}
                 onKeyDown={handleSearch} />
@@ -521,10 +523,10 @@ return (
                    </div>
                    <div className="block-content">
                        <div className="mb-2">
-                           <div className="fw-semibold float-end ms-1">{pro.price} {tr_p.khr || 'KHR'}</div>
-                           <a className="h6" href="">
-                           {pro.name}
-                           </a>
+                           <div className="fw-semibold ms-1">{pro.price} {tr_p.khr || 'KHR'}</div>
+                           <span className="mb-2" href="">
+                               {locale === 'en' ? (pro.name || pro.pro_kh) : (pro.pro_kh || pro.name)}
+                           </span>
                        </div>
                        <div className="mb-2">
                        <a className="btn btn-sm btn-alt-secondary" onClick={() => addProductToCart(pro.pro_code)}>

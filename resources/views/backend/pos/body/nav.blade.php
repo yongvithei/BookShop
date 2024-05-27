@@ -25,7 +25,7 @@
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ request()->is('admin/pos') ? ' active' : '' }}" href="/admin/pos">
-                            <i class="nav-main-link-icon si si-compass"></i>
+                            <i class="nav-main-link-icon fa fa-calculator"></i>
                             <span class="nav-main-link-name">{{ __('pos_p.pos') }}</span>
                         </a>
                     </li>

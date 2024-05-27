@@ -39,6 +39,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $permissionAssign = Permission::create(['name' => 'assign.menu']);
         $permissionSite = Permission::create(['name' => 'site.menu']);
         $permissionBackup = Permission::create(['name' => 'backup.menu']);
+        $permissionPos = Permission::create(['name' => 'pos.menu']);
 
 
         // Assign permissions to roles
@@ -47,7 +48,8 @@ class RolesAndPermissionsSeeder extends Seeder
             $permissionProduct,
             $permissionCategory,
             $permissionBusiness,
-            $permissionPromo
+            $permissionPromo,
+            $permissionPos
         ]);
 
         $roleAdmin->givePermissionTo([
@@ -63,7 +65,8 @@ class RolesAndPermissionsSeeder extends Seeder
             $permissionRole,
             $permissionAssign,
             $permissionSite,
-            $permissionBackup
+            $permissionBackup,
+            $permissionPos,
         ]);
 
         $roleAccount->givePermissionTo([

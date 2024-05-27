@@ -63,6 +63,14 @@
                     </a>
                 </li>
             @endif
+                @if(Auth::user()->can('user.menu'))
+                    <li class="nav-main-item">
+                        <a class="nav-main-link{{ request()->is('admin/pos') ? ' active' : '' }}" href="/admin/pos">
+                            <i class="nav-main-link-icon fa fa-calculator"></i>
+                            <span class="nav-main-link-name">{{__('body.pos')}}</span>
+                        </a>
+                    </li>
+                @endif
             @if(Auth::user()->can('order.menu'))
                 <li class="nav-main-heading">{{__('body.order_management')}}</li>
                 <li class="nav-main-item">
