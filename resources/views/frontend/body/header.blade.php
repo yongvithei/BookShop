@@ -185,28 +185,44 @@
 
                     @endphp
 
-					@foreach($cateWithSub as $category)
-					<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">
+                    @foreach($cateWithSub as $category)
+                        @if($category->subcategories->isNotEmpty())
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">
                                     @if(session()->get('locale') == 'en')
                                         {{ $category->name ? $category->name : ($category->cat_kh ?? 'N/A') }}
                                     @else
                                         {{ $category->cat_kh ? $category->cat_kh : ($category->name ?? 'N/A') }}
                                     @endif
-                                <i class='bx bx-chevron-down'></i></a>
-						<ul class="dropdown-menu">
-							@foreach($category->subcategories as $subcategory)
-							<li><a class="dropdown-item" href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->sub_slug) }}">
+                                    <i class='bx bx-chevron-down'></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    @foreach($category->subcategories as $subcategory)
+                                        <li>
+                                            <a class="dropdown-item" href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->sub_slug) }}">
+                                                @if(session()->get('locale') == 'en')
+                                                    {{ $subcategory->sub_name ? $subcategory->sub_name : ($subcategory->sub_kh ?? 'N/A') }}
+                                                @else
+                                                    {{$subcategory->sub_kh ? $subcategory->sub_kh : ( $subcategory->sub_name ?? 'N/A') }}
+                                                @endif
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('product/category/'.$category->id.'/'.$cate->slug) }}">
                                     @if(session()->get('locale') == 'en')
-                                        {{ $subcategory->sub_name ? $subcategory->sub_name : ($subcategory->sub_kh ?? 'N/A') }}
+                                        {{ $category->name ? $category->name : ($category->cat_kh ?? 'N/A') }}
                                     @else
-                                        {{$subcategory->sub_kh ? $subcategory->sub_kh : ( $subcategory->sub_name ?? 'N/A') }}
+                                        {{ $category->cat_kh ? $category->cat_kh : ($category->name ?? 'N/A') }}
                                     @endif
                                 </a>
-							</li>
-							@endforeach
-						</ul>
-					</li>
-					@endforeach
+                            </li>
+                        @endif
+                    @endforeach
+
 
                     <li class="nav-item"> <a class="nav-link" href="/shop">{{ __('main.shop') }}</a></li>
                     </li>

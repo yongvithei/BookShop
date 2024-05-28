@@ -29,13 +29,14 @@
 												</a>
 											</div>
 										</div>
-										<a href="">
+										<a href="{{ url('product/details/'.$product->id.'/'.$product->slug) }}">
 											<img src="{{ $product->thumbnail ? asset($product->thumbnail) : asset('/storage/images/pro_img.jpg') }}" class="card-img-top" alt="Product Image">
 										</a>
+
 									</div>
 										<div class="card-body">
 											<div class="product-info">
-												<a href="javascript:;">
+												<a href="{{ url('product/category/'.$product->category->id.'/'.$product->category->slug) }}">
 													<p class="product-catergory font-13 mb-1">
                                                         @if(session()->get('locale') == 'en')
                                                             {{ $product->category->name ? $product->category->name : ($product->category->cat_kh ?? 'N/A') }}
@@ -44,7 +45,7 @@
                                                         @endif
                                                     </p>
 												</a>
-												<a href="javascript:;">
+												<a href="{{ url('product/details/'.$product->id.'/'.$product->slug) }}">
 													<h6 class="product-name mb-2">
                                                         @if(session()->get('locale') == 'en')
                                                             {{ $product->name ? $product->name : $product->pro_kh }}

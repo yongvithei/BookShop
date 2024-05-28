@@ -53,10 +53,10 @@
                                 <div class="block-header block-header-default">
                                     <h3 class="block-title">{{ __('main.sign_in') }}</h3>
                                     <div class="block-options">
-                                        <a class="btn-block-option fs-sm" href="">{{ __('main.forgot_password') }}</a>
-                                        <a class="btn-block-option" href="" data-bs-toggle="tooltip" data-bs-placement="left" title="New Account">
-                                            <i class="fa fa-user-plus"></i>
-                                        </a>
+                                        <a class="btn-block-option fs-sm" href="/forgot-password">{{ __('main.forgot_password') }}</a>
+{{--                                        <a class="btn-block-option" href="" data-bs-toggle="tooltip" data-bs-placement="left" title="New Account">--}}
+{{--                                            <i class="fa fa-user-plus"></i>--}}
+{{--                                        </a>--}}
                                     </div>
                                 </div>
                                 <div class="block-content">
@@ -66,14 +66,14 @@
                                         <!-- Sign Up Form -->
                                         <!-- jQuery Validation (.js-validation-signup class is initialized in js/pages/op_auth_signup.min.js which was auto compiled from _js/pages/op_auth_signup.js) -->
                                         <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                                        <div class="row mb-1 justify-content-center">
-                                            <div class="col-sm-10 col-md-8 col-xl-7">
-                                                <a class="btn w-100 btn-alt-danger text-center" href="/auth/google/redirect/admin" style="box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
-                                                    <i class="fab fa-fw fa-google opacity-50 me-1"></i> {{ __('main.connect_to_google') }}
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="or-container"><div class="line-separator"></div> <div class="or-label">  or  </div><div class="line-separator"></div></div>
+{{--                                        <div class="row mb-1 justify-content-center">--}}
+{{--                                            <div class="col-sm-10 col-md-8 col-xl-7">--}}
+{{--                                                <a class="btn w-100 btn-alt-danger text-center" href="/auth/google/redirect/admin" style="box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">--}}
+{{--                                                    <i class="fab fa-fw fa-google opacity-50 me-1"></i> {{ __('main.connect_to_google') }}--}}
+{{--                                                </a>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="or-container"><div class="line-separator"></div> <div class="or-label">  or  </div><div class="line-separator"></div></div>--}}
                                         <!-- Session Status -->
                                         <x-auth-session-status class="mb-4" :status="session('status')" />
 

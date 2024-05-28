@@ -304,6 +304,11 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
 
     /// User All Route
     Route::middleware(['auth','role:user'])->group(function() {
+        // Review All Route
+        Route::controller(ReviewController::class)->group(function(){
+            Route::post('/store/review' , 'StoreReview')->name('store.review');
+            Route::delete('/comment/{id}' , 'delete')->name('delete.comment');
+        });
         // Wishlist All Route
         Route::controller(WishlistController::class)->group(function(){
             Route::view('/wishlist', 'frontend.wishlist.wishlist');
@@ -351,9 +356,7 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
         Route::view('/complete', 'frontend/complete/complete')->name('order.complete');
 
     });
-    Route::controller(ReviewController::class)->group(function(){
-        Route::post('/store/review' , 'StoreReview')->name('store.review');
-    });
+
     Route::controller(ShopController::class)->group(function () {
         Route::get('/shop', 'ShopPage')->name('shop.page');
         Route::get('/shop/feature', 'ShopFeature')->name('shop.feature');

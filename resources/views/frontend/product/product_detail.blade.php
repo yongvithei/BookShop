@@ -250,79 +250,78 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="reviews" role="tabpanel">
-                            @php
-                            $reviews = App\Models\Review::where('product_id',$product->id)->latest()->limit(5)->get();
-                            @endphp
+
                             <div class="row">
                                 <div class="col col-lg-8">
                                     <div class="product-review">
                                         <div class="review-list">
-                                            @foreach($reviews as $item)
-                                            @if($item->status == 0)
-                                            @else
-                                            <!-- loop -->
-                                            <div class="d-flex align-items-start">
-                                                <div class="review-user">
-                                                    <img src="{{ (!empty($item->user->photo)) ? url('upload/user_images/'.$item->user->photo):url('uploads/no_image.jpg') }}"
-                                                        width="65" height="65" class="rounded-circle" alt="" />
-                                                </div>
-                                                <div class="review-content ms-3">
-                                                    @if($item->rating == NULL)
-                                                    @elseif($item->rating == 1)
-                                                    <div class="rates cursor-pointer fs-6">
-                                                        <i class="bx bxs-star text-light-4"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
+                                            @if(auth()->check())
+                                                @foreach($userReviews as $item)
+                                                    <div class="d-flex align-items-start">
+                                                        <div class="review-user">
+                                                            <img src="{{ !empty($item->user->photo) ? url('upload/user_images/'.$item->user->photo) : url('uploads/no_image.jpg') }}"
+                                                                 width="65" height="65" class="rounded-circle" alt="" />
+                                                        </div>
+                                                        <div class="review-content ms-0">
+                                                            @for ($i = 1; $i <= 5; $i++)
+                                                                <i class="bx bxs-star {{ $item->rating >= $i ? 'text-light-4' : 'text-white' }}"></i>
+                                                            @endfor
+                                                            <div class="d-flex align-items-center mb-2">
+                                                                <h6 class="mx-1">{{ $item->user->name }}</h6>
+                                                                <p class="mb-0 ms-auto">
+                                                                    ({{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }})
+                                                                </p>
+                                                            </div>
+                                                            <p>{{ $item->comment }}</p>
+                                                            @if($item->status == 0)
+                                                                <p><span class="badge bg-warning">{{ __('main.pending') }}</span></p>
+                                                            @endif
+                                                        </div>
+                                                        <div class="ms-12">
+                                                            <form action="{{ route('delete.comment', $item->id) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-white btn-ecomm">
+                                                                    <i class="bx bxs-trash"></i> {{ __('main.delete') }}
+                                                                </button>
+                                                            </form>
+                                                        </div>
                                                     </div>
-                                                    @elseif($item->rating == 2)
-                                                    <div class="rates cursor-pointer fs-6">
-                                                        <i class="bx bxs-star text-light-4"></i>
-                                                        <i class="bx bxs-star text-light-4"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                    </div>
-                                                    @elseif($item->rating == 3)
-                                                    <div class="rates cursor-pointer fs-6">
-                                                        <i class="bx bxs-star text-light-4"></i>
-                                                        <i class="bx bxs-star text-light-4"></i>
-                                                        <i class="bx bxs-star text-light-4"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                    </div>
-                                                    @elseif($item->rating == 4)
-                                                    <div class="rates cursor-pointer fs-6">
-                                                        <i class="bx bxs-star text-light-4"></i>
-                                                        <i class="bx bxs-star text-light-4"></i>
-                                                        <i class="bx bxs-star text-light-4"></i>
-                                                        <i class="bx bxs-star text-light-4"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                    </div>
-                                                    @elseif($item->rating == 5)
-                                                    <div class="rates cursor-pointer fs-6">
-                                                        <i class="bx bxs-star text-light-4"></i>
-                                                        <i class="bx bxs-star text-light-4"></i>
-                                                        <i class="bx bxs-star text-light-4"></i>
-                                                        <i class="bx bxs-star text-light-4"></i>
-                                                        <i class="bx bxs-star text-light-4"></i>
-                                                    </div>
-                                                    @endif
-                                                    <div class="d-flex align-items-center mb-2">
-                                                        <h6 class="mx-1">{{ $item->user->name }}</h6>
-                                                        <p class="mb-0 ms-auto">
-                                                            ({{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }})
-                                                        </p>
-                                                    </div>
-                                                    <p>{{ $item->comment }}</p>
-                                                </div>
-                                            </div>
-                                            <hr />
-                                            <!-- loop -->
+                                                    <hr />
+                                                @endforeach
+
+                                                <!-- Pagination links for user reviews -->
+                                                {{ $userReviews->links() }}
                                             @endif
+
+                                            @foreach($approvedReviews as $item)
+                                                @if(!auth()->check() || $item->user_id != auth()->user()->id)
+                                                    <div class="d-flex align-items-start">
+                                                        <div class="review-user">
+                                                            <img src="{{ !empty($item->user->photo) ? url('upload/user_images/'.$item->user->photo) : url('uploads/no_image.jpg') }}"
+                                                                 width="65" height="65" class="rounded-circle" alt="" />
+                                                        </div>
+                                                        <div class="review-content ms-0">
+                                                            @for ($i = 1; $i <= 5; $i++)
+                                                                <i class="bx bxs-star {{ $item->rating >= $i ? 'text-light-4' : 'text-white' }}"></i>
+                                                            @endfor
+                                                            <div class="d-flex align-items-center mb-2">
+                                                                <h6 class="mx-1">{{ $item->user->name }}</h6>
+                                                                <p class="mb-0 ms-auto">
+                                                                    ({{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }})
+                                                                </p>
+                                                            </div>
+                                                            <p>{{ $item->comment }}</p>
+                                                        </div>
+                                                        <hr />
+                                                    </div>
+                                                @endif
                                             @endforeach
                                         </div>
+
+
+
+
                                     </div>
                                 </div>
 
@@ -384,7 +383,7 @@
                         @foreach($related as $product)
                         <div class="item">
                             <div class="card rounded-0 product-card shadow-sm">
-                                <a href="{{ url('product/details/'.$product->id.'/'.$product->name) }}">
+                                <a href="{{ url('product/details/'.$product->id.'/'.$product->slug) }}">
                                     <div class="relative">
                                         <img src="{{ $product->thumbnail ? asset($product->thumbnail) : asset('/storage/images/pro_img.jpg') }}" class="card-img-top" alt="Product Image">
                                         <div class="absolute top-2 right-2">
@@ -398,7 +397,7 @@
                                 </a>
                                 <div class="card-body">
                                     <div class="product-info">
-                                        <a href="javascript:;">
+                                        <a href="{{ url('product/category/'.$product->category->id.'/'.$product->category->slug) }}">
                                             <p class="product-catergory font-13 mb-1">
                                             @if(session()->get('locale') == 'en')
                                                 {{ $product->category->name ? $product->category->name : ($product->category->cat_kh ?? 'N/A') }}
@@ -406,7 +405,7 @@
                                                 {{ $product->category->cat_kh ? $product->category->cat_kh : ($product->category->name ?? 'N/A') }}
                                             @endif</a>
                                         </a>
-                                        <a href="{{ url('product/details/'.$product->id.'/'.$product->name) }}">
+                                        <a href="{{ url('product/details/'.$product->id.'/'.$product->slug) }}">
                                             <h6 class="product-name mb-2" id="dname">
                                                 @if(session()->get('locale') == 'en')
                                                     {{ $product->name ? $product->name : $product->pro_kh }}

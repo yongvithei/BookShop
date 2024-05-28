@@ -3,13 +3,14 @@
 
 <div class="flex items-center justify-center min-h-full bg-gray-100">
     <!-- session status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+
     <div class="relative flex flex-col my-7 mx-2 space-y-8 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0">
         <!-- left side -->
         <div class="flex flex-col justify-center p-8 md:p-14">
             <span class="mb-2 text-4xl font-bold">{{ __('auth.welcome_back') }}</span>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
+                <x-auth-session-status class="mb-4" :status="session('status')" />
                 <div class="py-2">
                     <span class="mb-2 text-md">{{ __('auth.email_or_username') }}</span>
                     <input type="text"

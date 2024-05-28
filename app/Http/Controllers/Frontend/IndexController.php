@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Partner;
 use App\Models\ProductImage;
 use App\Models\Category;
+use App\Models\Review;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,18 +47,32 @@ class IndexController extends Controller
                 Cache::put('user_' . $user->id . '_last_seen', $lastSeen, 180);
             }
         }
+
+
         return view('frontend.main', compact('news','featureds','partners'));
     }
 
-    public function ProductDetails($id){
-
+    public function ProductDetails($id)
+    {
         $product = Product::findOrFail($id);
-        $multiImage = ProductImage::where('product_id',$id)->get();
+        $multiImage = ProductImage::where('product_id', $id)->get();
         $cat_id = $product->category_id;
-        $related = Product::where('category_id',$cat_id)->where('id','!=',$id)->orderBy('id','DESC')->limit(4)->get();
+        $related = Product::where('category_id', $cat_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->limit(4)->get();
 
-        return view('frontend.product.product_detail',compact('product','multiImage','related'));
+        $currentUser = Auth::user();
+
+        // Paginate approved reviews
+        $approvedReviews = Review::where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+
+        // Paginate the current user's reviews, including pending ones if they are logged in
+        $userReviews = $currentUser ?
+            $currentUser->reviews()->orderBy('created_at', 'desc')->paginate(5) :
+            collect(); // Empty collection if not logged in
+
+        return view('frontend.product.product_detail', compact('product', 'multiImage', 'related', 'approvedReviews', 'userReviews', 'currentUser'));
     }
+
+
 
     public function CatWiseProduct($id)
     {

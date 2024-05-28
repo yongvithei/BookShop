@@ -20,19 +20,19 @@
                 @foreach($products as $product)
                 <div class="col my-3">
                     <div class="card rounded-lg product-card shadow-sm">
-                        <a href="{{ url('product/details/'.$product->id.'/'.$product->name) }}">
+                        <a href="{{ url('product/details/'.$product->id.'/'.$product->slug) }}">
                             <div class="relative">
                                 <img src="{{ $product->thumbnail ? asset($product->thumbnail) : asset('/storage/images/pro_img.jpg') }}" class="card-img-top" alt="Product Image">
                                 <div class="absolute top-2 right-2">
                                     <a id="{{ $product->id }}" onclick="addToWishList(this.id)" href="javascript:;" class="product-wishlist product-action">
-                                        <i class="bx bx-heart text-red-500 text-2xl"></i>
+                                        <i class="bx bx-heart"></i>
                                     </a>
                                 </div>
                             </div>
                         </a>
                         <div class="card-body">
                             <div class="product-info">
-                                <a href="javascript:;">
+                                <a href="{{ url('product/category/'.$product->category->id.'/'.$product->category->slug) }}">
                                     <p class="product-catergory font-13 mb-1">
                                         @if(session()->get('locale') == 'en')
                                             {{ $product->category->name ? $product->category->name : ($product->category->cat_kh ?? 'N/A') }}
@@ -41,7 +41,7 @@
                                         @endif
                                     </p>
                                 </a>
-                                <a href="{{ url('product/details/'.$product->id.'/'.$product->name) }}">
+                                <a href="{{ url('product/details/'.$product->id.'/'.$product->slug) }}">
                                     <h6 class="product-name mb-2">
                                         @if(session()->get('locale') == 'en')
                                             {{ $product->name ? $product->name : $product->pro_kh }}

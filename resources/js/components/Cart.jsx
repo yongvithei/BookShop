@@ -377,7 +377,7 @@ return (
           </td>
           <td className="d-sm-table-cell">
             <div className="d-flex align-items-center">
-              <input type="number" className="form-control" id="count" name="count" value={c.pivot.pro_qty} min="0" max="99999" step="1"
+              <input type="number" className="form-control" id="count" name="count" value={c.pivot.pro_qty} min="1" max="99999" step="1"
                 onChange={(event) => handleChangeQty(c.id, event.target.value)} />
               <button type="button" className="btn btn-sm btn btn-danger ms-1" onClick={() => handleClickDelete(c.id)}>
                 <i className="far fa-trash-can"></i>
@@ -515,7 +515,7 @@ return (
                            <div className="options-overlay bg-black-75">
                                <div className="options-overlay-content">
                                    <a className="btn btn-sm btn-alt-secondary" href={`/product/${pro.id}/edit`}>
-                                   <i className="fa fa-eye me-1"></i> {tr_p.view || 'View'}
+                                       <i className="fa fa-eye me-1"></i> {tr_p.view || 'View'}
                                    </a>
                                </div>
                            </div>
@@ -523,7 +523,7 @@ return (
                    </div>
                    <div className="block-content">
                        <div className="mb-2">
-                           <div className="fw-semibold ms-1">{pro.price} {tr_p.khr || 'KHR'}</div>
+                           <div className="fw-semibold ms-1"> {pro.price} {tr_p.khr || 'KHR'}</div>
                            <span className="mb-2" href="">
                                {locale === 'en' ? (pro.name || pro.pro_kh) : (pro.pro_kh || pro.name)}
                            </span>

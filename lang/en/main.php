@@ -11,7 +11,6 @@ return [
     'riel' => 'Riel',
     'search_for_products' => 'Search for Products',
     'contact_us' => 'Contact us',
-    'total' => 'TOTAL',
     'checkout' => 'CHECKOUT',
     'view_cart' => 'VIEW CART',
 
@@ -295,5 +294,7 @@ return [
     'customer' => 'Customer',
     'failed' => 'Failed',
     'cancelled' => 'Cancelled',
+    'delete' => 'Delete',
+
 
 ];

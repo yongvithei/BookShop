@@ -87,10 +87,10 @@
                         <h6 class="mb-0 text-uppercase">@lang('main.email')</h6>
                         <p class="mb-0 font-13">{{ $siteinfo->email }}</p>
                     </div>
-                    <div class="working-days mb-3">
-                        <h6 class="mb-0 text-uppercase">@lang('main.working_days')</h6>
-                        <p class="mb-0 font-13">@lang('main.working_hours')</p>
-                    </div>
+{{--                    <div class="working-days mb-3">--}}
+{{--                        <h6 class="mb-0 text-uppercase">@lang('main.working_days')</h6>--}}
+{{--                        <p class="mb-0 font-13">@lang('main.working_hours')</p>--}}
+{{--                    </div>--}}
                 </div>
             </div>
         </div>

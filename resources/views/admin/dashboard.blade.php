@@ -275,9 +275,9 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Recent Orders</h3>
                 <div class="block-options space-x-1">
-                    <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="class-toggle" data-target="#one-dashboard-search-orders" data-class="d-none">
-                        <i class="fa fa-search"></i>
-                    </button>
+{{--                    <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="class-toggle" data-target="#one-dashboard-search-orders" data-class="d-none">--}}
+{{--                        <i class="fa fa-search"></i>--}}
+{{--                    </button>--}}
                     <div class="dropdown d-inline-block">
 {{--                        <button type="button" class="btn btn-sm btn-alt-secondary" id="dropdown-recent-orders-filters" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
 {{--                            <i class="fa fa-fw fa-flask"></i>--}}

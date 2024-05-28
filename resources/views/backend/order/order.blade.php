@@ -1008,7 +1008,7 @@
 
                                         // Iterate through the order items and add rows to the table
                                         $.each(resOrderItems, function (index, item) {
-                                            var row = '<tr><td>' + item.name + '</td><td>' + item.pro_code + '</td><td>' + item.orderqty + '</td><td>' + item.qtyinstock + '</td><td>' + item.price + '</td><td>' + item.total_price + '$' + '</td></tr>';
+                                            var row = '<tr><td>' + item.name + '</td><td>' + item.pro_code + '</td><td>' + item.orderqty + '</td><td>' + item.qtyinstock + '</td><td>' + item.price + '</td><td>' + item.total_price + ' {{ __('pos_p.khr') }}' + '</td></tr>';
                                             // Check the condition for each row
 
                                             if (parseInt(item.qtyinstock) < parseInt(item.orderqty)) { // Use parseInt to ensure numeric comparison
@@ -1180,7 +1180,7 @@
 
     // Call the function to add options to the select element
     addOptionsToSelect();
-    
+
 
     function downloadInvoice(orderId) {
         // Use JavaScript to navigate to the desired URL

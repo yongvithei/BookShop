@@ -60,7 +60,7 @@ class ReviewController extends Controller
         $item = Review::find($request->id);
 
         if (!$item) {
-            return response()->json(['message' => 'Category not found'], 404);
+            return response()->json(['message' => 'Review not found'], 404);
         }
         $deleted = $item->delete();
         return Response()->json($item);
@@ -88,5 +88,16 @@ class ReviewController extends Controller
         $review->status = 0; // Use the correct field name (e.g., 'status')
         $review->save();
         return response()->json(['success' => 'Order confirmed successfully']);
+    }
+    public function delete($id)
+    {
+        $review = Review::findOrFail($id);
+
+        // Optionally, you can add authorization to ensure only the owner can delete
+        // $this->authorize('delete', $review);
+
+        $review->delete();
+
+        return redirect()->back()->with('success', 'Comment deleted successfully');
     }
 }
