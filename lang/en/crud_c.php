@@ -34,5 +34,5 @@ return [
     'private' => 'Private',
     'nameKH' => 'Khmer',
     'nameKH_placeholder' => 'Khmer',
-
+    'khmer' => 'khmer',
 ];

@@ -29,11 +29,9 @@ class StripeController extends Controller
         }else{
             $total_amount = round(Cart::total());
         }
-        if($total_amount > 153142 ){
-            $amount= $total_amount;
-        }else{
+
             $amount= $total_amount *100;
-        }
+
 
         \Stripe\Stripe::setApiKey('sk_test_51NbeE9KyITtLb50nFa7erh1Xys9swByu1fzrSdzXsFzZK8fQG5McscgH5hTh1dhlluV0sj4nMJHKhauz40AD2Ut5008UYwAuCn');
 

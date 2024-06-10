@@ -46,7 +46,7 @@ return [
 
 
     'delete' => 'Delete Record?',
-    'text' => "You won't be able to revert this!",
+    'text' => "You wont be able to revert this!",
     'icon' => 'warning',
     'confirm_button_text' => 'Yes, delete it!',
     'cancel_button_text' => 'Cancel',

@@ -287,7 +287,9 @@ return [
     'back_to_login' => 'Back to Login',
     'status_message' => 'Your password reset email has been sent!',
     'forgot_password?' => 'Forgot Password?',
-
+    'reset_password' => 'Reset Your Password',
+    'reset_button' => 'Reset Password',
+    'confirm_password' => 'Confirm Password',
 
     'received' => 'Received',
     'cashier' => 'Cashier',
@@ -295,6 +297,10 @@ return [
     'failed' => 'Failed',
     'cancelled' => 'Cancelled',
     'delete' => 'Delete',
+
+    'sorry' => "Sorry we couldn't find this page.",
+    'but' => "But don't worry, you can find plenty of other things on our homepage.",
+    'back' => "back to homepage",
 
 
 ];

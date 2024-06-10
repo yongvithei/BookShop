@@ -52,8 +52,8 @@
                                 $address = session()->get('locale') == 'en' ? ($info->address ? $info->address : $info->address_kh) : ($info->address_kh ? $info->address_kh : $info->address);
                                 $addressLines = wordwrap($address, 85, "<br>");
                             @endphp
-                            <strong>{!! $addressLines !!}</strong>
-                            </strong>{{$info->support_phone}}</strong>
+                            <p>{!! $addressLines !!}</p>
+                            </p>{{$info->support_phone}}</p>
                         </ul>
                     </td>
                 </tr>

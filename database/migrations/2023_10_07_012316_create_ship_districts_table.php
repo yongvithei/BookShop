@@ -69,6 +69,14 @@ return new class extends Migration
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'city_id' => '2',
+                'name' => 'Doun Penh',
+                'dis_kh' => 'ខណ្ឌដូន',
+                'status' => '1',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 

@@ -37,7 +37,6 @@
                 <div class="block-header block-header-default">
                     <h3 class="block-title">{{ __('crud_c.categories') }}</h3>
                     <div class="block-options">
-                        <a class="btn btn-sm btn-alt-primary">{{ __('crud_c.refresh') }}</a>
                         <a onClick="add()" href="javascript:void(0)" class="btn btn-sm btn-alt-primary" data-bs-toggle="modal" data-bs-target="#item-modal">{{ __('crud_c.add') }}</a>
                     </div>
                 </div>
@@ -84,11 +83,11 @@
                                     <div class="col-lg-12 col-xl-12">
                                         <div class="mb-3">
                                             <label class="form-label" for="name">{{ __('crud_c.name') }}</label>
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('crud_c.category_name') }}">
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="cat_kh">{{ __('crud_c.nameKH') }}</label>
-                                            <input type="text" class="form-control" id="cat_kh" name="cat_kh" placeholder="{{ __('crud_c.nameKH') }}">
+                                            <input type="text" class="form-control" id="cat_kh" name="cat_kh" placeholder="">
                                             <span id="name_error" class="text-danger" style="display: none;">{{ __('crud_c.field_required') }}</span>
                                         </div>
                                         <div class="mb-3">

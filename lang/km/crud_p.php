@@ -16,7 +16,7 @@ return [
     'product_status' => 'ស្ថានភាពផលិតផល',
     'new_arrivals' => 'ផលិតផលថ្មី',
     'featured' => 'ផលិតផលលក្ខណៈពិសេស',
-    'published' => 'សាធារណៈ',
+    'published ?' => 'សាធារណៈ',
     'create' => 'បង្កើត',
     'choose_one' => 'ជ្រើសរើសមួយ',
     'character_max' => 'តួអក្សរ',
@@ -55,4 +55,5 @@ return [
     'private' => 'ឯកជន',
     'nameKH' => 'ខ្មែរ',
     'field_required_each' => 'សូមបញ្ចូលជាខ្មែរឬអង់គ្លេស',
+    'edit' => 'កែប្រែ',
 ];

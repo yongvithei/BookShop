@@ -27,6 +27,13 @@ return new class extends Migration
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'name' => 'Phnom Pehn',
+                'ci_kh' => 'ភ្នំពេញ',
+                'status' => '1',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 

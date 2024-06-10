@@ -62,7 +62,6 @@
                     <div class="block-header block-header-default">
                         <h3 class="block-title">{{ __('crud_p.all_products') }}</h3>
                         <div class="block-options">
-                            <a type="button" class="btn btn-sm btn-alt-primary">{{ __('crud_p.refresh') }}</a>
                             <a href="{{ route('pro.create') }}" type="button" class="btn btn-sm btn-alt-primary">{{ __('crud_p.add') }}</a>
                         </div>
                     </div>

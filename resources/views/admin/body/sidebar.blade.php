@@ -55,15 +55,15 @@
         <!-- Side Navigation -->
         <div class="content-side">
             <ul class="nav-main">
-            @if(Auth::user()->can('dashboard.menu'))
+
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('admin/dashboard') ? ' active' : '' }}" href="{{ route('admin.dashboard') }}">
                                 <i class="nav-main-link-icon si si-grid"></i>
                         <span class="nav-main-link-name">{{__('body.dashboard')}}</span>
                     </a>
                 </li>
-            @endif
-                @if(Auth::user()->can('user.menu'))
+
+                @if(Auth::user()->can('pos.menu'))
                     <li class="nav-main-item">
                         <a class="nav-main-link{{ request()->is('admin/pos') ? ' active' : '' }}" href="/admin/pos">
                             <i class="nav-main-link-icon fa fa-calculator"></i>

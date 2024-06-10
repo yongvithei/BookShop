@@ -20,6 +20,7 @@ return [
     'inactive' => 'មិនសកម្ម',
     'add' => 'បន្ថែម',
     'create' => 'បង្កើត',
+    'khmer_Ci' => 'ឈ្មោះជាភាសាខ្មែរ',
     'khmer_placeholder' => 'ឈ្មោះជាភាសាខ្មែរ',
     'record_saved' => 'បានរក្សាទុក',
     'delete_record' => 'លុប?',

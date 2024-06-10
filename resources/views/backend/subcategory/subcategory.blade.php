@@ -42,7 +42,6 @@
                 <div class="block-header block-header-default">
                     <h3 class="block-title">{{ __('crud_c.subcategories') }}</h3>
                     <div class="block-options">
-                        <a type="button" class="btn btn-sm btn-alt-primary">{{ __('crud_c.refresh') }}</a>
                         <a onClick="add()" type="button" class="btn btn-sm btn-alt-primary" data-bs-toggle="modal" data-bs-target="#modal3">{{ __('crud_c.add') }}</a>
                     </div>
                 </div>
@@ -84,7 +83,7 @@
                                     <input type="hidden" name="id" id="id">
                                     <div class="mb-3">
                                         <label class="form-label" for="example-text-input">{{ __('crud_c.subcategory_name') }}</label>
-                                        <input type="text" class="form-control" id="sub_name" name="sub_name" placeholder="{{ __('crud_c.subcategory_name_placeholder') }}">
+                                        <input type="text" class="form-control" id="sub_name" name="sub_name" placeholder="">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="example-text-input">{{ __('crud_c.nameKH') }}</label>

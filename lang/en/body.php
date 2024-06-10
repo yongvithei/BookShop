@@ -17,7 +17,7 @@ return [
     'roles_and_permission' => 'Roles And Permission',
     'all' => 'All',
     'add_and_edit' => 'Add and Edit',
-    'assign' => 'Assign',
+    'assign' => 'Admin List',
     'system_setting' => 'SYSTEM SETTINGS',
     'business_setup' => 'Business Setup',
     'backup' => 'BackUp',
@@ -32,10 +32,10 @@ return [
     'title' => 'Ponleu Vichea',
 
     //footer
-    'alpha_version' => 'Beta Version',
-    'dev' => 'Vithei',
-    'crafted_with' => 'Crafted with',
-    'by' => 'By',
+    'alpha_version' => '',
+    'dev' => '',
+    'crafted_with' => '',
+    'by' => '',
     'notification' => 'Notification',
 
     //header

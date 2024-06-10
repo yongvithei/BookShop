@@ -61,7 +61,7 @@
         'close' => __('pos_p.close'),
         'note' => __('pos_p.note'),
         'customer' => __('pos_p.customer'),
-        'online_bank' => __('pos_p.customer'),
+        'online_bank' => __('pos_p.online_bank'),
         'cash' => __('pos_p.cash'),
         'payment_type' => __('pos_p.payment_type'),
         'KHR' => __('pos_p.khr'),
@@ -79,11 +79,9 @@
         'submit' => __('pos_p.submit'),
         'cancel' => __('pos_p.cancel'),
         'total' => __('pos_p.total'),
-        'name' => __('pos_p.name'),
         'qty' => __('pos_p.qty'),
         'barcode' => __('pos_p.barcode'),
         'success' => __('pos_p.success'),
-        'barcode' => __('pos_p.barcode'),
         // Add other translations as needed
     ]); ?>;
 

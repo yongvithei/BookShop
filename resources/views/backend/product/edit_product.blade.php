@@ -172,7 +172,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-4">
-                                    <button type="submit" class="btn btn-alt-primary btn-lg">{{ __('crud_p.create') }}</button>
+                                    <button type="submit" class="btn btn-alt-primary btn-lg">{{ __('crud_p.edit') }}</button>
                                 </div>
                         </div>
                     </div>

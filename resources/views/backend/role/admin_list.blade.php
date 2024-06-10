@@ -43,7 +43,6 @@
                 <div class="block-header block-header-default">
                     <h3 class="block-title">{{ __('per.admin_list') }}</h3>
                     <div class="block-options">
-                    <a type="button" class="btn btn-sm btn-alt-primary">{{ __('per.refresh') }}</a>
                         <a onClick="add()" type="button" class="btn btn-sm btn-alt-primary" data-bs-toggle="modal" data-bs-target="#item-modal">{{ __('per.add') }}</a>
                     </div>
                 </div>

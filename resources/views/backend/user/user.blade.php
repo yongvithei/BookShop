@@ -238,16 +238,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="mb-2">
-                                        <label class="form-label" for="verified">{{ __('part_s.verified_at') }}</label>
-                                        <div class="input-group">
-                                        <span class="input-group-text">
-                                            <i class="far fa-envelope-open"></i>
-                                        </span>
-                                            <input type="text" class="form-control" id="verified" name="verified" placeholder="{{ __('part_s.verified_at') }}">
-                                        </div>
-                                    </div>
-
                                     <div class="mb-4">
                                         <label class="form-label" for="create">{{ __('part_s.created_at') }}</label>
                                         <div class="input-group">
@@ -340,13 +330,17 @@
             data: { id: id },
             dataType: 'json',
             success: function (res) {
+                console.log(res);
                 $('#item-modal').modal('show');
                 $('#id').val(res.id);
                 $('#name').val(res.name);
                 $('#username').val(res.username);
                 $('#email').val(res.email);
-                $('#verified').val(res.email_verified_at);
-                $('#create').val(res.created_at);
+                // Convert the ISO date string to a Date object
+                var date = new Date(res.created_at);
+                // Format the date to a more readable format
+                var formattedDate = date.toLocaleString();
+                $('#create').val(formattedDate);
 
                 // Check if the provider is null and set the value accordingly
                 if (res.provider === null) {

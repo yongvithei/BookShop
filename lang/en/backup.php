@@ -7,7 +7,7 @@ return [
     'cache_and_optimize_system' => 'Cache and Optimize System',
     'clean_now' => 'Clean Now',
     'backup_system' => 'BackUP System',
-    'backup_system_description' => 'You can backup this system to local. Backup system file may take a bit longer.',
+    'backup_system_description' => 'You can backup this system to local. Backup system file may take a bit longer. Location: BookShop\storage\app\Ponleu Vichea',
     'schedule' => 'Schedule',
     'daily_schedule' => 'Daily 1:00 AM, UTC',
     'manual_backup' => 'Manual (System Files And Database)',

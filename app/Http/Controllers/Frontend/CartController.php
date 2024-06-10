@@ -274,9 +274,19 @@ class CartController extends Controller
             $carts = Cart::content();
             $cartQty = Cart::count();
             $cartTotal = Cart::total();
-            $dollar = number_format(Cart::total() / $exchangeRate, 2, '.', '');
-            $cities = ShipCity::orderBy('name','ASC')->get();
-            return view('frontend.checkout.checkout_view',compact('carts','cartQty','cartTotal','cities','dollar'));
+                if (session()->has('coupon') && isset(session('coupon')['total_amount'])) {
+                    $totalAmount = session('coupon')['total_amount'];
+                } else {
+                    $totalAmount = Cart::total();
+                }
+
+                $dollar = number_format($totalAmount / $exchangeRate, 2, '.', '');
+
+                $cities = ShipCity::where('status', 1)
+                    ->orderBy('name', 'ASC')
+                    ->get();
+
+                return view('frontend.checkout.checkout_view',compact('carts','cartQty','cartTotal','cities','dollar'));
             }else{
                 $notification = array(
                 'message' => 'Shopping At list One Product',

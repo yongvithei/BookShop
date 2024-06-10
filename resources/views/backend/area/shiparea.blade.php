@@ -146,11 +146,11 @@
                                     <div class="col-lg-12 col-xl-12">
                                         <div class="mb-2">
                                             <label class="form-label" for="name">{{ __('crud.name') }}</label>
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('crud.name') }}">
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="">
                                         </div>
                                         <div class="mb-2">
-                                            <label class="form-label" for="name_kh">{{ __('crud.khmer_placeholder') }}</label>
-                                            <input type="text" class="form-control" id="name_kh" name="name_kh" placeholder="{{ __('crud.khmer_placeholder') }}">
+                                            <label class="form-label" for="name_kh">{{ __('crud_c.khmer') }}</label>
+                                            <input type="text" class="form-control" id="name_kh" name="name_kh" placeholder="">
                                             <span id="name_kh_error" class="text-danger" style="display: none;">{{ __('crud.name_required') }}</span>
                                         </div>
                                         <div class="mb-2">
@@ -197,11 +197,11 @@
                                     <div class="col-lg-12 col-xl-12">
                                         <div class="mb-3">
                                             <label class="form-label" for="nameD">{{ __('crud.name') }}</label>
-                                            <input type="text" class="form-control" id="nameD" name="nameD" placeholder="{{ __('crud.name_placeholder') }}">
+                                            <input type="text" class="form-control" id="nameD" name="nameD" placeholder="">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="nameDKH">{{ __('crud.name_placeholder') }}</label>
-                                            <input type="text" class="form-control" id="nameDKH" name="nameDKH" placeholder="{{ __('crud.name_placeholder') }}">
+                                            <label class="form-label" for="nameDKH">{{ __('crud_c.nameKH') }}</label>
+                                            <input type="text" class="form-control" id="nameDKH" name="nameDKH" placeholder="">
                                             <span id="name_errorCKH" class="text-danger" style="display: none;">{{ __('crud.name_required') }}</span>
                                         </div>
                                         <div class="mb-3">

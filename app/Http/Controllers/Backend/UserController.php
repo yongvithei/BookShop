@@ -11,12 +11,12 @@ class UserController extends Controller
     {
         if (request()->ajax()) {
             return datatables()->of(User::where('role', 'user')
-                ->select(['id', 'name', 'email', 'last_seen']))
+                ->select(['id', 'name', 'email', 'last_seen','created_at']))
                 ->addColumn('action', 'backend.user.action')
                 ->rawColumns(['action'])
                 ->addIndexColumn()
                 ->make(true);
-        }        
+        }
         return view('backend.user.user');
     }
     public function view(Request $request)

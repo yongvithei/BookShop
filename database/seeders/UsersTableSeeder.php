@@ -26,8 +26,29 @@ class UsersTableSeeder extends Seeder
                 'email_verified_at' => now(),
                 'created_at'=> now(),
                 'updated_at'=> now(),
+            ],[
+            'name' => 'root',
+            'username' => 'root',
+            'email' => 'root@gmail.com',
+            'password' => Hash::make('root'),
+            'remember_token' => Str::random(10),
+            'role' => 'admin',
+            'email_verified_at' => now(),
+            'created_at'=> now(),
+            'updated_at'=> now(),
+        ],
+            [
+                'name' => 'root123',
+                'username' => 'root123',
+                'email' => 'root123@gmail.com',
+                'password' => Hash::make('root'),
+                'remember_token' => Str::random(10),
+                'role' => 'admin',
+                'email_verified_at' => now(),
+                'created_at'=> now(),
+                'updated_at'=> now(),
             ],
-           
+
         ];
         DB::table('users')->insert($users);
         //factory generator

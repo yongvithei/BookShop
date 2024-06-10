@@ -32,4 +32,5 @@ return [
     'private' => 'ឯកជន',
     'nameKH' => 'ឈ្មោះជាខ្មែរ',
     'nameKH_placeholder' => 'ឈ្មោះ',
+    'khmer' => 'ខ្មែរ',
 ];

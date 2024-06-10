@@ -25,14 +25,11 @@ return new class extends Migration
         });
         DB::table('partners')->insert([
             [
-                'name' => 'Creative Art Supplies Co.',
-                'part_kh' => 'ផ្គត់ផ្គង់សិល្បៈច្នៃប្រឌិត Co.',
-                'phone' => '(885) 123-4567,  jane.smith@creativeartsupplies.com',
-                'address' => '123 Art Street, Artville, AR 12345',
-                'desc' => 'Creative Art Supplies Co. is a well-established supplier of high-quality art materials and supplies. They have been serving artists, art schools, and businesses for over two decades. Their commitment to quality and customer satisfaction makes them a reliable partner for all your art supply needs. Product Offerings:
-                    A wide range of art supplies, including paints, brushes, canvases, sketchbooks, and more.
-                    High-quality, artist-grade materials suitable for professionals and hobbyists.
-                    Competitive pricing and bulk purchase discounts available.',
+                'name' => 'FlexOffice Cambodia',
+                'part_kh' => '',
+                'phone' => 'globalflexoffice.com',
+                'address' => 'E0-44B Street 338, Khan Chamkarmon, Phnom Penh, Cambodia',
+                'desc' => 'Shopping & retail · Office supplies',
                 'avatar' => 'default.jpg',
                 'status' => 'Active',
                 'created_at' => now(),

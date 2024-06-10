@@ -16,7 +16,10 @@ use Auth;
 class CheckoutController extends Controller
 {
     public function DistrictGetAjax($division_id){
-        $ship = ShipDistrict::where('city_id',$division_id)->orderBy('name','ASC')->get();
+        $ship = ShipDistrict::where('city_id', $division_id)
+            ->where('status', 1)
+            ->orderBy('name', 'ASC')
+            ->get();
         return json_encode($ship);
     }
     public function CheckoutStore(Request $request){

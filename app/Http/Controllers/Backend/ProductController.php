@@ -40,7 +40,7 @@ class ProductController extends Controller
             'name' => 'nullable|string|max:255',
             'name_kh' => 'nullable|string|max:255',
             'price' => 'required|numeric|min:0',
-            'price_dis' => 'nullable|numeric|min:0',
+            'price_dis' => 'nullable|numeric|min:0|lt:price', // This line ensures discount price is smaller than normal price
             'cate_Id' => 'nullable|exists:categories,id',
             'subcate_Id' => 'nullable|exists:sub_categories,id',
             'part_id' => 'nullable|exists:partners,id',
@@ -153,7 +153,7 @@ class ProductController extends Controller
             'name' => 'nullable|string|max:255',
             'name_kh' => 'nullable|string|max:255',
             'price' => 'required|numeric|min:0',
-            'price_dis' => 'nullable|numeric|min:0',
+            'price_dis' => 'nullable|numeric|min:0|lt:price',
             'cate_Id' => 'nullable|exists:categories,id',
             'subcate_Id' => 'nullable|exists:sub_categories,id',
             'part_id' => 'nullable|exists:partners,id',

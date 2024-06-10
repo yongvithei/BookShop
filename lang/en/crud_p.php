@@ -17,7 +17,7 @@ return [
     'product_status' => 'Product Status',
     'new_arrivals' => 'New Arrivals',
     'featured' => 'Featured',
-    'published' => 'Published',
+    'published' => 'Published ?',
     'create' => 'Create',
     'choose_one' => 'Choose One',
     'character_max' => 'Character Max',
@@ -56,6 +56,7 @@ return [
     'close' => 'Close',
     'info' => 'INFO',
     'media' => 'Media',
+    'edit' => 'Change',
 
     'product_updated_success' => 'Product updated successfully.',
     'product_add_successfully' => 'Product Add successfully.',

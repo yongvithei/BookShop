@@ -53,7 +53,7 @@ return [
     'yes_approve' => 'Yes Approve',
 
     'revoke_record_confirmation' => 'Revoke this Record?',
-    'revoke_warning' => "You won't be able to revert this!",
+    'revoke_warning' => "You wont be able to revert this!",
     'yes_revoke' => 'Yes, Revoke it!',
     'cancel' => 'Cancel',
 

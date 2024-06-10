@@ -49,7 +49,7 @@ class RolesAndPermissionsSeeder extends Seeder
             $permissionCategory,
             $permissionBusiness,
             $permissionPromo,
-            $permissionPos
+            $permissionPos,
         ]);
 
         $roleAdmin->givePermissionTo([

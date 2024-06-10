@@ -74,6 +74,13 @@
                                                                     <div class="d-flex gap-2">
                                                                         <a href="{{ url('user/order_details/'.$order->id) }}" class="btn btn-dark btn-sm rounded-lg">{{ __('main.view') }}</a>
                                                                         <a href="{{ url('user/invoice_download/'.$order->id) }}" class="btn-sm btn-danger rounded-lg">{{ __('main.invoice') }}</a>
+                                                                        <form method="post" action="{{ route('order.tracking') }}" enctype="multipart/form-data">
+                                                                            @csrf
+                                                                            <input type="hidden" name="code" value="{{ $order->invoice_no }}">
+                                                                            <div>
+                                                                                <button type="submit" class="bg-dark text-white btn-sm rounded-lg">{{ __('main.submit') }}</button>
+                                                                            </div>
+                                                                        </form>
                                                                     </div>
                                                                 </td>
 
